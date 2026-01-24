@@ -84,6 +84,33 @@ h2 {
   box-shadow: 0 0 20px rgba(0,0,0,0.6);
 }
 
+/* 国庆倒计时样式 */
+.countdown {
+  text-align: center;
+  background: linear-gradient(90deg, #1e3c5a, #2c5a87);
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.countdown h2 {
+  color: #ffd36a;
+}
+
+.timer {
+  font-size: 32px;
+  letter-spacing: 3px;
+  margin-top: 15px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.axie-date {
+  margin-top: 10px;
+  font-size: 16px;
+  opacity: 0.9;
+}
+
 .button {
   display: inline-block;
   margin-top: 20px;
@@ -150,6 +177,13 @@ footer {
   </p >
 </section>
 
+<!-- 国庆倒计时 -->
+<section class="card countdown">
+  <h2 id="countdown-title"> 阿谢国国庆日倒计时</h2>
+  <div id="axieDate" class="axie-date">加载中...</div>
+  <div id="timer" class="timer">加载中...</div>
+</section>
+
 <!-- 城市体系 -->
 <section id="cities" class="card">
   <h2>国家城市体系</h2>
@@ -184,6 +218,56 @@ footer {
 <div style="font-size:12px; opacity:0.5; margin-top:20px; text-align:center;">
 阿谢国为架空世界观创作项目 · Republic of Axie is a fictional nation project
 </div>
+
+<!-- 阿谢国历法 & 国庆倒计时脚本 -->
+<script>
+function getAxieYear(date) {
+  return date.getFullYear() - 2023;
+}
+
+function getAnniversary(axieYear) {
+  return axieYear - 1;
+}
+
+function updateCountdown() {
+  const now = new Date();
+  const year = now.getFullYear();
+
+  let nationalDay = new Date(year, 0, 18);
+  if (now > nationalDay) {
+    nationalDay = new Date(year + 1, 0, 18);
+  }
+
+  const diff = nationalDay - now;
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((diff / (1000 * 60)) % 60);
+  const seconds = Math.floor((diff / 1000) % 60);
+
+  const axieYear = getAxieYear(now);
+  const anniversary = getAnniversary(axieYear);
+
+  document.getElementById("axieDate").innerHTML =
+    `今天是：阿谢${axieYear}年 ${now.getMonth() + 1}月 ${now.getDate()}日`;
+
+  if (
+    now.getMonth() === 0 &&
+    now.getDate() === 18
+  ) {
+    document.getElementById("countdown-title").innerHTML =
+      `🎉 今天是阿谢国 ${anniversary} 周年国庆日！`;
+    document.getElementById("timer").innerHTML =
+      "彩虹白地蓝天星旗今日为国而飘扬! ";
+  } else {
+    document.getElementById("timer").innerHTML =
+      `${days} 天 ${hours} 小时 ${minutes} 分 ${seconds} 秒`;
+  }
+}
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
+</script>
 
 </body>
 </html>
