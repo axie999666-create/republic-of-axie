@@ -228,13 +228,24 @@ function getAnniversary(axieYear) {
   return axieYear - 1;
 }
 
-function updateCountdown() {
+// 获取东九区时间（UTC+9）
+function getUTC9Date() {
   const now = new Date();
+  const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+  return new Date(utc + 9 * 60 * 60000);
+}
+
+function updateCountdown() {
+  const now = getUTC9Date();
   const year = now.getFullYear();
 
-  let nationalDay = new Date(year, 0, 18);
+  // 国庆日：1月18日（东九区）
+  let nationalDay = new Date(Date.UTC(year, 0, 18, 0, 0, 0));
+  nationalDay = new Date(nationalDay.getTime() + 9 * 60 * 60000);
+
   if (now > nationalDay) {
-    nationalDay = new Date(year + 1, 0, 18);
+    nationalDay = new Date(Date.UTC(year + 1, 0, 18, 0, 0, 0));
+    nationalDay = new Date(nationalDay.getTime() + 9 * 60 * 60000);
   }
 
   const diff = nationalDay - now;
@@ -248,7 +259,7 @@ function updateCountdown() {
   const anniversary = getAnniversary(axieYear);
 
   document.getElementById("axieDate").innerHTML =
-    `今天是：阿谢${axieYear}年 ${now.getMonth() + 1}月 ${now.getDate()}日`;
+    `今天是：阿谢${axieYear}年 ${now.getMonth() + 1}月 ${now.getDate()}日（东九区）`;
 
   if (
     now.getMonth() === 0 &&
@@ -257,7 +268,7 @@ function updateCountdown() {
     document.getElementById("countdown-title").innerHTML =
       `🎉 今天是阿谢国 ${anniversary} 周年国庆日！`;
     document.getElementById("timer").innerHTML =
-      "彩虹白地蓝天星旗今日为国而飘扬! ";
+      "彩虹白地蓝天星旗今日为国而飘扬!";
   } else {
     document.getElementById("timer").innerHTML =
       `${days} 天 ${hours} 小时 ${minutes} 分 ${seconds} 秒`;
@@ -267,6 +278,5 @@ function updateCountdown() {
 setInterval(updateCountdown, 1000);
 updateCountdown();
 </script>
-
 </body>
 </html>
