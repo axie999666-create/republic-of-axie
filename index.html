@@ -218,30 +218,28 @@ footer {
 阿谢国为架空世界观创作项目 · Republic of Axie is a fictional nation project
 </div>
 
-<!-- 阿谢国历法 & 国庆倒计时脚本 -->
 <script>
-function getUTC9(dateUTC) {
-  return new Date(dateUTC.getTime() + 9 * 60 * 60 * 1000);
+// 获取真正的 UTC+9（东九区）时间
+function getUTC9Time() {
+  const now = new Date();
+  const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+  return new Date(utc + 9 * 60 * 60 * 1000);
 }
 
 function updateCountdown() {
-  // 当前 UTC 时间
-  const nowUTC = new Date();
-
-  // 转为东九区时间用于显示
-  const now = getUTC9(nowUTC);
-
+  // 阿谢国标准时间（东九区）
+  const now = getUTC9Time();
   const year = now.getFullYear();
 
-  // 国庆日：UTC时间的 1月18日 00:00（等于东九区 09:00）
-  let nationalDayUTC = new Date(Date.UTC(year, 0, 18, 0, 0, 0));
+  // 国庆日：东九区 1月18日 00:00
+  let nationalDay = new Date(year, 0, 18, 0, 0, 0);
 
-  // 如果已经过了今年国庆，就算明年
-  if (nowUTC > nationalDayUTC) {
-    nationalDayUTC = new Date(Date.UTC(year + 1, 0, 18, 0, 0, 0));
+  // 如果今年国庆已过，算明年
+  if (now > nationalDay) {
+    nationalDay = new Date(year + 1, 0, 18, 0, 0, 0);
   }
 
-  const diff = nationalDayUTC - nowUTC;
+  const diff = nationalDay - now;
 
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));
   const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
@@ -255,10 +253,7 @@ function updateCountdown() {
   document.getElementById("axieDate").innerHTML =
     `今天是：阿谢${axieYear}年 ${now.getMonth() + 1}月 ${now.getDate()}日（东九区）`;
 
-  if (
-    now.getMonth() === 0 &&
-    now.getDate() === 18
-  ) {
+  if (now.getMonth() === 0 && now.getDate() === 18) {
     document.getElementById("countdown-title").innerHTML =
       `🎉 今天是阿谢国 ${anniversary} 周年国庆日！`;
     document.getElementById("timer").innerHTML =
@@ -270,6 +265,8 @@ function updateCountdown() {
 }
 
 setInterval(updateCountdown, 1000);
+updateCountdown();
+</script>setInterval(updateCountdown, 1000);
 updateCountdown();
 </script>
 
