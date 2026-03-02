@@ -591,11 +591,16 @@ footer {
 </footer>
 
 <script>
-  // 语言切换功能
-  function setLang(lang) {
-    // 先全部隐藏
-    document.querySelectorAll('.lang').forEach(el => {
-      el.classList.remove('active');
-    });
-    // 显示选中的语言
-    document.getElem
+function setLang(lang) {
+  // 隐藏全部语言
+  document.querySelectorAll('.lang').forEach(el => {
+    el.classList.remove('active');
+  });
+
+  // 显示目标语言
+  const target = document.getElementById(lang);
+  if (target) {
+    target.classList.add('active');
+  }
+}
+</script>
