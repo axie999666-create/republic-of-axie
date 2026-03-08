@@ -177,10 +177,10 @@ footer {
 <section id="history" class="card">
   <h2 data-zh="建国历史" data-en="Founding History" data-jp="建国の歴史">建国历史</h2>
   <p
-    data-zh="阿谢元年（2024年）1月18日，阿谢国在新阿谢市正式宣告成立。国家以彩虹白地蓝天星旗为象征，确立民主制度、科技发展与和平外交为国家基本路线。"
-    data-en="On January 18, 2024, the Republic of Axie was officially founded in New Axie City. The nation adopted the Rainbow White-Blue Sky Star Flag as its symbol and established democracy, technological development, and peaceful diplomacy as its national principles."
-    data-jp="2024年1月18日、阿謝元年として、阿謝国はニュー阿謝市にて正式に建国されました。国家の象徴として彩虹白地蓝天星旗を掲げ、民主制度、技術発展、平和外交を基本方針としています。">
-    阿谢元年（2024年）1月18日，阿谢国在新阿谢市正式宣告成立。国家以彩虹白地蓝天星旗为象征，确立民主制度、科技发展与和平外交为国家基本路线。
+    data-zh="阿谢元年（2024年）2月3日，阿谢国在新阿谢市正式宣告成立。国家以彩虹白地蓝天星旗为象征，确立民主制度、科技发展与和平外交为国家基本路线。"
+    data-en="On 3/february/ 2024, the Republic of Axie was officially founded in New Axie City. The nation adopted the Rainbow White-Blue Sky Star Flag as its symbol and established democracy, technological development, and peaceful diplomacy as its national principles."
+    data-jp="2024年2月3日、阿謝元年として、阿謝国はニュー阿謝市にて正式に建国されました。国家の象徴として彩虹白地蓝天星旗を掲げ、民主制度、技術発展、平和外交を基本方針としています。">
+    阿谢元年（2024年）2月3日，阿谢国在新阿谢市正式宣告成立。国家以彩虹白地蓝天星旗为象征，确立民主制度、科技发展与和平外交为国家基本路线。
   </p >
 </section>
 
@@ -257,9 +257,11 @@ function updateCountdown() {
   const now = getUTC9Time();
   const year = now.getFullYear();
 
-  let nationalDay = new Date(year, 0, 18, 0, 0, 0);
+  // 👇 这里改成：2月3日（月份是 0~11，所以2月写 1）
+  let nationalDay = new Date(year, 1, 3, 0, 0, 0);
+
   if (now > nationalDay) {
-    nationalDay = new Date(year + 1, 0, 18, 0, 0, 0);
+    nationalDay = new Date(year + 1, 1, 3, 0, 0, 0);
   }
 
   const diff = nationalDay - now;
@@ -280,7 +282,8 @@ function updateCountdown() {
 
   document.getElementById("axieDate").innerHTML = dateText[currentLang];
 
-  if (now.getMonth() === 0 && now.getDate() === 18) {
+  // 👇 国庆日判断也改成 2月3日
+  if (now.getMonth() === 1 && now.getDate() === 3) {
     const celebrateText = {
       zh: `🎉 今天是阿谢国 ${anniversary} 周年国庆日！`,
       en: `🎉 Today is the ${anniversary}th Anniversary of the Republic of Axie!`,
@@ -324,6 +327,3 @@ function toggleLang() {
 setInterval(updateCountdown, 1000);
 updateCountdown();
 </script>
-
-</body>
-</html>
