@@ -377,7 +377,7 @@ function updateCountdown() {
   const minutes = Math.floor((diff / (1000 * 60)) % 60);
   const seconds = Math.floor((diff / 1000) % 60);
 
-  const axieYear = year - 2023 + 1;
+  const axieYear = year - 2024 + 1;
 
   const dateText = {
     zh: `今天是：阿谢${axieYear}年 ${now.getMonth() + 1}月 ${now.getDate()}日（UTC+9）`,
@@ -402,7 +402,7 @@ function updateCountdown() {
 
     if (timerEl) {
       timerEl.textContent = {
-        zh: "彩虹白地蓝天星旗正在为国家飘扬!",
+        zh: "彩虹白地蓝天星旗今天为国家飘扬!",
         en: "The flag flies proudly for the nation!",
         jp: "国旗は誇り高く掲げられています！"
       }[currentLang];
