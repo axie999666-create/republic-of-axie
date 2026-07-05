@@ -3,14 +3,40 @@
 <head>
 <meta charset="UTF-8">
 <title>阿谢国官方网站 | Republic of Axie</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="阿谢国官方网站 国家宪法、国旗、城市展示平台">
 
+<!-- Social -->
+<meta property="og:title" content="阿谢国官方网站 | Republic of Axie">
+<meta property="og:description" content="阿谢国（Republic of Axie）——虚拟世界项目，国家宪法、国旗、城市展示平台。">
+<meta property="og:image" content="/flag.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico">
+
 <style>
+/* 保持原有风格，做少量可访问性��强 */
 body {
   margin: 0;
   font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
   background: linear-gradient(180deg, #0b1c2d, #102a44);
   color: #e8f1ff;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: auto;
+  overflow: hidden;
+  background: #fff;
+  color: #000;
+  padding: 8px 12px;
+  border-radius: 4px;
+  z-index: 1000;
+}
+.skip-link:focus {
+  left: 8px;
+  top: 8px;
 }
 
 header {
@@ -36,7 +62,7 @@ nav {
   padding: 12px;
 }
 
-nav a {
+nav a, nav .button {
   color: #9fd3ff;
   margin: 0 15px;
   text-decoration: none;
@@ -44,7 +70,14 @@ nav a {
   font-size: 16px;
 }
 
-nav a:hover {
+nav .button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 12px;
+}
+
+nav a:hover, nav .button:hover {
   text-decoration: underline;
 }
 
@@ -80,6 +113,8 @@ h2 {
 
 .flag-box img {
   max-width: 300px;
+  width: 100%;
+  height: auto;
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0,0,0,0.6);
 }
@@ -135,53 +170,61 @@ footer {
   opacity: 0.7;
   margin-top: 60px;
 }
+
+@media (max-width: 600px) {
+  header h1 { font-size: 28px; }
+  .timer { font-size: 24px; }
+}
 </style>
 </head>
 
 <body>
 
+<a href="#main-content" class="skip-link">跳过到主要内容</a>
+
 <header>
   <h1 data-zh="阿谢国官方网站" data-en="Republic of Axie - Official Website" data-jp="阿謝国 公式サイト">阿谢国官方网站</h1>
-  <p data-zh="Republic of Axie · 国家门户网站" data-en="Republic of Axie · National Portal" data-jp="阿謝国 · 国家ポータルサイト">Republic of Axie · 国家门户网站</p >
+  <p data-zh="Republic of Axie · 国家门户网站" data-en="Republic of Axie · National Portal" data-jp="阿謝国 · 国家ポータルサイト">Republic of Axie · 国家门户网站</p>
 </header>
 
 <nav>
-  <a href=" " data-zh="国家介绍" data-en="About" data-jp="国家紹介">国家介绍</a >
-  <a href="#history" data-zh="建国历史" data-en="History" data-jp="建国の歴史">建国历史</a >
-  <a href="#cities" data-zh="城市" data-en="Cities" data-jp="都市">城市体系</a >
-  <a href="constitution.html" data-zh="国家宪法" data-en="Constitution" data-jp="国家憲法">国家宪法</a >
-  <a href="#flag" data-zh="国家象征" data-en="National Symbols" data-jp="国家の象徴">国家象征</a >
-  <a href="#contact" data-zh="联系我们" data-en="Contact" data-jp="お問い合わせ">联系我们</a >
-  <a href="javascript:void(0)" onclick="toggleLang()">🌐 中文 / EN / 日本語</a >
+  <a href="#about" data-zh="国家介绍" data-en="About" data-jp="国家紹介">国家介绍</a>
+  <a href="#history" data-zh="建国历史" data-en="History" data-jp="建国の歴史">建国历史</a>
+  <a href="#cities" data-zh="城市" data-en="Cities" data-jp="都市">城市体系</a>
+  <a href="constitution.html" data-zh="国家宪法" data-en="Constitution" data-jp="国家憲法">国家宪法</a>
+  <a href="#flag" data-zh="国家象征" data-en="National Symbols" data-jp="国家の象徴">国家象征</a>
+  <a href="#contact" data-zh="联系我们" data-en="Contact" data-jp="お問い合わせ">联系我们</a>
+  <button id="langToggle" class="button" aria-label="切换语言" type="button">🌐 中文 / EN / 日本語</button>
 </nav>
 
+<main id="main-content">
 <div class="container">
 
 <!-- 国家介绍 -->
 <section id="about" class="card">
   <h2 data-zh="国家介绍" data-en="About the Republic of Axie" data-jp="阿謝国の紹介">国家介绍</h2>
   <p
-    data-zh="阿谢国（Republic of Axie）是建立于游戏：Mini World 虚拟世界中的国家，以和平、科技、民主、多元与可持续发展为核心理念，致力于构建一个自由、开放与富有创造力的社会体系。"
-    data-en="The Republic of Axie is a fictional nation created in the virtual world of Mini World. It is founded on the values of peace, technology, democracy, diversity, and sustainable development, aiming to build a free, open, and creative society."
-    data-jp="阿謝国（Republic of Axie）は、ゲーム『Mini World』の仮想世界に構築された架空の国家です。平和、技術、民主、多様性、持続可能な発展を中核理念とし、自由で開かれた創造的な社会の構築を目指しています。">
-    阿谢国（Republic of Axie）是建立于游戏：Mini World 虚拟世界中的国家，以和平、科技、民主、多元与可持续发展为核心理念，致力于构建一个自由、开放与富有创造力的社会体系。
-  </p >
+    data-zh="阿谢国（Republic of Axie）是建立于游戏 Mini World 虚拟世界中的架空国家。国家以和平、科技、民主、多元与可持续发展为核心理念，致力于构建一个自由、开放与包容的社区。"
+    data-en="The Republic of Axie is a fictional nation created within the Mini World virtual world. It is founded on the principles of peace, technology, democracy, diversity, and sustainable development, aiming to build a free, open, and inclusive community."
+    data-jp="阿謝国（Republic of Axie）は、ゲーム『Mini World』の仮想世界に構築された架空の国家です。平和、技術、民主、多様性、持続可能な発展を基本理念とし、自由で開かれた包摂的なコミュニティを目指します。">
+    阿谢国（Republic of Axie）是建立于游戏 Mini World 虚拟世界中的架空国家。国家以和平、科技、民主、多元与可持续发展为核心理念，致力于构建一个自由、开放与包容的社区。
+  </p>
 
   <a class="button" href="constitution.html"
      data-zh="📜 查看国家宪法"
      data-en="📜 View the Constitution"
-     data-jp="📜 国家憲法を見る">📜 查看国家宪法</a >
+     data-jp="📜 国家憲法を見る">📜 查看国家宪法</a>
 </section>
 
 <!-- 建国历史 -->
 <section id="history" class="card">
   <h2 data-zh="建国历史" data-en="Founding History" data-jp="建国の歴史">建国历史</h2>
   <p
-    data-zh="阿谢元年（2024年）2月3日，阿谢国在新阿谢市正式宣告成立。国家以彩虹白地蓝天星旗为象征，确立民主制度、科技发展与和平外交为国家基本路线。"
-    data-en="On february 3,2024, the Republic of Axie was officially founded in New Axie City. The nation adopted the Rainbow White-Blue Sky Star Flag as its symbol and established democracy, technological development, and peaceful diplomacy as its national principles."
-    data-jp="2024年2月3日、阿謝元年として、阿謝国はニュー阿謝市にて正式に建国されました。国家の象徴として彩虹白地蓝天星旗を掲げ、民主制度、技術発展、平和外交を基本方針としています。">
-    阿谢元年（2024年）2月3日，阿谢国在新阿谢市正式宣告成立。国家以彩虹白地蓝天星旗为象征，确立民主制度、科技发展与和平外交为国家基本路线。
-  </p >
+    data-zh="阿谢元年（2024年）2月3日，阿谢国在新阿谢市正式宣告成立。国家以彩虹白地蓝天星旗为象征，确立民主制度、科技发展与和平外交为基本路线。"
+    data-en="On February 3, 2024, the Republic of Axie was officially founded in New Axie City. The nation adopted the Rainbow White-Blue Sky Star Flag as its symbol and established democracy, technological development, and peaceful diplomacy as its guiding principles."
+    data-jp="2024年2月3日に阿謝国はニュー阿謝市で正式に建国されました。国家の象徴として彩虹白地蓝天星旗を採用し、民主制度、技術発展、平和外交を基本方針としました。">
+    阿谢元年（2024年）2月3日，阿谢国在新阿谢市正式宣告成立。国家以彩虹白地蓝天星旗为象征，确立民主制度、科技发展与和平外交为基本路线。
+  </p>
 </section>
 
 <!-- 国庆倒计时 -->
@@ -196,12 +239,12 @@ footer {
 
 <!-- 城市体系 -->
 <section id="cities" class="card">
-  <h2 data-zh="国家城市体系" data-en="cities " data-jp="都市">国家城市</h2>
+  <h2 data-zh="国家城���体系" data-en="Cities" data-jp="都市">国家城市</h2>
 
   <div class="city" data-zh="新阿谢市 — 国家首都及政治中心" data-en="New Axie City — Capital and Political Center" data-jp="ニュー阿謝市 — 首都および政治の中心">新阿谢市 — 国家首都及政治中心</div>
   <div class="city" data-zh="阿浩市 — 国家农业枢纽城市" data-en="Ahao City — Agricultural Hub" data-jp="阿浩市 — 農業の中核都市">阿浩市 — 国家农业枢纽城市</div>
-  <div class="city" data-zh="明辉市 — 国防核心城市" data-en="Minghui City — Defense Core City" data-jp="明辉市 — 国防の中核都市">明輝市 — 国防核心城市</div>
-  <div class="city" data-zh="阿陈市 — 高度现代化港口都市" data-en="Achen City — Modern Port City" data-jp="阿陈市 — 近代的な港湾都市">阿陳市 — 高度现代化港口都市</div>
+  <div class="city" data-zh="明辉市 — 国防核心城市" data-en="Minghui City — Defense Core City" data-jp="明辉市 — 国防の中核都市">明辉市 — 国防核心城市</div>
+  <div class="city" data-zh="阿陈市 — 高度现代化港口都市" data-en="Achen City — Modern Port City" data-jp="阿陈市 — 近代的な港湾都市">阿陈市 — 高度现代化港口都市</div>
   <div class="city" data-zh="立京市 — 历史文化古城" data-en="Liking City — Historic Cultural City" data-jp="立京市 — 歴史文化都市">立京市 — 历史文化古城</div>
 </section>
 
@@ -213,8 +256,8 @@ footer {
     data-en="Rainbow White-Blue Sky Star Flag · Symbol of peace, diversity, democracy, technology, and the future"
     data-jp="彩虹白地蓝天星旗 · 平和、多様性、民主、技術、そして未来の象徴">
     彩虹白地蓝天星旗 · 象征和平、包容多元、民主、科技与未来
-  </p >
-  <img src="flag.jpg" alt="阿谢国国旗">
+  </p>
+  <img src="/flag.jpg" alt="阿谢国国旗" loading="lazy" width="300">
 </section>
 
 <!-- 联系 -->
@@ -225,11 +268,12 @@ footer {
     data-en="If you are interested in the Republic of Axie or its world-building, please contact us:"
     data-jp="阿謝国や世界観にご興味がある方は、こちらまでご連絡ください：">
     如对阿谢国感兴趣或世界观交流请您联系我们：
-  </p >
-  <p><strong>📧 axie999666@gmail.com</strong></p >
+  </p>
+  <p><strong>📧 <a href="mailto:axie999666@gmail.com" style="color:inherit; text-decoration:none;">axie999666@gmail.com</a></strong></p>
 </section>
 
 </div>
+</main>
 
 <footer
   data-zh="© Republic of Axie · 阿谢国官方网站"
@@ -253,24 +297,47 @@ function getUTC9Time() {
   return new Date(utc + 9 * 60 * 60 * 1000);
 }
 
+// ========= 三语言切换系统 =========
+let langs = ["zh", "en", "jp"];
+let currentIndex = 0;
+let currentLang = document.documentElement.lang && document.documentElement.lang.startsWith('en') ? 'en' : (document.documentElement.lang && document.documentElement.lang.startsWith('ja') ? 'jp' : 'zh');
+
+function applyLanguage() {
+  const elements = document.querySelectorAll("[data-zh]");
+  elements.forEach(el => {
+    const text = el.getAttribute("data-" + currentLang);
+    if (text !== null) {
+      el.textContent = text;
+    }
+  });
+  // 更新标题
+  if (currentLang === "zh") document.title = "阿谢国官方网站 | Republic of Axie";
+  if (currentLang === "en") document.title = "Republic of Axie | Official Website";
+  if (currentLang === "jp") document.title = "阿謝国 | 公式サイト";
+  // 更新 html lang 属性
+  const langMap = { zh: 'zh-CN', en: 'en', jp: 'ja' };
+  document.documentElement.lang = langMap[currentLang] || currentLang;
+}
+
+function toggleLang() {
+  currentIndex = (currentIndex + 1) % langs.length;
+  currentLang = langs[currentIndex];
+  applyLanguage();
+}
+
+// ========= 倒计时逻辑（仅更新文本节点） =========
 function updateCountdown() {
   const now = getUTC9Time();
   const year = now.getFullYear();
-
-  // 👇 这里改成：2月3日（月份是 0~11，所以2月写 1）
-  let nationalDay = new Date(year, 1, 3, 0, 0, 0);
-
+  let nationalDay = new Date(year, 1, 3, 0, 0, 0); // 2月3日
   if (now > nationalDay) {
     nationalDay = new Date(year + 1, 1, 3, 0, 0, 0);
   }
-
   const diff = nationalDay - now;
-
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));
   const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
   const minutes = Math.floor((diff / (1000 * 60)) % 60);
   const seconds = Math.floor((diff / 1000) % 60);
-
   const axieYear = now.getFullYear() - 2023;
   const anniversary = axieYear - 1;
 
@@ -280,50 +347,34 @@ function updateCountdown() {
     jp: `本日は：阿謝${axieYear}年 ${now.getMonth() + 1}月 ${now.getDate()}日（東九区）`
   };
 
-  document.getElementById("axieDate").innerHTML = dateText[currentLang];
+  const axieDateEl = document.getElementById("axieDate");
+  const timerEl = document.getElementById("timer");
+  const countdownTitle = document.getElementById("countdown-title");
 
-  // 👇 国庆日判断也改成 2月3日
+  if (axieDateEl) axieDateEl.textContent = dateText[currentLang];
+
   if (now.getMonth() === 1 && now.getDate() === 3) {
     const celebrateText = {
-      zh: `🎉 今天是阿谢国 ${anniversary} 周年国庆日！`,
+      zh: `��� 今天是阿谢国 ${anniversary} 周年国庆日！`,
       en: `🎉 Today is the ${anniversary}th Anniversary of the Republic of Axie!`,
       jp: `🎉 本日は阿謝国 建国${anniversary}周年です！`
     };
-
-    document.getElementById("countdown-title").innerHTML = celebrateText[currentLang];
-    document.getElementById("timer").innerHTML = {
+    if (countdownTitle) countdownTitle.textContent = celebrateText[currentLang];
+    if (timerEl) timerEl.textContent = {
       zh: "彩虹白地蓝天星旗今日为国而飘扬!",
       en: "The flag flies proudly for the nation today!",
       jp: "本日、国旗は誇り高く掲げられています！"
     }[currentLang];
   } else {
-    document.getElementById("timer").innerHTML =
-      `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    if (timerEl) timerEl.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
   }
 }
 
-// ========= 三语言切换系统 =========
-let langs = ["zh", "en", "jp"];
-let currentIndex = 0;
-let currentLang = "zh";
-
-function toggleLang() {
-  currentIndex = (currentIndex + 1) % langs.length;
-  currentLang = langs[currentIndex];
-
-  const elements = document.querySelectorAll("[data-zh]");
-  elements.forEach(el => {
-    const text = el.getAttribute("data-" + currentLang);
-    if (text) {
-      el.innerHTML = text;
-    }
-  });
-
-  if (currentLang === "zh") document.title = "阿谢国官方网站 | Republic of Axie";
-  if (currentLang === "en") document.title = "Republic of Axie | Official Website";
-  if (currentLang === "jp") document.title = "阿謝国 | 公式サイト";
-}
-
+// 初始化
+document.getElementById('langToggle').addEventListener('click', toggleLang);
+applyLanguage();
 setInterval(updateCountdown, 1000);
 updateCountdown();
 </script>
+</body>
+</html>
