@@ -380,9 +380,9 @@ function updateCountdown() {
   const axieYear = year - 2024 + 1;
 
   const dateText = {
-    zh: `今天是：阿谢${axieYear}年 ${now.getMonth() + 1}月 ${now.getDate()}日（UTC+9）`,
-    en: `Today is Axie Year ${axieYear}, ${now.getMonth() + 1}/${now.getDate()} (UTC+9)`,
-    jp: `本日は：阿謝${axieYear}年 ${now.getMonth() + 1}月 ${now.getDate()}日（UTC+9）`
+    zh: `今天是：阿谢${axieYear-1}年 ${now.getMonth() + 1}月 ${now.getDate()}日（UTC+9）`,
+    en: `Today is Axie Year ${axieYear-1}, ${now.getMonth() + 1}/${now.getDate()} (UTC+9)`,
+    jp: `本日は：阿謝${axieYear-1}年 ${now.getMonth() + 1}月 ${now.getDate()}日（UTC+9）`
   };
 
   if (axieDateEl) {
