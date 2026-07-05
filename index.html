@@ -258,14 +258,25 @@ footer {
 
 <!-- 国旗 -->
 <section id="flag" class="card flag-box">
-  <h2 data-zh="国家象征 · 国旗" data-en="National Symbol · Flag" data-jp="国家の象徴・国旗">国家象征 · 国旗</h2>
+  <h2 data-zh="国家象征 · 国旗" data-en="National Symbol · Flag" data-jp="国家の象徴・国旗">
+    国家象征 · 国旗
+  </h2>
+
   <p
     data-zh="彩虹白地蓝天星旗 · 象征和平、包容多元、民主、科技与未来"
     data-en="Rainbow White-Blue Sky Star Flag · Symbol of peace, diversity, democracy, technology, and the future"
     data-jp="彩虹白地蓝天星旗 · 平和、多様性、民主、技術、そして未来の象徴">
     彩虹白地蓝天星旗 · 象征和平、包容多元、民主、科技与未来
   </p>
-<img src="./flag.jpg" alt="阿谢国国旗">
+
+  <!-- ✅ 修复后的图片（带 fallback） -->
+  <img
+    src="./flag.jpg"
+    alt="阿谢国国旗"
+    loading="lazy"
+    width="300"
+    onerror="this.onerror=null;this.src='https://via.placeholder.com/300x180?text=Flag+Missing';"
+  >
 </section>
 
 <!-- 联系 -->
