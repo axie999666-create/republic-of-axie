@@ -22,7 +22,14 @@ body {
   background: linear-gradient(180deg, #0b1c2d, #102a44);
   color: #e8f1ff;
 }
+body {
+  animation: fadeIn 0.6s ease-in;
+}
 
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 .skip-link {
   position: absolute;
   left: -999px;
@@ -290,6 +297,12 @@ footer {
 </div>
 
 <script>
+// ========= DOM缓存（优化性能） =========
+const axieDateEl = document.getElementById("axieDate");
+const timerEl = document.getElementById("timer");
+const countdownTitle = document.getElementById("countdown-title");
+const langBtn = document.getElementById('langToggle');
+
 // ========= 时间系统（东九区 UTC+9） =========
 function getUTC9Time() {
   const now = new Date();
@@ -297,26 +310,36 @@ function getUTC9Time() {
   return new Date(utc + 9 * 60 * 60 * 1000);
 }
 
-// ========= 三语言切换系统 =========
+// ========= 多语言系统 =========
 let langs = ["zh", "en", "jp"];
 let currentIndex = 0;
-let currentLang = document.documentElement.lang && document.documentElement.lang.startsWith('en') ? 'en' : (document.documentElement.lang && document.documentElement.lang.startsWith('ja') ? 'jp' : 'zh');
+let currentLang = "zh";
 
 function applyLanguage() {
-  const elements = document.querySelectorAll("[data-zh]");
-  elements.forEach(el => {
+  document.querySelectorAll("[data-zh]").forEach(el => {
     const text = el.getAttribute("data-" + currentLang);
-    if (text !== null) {
+    if (!text) return;
+
+    if (el.children.length === 0) {
       el.textContent = text;
+    } else {
+      el.innerHTML = text;
     }
   });
-  // 更新标题
-  if (currentLang === "zh") document.title = "阿谢国官方网站 | Republic of Axie";
-  if (currentLang === "en") document.title = "Republic of Axie | Official Website";
-  if (currentLang === "jp") document.title = "阿謝国 | 公式サイト";
-  // 更新 html lang 属性
-  const langMap = { zh: 'zh-CN', en: 'en', jp: 'ja' };
-  document.documentElement.lang = langMap[currentLang] || currentLang;
+
+  const titles = {
+    zh: "阿谢国官方网站 | Republic of Axie",
+    en: "Republic of Axie | Official Website",
+    jp: "阿谢国 | 公式サイト"
+  };
+
+  document.title = titles[currentLang];
+
+  document.documentElement.lang = {
+    zh: "zh-CN",
+    en: "en",
+    jp: "ja"
+  }[currentLang];
 }
 
 function toggleLang() {
@@ -325,56 +348,67 @@ function toggleLang() {
   applyLanguage();
 }
 
-// ========= 倒计时逻辑（仅更新文本节点） =========
+// ========= 倒计时 =========
 function updateCountdown() {
   const now = getUTC9Time();
   const year = now.getFullYear();
-  let nationalDay = new Date(year, 1, 3, 0, 0, 0); // 2月3日
+
+  let nationalDay = new Date(year, 1, 3, 0, 0, 0);
   if (now > nationalDay) {
     nationalDay = new Date(year + 1, 1, 3, 0, 0, 0);
   }
+
   const diff = nationalDay - now;
+
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));
   const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
   const minutes = Math.floor((diff / (1000 * 60)) % 60);
   const seconds = Math.floor((diff / 1000) % 60);
-  const axieYear = now.getFullYear() - 2023;
-  const anniversary = axieYear - 1;
+
+  const axieYear = year - 2023 + 1;
 
   const dateText = {
-    zh: `今天是：阿谢${axieYear}年 ${now.getMonth() + 1}月 ${now.getDate()}日（东九区）`,
-    en: `Today is: Axie Year ${axieYear}, ${now.getMonth() + 1}/${now.getDate()} (UTC+9)`,
-    jp: `本日は：阿謝${axieYear}年 ${now.getMonth() + 1}月 ${now.getDate()}日（東九区）`
+    zh: `今天是：阿谢${axieYear}年 ${now.getMonth() + 1}月 ${now.getDate()}日（UTC+9）`,
+    en: `Today is Axie Year ${axieYear}, ${now.getMonth() + 1}/${now.getDate()} (UTC+9)`,
+    jp: `本日は：阿謝${axieYear}年 ${now.getMonth() + 1}月 ${now.getDate()}日（UTC+9）`
   };
 
-  const axieDateEl = document.getElementById("axieDate");
-  const timerEl = document.getElementById("timer");
-  const countdownTitle = document.getElementById("countdown-title");
-
-  if (axieDateEl) axieDateEl.textContent = dateText[currentLang];
+  if (axieDateEl) {
+    axieDateEl.textContent = dateText[currentLang];
+  }
 
   if (now.getMonth() === 1 && now.getDate() === 3) {
-    const celebrateText = {
-      zh: `��� 今天是阿谢国 ${anniversary} 周年国庆日！`,
-      en: `🎉 Today is the ${anniversary}th Anniversary of the Republic of Axie!`,
-      jp: `🎉 本日は阿謝国 建国${anniversary}周年です！`
+    const anniversaryText = {
+      zh: `🎉 今天是阿谢国 ${axieYear - 1} 周年国庆日！`,
+      en: `🎉 Today is the ${axieYear - 1}th Anniversary of the Republic of Axie!`,
+      jp: `🎉 本日は阿謝国 建国${axieYear - 1}周年です！`
     };
-    if (countdownTitle) countdownTitle.textContent = celebrateText[currentLang];
-    if (timerEl) timerEl.textContent = {
-      zh: "彩虹白地蓝天星旗今日为国而飘扬!",
-      en: "The flag flies proudly for the nation today!",
-      jp: "本日、国旗は誇り高く掲げられています！"
-    }[currentLang];
+
+    if (countdownTitle) {
+      countdownTitle.textContent = anniversaryText[currentLang];
+    }
+
+    if (timerEl) {
+      timerEl.textContent = {
+        zh: "彩虹白地蓝天星旗正在为国家飘扬!",
+        en: "The flag flies proudly for the nation!",
+        jp: "国旗は誇り高く掲げられています！"
+      }[currentLang];
+    }
+
   } else {
-    if (timerEl) timerEl.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    if (timerEl) {
+      timerEl.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
   }
 }
 
-// 初始化
-document.getElementById('langToggle').addEventListener('click', toggleLang);
-applyLanguage();
-setInterval(updateCountdown, 1000);
-updateCountdown();
+// ========= 初始化 =========
+document.addEventListener("DOMContentLoaded", () => {
+  langBtn.addEventListener("click", toggleLang);
+
+  applyLanguage();
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+});
 </script>
-</body>
-</html>
