@@ -432,3 +432,58 @@ document.addEventListener("DOMContentLoaded", () => {
   setInterval(updateCountdown, 1000);
 });
 </script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  query,
+  orderBy
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCse_UzZJT35j0Uot17BMlXEE-bhM7yOzs",
+  authDomain: "axnews.firebaseapp.com",
+  projectId: "axnews",
+  storageBucket: "axnews.firebasestorage.app",
+  messagingSenderId: "83261533390",
+  appId: "1:83261533390:web:bf41a618b7ad0d8b4c749f",
+  measurementId: "G-DHT9351SM6"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+async function loadNews() {
+    const newsList = document.getElementById("newsList");
+
+    try {
+        const q = query(
+    collection(db, "news"),
+    orderBy("date", "desc")
+);
+        const snapshot = await getDocs(q);
+
+        newsList.innerHTML = "";
+
+        snapshot.forEach(doc => {
+            const news = doc.data();
+
+            newsList.innerHTML += `
+                <div class="card">
+                    <h3>${news.title}</h3>
+                    <small>${news.date} | ${news.author}</small>
+                    <p>${news.content}</p>
+                </div>
+            `;
+        });
+
+    } catch (err) {
+        newsList.innerHTML = "新闻加载失败";
+        console.error(err);
+    }
+}
+
+loadNews();
+</script>
