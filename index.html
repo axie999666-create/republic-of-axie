@@ -470,13 +470,44 @@ async function loadNews() {
         snapshot.forEach(doc => {
             const news = doc.data();
 
-            newsList.innerHTML += `
-                <div class="card">
-                    <h3>${news.title}</h3>
-                    <small>${news.date} | ${news.author}</small>
-                    <p>${news.content}</p>
-                </div>
-            `;
+          let html = `
+    <div class="card">
+        <h3>${news.title}</h3>
+        <small>${news.date} | ${news.author}</small>
+`;
+
+// 第一张图片
+if (news.image1) {
+    html += `
+        <img src="./${news.image1}"
+             style="width:100%;max-width:700px;border-radius:10px;margin:15px 0;">
+    `;
+}
+
+// 第二张图片
+if (news.image2) {
+    html += `
+        <img src="./${news.image2}"
+             style="width:100%;max-width:700px;border-radius:10px;margin:15px 0;">
+    `;
+}
+
+          
+// 第三张图片
+if (news.image3) {
+    html += `
+        <img src="./${news.image3}"
+             style="width:100%;max-width:700px;border-radius:10px;margin:15px 0;">
+    `;
+}
+
+// 新闻正文
+html += `
+        <p>${news.content}</p>
+    </div>
+`;
+
+newsList.innerHTML += html;
         });
 
     } catch (err) {
