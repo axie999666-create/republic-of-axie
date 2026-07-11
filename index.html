@@ -461,7 +461,7 @@ async function loadNews() {
     try {
         const q = query(
     collection(db, "news"),
-    orderBy("date", "desc")
+    orderBy("timestamp", "desc")
 );
         const snapshot = await getDocs(q);
 
