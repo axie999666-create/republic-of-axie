@@ -463,14 +463,19 @@ async function loadNews() {
     collection(db, "news"),
     orderBy("timestamp", "desc")
 );
-        const snapshot = await getDocs(q);
+      const snapshot = await getDocs(q);
 
-        newsList.innerHTML = "";
+newsList.innerHTML = "";
 
-        snapshot.forEach(doc => {
-            const news = doc.data();
+let count = 0;
 
-          let html = `
+snapshot.forEach(doc => {
+    if (count >= 5) return;
+    count++;
+
+    const news = doc.data();
+
+    let html = `
     <div class="card">
         <h3>${news.title}</h3>
         <small>${news.date} | ${news.author}</small>
