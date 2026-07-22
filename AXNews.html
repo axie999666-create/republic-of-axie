@@ -45,16 +45,119 @@ header h1{
 }
 
 .back{
+
     display:inline-block;
-    color:white;
+
     margin-top:20px;
+
+    padding:10px 20px;
+
+    background:#2b567f;
+
+    color:white;
+
+    text-decoration:none;
+
+    border-radius:20px;
+
+    transition:.2s;
+
+}
+
+.back:hover{
+
+    background:#3a75b3;
+
+    transform:scale(1.05);
+
 }
 </style>
 
 </head>
 
 <body>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  query,
+  orderBy
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
+const firebaseConfig = {
+  apiKey: "AIzaSyCse_UzZJT35j0Uot17BMlXEE-bhM7yOzs",
+  authDomain: "axnews.firebaseapp.com",
+  projectId: "axnews",
+  storageBucket: "axnews.firebasestorage.app",
+  messagingSenderId: "83261533390",
+  appId: "1:83261533390:web:bf41a618b7ad0d8b4c749f",
+  measurementId: "G-DHT9351SM6"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+async function loadNews() {
+
+    const newsList = document.getElementById("newsList");
+
+    try {
+
+        const q = query(
+            collection(db, "news"),
+            orderBy("timestamp", "desc")
+        );
+
+        const snapshot = await getDocs(q);
+
+        newsList.innerHTML = "";
+
+        snapshot.forEach(doc => {
+
+            const news = doc.data();
+
+            let html = `
+            <div class="card">
+                <h2>${news.title}</h2>
+                <small>${news.date} | ${news.author}</small>
+            `;
+
+            if(news.image1){
+                html += `<img src="./${news.image1}">`;
+            }
+
+            if(news.image2){
+                html += `<img src="./${news.image2}">`;
+            }
+
+            if(news.image3){
+                html += `<img src="./${news.image3}">`;
+            }
+
+            html += `
+                <p>${news.content}</p>
+            </div>
+            `;
+
+            newsList.innerHTML += html;
+
+        });
+
+    } catch(err) {
+
+        console.error(err);
+        newsList.innerHTML = "新闻加载失败";
+
+    }
+
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    loadNews();
+});
+</script>
 <header>
 <h1>📰 AXNews 新闻中心</h1>
 <p>Republic of Axie Official News</p>
@@ -69,3 +172,5 @@ header h1{
 <a class="back" href="index.html">← 返回首页</a>
 
 </div>
+</body>
+</html>
