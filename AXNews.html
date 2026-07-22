@@ -43,6 +43,15 @@ header h1{
     border-radius:10px;
     margin:15px 0;
 }
+    #searchBox{
+    width:100%;
+    padding:12px;
+    margin-bottom:25px;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+    box-sizing:border-box;
+}
 
 .back{
 
@@ -114,10 +123,26 @@ async function loadNews() {
 
         newsList.innerHTML = "";
 
-        snapshot.forEach(doc => {
+        let found = 0;
 
-            const news = doc.data();
+      const keyword = document
+    .getElementById("searchBox")
+    .value
+    .trim()
+    .toLowerCase();
 
+snapshot.forEach(doc => {
+
+    const news = doc.data();
+
+    if (
+        keyword &&
+        !news.title.toLowerCase().includes(keyword) &&
+        !news.content.toLowerCase().includes(keyword)
+    ) {
+        return;
+    }
+    found++;
             let html = `
             <div class="card">
                 <h2>${news.title}</h2>
@@ -144,26 +169,41 @@ async function loadNews() {
             newsList.innerHTML += html;
 
         });
+        if (found === 0) {
+    newsList.innerHTML = `
+        <div class="card">
+            <h2>🔍 没有找到相关新闻</h2>
+            <p>请尝试其他关键词。</p>
+        </div>
+    `;
+}
 
     } catch(err) {
 
         console.error(err);
         newsList.innerHTML = "新闻加载失败";
-
+        
     }
 
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    loadNews();
+   loadNews();
+
+document.getElementById("searchBox").addEventListener("input", loadNews);
 });
 </script>
 <header>
 <h1>📰 AXNews 新闻中心</h1>
 <p>Republic of Axie Official News</p>
 </header>
-
 <div class="container">
+
+<input
+    type="text"
+    id="searchBox"
+    placeholder="🔍 搜索新闻..."
+>
 
 <div id="newsList">
 正在加载新闻……
