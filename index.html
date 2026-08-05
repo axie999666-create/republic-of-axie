@@ -461,8 +461,13 @@ const db = getFirestore(app);
 async function loadNews() {
     const newsList = document.getElementById("newsList");
 
-    try {
-       const snapshot = await getDocs(collection(db, "news"));
+    try {                                                                      
+      const q = query(
+    collection(db, "news"),
+    orderBy("timestamp", "desc")
+);
+
+const snapshot = await getDocs(q);
 
 newsList.innerHTML = "";
 
