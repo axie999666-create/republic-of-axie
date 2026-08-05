@@ -178,12 +178,16 @@ snapshot.forEach(doc => {
     `;
 }
 
-    } catch(err) {
+    } catch (err) {
+    console.error(err);
 
-        console.error(err);
-        newsList.innerHTML = "新闻加载失败";
-        
-    }
+    newsList.innerHTML = `
+    <h2>❌ 新闻加载失败</h2>
+    <pre style="color:red;white-space:pre-wrap;">
+${err.stack || err.message}
+    </pre>
+    `;
+}
 
 }
 
