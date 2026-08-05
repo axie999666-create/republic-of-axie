@@ -114,12 +114,7 @@ async function loadNews() {
 
     try {
 
-        const q = query(
-            collection(db, "news"),
-            orderBy("timestamp", "desc")
-        );
-
-        const snapshot = await getDocs(q);
+       const snapshot = await getDocs(collection(db, "news"));
 
         newsList.innerHTML = "";
 
