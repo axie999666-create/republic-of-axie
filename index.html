@@ -15,7 +15,7 @@
 <link rel="icon" href="/favicon.ico">
 
 <style>
-/* 保持原有风格，做少量可访问性��强 */
+/* 保持原有风格，做少量可访问性加强 */
 body {
   margin: 0;
   font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
@@ -462,11 +462,7 @@ async function loadNews() {
     const newsList = document.getElementById("newsList");
 
     try {
-        const q = query(
-    collection(db, "news"),
-    orderBy("timestamp", "desc")
-);
-      const snapshot = await getDocs(q);
+       const snapshot = await getDocs(collection(db, "news"));
 
 newsList.innerHTML = "";
 
@@ -518,11 +514,14 @@ html += `
 newsList.innerHTML += html;
         });
 
-    } catch (err) {
-        newsList.innerHTML = "新闻加载失败";
-        console.error(err);
-    }
-}
+   catch (err) {
+    console.error(err);
 
-loadNews();
+    newsList.innerHTML = `
+    <h2>❌ 新闻加载失败</h2>
+    <pre style="color:red;white-space:pre-wrap;">
+${err.stack || err.message}
+    </pre>
+    `;
+}
 </script>
