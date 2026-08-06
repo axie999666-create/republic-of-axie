@@ -517,16 +517,30 @@ html += `
 `;
 
 newsList.innerHTML += html;
-        });
 
-   catch (err) {
+});
+
+// 
+
+} catch (err) {
+
     console.error(err);
 
     newsList.innerHTML = `
+
     <h2>❌ 新闻加载失败</h2>
+
     <pre style="color:red;white-space:pre-wrap;">
+
 ${err.stack || err.message}
+
     </pre>
+
     `;
+
 }
+}
+  document.addEventListener("DOMContentLoaded", () => {
+    loadNews();
+});
 </script>
