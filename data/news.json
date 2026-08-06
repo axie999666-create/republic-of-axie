@@ -1,0 +1,12 @@
+[
+  {
+    "title": "AXNews中国大陆版 测试新闻",
+    "content": "如果能看到这条新闻，说明中国大陆版 news.json 已经成功读取。",
+    "date": "2026-08-06",
+    "author": "AXNews",
+    "timestamp": 1786128000000,
+    "image1": "",
+    "image2": "",
+    "image3": ""
+  }
+]
