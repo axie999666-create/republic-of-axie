@@ -43,7 +43,8 @@ header h1{
     border-radius:10px;
     margin:15px 0;
 }
-    #searchBox{
+
+#searchBox{
     width:100%;
     padding:12px;
     margin-bottom:25px;
@@ -54,59 +55,49 @@ header h1{
 }
 
 .back{
-
     display:inline-block;
-
     margin-top:20px;
-
     padding:10px 20px;
-
     background:#2b567f;
-
     color:white;
-
     text-decoration:none;
-
     border-radius:20px;
-
     transition:.2s;
-
 }
 
 .back:hover{
-
     background:#3a75b3;
-
     transform:scale(1.05);
-
 }
 </style>
 
 </head>
 
 <body>
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-import {
-  getFirestore,
-  collection,
-  getDocs,
-  query,
-  orderBy
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyCse_UzZJT35j0Uot17BMlXEE-bhM7yOzs",
-  authDomain: "axnews.firebaseapp.com",
-  projectId: "axnews",
-  storageBucket: "axnews.firebasestorage.app",
-  messagingSenderId: "83261533390",
-  appId: "1:83261533390:web:bf41a618b7ad0d8b4c749f",
-  measurementId: "G-DHT9351SM6"
-};
+<header>
+    <h1>📰 AXNews 新闻中心</h1>
+    <p>Republic of Axie Official News</p>
+</header>
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+<div class="container">
+
+    <input
+        type="text"
+        id="searchBox"
+        placeholder="🔍 搜索新闻..."
+    >
+
+    <div id="newsList">
+        正在加载新闻……
+    </div>
+
+    <a class="back" href="index.html">← 返回首页</a>
+
+</div>
+
+
+<script>
 
 async function loadNews() {
 
@@ -114,111 +105,153 @@ async function loadNews() {
 
     try {
 
-      const q = query(
+        // 从 GitHub Pages 同目录读取 news.json
+        const response = await fetch("./news.json");
 
-    collection(db, "news"),
+        if (!response.ok) {
+            throw new Error(
+                "无法读取 news.json，HTTP状态码：" + response.status
+            );
+        }
 
-    orderBy("timestamp", "desc")
+        const newsData = await response.json();
 
-);
-
-const snapshot = await getDocs(q);
-
+        // 清空“正在加载新闻……”
         newsList.innerHTML = "";
 
         let found = 0;
 
-      const keyword = document
-    .getElementById("searchBox")
-    .value
-    .trim()
-    .toLowerCase();
+        const keyword = document
+            .getElementById("searchBox")
+            .value
+            .trim()
+            .toLowerCase();
 
-snapshot.forEach(doc => {
+        // 按 timestamp 从新到旧排序
+        newsData.sort((a, b) => {
+            return Number(b.timestamp || 0) - Number(a.timestamp || 0);
+        });
 
-    const news = doc.data();
+        newsData.forEach(news => {
 
-    if (
-        keyword &&
-        !news.title.toLowerCase().includes(keyword) &&
-        !news.content.toLowerCase().includes(keyword)
-    ) {
-        return;
-    }
-    found++;
+            // 搜索功能
+            const title = String(news.title || "");
+            const content = String(news.content || "");
+
+            if (
+                keyword &&
+                !title.toLowerCase().includes(keyword) &&
+                !content.toLowerCase().includes(keyword)
+            ) {
+                return;
+            }
+
+            found++;
+
             let html = `
-            <div class="card">
-                <h2>${news.title}</h2>
-                <small>${news.date} | ${news.author}</small>
+                <div class="card">
+
+                    <h2>${title}</h2>
+
+                    <small>
+                        ${news.date || ""} | ${news.author || ""}
+                    </small>
             `;
 
-            if(news.image1){
-                html += `<img src="./${news.image1}">`;
+
+            // 第一张图片
+            if (news.image1) {
+                html += `
+                    <img src="./${news.image1}" alt="">
+                `;
             }
 
-            if(news.image2){
-                html += `<img src="./${news.image2}">`;
+
+            // 第二张图片
+            if (news.image2) {
+                html += `
+                    <img src="./${news.image2}" alt="">
+                `;
             }
 
-            if(news.image3){
-                html += `<img src="./${news.image3}">`;
+
+            // 第三张图片
+            if (news.image3) {
+                html += `
+                    <img src="./${news.image3}" alt="">
+                `;
             }
 
+
+            // 新闻正文
             html += `
-                <p>${news.content}</p>
-            </div>
+                    <p>${content}</p>
+
+                </div>
             `;
 
             newsList.innerHTML += html;
 
         });
+
+
+        // 没有搜索结果
         if (found === 0) {
-    newsList.innerHTML = `
-        <div class="card">
-            <h2>🔍 没有找到相关新闻</h2>
-            <p>请尝试其他关键词。</p>
-        </div>
-    `;
+
+            newsList.innerHTML = `
+                <div class="card">
+
+                    <h2>🔍 没有找到相关新闻</h2>
+
+                    <p>请尝试其他关键词。</p>
+
+                </div>
+            `;
+
+        }
+
+    }
+
+    catch (err) {
+
+        console.error(err);
+
+        newsList.innerHTML = `
+            <div class="card">
+
+                <h2>❌ 新闻加载失败</h2>
+
+                <p>
+                    AXNews 暂时无法读取新闻数据。
+                </p>
+
+                <pre style="
+                    color:red;
+                    white-space:pre-wrap;
+                    overflow:auto;
+                ">${err.stack || err.message}</pre>
+
+            </div>
+        `;
+
+    }
+
 }
 
-    } catch (err) {
-    console.error(err);
 
-    newsList.innerHTML = `
-    <h2>❌ 新闻加载失败</h2>
-    <pre style="color:red;white-space:pre-wrap;">
-${err.stack || err.message}
-    </pre>
-    `;
-}
-
-}
-
+// 页面加载完成
 document.addEventListener("DOMContentLoaded", () => {
-   loadNews();
 
-document.getElementById("searchBox").addEventListener("input", loadNews);
+    loadNews();
+
+    // 搜索框实时搜索
+    document
+        .getElementById("searchBox")
+        .addEventListener("input", loadNews);
+
 });
+
 </script>
-<header>
-<h1>📰 AXNews 新闻中心</h1>
-<p>Republic of Axie Official News</p>
-</header>
-<div class="container">
 
-<input
-    type="text"
-    id="searchBox"
-    placeholder="🔍 搜索新闻..."
->
-
-<div id="newsList">
-正在加载新闻……
-    如果您处于中国大陆、朝鲜民主主义人民共和国、伊朗、古巴、俄罗斯、叙利亚等地区，暂时不提供AXNews服务，我们为此深表歉意。
-</div>
-
-<a class="back" href="index.html">← 返回首页</a>
-
-</div>
 </body>
 </html>
