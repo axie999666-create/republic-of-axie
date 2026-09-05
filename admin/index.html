@@ -1,10 +1,400 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <title>AXNews 管理后台</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AXNews 新闻管理后台 | Republic of Axie</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: linear-gradient(180deg, #0b1c2d, #102a44);
+  color: #e8f1ff;
+  min-height: 100vh;
+}
+
+header {
+  text-align: center;
+  padding: 40px 20px 30px;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 32px;
+}
+
+header p {
+  margin-top: 10px;
+  opacity: 0.75;
+}
+
+.container {
+  max-width: 900px;
+  margin: 35px auto;
+  padding: 0 20px;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.35);
+}
+
+h2 {
+  margin-top: 0;
+  color: #7ecbff;
+}
+
+.form-group {
+  margin-bottom: 22px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 13px 15px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.25);
+  color: white;
+  font-size: 16px;
+  outline: none;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #7ecbff;
+}
+
+textarea {
+  min-height: 260px;
+  resize: vertical;
+  line-height: 1.7;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.button {
+  display: inline-block;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(90deg, #2b567f, #3a75b3);
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.button:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 15px rgba(100, 180, 255, 0.5);
+}
+
+.button-secondary {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.image-box {
+  padding: 18px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.18);
+  margin-bottom: 15px;
+}
+
+.image-box input {
+  background: transparent;
+  padding: 5px 0;
+  border: none;
+}
+
+.notice {
+  padding: 15px;
+  border-radius: 10px;
+  background: rgba(255, 211, 106, 0.1);
+  border: 1px solid rgba(255, 211, 106, 0.25);
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.status {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 10px;
+  display: none;
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  opacity: 0.55;
+}
+
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 26px;
+  }
+
+  .card {
+    padding: 22px;
+  }
+}
+</style>
 </head>
+
 <body>
+
+<header>
   <h1>📰 AXNews 新闻管理后台</h1>
+  <p>Republic of Axie · AXNews Management System</p>
+</header>
+
+<div class="container">
+
+  <!-- 登录区域 -->
+  <section class="card" id="loginSection">
+
+    <h2>🔐 管理员登录</h2>
+
+    <div class="notice">
+      当前为后台界面测试版本。<br>
+      正式密码验证将在后续接入安全的服务器端认证。
+    </div>
+
+    <div class="form-group">
+      <label for="password">管理员密码</label>
+      <input
+        type="password"
+        id="password"
+        placeholder="请输入管理员密码"
+      >
+    </div>
+
+    <button class="button" type="button" onclick="demoLogin()">
+      🔓 登录
+    </button>
+
+    <div id="loginStatus" class="status"></div>
+
+  </section>
+
+
+  <!-- 新闻发布区域 -->
+  <section class="card" id="editorSection" style="display:none;">
+
+    <h2>✏️ 发布新新闻</h2>
+
+    <div class="notice">
+      ⚠️ 当前版本只用于测试新闻编辑界面。<br>
+      点击“发布新闻”后暂时不会修改 news.json。
+    </div>
+
+    <!-- 标题 -->
+    <div class="form-group">
+      <label for="newsTitle">📰 新闻标题</label>
+      <input
+        type="text"
+        id="newsTitle"
+        placeholder="请输入新闻标题"
+      >
+    </div>
+
+    <!-- 日期 -->
+    <div class="form-group">
+      <label for="newsDate">📅 新闻日期</label>
+      <input
+        type="text"
+        id="newsDate"
+        placeholder="例如：阿谢3年9月5日"
+      >
+    </div>
+
+    <!-- 作者 -->
+    <div class="form-group">
+      <label for="newsAuthor">👤 作者</label>
+      <input
+        type="text"
+        id="newsAuthor"
+        value="AXNews"
+        placeholder="请输入作者"
+      >
+    </div>
+
+    <!-- 正文 -->
+    <div class="form-group">
+      <label for="newsContent">📝 新闻正文</label>
+      <textarea
+        id="newsContent"
+        placeholder="请输入新闻正文……
+
+段落之间可以直接换行。"
+      ></textarea>
+    </div>
+
+    <!-- 图片 -->
+    <h3>🖼️ 新闻图片</h3>
+
+    <div class="image-box">
+      <label for="image1">图片 1</label>
+      <input type="file" id="image1" accept="image/*">
+    </div>
+
+    <div class="image-box">
+      <label for="image2">图片 2</label>
+      <input type="file" id="image2" accept="image/*">
+    </div>
+
+    <div class="image-box">
+      <label for="image3">图片 3</label>
+      <input type="file" id="image3" accept="image/*">
+    </div>
+
+    <br>
+
+    <button class="button" type="button" onclick="publishDemo()">
+      🚀 发布新闻
+    </button>
+
+    <button
+      class="button button-secondary"
+      type="button"
+      onclick="clearForm()"
+      style="margin-left:10px;"
+    >
+      🗑️ 清空
+    </button>
+
+    <div id="publishStatus" class="status"></div>
+
+  </section>
+
+</div>
+
+<footer>
+  © Republic of Axie · AXNews Management System
+</footer>
+
+
+<script>
+
+/*
+========================================
+第一版：后台界面测试
+========================================
+
+⚠️ 注意：
+这里故意没有写真正的管理员密码。
+
+因为把密码写在 JavaScript 中是不安全的。
+正式版本会使用服务器端验证。
+*/
+
+
+// ========= 测试登录 =========
+
+function demoLogin() {
+
+  const password = document.getElementById("password");
+  const status = document.getElementById("loginStatus");
+
+  /*
+    第一版为了测试界面，
+    任意非空密码都可以进入。
+  */
+
+  if (!password.value.trim()) {
+
+    status.style.display = "block";
+    status.textContent = "❌ 请输入密码";
+    status.style.background = "rgba(255,80,80,0.12)";
+
+    return;
+  }
+
+  status.style.display = "block";
+  status.textContent = "✅ 登录测试成功";
+
+  status.style.background = "rgba(80,200,120,0.12)";
+
+  setTimeout(() => {
+
+    document.getElementById("loginSection").style.display = "none";
+    document.getElementById("editorSection").style.display = "block";
+
+  }, 500);
+}
+
+
+// ========= 测试发布 =========
+
+function publishDemo() {
+
+  const title = document.getElementById("newsTitle").value.trim();
+  const content = document.getElementById("newsContent").value.trim();
+  const status = document.getElementById("publishStatus");
+
+  if (!title) {
+
+    status.style.display = "block";
+    status.textContent = "❌ 请填写新闻标题";
+    status.style.background = "rgba(255,80,80,0.12)";
+
+    return;
+  }
+
+  if (!content) {
+
+    status.style.display = "block";
+    status.textContent = "❌ 请填写新闻正文";
+    status.style.background = "rgba(255,80,80,0.12)";
+
+    return;
+  }
+
+  status.style.display = "block";
+  status.textContent =
+    "🧪 测试成功：新闻内容已经填写完成，但当前版本不会真正发布。";
+
+  status.style.background = "rgba(255,211,106,0.1)";
+}
+
+
+// ========= 清空表单 =========
+
+function clearForm() {
+
+  document.getElementById("newsTitle").value = "";
+  document.getElementById("newsDate").value = "";
+  document.getElementById("newsAuthor").value = "AXNews";
+  document.getElementById("newsContent").value = "";
+
+  document.getElementById("image1").value = "";
+  document.getElementById("image2").value = "";
+  document.getElementById("image3").value = "";
+
+  document.getElementById("publishStatus").style.display = "none";
+}
+
+</script>
+
 </body>
 </html>
