@@ -472,17 +472,13 @@ function updatePublishTime() {
   const month = utc9.getUTCMonth() + 1;
   const day = utc9.getUTCDate();
 
-  const hours = String(utc9.getUTCHours()).padStart(2, "0");
-  const minutes = String(utc9.getUTCMinutes()).padStart(2, "0");
-  const seconds = String(utc9.getUTCSeconds()).padStart(2, "0");
-
-  // 阿谢国年份：2025年 = 阿谢元年
-  const axieYear = year - 2024+1;
+  // 阿谢国年份
+  const axieYear = year - 2024 + 1;
 
   document.getElementById("newsDate").value =
-    `阿谢${axieYear}年${month}月${day}日 ${hours}:${minutes}:${seconds}（UTC+9）`;
+    `阿谢${axieYear}年${month}月${day}日`;
 
-  // Unix Timestamp（毫秒）
+  // Timestamp 仍然保留精确时间，用于排序
   document.getElementById("newsTimestamp").value =
     Date.now();
 }
