@@ -219,15 +219,25 @@ footer {
     </div>
 
     <!-- 日期 -->
-    <div class="form-group">
-      <label for="newsDate">📅 新闻日期</label>
-      <input
-        type="text"
-        id="newsDate"
-        placeholder="格式：阿谢X年X月X日"
-      >
-    </div>
+   <div class="form-group">
+  <label>📅 发布时间</label>
+  <input
+    type="text"
+    id="newsDate"
+    readonly
+    value="自动填写中……"
+  >
+</div>
 
+<div class="form-group">
+  <label>🔢 Timestamp</label>
+  <input
+    type="text"
+    id="newsTimestamp"
+    readonly
+    value="自动生成中……"
+  >
+</div>
     <!-- 作者 -->
     <div class="form-group">
       <label for="newsAuthor">👤 作者</label>
@@ -436,6 +446,7 @@ function clearForm() {
 
   document.getElementById("newsTitle").value = "";
   document.getElementById("newsDate").value = "";
+  document.getElementById("newsTimestamp").value = "";
   document.getElementById("newsAuthor").value = "AXNews";
   document.getElementById("newsContent").value = "";
 
@@ -444,7 +455,46 @@ function clearForm() {
   document.getElementById("image3").value = "";
 
   document.getElementById("publishStatus").style.display = "none";
+
+  updatePublishTime();
 }
+
+  // ========= 自动生成新闻时间 =========
+function updatePublishTime() {
+  const now = new Date();
+
+  // UTC+9
+  const utc9 = new Date(
+    now.getTime() + 9 * 60 * 60 * 1000
+  );
+
+  const year = utc9.getUTCFullYear();
+  const month = utc9.getUTCMonth() + 1;
+  const day = utc9.getUTCDate();
+
+  const hours = String(utc9.getUTCHours()).padStart(2, "0");
+  const minutes = String(utc9.getUTCMinutes()).padStart(2, "0");
+  const seconds = String(utc9.getUTCSeconds()).padStart(2, "0");
+
+  // 阿谢国年份：2025年 = 阿谢元年
+  const axieYear = year - 2024+1;
+
+  document.getElementById("newsDate").value =
+    `阿谢${axieYear}年${month}月${day}日 ${hours}:${minutes}:${seconds}（UTC+9）`;
+
+  // Unix Timestamp（毫秒）
+  document.getElementById("newsTimestamp").value =
+    Date.now();
+}
+  
+// ========= 页面初始化 =========
+document.addEventListener("DOMContentLoaded", () => {
+  updatePublishTime();
+
+  // 每秒更新一次时间
+  setInterval(updatePublishTime, 1000);
+});
+  
 
 </script>
 
