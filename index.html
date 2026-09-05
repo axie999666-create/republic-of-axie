@@ -249,7 +249,6 @@ footer {
 
     <div id="newsList">
         正在加载新闻...
-      如果您处于中国大陆、朝鲜民主主义人民共和国、伊朗、古巴、俄罗斯、叙利亚等地区，暂时不提供AXNews服务，我们为此深表歉意。
     </div>
     <a href="AXNews.html" class="button">
 📰 查看全部新闻
@@ -428,6 +427,97 @@ function updateCountdown() {
   }
 }
 
+// ========= 新闻加载 =========
+async function loadNews() {
+  const newsList = document.getElementById("newsList");
+
+  try {
+    const response = await fetch("./news.json");
+
+    if (!response.ok) {
+      throw new Error(
+        "无法读取 news.json，HTTP状态码：" + response.status
+      );
+    }
+
+    const newsData = await response.json();
+
+    // 按时间倒序排列，最新的在前面
+    newsData.sort((a, b) => {
+      return Number(b.timestamp || 0) - Number(a.timestamp || 0);
+    });
+
+    newsList.innerHTML = "";
+
+    // 官网首页只显示最新5条
+    const latestNews = newsData.slice(0, 5);
+
+    latestNews.forEach(news => {
+      let html = `
+        <div class="card">
+          <h3>${news.title || ""}</h3>
+          <small>${news.date || ""} | ${news.author || ""}</small>
+      `;
+
+      // 第一张图片
+      if (news.image1) {
+        html += `
+          <img src="./${news.image1}"
+               alt=""
+               style="width:100%;max-width:700px;border-radius:10px;margin:15px 0;">
+        `;
+      }
+
+      // 第二张图片
+      if (news.image2) {
+        html += `
+          <img src="./${news.image2}"
+               alt=""
+               style="width:100%;max-width:700px;border-radius:10px;margin:15px 0;">
+        `;
+      }
+
+      // 第三张图片
+      if (news.image3) {
+        html += `
+          <img src="./${news.image3}"
+               alt=""
+               style="width:100%;max-width:700px;border-radius:10px;margin:15px 0;">
+        `;
+      }
+
+      // 新闻正文
+      html += `
+          <p style="white-space:pre-line;">${news.content || ""}</p>
+        </div>
+      `;
+
+      newsList.innerHTML += html;
+    });
+
+    // 没有新闻时
+    if (latestNews.length === 0) {
+      newsList.innerHTML = `
+        <div class="card">
+          <h3>📰 暂无新闻</h3>
+          <p>目前还没有发布任何新闻。</p>
+        </div>
+      `;
+    }
+
+  } catch (err) {
+    console.error(err);
+
+    newsList.innerHTML = `
+      <div class="card">
+        <h3>❌ 新闻加载失败</h3>
+        <p>AXNews 暂时无法读取新闻数据。</p>
+      </div>
+    `;
+  }
+};
+
+
 // ========= 初始化 =========
 document.addEventListener("DOMContentLoaded", () => {
   langBtn.addEventListener("click", toggleLang);
@@ -435,114 +525,9 @@ document.addEventListener("DOMContentLoaded", () => {
   applyLanguage();
   updateCountdown();
   setInterval(updateCountdown, 1000);
-});
-</script>
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-import {
-  getFirestore,
-  collection,
-  getDocs,
-  query,
-  orderBy
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyCse_UzZJT35j0Uot17BMlXEE-bhM7yOzs",
-  authDomain: "axnews.firebaseapp.com",
-  projectId: "axnews",
-  storageBucket: "axnews.firebasestorage.app",
-  messagingSenderId: "83261533390",
-  appId: "1:83261533390:web:bf41a618b7ad0d8b4c749f",
-  measurementId: "G-DHT9351SM6"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-async function loadNews() {
-    const newsList = document.getElementById("newsList");
-
-    try {                                                                      
-      const q = query(
-    collection(db, "news"),
-    orderBy("timestamp", "desc")
-);
-
-const snapshot = await getDocs(q);
-
-newsList.innerHTML = "";
-
-let count = 0;
-
-snapshot.forEach(doc => {
-    if (count >= 5) return;
-    count++;
-
-    const news = doc.data();
-
-    let html = `
-    <div class="card">
-        <h3>${news.title}</h3>
-        <small>${news.date} | ${news.author}</small>
-`;
-
-// 第一张图片
-if (news.image1) {
-    html += `
-        <img src="./${news.image1}"
-             style="width:100%;max-width:700px;border-radius:10px;margin:15px 0;">
-    `;
-}
-
-// 第二张图片
-if (news.image2) {
-    html += `
-        <img src="./${news.image2}"
-             style="width:100%;max-width:700px;border-radius:10px;margin:15px 0;">
-    `;
-}
-
-          
-// 第三张图片
-if (news.image3) {
-    html += `
-        <img src="./${news.image3}"
-             style="width:100%;max-width:700px;border-radius:10px;margin:15px 0;">
-    `;
-}
-
-// 新闻正文
-html += `
-        <p>${news.content}</p>
-    </div>
-`;
-
-newsList.innerHTML += html;
-
+  // 加载最新新闻
+  loadNews();
 });
 
-// 
-
-} catch (err) {
-
-    console.error(err);
-
-    newsList.innerHTML = `
-
-    <h2>❌ 新闻加载失败</h2>
-
-    <pre style="color:red;white-space:pre-wrap;">
-
-${err.stack || err.message}
-
-    </pre>
-
-    `;
-
-}
-}
-  document.addEventListener("DOMContentLoaded", () => {
-    loadNews();
-});
 </script>
