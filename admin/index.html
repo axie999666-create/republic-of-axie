@@ -8,486 +8,1712 @@
 
 <style>
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-  background: linear-gradient(180deg, #0b1c2d, #102a44);
-  color: #e8f1ff;
-  min-height: 100vh;
-}
+    margin: 0;
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Microsoft YaHei",
+        sans-serif;
 
-header {
-  text-align: center;
-  padding: 40px 20px 30px;
-  background: rgba(0, 0, 0, 0.35);
-}
+    background:
+        linear-gradient(
+            135deg,
+            #071426 0%,
+            #0b1f3a 50%,
+            #102b4c 100%
+        );
 
-header h1 {
-  margin: 0;
-  font-size: 32px;
-}
-
-header p {
-  margin-top: 10px;
-  opacity: 0.75;
+    color: #eef5ff;
+    min-height: 100vh;
 }
 
 .container {
-  max-width: 900px;
-  margin: 35px auto;
-  padding: 0 20px;
+    width: min(1100px, 94%);
+    margin: 0 auto;
+    padding: 35px 0 60px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    margin: 0 0 8px;
+    font-size: 32px;
+}
+
+header p {
+    margin: 0;
+    color: #aebfd6;
 }
 
 .card {
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 16px;
-  padding: 30px;
-  margin-bottom: 30px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.35);
+    background: rgba(14, 35, 62, 0.92);
+    border: 1px solid rgba(150, 190, 230, 0.15);
+    border-radius: 18px;
+    padding: 25px;
+    margin-bottom: 22px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
 }
 
-h2 {
-  margin-top: 0;
-  color: #7ecbff;
-}
-
-.form-group {
-  margin-bottom: 22px;
+.card h2 {
+    margin-top: 0;
 }
 
 label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: bold;
+    display: block;
+    margin-top: 18px;
+    margin-bottom: 7px;
+    font-weight: 600;
 }
 
 input,
 textarea {
-  width: 100%;
-  padding: 13px 15px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 10px;
-  background: rgba(0, 0, 0, 0.25);
-  color: white;
-  font-size: 16px;
-  outline: none;
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(170, 200, 230, 0.25);
+    background: rgba(5, 18, 34, 0.75);
+    color: #fff;
+    font-size: 15px;
+    outline: none;
 }
 
 input:focus,
 textarea:focus {
-  border-color: #7ecbff;
+    border-color: #69a8ff;
+    box-shadow: 0 0 0 3px rgba(105, 168, 255, 0.12);
+}
+
+input[readonly] {
+    opacity: 0.75;
+    cursor: not-allowed;
 }
 
 textarea {
-  min-height: 260px;
-  resize: vertical;
-  line-height: 1.7;
+    min-height: 220px;
+    resize: vertical;
+    line-height: 1.7;
 }
 
-input::placeholder,
-textarea::placeholder {
-  color: rgba(255, 255, 255, 0.45);
+input[type="file"] {
+    padding: 10px;
 }
 
 .button {
-  display: inline-block;
-  padding: 12px 25px;
-  border: none;
-  border-radius: 25px;
-  background: linear-gradient(90deg, #2b567f, #3a75b3);
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.2s;
+    display: inline-block;
+    border: none;
+    border-radius: 10px;
+    padding: 11px 18px;
+    margin-top: 20px;
+    margin-right: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+
+    background: #3478db;
+    color: white;
+
+    transition:
+        transform 0.15s,
+        opacity 0.15s,
+        background 0.15s;
 }
 
 .button:hover {
-  transform: scale(1.03);
-  box-shadow: 0 0 15px rgba(100, 180, 255, 0.5);
+    transform: translateY(-1px);
+    opacity: 0.92;
+}
+
+.button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
 }
 
 .button-secondary {
-  background: rgba(255, 255, 255, 0.1);
+    background: #40536c;
 }
 
-.image-box {
-  padding: 18px;
-  border-radius: 12px;
-  background: rgba(0, 0, 0, 0.18);
-  margin-bottom: 15px;
+.button-danger {
+    background: #b83c4a;
 }
 
-.image-box input {
-  background: transparent;
-  padding: 5px 0;
-  border: none;
-}
-
-.notice {
-  padding: 15px;
-  border-radius: 10px;
-  background: rgba(255, 211, 106, 0.1);
-  border: 1px solid rgba(255, 211, 106, 0.25);
-  margin-bottom: 25px;
-  line-height: 1.6;
+.button-success {
+    background: #268b60;
 }
 
 .status {
-  margin-top: 20px;
-  padding: 15px;
-  border-radius: 10px;
-  display: none;
+    display: none;
+    margin-top: 18px;
+    padding: 13px 15px;
+    border-radius: 10px;
+    line-height: 1.6;
+}
+
+.news-item {
+    background: rgba(4, 17, 32, 0.65);
+    border: 1px solid rgba(160, 190, 220, 0.12);
+    border-radius: 14px;
+    padding: 18px;
+    margin-top: 14px;
+}
+
+.news-item-title {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.5;
+    word-break: break-word;
+}
+
+.news-item-meta {
+    color: #9eb0c8;
+    font-size: 13px;
+    margin-top: 7px;
+}
+
+.news-item-preview {
+    color: #d5dfec;
+    margin-top: 12px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    max-height: 100px;
+    overflow: hidden;
+}
+
+.news-actions {
+    margin-top: 8px;
+}
+
+.news-actions .button {
+    margin-top: 12px;
+}
+
+.editing-banner {
+    display: none;
+    background: rgba(255, 190, 70, 0.12);
+    border: 1px solid rgba(255, 190, 70, 0.3);
+    color: #ffd98b;
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 15px;
+}
+
+.count {
+    color: #9eb0c8;
+    font-size: 14px;
+}
+
+.search-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.search-row input {
+    flex: 1;
+}
+
+.small-note {
+    color: #91a4bc;
+    font-size: 13px;
+    line-height: 1.6;
+    margin-top: 8px;
+}
+
+.hidden {
+    display: none !important;
 }
 
 footer {
-  text-align: center;
-  padding: 30px;
-  opacity: 0.55;
+    text-align: center;
+    color: #71869f;
+    font-size: 13px;
+    margin-top: 35px;
 }
 
-@media (max-width: 600px) {
-  header h1 {
-    font-size: 26px;
-  }
+@media (max-width: 700px) {
+    .container {
+        width: 92%;
+        padding-top: 22px;
+    }
 
-  .card {
-    padding: 22px;
-  }
+    header h1 {
+        font-size: 25px;
+    }
+
+    .card {
+        padding: 18px;
+    }
+
+    .search-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .button {
+        margin-top: 12px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <h1>📰 AXNews 新闻管理后台</h1>
-  <p>Republic of Axie · AXNews Management System</p>
-</header>
-
 <div class="container">
 
-  <!-- 登录区域 -->
-  <section class="card" id="loginSection">
+<header>
+    <h1>📰 AXNews 新闻管理后台</h1>
+    <p>Republic of Axie · AXNews Management System</p>
+</header>
+
+
+<!-- ==================== 登录 ==================== -->
+
+<section class="card" id="loginSection">
 
     <h2>🔐 管理员登录</h2>
 
-   <div class="notice">
-  🔐 本系统采用服务器端管理员密码验证。<br>
-  禁止在未经许可的情况下将管理员密码透露给他人。
-</div>
+    <p class="small-note">
+        本系统采用服务器端管理员密码验证。
+        管理员密码不会写入网页代码。
+    </p>
 
-    <div class="form-group">
-      <label for="password">管理员密码</label>
-      <input
+    <label for="adminPassword">
+        🔐 管理员密码
+    </label>
+
+    <input
+        id="adminPassword"
         type="password"
-        id="password"
         placeholder="请输入管理员密码"
-      >
-    </div>
+        autocomplete="current-password"
+    >
 
-    <button class="button" type="button" onclick="login()">
-      🔓 登录
+    <button
+        class="button"
+        id="loginButton"
+        type="button"
+        onclick="login()"
+    >
+        🔓 登录
     </button>
 
-    <div id="loginStatus" class="status"></div>
+    <div
+        class="status"
+        id="loginStatus"
+    ></div>
 
-  </section>
+</section>
 
 
-  <!-- 新闻发布区域 -->
-  <section class="card" id="editorSection" style="display:none;">
+<!-- ==================== 后台主体 ==================== -->
 
-    <h2>✏️ 发布新新闻</h2>
+<div id="adminPanel" class="hidden">
 
-    <!-- 标题 -->
-    <div class="form-group">
-      <label for="newsTitle">📰 新闻标题</label>
-      <input
-        type="text"
-        id="newsTitle"
-        placeholder="请输入新闻标题"
-      >
+
+<!-- ==================== 发布 / 编辑 ==================== -->
+
+<section class="card">
+
+    <div id="editingBanner" class="editing-banner">
+        ✏️ 当前正在编辑已有新闻。
+        保存后会直接修改原新闻。
     </div>
 
-    <!-- 日期 -->
-   <div class="form-group">
-  <label>📅 发布时间</label>
-  <input
-    type="text"
-    id="newsDate"
-    readonly
-    value="自动填写中……"
-  >
-</div>
+    <h2 id="editorTitle">
+        ✏️ 发布新新闻
+    </h2>
 
-<div class="form-group">
-  <label>🔢 Timestamp</label>
-  <input
-    type="text"
-    id="newsTimestamp"
-    readonly
-    value="自动生成中……"
-  >
-</div>
-    <!-- 作者 -->
-    <div class="form-group">
-      <label for="newsAuthor">👤 作者</label>
-      <input
+    <label for="newsTitle">
+        📰 新闻标题
+    </label>
+
+    <input
+        id="newsTitle"
         type="text"
+        maxlength="200"
+        placeholder="请输入新闻标题"
+    >
+
+
+    <label for="newsDate">
+        📅 发布时间
+    </label>
+
+    <input
+        id="newsDate"
+        type="text"
+        readonly
+    >
+
+
+    <label for="newsTimestamp">
+        🔢 Timestamp
+    </label>
+
+    <input
+        id="newsTimestamp"
+        type="text"
+        readonly
+    >
+
+    <div class="small-note">
+        时间由系统自动生成。
+        Timestamp 仅用于新闻排序。
+    </div>
+
+
+    <label for="newsAuthor">
+        👤 作者
+    </label>
+
+    <input
         id="newsAuthor"
+        type="text"
+        maxlength="100"
         value="AXNews"
         placeholder="请输入作者"
-      >
-    </div>
+    >
 
-    <!-- 正文 -->
-    <div class="form-group">
-      <label for="newsContent">📝 新闻正文</label>
-      <textarea
+
+    <label for="newsContent">
+        📝 新闻正文
+    </label>
+
+    <textarea
         id="newsContent"
-        placeholder="请输入新闻正文……
+        placeholder="请输入新闻正文……"
+    ></textarea>
 
-段落之间可以直接换行。"
-      ></textarea>
+
+    <label>
+        🖼️ 新闻图片
+    </label>
+
+    <div class="small-note">
+        图片上传功能暂未接入服务器。
+        当前版本请先发布文字新闻，后续可以继续接入图片上传。
     </div>
 
-    <!-- 图片 -->
-    <h3>🖼️ 新闻图片</h3>
+    <input
+        id="image1"
+        type="file"
+        accept="image/*"
+        disabled
+    >
 
-    <div class="image-box">
-      <label for="image1">图片 1</label>
-      <input type="file" id="image1" accept="image/*">
-    </div>
+    <input
+        id="image2"
+        type="file"
+        accept="image/*"
+        disabled
+    >
 
-    <div class="image-box">
-      <label for="image2">图片 2</label>
-      <input type="file" id="image2" accept="image/*">
-    </div>
+    <input
+        id="image3"
+        type="file"
+        accept="image/*"
+        disabled
+    >
 
-    <div class="image-box">
-      <label for="image3">图片 3</label>
-      <input type="file" id="image3" accept="image/*">
-    </div>
 
-    <br>
-
-    <button class="button" type="button" onclick="publishDemo()">
-      🚀 发布新闻
+    <button
+        class="button button-success"
+        id="publishButton"
+        type="button"
+        onclick="publishNews()"
+    >
+        🚀 发布新闻
     </button>
 
     <button
-      class="button button-secondary"
-      type="button"
-      onclick="clearForm()"
-      style="margin-left:10px;"
+        class="button button-secondary"
+        type="button"
+        onclick="clearForm()"
     >
-      🗑️ 清空
+        🗑️ 清空
     </button>
 
-    <div id="publishStatus" class="status"></div>
+    <button
+        class="button button-secondary hidden"
+        id="cancelEditButton"
+        type="button"
+        onclick="cancelEdit()"
+    >
+        ↩️ 取消编辑
+    </button>
 
-  </section>
+
+    <div
+        class="status"
+        id="publishStatus"
+    ></div>
+
+</section>
+
+
+<!-- ==================== 新闻管理 ==================== -->
+
+<section class="card">
+
+    <h2>📰 新闻管理</h2>
+
+    <div class="search-row">
+
+        <input
+            id="manageSearch"
+            type="text"
+            placeholder="🔍 搜索标题或正文……"
+            oninput="filterNewsManagement()"
+        >
+
+        <button
+            class="button button-secondary"
+            type="button"
+            onclick="loadNewsManagement()"
+        >
+            🔄 刷新
+        </button>
+
+    </div>
+
+    <p class="count" id="newsCount">
+        正在加载……
+    </p>
+
+    <div
+        class="status"
+        id="newsManageStatus"
+    ></div>
+
+    <div id="newsManageList">
+        正在加载新闻……
+    </div>
+
+</section>
+
+
+<!-- ==================== 退出 ==================== -->
+
+<section class="card">
+
+    <h2>🔒 会话</h2>
+
+    <p class="small-note">
+        登录凭证仅保存在当前页面内存中。
+        刷新页面后需要重新登录。
+    </p>
+
+    <button
+        class="button button-danger"
+        type="button"
+        onclick="logout()"
+    >
+        🚪 退出登录
+    </button>
+
+</section>
 
 </div>
 
+
 <footer>
-  © Republic of Axie · AXNews Management System
+    © Republic of Axie · AXNews Management System
 </footer>
+
+</div>
 
 
 <script>
-/*
-========================================
-AXNews 管理后台
-========================================
 
-管理员密码由 Cloudflare Worker
-进行服务器端验证。
+/* =========================================================
+   基础配置
+========================================================= */
 
-密码不会写入本网页代码。
-*/
+const API_BASE =
+    "https://axnews-admin-api.axie999666.workers.dev";
 
 
-// ========= 管理员登录 =========
+/* =========================================================
+   登录状态
+========================================================= */
 
-async function login() {
+let sessionToken = "";
 
-  const passwordInput =
-    document.getElementById("password");
+let allNews = [];
 
-  const status =
-    document.getElementById("loginStatus");
+let editingNewsId = null;
 
-  const password =
-    passwordInput.value;
 
-  if (!password) {
-    status.style.display = "block";
-    status.textContent = "❌ 请输入密码";
-    status.style.background =
-      "rgba(255,80,80,0.12)";
-    return;
-  }
+/* =========================================================
+   DOM 加载
+========================================================= */
 
-  status.style.display = "block";
-  status.textContent = "⏳ 正在验证密码……";
-  status.style.background =
-    "rgba(255,211,106,0.1)";
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
 
-  try {
+        updatePublishTime();
 
-    const response = await fetch(
-      "https://axnews-admin-api.axie999666.workers.dev/login",
-      {
-        method: "POST",
+    }
+);
 
-        headers: {
-          "Content-Type": "application/json"
-        },
 
-        body: JSON.stringify({
-          password: password
-        })
-      }
-    );
+/* =========================================================
+   时间显示
+========================================================= */
 
-    const result = await response.json();
+function updatePublishTime() {
 
-    if (result.success) {
+    const now = new Date();
 
-      status.textContent =
-        "✅ 登录成功";
+    /*
+     * 阿谢国新闻时间采用 UTC+9。
+     * 这里只用于后台界面显示。
+     * 真正发布时的 timestamp/date
+     * 会由 Cloudflare Worker 服务器生成。
+     */
 
-      status.style.background =
-        "rgba(80,200,120,0.12)";
+    const utc9 =
+        new Date(
+            now.getTime() +
+            9 * 60 * 60 * 1000
+        );
 
-      setTimeout(() => {
+    const year =
+        utc9.getUTCFullYear();
 
-        document.getElementById(
-          "loginSection"
-        ).style.display = "none";
+    const month =
+        utc9.getUTCMonth() + 1;
 
-        document.getElementById(
-          "editorSection"
-        ).style.display = "block";
+    const day =
+        utc9.getUTCDate();
 
-      }, 500);
+    const axieYear =
+        year - 2024 + 1;
+
+    document.getElementById(
+        "newsDate"
+    ).value =
+        `阿谢${axieYear}年${month}月${day}日`;
+
+    document.getElementById(
+        "newsTimestamp"
+    ).value =
+        Date.now();
+}
+
+
+/* =========================================================
+   状态显示
+========================================================= */
+
+function showStatus(
+    elementId,
+    message,
+    type = "normal"
+) {
+
+    const element =
+        document.getElementById(elementId);
+
+    if (!element) return;
+
+    element.style.display = "block";
+
+    element.textContent = message;
+
+    if (type === "success") {
+
+        element.style.background =
+            "rgba(60, 190, 120, 0.12)";
+
+        element.style.border =
+            "1px solid rgba(60, 190, 120, 0.25)";
+
+    } else if (type === "error") {
+
+        element.style.background =
+            "rgba(230, 70, 80, 0.12)";
+
+        element.style.border =
+            "1px solid rgba(230, 70, 80, 0.25)";
 
     } else {
 
-      status.textContent =
-        "❌ " + (result.error || "密码错误");
+        element.style.background =
+            "rgba(255, 190, 70, 0.10)";
 
-      status.style.background =
-        "rgba(255,80,80,0.12)";
+        element.style.border =
+            "1px solid rgba(255, 190, 70, 0.20)";
+    }
+}
+
+
+/* =========================================================
+   登录
+========================================================= */
+
+async function login() {
+
+    const password =
+        document
+            .getElementById("adminPassword")
+            .value;
+
+    if (!password) {
+
+        showStatus(
+            "loginStatus",
+            "❌ 请输入管理员密码。",
+            "error"
+        );
+
+        return;
     }
 
-  } catch (error) {
 
-    console.error(error);
+    const button =
+        document.getElementById(
+            "loginButton"
+        );
 
-    status.style.display = "block";
+    button.disabled = true;
 
-    status.textContent =
-      "❌ 无法连接到登录服务器";
+    button.textContent =
+        "⏳ 登录中……";
 
-    status.style.background =
-      "rgba(255,80,80,0.12)";
-  }
+
+    try {
+
+        const response =
+            await fetch(
+                API_BASE + "/login",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        password: password
+                    })
+                }
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (!response.ok || !result.success) {
+
+            throw new Error(
+                result.error ||
+                "登录失败"
+            );
+        }
+
+
+        /*
+         * Worker 登录成功后必须返回：
+         *
+         * {
+         *   success: true,
+         *   token: "……"
+         * }
+         */
+
+        if (!result.token) {
+
+            throw new Error(
+                "服务器没有返回登录凭证，请检查 Worker 的 /login 接口。"
+            );
+        }
+
+
+        sessionToken =
+            result.token;
+
+
+        document.getElementById(
+            "loginSection"
+        ).classList.add("hidden");
+
+
+        document.getElementById(
+            "adminPanel"
+        ).classList.remove("hidden");
+
+
+        document.getElementById(
+            "adminPassword"
+        ).value = "";
+
+
+        showStatus(
+            "loginStatus",
+            "",
+            "normal"
+        );
+
+
+        updatePublishTime();
+
+        await loadNewsManagement();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        showStatus(
+            "loginStatus",
+            "❌ " + error.message,
+            "error"
+        );
+
+    } finally {
+
+        button.disabled = false;
+
+        button.textContent =
+            "🔓 登录";
+    }
 }
 
 
-// ========= 测试发布 =========
+/* =========================================================
+   加载新闻管理列表
+========================================================= */
 
-fasync function publishNews() {
+async function loadNewsManagement() {
 
-  const title = document.getElementById("newsTitle").value.trim();
-  const content = document.getElementById("newsContent").value.trim();
-  const status = document.getElementById("publishStatus");
+    const list =
+        document.getElementById(
+            "newsManageList"
+        );
 
-  if (!title) {
+    list.textContent =
+        "⏳ 正在加载新闻……";
 
-    status.style.display = "block";
-    status.textContent = "❌ 请填写新闻标题";
-    status.style.background = "rgba(255,80,80,0.12)";
 
-    return;
-  }
+    try {
 
-  if (!content) {
+        const response =
+            await fetch(
+                API_BASE + "/news"
+            );
 
-    status.style.display = "block";
-    status.textContent = "❌ 请填写新闻正文";
-    status.style.background = "rgba(255,80,80,0.12)";
 
-    return;
-  }
+        const result =
+            await response.json();
 
-  status.style.display = "block";
-  status.textContent =
-    "🧪 测试成功：新闻内容已经填写完成，但当前版本不会真正发布。";
 
-  status.style.background = "rgba(255,211,106,0.1)";
+        if (!response.ok ||
+            !result.success) {
+
+            throw new Error(
+                result.error ||
+                "新闻加载失败"
+            );
+        }
+
+
+        allNews =
+            Array.isArray(result.news)
+                ? result.news
+                : [];
+
+
+        allNews.sort(
+            (a, b) =>
+                Number(b.timestamp || 0) -
+                Number(a.timestamp || 0)
+        );
+
+
+        renderNewsManagement(
+            allNews
+        );
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        list.textContent =
+            "❌ 无法加载新闻：" +
+            error.message;
+
+        document.getElementById(
+            "newsCount"
+        ).textContent =
+            "新闻加载失败";
+    }
 }
 
 
-// ========= 清空表单 =========
+/* =========================================================
+   渲染新闻列表
+========================================================= */
+
+function renderNewsManagement(
+    newsData
+) {
+
+    const list =
+        document.getElementById(
+            "newsManageList"
+        );
+
+
+    list.innerHTML = "";
+
+
+    document.getElementById(
+        "newsCount"
+    ).textContent =
+        `共 ${newsData.length} 条新闻`;
+
+
+    if (newsData.length === 0) {
+
+        const empty =
+            document.createElement("p");
+
+        empty.textContent =
+            "目前没有新闻。";
+
+        empty.className =
+            "small-note";
+
+        list.appendChild(empty);
+
+        return;
+    }
+
+
+    newsData.forEach(
+        news => {
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+            item.className =
+                "news-item";
+
+
+            /* 标题 */
+
+            const title =
+                document.createElement(
+                    "div"
+                );
+
+            title.className =
+                "news-item-title";
+
+            title.textContent =
+                news.title ||
+                "无标题";
+
+
+            /* 时间 / 作者 */
+
+            const meta =
+                document.createElement(
+                    "div"
+                );
+
+            meta.className =
+                "news-item-meta";
+
+            meta.textContent =
+                `${news.date || ""} · ${
+                    news.author || "AXNews"
+                }`;
+
+
+            /* 正文预览 */
+
+            const preview =
+                document.createElement(
+                    "div"
+                );
+
+            preview.className =
+                "news-item-preview";
+
+            preview.textContent =
+                news.content ||
+                "";
+
+
+            /* 操作区域 */
+
+            const actions =
+                document.createElement(
+                    "div"
+                );
+
+            actions.className =
+                "news-actions";
+
+
+            /* 编辑 */
+
+            const editButton =
+                document.createElement(
+                    "button"
+                );
+
+            editButton.className =
+                "button";
+
+            editButton.type =
+                "button";
+
+            editButton.textContent =
+                "✏️ 编辑";
+
+            editButton.onclick =
+                () => editNews(news.id);
+
+
+            /* 删除 */
+
+            const deleteButton =
+                document.createElement(
+                    "button"
+                );
+
+            deleteButton.className =
+                "button button-danger";
+
+            deleteButton.type =
+                "button";
+
+            deleteButton.textContent =
+                "🗑️ 删除";
+
+            deleteButton.onclick =
+                () => deleteNews(news.id);
+
+
+            actions.appendChild(
+                editButton
+            );
+
+            actions.appendChild(
+                deleteButton
+            );
+
+
+            item.appendChild(title);
+
+            item.appendChild(meta);
+
+            item.appendChild(preview);
+
+            item.appendChild(actions);
+
+            list.appendChild(item);
+        }
+    );
+}
+
+
+/* =========================================================
+   搜索新闻
+========================================================= */
+
+function filterNewsManagement() {
+
+    const keyword =
+        document
+            .getElementById(
+                "manageSearch"
+            )
+            .value
+            .trim()
+            .toLowerCase();
+
+
+    if (!keyword) {
+
+        renderNewsManagement(
+            allNews
+        );
+
+        return;
+    }
+
+
+    const filtered =
+        allNews.filter(
+            news => {
+
+                const title =
+                    String(
+                        news.title || ""
+                    ).toLowerCase();
+
+                const content =
+                    String(
+                        news.content || ""
+                    ).toLowerCase();
+
+                const author =
+                    String(
+                        news.author || ""
+                    ).toLowerCase();
+
+
+                return (
+                    title.includes(keyword) ||
+                    content.includes(keyword) ||
+                    author.includes(keyword)
+                );
+            }
+        );
+
+
+    renderNewsManagement(
+        filtered
+    );
+}
+
+
+/* =========================================================
+   发布新闻
+========================================================= */
+
+async function publishNews() {
+
+    if (!sessionToken) {
+
+        alert(
+            "登录状态已经失效，请重新登录。"
+        );
+
+        return;
+    }
+
+
+    const title =
+        document
+            .getElementById("newsTitle")
+            .value
+            .trim();
+
+
+    const author =
+        document
+            .getElementById("newsAuthor")
+            .value
+            .trim() ||
+        "AXNews";
+
+
+    const content =
+        document
+            .getElementById("newsContent")
+            .value
+            .trim();
+
+
+    if (!title) {
+
+        showStatus(
+            "publishStatus",
+            "❌ 新闻标题不能为空。",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if (!content) {
+
+        showStatus(
+            "publishStatus",
+            "❌ 新闻正文不能为空。",
+            "error"
+        );
+
+        return;
+    }
+
+
+    /* 如果正在编辑 */
+
+    if (editingNewsId) {
+
+        await updateNews(
+            editingNewsId,
+            title,
+            author,
+            content
+        );
+
+        return;
+    }
+
+
+    const button =
+        document.getElementById(
+            "publishButton"
+        );
+
+
+    button.disabled = true;
+
+    button.textContent =
+        "⏳ 正在发布……";
+
+
+    showStatus(
+        "publishStatus",
+        "⏳ 正在将新闻写入 AXNews 数据……",
+        "normal"
+    );
+
+
+    try {
+
+        const response =
+            await fetch(
+                API_BASE + "/publish",
+                {
+                    method: "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json",
+
+                        "Authorization":
+                            "Bearer " +
+                            sessionToken
+                    },
+
+                    body: JSON.stringify({
+
+                        title:
+                            title,
+
+                        author:
+                            author,
+
+                        content:
+                            content
+                    })
+                }
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (!response.ok ||
+            !result.success) {
+
+            throw new Error(
+                result.error ||
+                "新闻发布失败"
+            );
+        }
+
+
+        showStatus(
+            "publishStatus",
+            "✅ 新闻发布成功！",
+            "success"
+        );
+
+
+        clearForm();
+
+        await loadNewsManagement();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        showStatus(
+            "publishStatus",
+            "❌ " + error.message,
+            "error"
+        );
+
+    } finally {
+
+        button.disabled = false;
+
+        button.textContent =
+            "🚀 发布新闻";
+    }
+}
+
+
+/* =========================================================
+   编辑新闻
+========================================================= */
+
+function editNews(id) {
+
+    const news =
+        allNews.find(
+            item => item.id === id
+        );
+
+
+    if (!news) {
+
+        alert(
+            "找不到这条新闻。可能新闻列表已经更新，请刷新后重试。"
+        );
+
+        return;
+    }
+
+
+    editingNewsId =
+        id;
+
+
+    document.getElementById(
+        "newsTitle"
+    ).value =
+        news.title || "";
+
+
+    document.getElementById(
+        "newsAuthor"
+    ).value =
+        news.author || "AXNews";
+
+
+    document.getElementById(
+        "newsContent"
+    ).value =
+        news.content || "";
+
+
+    document.getElementById(
+        "editorTitle"
+    ).textContent =
+        "✏️ 编辑新闻";
+
+
+    document.getElementById(
+        "editingBanner"
+    ).style.display =
+        "block";
+
+
+    document.getElementById(
+        "publishButton"
+    ).textContent =
+        "💾 保存修改";
+
+
+    document.getElementById(
+        "cancelEditButton"
+    ).classList.remove(
+        "hidden"
+    );
+
+
+    updatePublishTime();
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+/* =========================================================
+   保存修改
+========================================================= */
+
+async function updateNews(
+    id,
+    title,
+    author,
+    content
+) {
+
+    const button =
+        document.getElementById(
+            "publishButton"
+        );
+
+
+    button.disabled = true;
+
+    button.textContent =
+        "⏳ 保存中……";
+
+
+    showStatus(
+        "publishStatus",
+        "⏳ 正在保存修改……",
+        "normal"
+    );
+
+
+    try {
+
+        const response =
+            await fetch(
+                API_BASE + "/update",
+                {
+                    method: "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json",
+
+                        "Authorization":
+                            "Bearer " +
+                            sessionToken
+                    },
+
+                    body: JSON.stringify({
+
+                        id:
+                            id,
+
+                        title:
+                            title,
+
+                        author:
+                            author,
+
+                        content:
+                            content
+                    })
+                }
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (!response.ok ||
+            !result.success) {
+
+            throw new Error(
+                result.error ||
+                "修改失败"
+            );
+        }
+
+
+        showStatus(
+            "publishStatus",
+            "✅ 新闻修改成功！",
+            "success"
+        );
+
+
+        cancelEdit();
+
+        await loadNewsManagement();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        showStatus(
+            "publishStatus",
+            "❌ " + error.message,
+            "error"
+        );
+
+    } finally {
+
+        button.disabled = false;
+
+        if (editingNewsId) {
+
+            button.textContent =
+                "💾 保存修改";
+
+        } else {
+
+            button.textContent =
+                "🚀 发布新闻";
+        }
+    }
+}
+
+
+/* =========================================================
+   删除新闻
+========================================================= */
+
+async function deleteNews(id) {
+
+    if (!sessionToken) {
+
+        alert(
+            "登录状态已经失效，请重新登录。"
+        );
+
+        return;
+    }
+
+
+    const news =
+        allNews.find(
+            item => item.id === id
+        );
+
+
+    const title =
+        news
+            ? news.title
+            : "这条新闻";
+
+
+    const confirmed =
+        confirm(
+            `确定要删除这条新闻吗？\n\n「${title}」\n\n删除后 news.json 也会同步更新，此操作无法通过后台撤销。`
+        );
+
+
+    if (!confirmed) return;
+
+
+    showStatus(
+        "newsManageStatus",
+        "⏳ 正在删除新闻……",
+        "normal"
+    );
+
+
+    try {
+
+        const response =
+            await fetch(
+                API_BASE + "/delete",
+                {
+                    method: "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json",
+
+                        "Authorization":
+                            "Bearer " +
+                            sessionToken
+                    },
+
+                    body: JSON.stringify({
+                        id: id
+                    })
+                }
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (!response.ok ||
+            !result.success) {
+
+            throw new Error(
+                result.error ||
+                "删除失败"
+            );
+        }
+
+
+        showStatus(
+            "newsManageStatus",
+            "✅ 新闻删除成功。",
+            "success"
+        );
+
+
+        if (editingNewsId === id) {
+
+            cancelEdit();
+        }
+
+
+        await loadNewsManagement();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        showStatus(
+            "newsManageStatus",
+            "❌ " + error.message,
+            "error"
+        );
+    }
+}
+
+
+/* =========================================================
+   清空表单
+========================================================= */
 
 function clearForm() {
 
-  document.getElementById("newsTitle").value = "";
-  document.getElementById("newsDate").value = "";
-  document.getElementById("newsTimestamp").value = "";
-  document.getElementById("newsAuthor").value = "AXNews";
-  document.getElementById("newsContent").value = "";
+    document.getElementById(
+        "newsTitle"
+    ).value = "";
 
-  document.getElementById("image1").value = "";
-  document.getElementById("image2").value = "";
-  document.getElementById("image3").value = "";
 
-  document.getElementById("publishStatus").style.display = "none";
+    document.getElementById(
+        "newsAuthor"
+    ).value =
+        "AXNews";
 
-  updatePublishTime();
+
+    document.getElementById(
+        "newsContent"
+    ).value = "";
+
+
+    updatePublishTime();
 }
 
-  // ========= 自动生成新闻时间 =========
-function updatePublishTime() {
-  const now = new Date();
 
-  // UTC+9
-  const utc9 = new Date(
-    now.getTime() + 9 * 60 * 60 * 1000
-  );
+/* =========================================================
+   取消编辑
+========================================================= */
 
-  const year = utc9.getUTCFullYear();
-  const month = utc9.getUTCMonth() + 1;
-  const day = utc9.getUTCDate();
+function cancelEdit() {
 
-  // 阿谢国年份
-  const axieYear = year - 2024 + 1;
+    editingNewsId =
+        null;
 
-  document.getElementById("newsDate").value =
-    `阿谢${axieYear}年${month}月${day}日`;
 
-  // Timestamp 仍然保留精确时间，用于排序
-  document.getElementById("newsTimestamp").value =
-    Date.now();
+    document.getElementById(
+        "editorTitle"
+    ).textContent =
+        "✏️ 发布新新闻";
+
+
+    document.getElementById(
+        "editingBanner"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "publishButton"
+    ).textContent =
+        "🚀 发布新闻";
+
+
+    document.getElementById(
+        "cancelEditButton"
+    ).classList.add(
+        "hidden"
+    );
+
+
+    clearForm();
+
+
+    const status =
+        document.getElementById(
+            "publishStatus"
+        );
+
+    status.style.display =
+        "none";
 }
-  
-// ========= 页面初始化 =========
-document.addEventListener("DOMContentLoaded", () => {
-  updatePublishTime();
 
-  // 每秒更新一次时间
-  setInterval(updatePublishTime, 1000);
-});
-  
+
+/* =========================================================
+   退出登录
+========================================================= */
+
+function logout() {
+
+    sessionToken = "";
+
+    editingNewsId = null;
+
+    allNews = [];
+
+
+    document.getElementById(
+        "adminPanel"
+    ).classList.add(
+        "hidden"
+    );
+
+
+    document.getElementById(
+        "loginSection"
+    ).classList.remove(
+        "hidden"
+    );
+
+
+    document.getElementById(
+        "adminPassword"
+    ).value = "";
+
+
+    document.getElementById(
+        "newsManageList"
+    ).textContent =
+        "正在加载新闻……";
+
+
+    document.getElementById(
+        "newsCount"
+    ).textContent =
+        "尚未登录";
+
+
+    clearForm();
+
+
+    showStatus(
+        "loginStatus",
+        "🚪 已退出当前后台会话。",
+        "success"
+    );
+}
 
 </script>
+
+</body>
+</html>
 
 </body>
 </html>
