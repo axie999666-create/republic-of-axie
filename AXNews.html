@@ -7,68 +7,197 @@
 <title>AXNews 新闻中心 | Republic of Axie</title>
 
 <style>
+
+*{
+    box-sizing:border-box;
+}
+
 body{
     margin:0;
     font-family:"Segoe UI","Microsoft YaHei",sans-serif;
     background:#102a44;
     color:white;
+    line-height:1.7;
 }
+
+/* 顶部 */
 
 header{
     background:#081522;
     text-align:center;
-    padding:30px;
+    padding:35px 20px;
+    box-shadow:0 2px 12px rgba(0,0,0,.25);
 }
 
 header h1{
     margin:0;
+    font-size:32px;
 }
+
+header p{
+    margin:8px 0 0;
+    opacity:.8;
+}
+
+/* 主容器 */
 
 .container{
     max-width:1000px;
     margin:auto;
-    padding:30px;
+    padding:30px 20px 50px;
 }
 
-.card{
-    background:rgba(255,255,255,.05);
-    padding:25px;
-    margin-bottom:30px;
-    border-radius:15px;
-}
+/* 搜索区域 */
 
-.card img{
-    width:100%;
-    max-width:700px;
-    border-radius:10px;
-    margin:15px 0;
+.search-area{
+    margin-bottom:25px;
 }
 
 #searchBox{
     width:100%;
-    padding:12px;
-    margin-bottom:25px;
+    padding:14px 16px;
     border:none;
-    border-radius:10px;
+    border-radius:12px;
     font-size:16px;
-    box-sizing:border-box;
+    outline:none;
+    background:white;
+    color:#222;
+    box-shadow:0 3px 10px rgba(0,0,0,.15);
 }
 
-.back{
-    display:inline-block;
-    margin-top:20px;
-    padding:10px 20px;
-    background:#2b567f;
-    color:white;
-    text-decoration:none;
-    border-radius:20px;
+.news-info{
+    margin-top:10px;
+    font-size:14px;
+    opacity:.75;
+}
+
+/* 新闻卡片 */
+
+.card{
+    background:rgba(255,255,255,.06);
+    padding:25px;
+    margin-bottom:25px;
+    border-radius:15px;
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow:0 4px 15px rgba(0,0,0,.12);
     transition:.2s;
 }
 
-.back:hover{
-    background:#3a75b3;
-    transform:scale(1.05);
+.card:hover{
+    transform:translateY(-2px);
+    background:rgba(255,255,255,.08);
 }
+
+.card h2{
+    margin:0 0 6px;
+    line-height:1.4;
+    font-size:23px;
+}
+
+.card small{
+    opacity:.7;
+}
+
+.card p{
+    margin:18px 0 0;
+    white-space:pre-wrap;
+    word-break:break-word;
+}
+
+/* 图片 */
+
+.card img{
+    display:block;
+    width:100%;
+    max-width:700px;
+    height:auto;
+    border-radius:10px;
+    margin:18px auto 0;
+}
+
+/* 按钮区域 */
+
+.actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:30px;
+}
+
+.button{
+    display:inline-block;
+    padding:11px 20px;
+    border-radius:22px;
+    text-decoration:none;
+    color:white;
+    background:#2b567f;
+    transition:.2s;
+}
+
+.button:hover{
+    background:#3a75b3;
+    transform:translateY(-1px);
+}
+
+.admin-button{
+    background:#365f88;
+}
+
+.admin-button:hover{
+    background:#477cab;
+}
+
+/* 加载 / 错误 */
+
+.message{
+    text-align:center;
+    padding:35px 20px;
+    background:rgba(255,255,255,.05);
+    border-radius:15px;
+    opacity:.85;
+}
+
+.error{
+    border:1px solid rgba(255,80,80,.3);
+}
+
+.error pre{
+    color:#ffaaaa;
+    text-align:left;
+    white-space:pre-wrap;
+    overflow:auto;
+}
+
+/* 手机 */
+
+@media(max-width:600px){
+
+    header h1{
+        font-size:26px;
+    }
+
+    .container{
+        padding:20px 15px 40px;
+    }
+
+    .card{
+        padding:20px;
+    }
+
+    .card h2{
+        font-size:20px;
+    }
+
+    .actions{
+        flex-direction:column;
+    }
+
+    .button{
+        text-align:center;
+    }
+
+}
+
 </style>
 
 </head>
@@ -76,148 +205,125 @@ header h1{
 <body>
 
 <header>
+
     <h1>📰 AXNews 新闻中心</h1>
+
     <p>Republic of Axie Official News</p>
+
 </header>
+
 
 <div class="container">
 
-    <input
-        type="text"
-        id="searchBox"
-        placeholder="🔍 搜索新闻..."
-    >
+    <!-- 搜索 -->
 
-    <div id="newsList">
-        正在加载新闻……
+    <div class="search-area">
+
+        <input
+            type="text"
+            id="searchBox"
+            placeholder="🔍 搜索新闻标题或正文..."
+            autocomplete="off"
+        >
+
+        <div
+            id="newsInfo"
+            class="news-info"
+        >
+            正在加载新闻……
+        </div>
+
     </div>
 
-    <a class="back" href="index.html">← 返回首页</a>
+
+    <!-- 新闻列表 -->
+
+    <div id="newsList">
+
+        <div class="message">
+            📰 正在加载新闻……
+        </div>
+
+    </div>
+
+
+    <!-- 页面按钮 -->
+
+    <div class="actions">
+
+        <a
+            class="button"
+            href="index.html"
+        >
+            ← 返回首页
+        </a>
+
+        <a
+            class="button admin-button"
+            href="admin/index.html"
+        >
+            🛠️ 新闻管理
+        </a>
+
+    </div>
 
 </div>
 
 
 <script>
 
-async function loadNews() {
+let allNews = [];
+
+
+/* =========================
+   加载新闻
+========================= */
+
+async function loadNews(){
 
     const newsList = document.getElementById("newsList");
+    const newsInfo = document.getElementById("newsInfo");
 
-    try {
+    try{
 
-        // 从 GitHub Pages 同目录读取 news.json
-        const response = await fetch("./news.json");
+        const response = await fetch(
+            "./news.json?ts=" + Date.now()
+        );
 
-        if (!response.ok) {
+        if(!response.ok){
+
             throw new Error(
-                "无法读取 news.json，HTTP状态码：" + response.status
+                "无法读取 news.json，HTTP状态码：" +
+                response.status
             );
-        }
-
-        const newsData = await response.json();
-
-        // 清空“正在加载新闻……”
-        newsList.innerHTML = "";
-
-        let found = 0;
-
-        const keyword = document
-            .getElementById("searchBox")
-            .value
-            .trim()
-            .toLowerCase();
-
-        // 按 timestamp 从新到旧排序
-        newsData.sort((a, b) => {
-            return Number(b.timestamp || 0) - Number(a.timestamp || 0);
-        });
-
-        newsData.forEach(news => {
-
-            // 搜索功能
-            const title = String(news.title || "");
-            const content = String(news.content || "");
-
-            if (
-                keyword &&
-                !title.toLowerCase().includes(keyword) &&
-                !content.toLowerCase().includes(keyword)
-            ) {
-                return;
-            }
-
-            found++;
-
-            let html = `
-                <div class="card">
-
-                    <h2>${title}</h2>
-
-                    <small>
-                        ${news.date || ""} | ${news.author || ""}
-                    </small>
-            `;
-
-
-            // 第一张图片
-            if (news.image1) {
-                html += `
-                    <img src="./${news.image1}" alt="">
-                `;
-            }
-
-
-            // 第二张图片
-            if (news.image2) {
-                html += `
-                    <img src="./${news.image2}" alt="">
-                `;
-            }
-
-
-            // 第三张图片
-            if (news.image3) {
-                html += `
-                    <img src="./${news.image3}" alt="">
-                `;
-            }
-
-
-            // 新闻正文
-            html += `
-                    <p>${content}</p>
-
-                </div>
-            `;
-
-            newsList.innerHTML += html;
-
-        });
-
-
-        // 没有搜索结果
-        if (found === 0) {
-
-            newsList.innerHTML = `
-                <div class="card">
-
-                    <h2>🔍 没有找到相关新闻</h2>
-
-                    <p>请尝试其他关键词。</p>
-
-                </div>
-            `;
 
         }
+
+        const data = await response.json();
+
+        if(!Array.isArray(data)){
+
+            throw new Error(
+                "news.json 格式错误：不是新闻数组"
+            );
+
+        }
+
+        allNews = data;
+
+        renderNews();
 
     }
-
-    catch (err) {
+    catch(err){
 
         console.error(err);
 
+        newsInfo.textContent =
+            "新闻加载失败";
+
         newsList.innerHTML = `
-            <div class="card">
+
+            <div class="message error">
 
                 <h2>❌ 新闻加载失败</h2>
 
@@ -225,13 +331,12 @@ async function loadNews() {
                     AXNews 暂时无法读取新闻数据。
                 </p>
 
-                <pre style="
-                    color:red;
-                    white-space:pre-wrap;
-                    overflow:auto;
-                ">${err.stack || err.message}</pre>
+                <pre>${escapeHTML(
+                    err.stack || err.message
+                )}</pre>
 
             </div>
+
         `;
 
     }
@@ -239,17 +344,214 @@ async function loadNews() {
 }
 
 
-// 页面加载完成
-document.addEventListener("DOMContentLoaded", () => {
+/* =========================
+   显示新闻
+========================= */
 
-    loadNews();
+function renderNews(){
 
-    // 搜索框实时搜索
-    document
-        .getElementById("searchBox")
-        .addEventListener("input", loadNews);
+    const newsList =
+        document.getElementById("newsList");
 
-});
+    const newsInfo =
+        document.getElementById("newsInfo");
+
+    const keyword =
+        document
+            .getElementById("searchBox")
+            .value
+            .trim()
+            .toLowerCase();
+
+
+    /* 复制数组后排序 */
+
+    const sortedNews = [...allNews].sort(
+        (a,b) =>
+            Number(b.timestamp || 0) -
+            Number(a.timestamp || 0)
+    );
+
+
+    /* 搜索 */
+
+    const filteredNews = sortedNews.filter(news => {
+
+        const title =
+            String(news.title || "");
+
+        const content =
+            String(news.content || "");
+
+        if(!keyword){
+            return true;
+        }
+
+        return (
+            title.toLowerCase().includes(keyword) ||
+            content.toLowerCase().includes(keyword)
+        );
+
+    });
+
+
+    /* 新闻数量 */
+
+    newsInfo.textContent =
+        keyword
+            ? `找到 ${filteredNews.length} 条相关新闻`
+            : `共 ${filteredNews.length} 条新闻`;
+
+
+    /* 没有结果 */
+
+    if(filteredNews.length === 0){
+
+        newsList.innerHTML = `
+
+            <div class="message">
+
+                <h2>🔍 没有找到相关新闻</h2>
+
+                <p>
+                    请尝试其他关键词。
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    /* 清空 */
+
+    newsList.innerHTML = "";
+
+
+    /* 创建新闻 */
+
+    filteredNews.forEach(news => {
+
+        const card =
+            document.createElement("article");
+
+        card.className = "card";
+
+
+        /* 标题 */
+
+        const title =
+            document.createElement("h2");
+
+        title.textContent =
+            String(news.title || "无标题");
+
+        card.appendChild(title);
+
+
+        /* 日期 / 作者 */
+
+        const meta =
+            document.createElement("small");
+
+        meta.textContent =
+            `${news.date || ""} | ${news.author || ""}`;
+
+        card.appendChild(meta);
+
+
+        /* 图片 */
+
+        ["image1","image2","image3"].forEach(
+            key => {
+
+                if(!news[key]){
+                    return;
+                }
+
+                const img =
+                    document.createElement("img");
+
+                img.src =
+                    "./" + news[key];
+
+                img.alt =
+                    news.title || "AXNews 新闻图片";
+
+                img.loading = "lazy";
+
+                img.onerror = () => {
+                    img.style.display = "none";
+                };
+
+                card.appendChild(img);
+
+            }
+        );
+
+
+        /* 正文 */
+
+        const content =
+            document.createElement("p");
+
+        content.textContent =
+            String(news.content || "");
+
+        card.appendChild(content);
+
+
+        newsList.appendChild(card);
+
+    });
+
+}
+
+
+/* =========================
+   防止错误信息直接插入 HTML
+========================= */
+
+function escapeHTML(text){
+
+    return String(text)
+
+        .replaceAll("&","&amp;")
+
+        .replaceAll("<","&lt;")
+
+        .replaceAll(">","&gt;")
+
+        .replaceAll('"',"&quot;")
+
+        .replaceAll("'","&#039;");
+
+}
+
+
+/* =========================
+   搜索
+========================= */
+
+document
+    .getElementById("searchBox")
+    .addEventListener(
+        "input",
+        renderNews
+    );
+
+
+/* =========================
+   页面加载
+========================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    loadNews
+);
 
 </script>
 
