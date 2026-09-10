@@ -238,6 +238,74 @@ footer {
     margin-top: 35px;
 }
 
+
+/* =========================================================
+   图片预览
+========================================================= */
+
+.image-preview {
+    display: none;
+    margin-top: 10px;
+}
+
+.image-preview img {
+    display: block;
+    width: 100%;
+    max-width: 420px;
+    max-height: 260px;
+    object-fit: contain;
+    border-radius: 12px;
+    border: 1px solid rgba(150, 190, 230, 0.18);
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.image-current {
+    display: none;
+    margin-top: 10px;
+}
+
+.image-current img {
+    display: block;
+    width: 100%;
+    max-width: 420px;
+    max-height: 260px;
+    object-fit: contain;
+    border-radius: 12px;
+    border: 1px solid rgba(150, 190, 230, 0.18);
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.image-box {
+    margin-top: 14px;
+    padding: 14px;
+    border-radius: 12px;
+    background: rgba(5, 18, 34, 0.35);
+    border: 1px solid rgba(150, 190, 230, 0.10);
+}
+
+.image-box:first-of-type {
+    margin-top: 12px;
+}
+
+.image-label {
+    margin: 0 0 8px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.image-path {
+    color: #91a4bc;
+    font-size: 12px;
+    line-height: 1.5;
+    word-break: break-all;
+    margin-top: 8px;
+}
+
+
+/* =========================================================
+   手机端
+========================================================= */
+
 @media (max-width: 700px) {
     .container {
         width: 92%;
@@ -393,35 +461,176 @@ footer {
     ></textarea>
 
 
+    <!-- ==================== 新闻图片 ==================== -->
+
     <label>
         🖼️ 新闻图片
     </label>
 
     <div class="small-note">
-        图片上传功能暂未接入服务器。
-        当前版本请先发布文字新闻，后续可以继续接入图片上传。
+        最多上传 3 张图片。<br>
+        支持 JPG、PNG、GIF、WebP。<br>
+        单张图片最大 5 MB。
     </div>
 
-    <input
-        id="image1"
-        type="file"
-        accept="image/*"
-        disabled
-    >
 
-    <input
-        id="image2"
-        type="file"
-        accept="image/*"
-        disabled
-    >
+    <!-- 图片 1 -->
 
-    <input
-        id="image3"
-        type="file"
-        accept="image/*"
-        disabled
-    >
+    <div class="image-box">
+
+        <div class="image-label">
+            📷 图片 1
+        </div>
+
+        <input
+            id="image1"
+            type="file"
+            accept=".jpg,.jpeg,.png,.gif,.webp,image/jpeg,image/png,image/gif,image/webp"
+            onchange="previewImage(1)"
+        >
+
+        <div
+            id="imageCurrent1"
+            class="image-current"
+        >
+            <div class="small-note">
+                当前图片：
+            </div>
+
+            <img
+                id="imageCurrentPreview1"
+                alt="当前图片 1"
+            >
+
+            <div
+                id="imageCurrentPath1"
+                class="image-path"
+            ></div>
+        </div>
+
+        <div
+            id="imagePreview1"
+            class="image-preview"
+        >
+            <div class="small-note">
+                新图片预览：
+            </div>
+
+            <img
+                id="imagePreviewImg1"
+                alt="新图片 1"
+            >
+        </div>
+
+    </div>
+
+
+    <!-- 图片 2 -->
+
+    <div class="image-box">
+
+        <div class="image-label">
+            📷 图片 2
+        </div>
+
+        <input
+            id="image2"
+            type="file"
+            accept=".jpg,.jpeg,.png,.gif,.webp,image/jpeg,image/png,image/gif,image/webp"
+            onchange="previewImage(2)"
+        >
+
+        <div
+            id="imageCurrent2"
+            class="image-current"
+        >
+            <div class="small-note">
+                当前图片：
+            </div>
+
+            <img
+                id="imageCurrentPreview2"
+                alt="当前图片 2"
+            >
+
+            <div
+                id="imageCurrentPath2"
+                class="image-path"
+            ></div>
+        </div>
+
+        <div
+            id="imagePreview2"
+            class="image-preview"
+        >
+            <div class="small-note">
+                新图片预览：
+            </div>
+
+            <img
+                id="imagePreviewImg2"
+                alt="新图片 2"
+            >
+        </div>
+
+    </div>
+
+
+    <!-- 图片 3 -->
+
+    <div class="image-box">
+
+        <div class="image-label">
+            📷 图片 3
+        </div>
+
+        <input
+            id="image3"
+            type="file"
+            accept=".jpg,.jpeg,.png,.gif,.webp,image/jpeg,image/png,image/gif,image/webp"
+            onchange="previewImage(3)"
+        >
+
+        <div
+            id="imageCurrent3"
+            class="image-current"
+        >
+            <div class="small-note">
+                当前图片：
+            </div>
+
+            <img
+                id="imageCurrentPreview3"
+                alt="当前图片 3"
+            >
+
+            <div
+                id="imageCurrentPath3"
+                class="image-path"
+            ></div>
+        </div>
+
+        <div
+            id="imagePreview3"
+            class="image-preview"
+        >
+            <div class="small-note">
+                新图片预览：
+            </div>
+
+            <img
+                id="imagePreviewImg3"
+                alt="新图片 3"
+            >
+        </div>
+
+    </div>
+
+
+    <div
+        class="status"
+        id="imageUploadStatus"
+    ></div>
 
 
     <button
@@ -504,7 +713,7 @@ footer {
 
 <section class="card">
 
-    <h2>🔒 会话</h2>
+    <h2>🔒 退出登录</h2>
 
     <p class="small-note">
         登录凭证仅保存在当前页面内存中。
@@ -540,6 +749,16 @@ footer {
 const API_BASE =
     "https://axnews-admin-api.axie999666.workers.dev";
 
+const MAX_IMAGE_SIZE =
+    5 * 1024 * 1024;
+
+const ALLOWED_IMAGE_TYPES = [
+    "image/jpeg",
+    "image/png",
+    "image/gif",
+    "image/webp"
+];
+
 
 /* =========================================================
    登录状态
@@ -552,6 +771,25 @@ let allNews = [];
 let editingNewsId = null;
 
 
+/*
+ * 编辑已有新闻时保存原来的图片路径。
+ *
+ * 例如：
+ *
+ * {
+ *   image1: "news-images/abc.jpg",
+ *   image2: "",
+ *   image3: "news-images/xyz.png"
+ * }
+ */
+
+let editingImagePaths = {
+    image1: "",
+    image2: "",
+    image3: ""
+};
+
+
 /* =========================================================
    DOM 加载
 ========================================================= */
@@ -562,8 +800,40 @@ document.addEventListener(
 
         updatePublishTime();
 
+        setupImageInputs();
+
     }
 );
+
+
+/* =========================================================
+   图片输入监听
+========================================================= */
+
+function setupImageInputs() {
+
+    [1, 2, 3].forEach(
+        number => {
+
+            const input =
+                document.getElementById(
+                    "image" + number
+                );
+
+            if (!input) return;
+
+            input.addEventListener(
+                "change",
+                () => {
+
+                    previewImage(number);
+
+                }
+            );
+
+        }
+    );
+}
 
 
 /* =========================================================
@@ -658,6 +928,483 @@ function showStatus(
 
 
 /* =========================================================
+   图片预览
+========================================================= */
+
+function previewImage(number) {
+
+    const input =
+        document.getElementById(
+            "image" + number
+        );
+
+    const previewBox =
+        document.getElementById(
+            "imagePreview" + number
+        );
+
+    const previewImg =
+        document.getElementById(
+            "imagePreviewImg" + number
+        );
+
+
+    if (!input ||
+        !previewBox ||
+        !previewImg) {
+
+        return;
+    }
+
+
+    const file =
+        input.files &&
+        input.files[0];
+
+
+    if (!file) {
+
+        previewBox.style.display =
+            "none";
+
+        previewImg.removeAttribute(
+            "src"
+        );
+
+        return;
+    }
+
+
+    if (!ALLOWED_IMAGE_TYPES.includes(
+        file.type
+    )) {
+
+        showStatus(
+            "imageUploadStatus",
+            `❌ 图片 ${number} 格式不支持。请使用 JPG、PNG、GIF 或 WebP。`,
+            "error"
+        );
+
+        input.value = "";
+
+        previewBox.style.display =
+            "none";
+
+        return;
+    }
+
+
+    if (file.size > MAX_IMAGE_SIZE) {
+
+        showStatus(
+            "imageUploadStatus",
+            `❌ 图片 ${number} 超过 5 MB。`,
+            "error"
+        );
+
+        input.value = "";
+
+        previewBox.style.display =
+            "none";
+
+        return;
+    }
+
+
+    const objectUrl =
+        URL.createObjectURL(file);
+
+
+    previewImg.src =
+        objectUrl;
+
+
+    previewBox.style.display =
+        "block";
+
+
+    previewImg.onload =
+        () => {
+
+            URL.revokeObjectURL(
+                objectUrl
+            );
+
+        };
+
+
+    showStatus(
+        "imageUploadStatus",
+        `✅ 图片 ${number} 已选择：${file.name}`,
+        "success"
+    );
+}
+
+
+/* =========================================================
+   显示已有图片
+========================================================= */
+
+function showCurrentImage(
+    number,
+    path
+) {
+
+    const box =
+        document.getElementById(
+            "imageCurrent" + number
+        );
+
+    const img =
+        document.getElementById(
+            "imageCurrentPreview" + number
+        );
+
+    const pathElement =
+        document.getElementById(
+            "imageCurrentPath" + number
+        );
+
+
+    if (!box || !img || !pathElement) {
+        return;
+    }
+
+
+    if (!path) {
+
+        box.style.display =
+            "none";
+
+        img.removeAttribute(
+            "src"
+        );
+
+        pathElement.textContent =
+            "";
+
+        return;
+    }
+
+
+    img.src =
+        "./../" + path;
+
+
+    /*
+     * GitHub Pages 路径通常为：
+     *
+     * admin/index.html
+     *
+     * 新闻图片：
+     *
+     * news-images/example.jpg
+     *
+     * 所以从 admin/ 页面访问需要：
+     *
+     * ../news-images/example.jpg
+     */
+
+    img.onerror =
+        () => {
+
+            box.style.display =
+                "none";
+
+        };
+
+
+    pathElement.textContent =
+        path;
+
+
+    box.style.display =
+        "block";
+}
+
+
+/* =========================================================
+   清除图片选择
+========================================================= */
+
+function clearImageInputs() {
+
+    [1, 2, 3].forEach(
+        number => {
+
+            const input =
+                document.getElementById(
+                    "image" + number
+                );
+
+            const previewBox =
+                document.getElementById(
+                    "imagePreview" + number
+                );
+
+            const previewImg =
+                document.getElementById(
+                    "imagePreviewImg" + number
+                );
+
+
+            if (input) {
+
+                input.value =
+                    "";
+
+            }
+
+
+            if (previewBox) {
+
+                previewBox.style.display =
+                    "none";
+
+            }
+
+
+            if (previewImg) {
+
+                previewImg.removeAttribute(
+                    "src"
+                );
+
+            }
+
+
+            showCurrentImage(
+                number,
+                ""
+            );
+
+        }
+    );
+
+
+    editingImagePaths = {
+        image1: "",
+        image2: "",
+        image3: ""
+    };
+
+
+    const status =
+        document.getElementById(
+            "imageUploadStatus"
+        );
+
+
+    if (status) {
+
+        status.style.display =
+            "none";
+
+    }
+}
+
+
+/* =========================================================
+   上传单张图片
+========================================================= */
+
+async function uploadImage(
+    file,
+    number
+) {
+
+    if (!sessionToken) {
+
+        throw new Error(
+            "登录状态已经失效，请重新登录。"
+        );
+
+    }
+
+
+    if (!file) {
+
+        return "";
+
+    }
+
+
+    if (!ALLOWED_IMAGE_TYPES.includes(
+        file.type
+    )) {
+
+        throw new Error(
+            `图片 ${number} 格式不支持，请使用 JPG、PNG、GIF 或 WebP。`
+        );
+
+    }
+
+
+    if (file.size > MAX_IMAGE_SIZE) {
+
+        throw new Error(
+            `图片 ${number} 超过 5 MB。`
+        );
+
+    }
+
+
+    const formData =
+        new FormData();
+
+
+    formData.append(
+        "file",
+        file
+    );
+
+
+    showStatus(
+        "imageUploadStatus",
+        `⏳ 正在上传图片 ${number}……`,
+        "normal"
+    );
+
+
+    const response =
+        await fetch(
+            API_BASE + "/upload-image",
+            {
+                method: "POST",
+
+                headers: {
+
+                    "Authorization":
+                        "Bearer " +
+                        sessionToken
+
+                },
+
+                body:
+                    formData
+            }
+        );
+
+
+    let result;
+
+    try {
+
+        result =
+            await response.json();
+
+    } catch {
+
+        throw new Error(
+            "图片上传服务器返回了无效数据。"
+        );
+
+    }
+
+
+    if (!response.ok ||
+        !result.success) {
+
+        throw new Error(
+            result.error ||
+            `图片 ${number} 上传失败`
+        );
+
+    }
+
+
+    if (!result.path) {
+
+        throw new Error(
+            `图片 ${number} 上传成功，但服务器没有返回图片路径。`
+        );
+
+    }
+
+
+    return result.path;
+}
+
+
+/* =========================================================
+   上传所有新选择的图片
+========================================================= */
+
+async function uploadSelectedImages() {
+
+    const imagePaths = {
+
+        image1:
+            editingImagePaths.image1 || "",
+
+        image2:
+            editingImagePaths.image2 || "",
+
+        image3:
+            editingImagePaths.image3 || ""
+
+    };
+
+
+    for (
+        let number = 1;
+        number <= 3;
+        number++
+    ) {
+
+        const input =
+            document.getElementById(
+                "image" + number
+            );
+
+
+        const file =
+            input &&
+            input.files &&
+            input.files[0];
+
+
+        /*
+         * 没有选择新图片：
+         *
+         * 编辑状态 → 保留旧图片
+         * 新建状态 → 保持空
+         */
+
+        if (!file) {
+
+            continue;
+
+        }
+
+
+        const path =
+            await uploadImage(
+                file,
+                number
+            );
+
+
+        imagePaths[
+            "image" + number
+        ] =
+            path;
+
+
+        showStatus(
+            "imageUploadStatus",
+            `✅ 图片 ${number} 上传成功。`,
+            "success"
+        );
+
+    }
+
+
+    return imagePaths;
+}
+
+
+/* =========================================================
    登录
 ========================================================= */
 
@@ -715,7 +1462,8 @@ async function login() {
             await response.json();
 
 
-        if (!response.ok || !result.success) {
+        if (!response.ok ||
+            !result.success) {
 
             throw new Error(
                 result.error ||
@@ -723,15 +1471,6 @@ async function login() {
             );
         }
 
-
-        /*
-         * Worker 登录成功后必须返回：
-         *
-         * {
-         *   success: true,
-         *   token: "……"
-         * }
-         */
 
         if (!result.token) {
 
@@ -1030,6 +1769,7 @@ function renderNewsManagement(
             item.appendChild(actions);
 
             list.appendChild(item);
+
         }
     );
 }
@@ -1086,6 +1826,7 @@ function filterNewsManagement() {
                     content.includes(keyword) ||
                     author.includes(keyword)
                 );
+
             }
         );
 
@@ -1158,7 +1899,9 @@ async function publishNews() {
     }
 
 
-    /* 如果正在编辑 */
+    /*
+     * 如果正在编辑
+     */
 
     if (editingNewsId) {
 
@@ -1187,12 +1930,45 @@ async function publishNews() {
 
     showStatus(
         "publishStatus",
-        "⏳ 正在将新闻写入 AXNews 数据……",
+        "⏳ 正在准备发布新闻……",
         "normal"
     );
 
 
     try {
+
+        /*
+         * 先上传图片
+         */
+
+        showStatus(
+            "imageUploadStatus",
+            "⏳ 正在检查并上传图片……",
+            "normal"
+        );
+
+
+        const imagePaths =
+            await uploadSelectedImages();
+
+
+        /*
+         * 图片上传完成
+         */
+
+        showStatus(
+            "imageUploadStatus",
+            "✅ 图片处理完成。",
+            "success"
+        );
+
+
+        showStatus(
+            "publishStatus",
+            "⏳ 正在将新闻写入 AXNews 数据……",
+            "normal"
+        );
+
 
         const response =
             await fetch(
@@ -1208,6 +1984,7 @@ async function publishNews() {
                         "Authorization":
                             "Bearer " +
                             sessionToken
+
                     },
 
                     body: JSON.stringify({
@@ -1219,8 +1996,19 @@ async function publishNews() {
                             author,
 
                         content:
-                            content
+                            content,
+
+                        image1:
+                            imagePaths.image1,
+
+                        image2:
+                            imagePaths.image2,
+
+                        image3:
+                            imagePaths.image3
+
                     })
+
                 }
             );
 
@@ -1297,6 +2085,24 @@ function editNews(id) {
         id;
 
 
+    /*
+     * 保存原来的图片路径
+     */
+
+    editingImagePaths = {
+
+        image1:
+            news.image1 || "",
+
+        image2:
+            news.image2 || "",
+
+        image3:
+            news.image3 || ""
+
+    };
+
+
     document.getElementById(
         "newsTitle"
     ).value =
@@ -1313,6 +2119,48 @@ function editNews(id) {
         "newsContent"
     ).value =
         news.content || "";
+
+
+    /*
+     * 清空新的文件选择
+     */
+
+    [1, 2, 3].forEach(
+        number => {
+
+            const input =
+                document.getElementById(
+                    "image" + number
+                );
+
+            const previewBox =
+                document.getElementById(
+                    "imagePreview" + number
+                );
+
+            if (input) {
+
+                input.value =
+                    "";
+
+            }
+
+            if (previewBox) {
+
+                previewBox.style.display =
+                    "none";
+
+            }
+
+            showCurrentImage(
+                number,
+                editingImagePaths[
+                    "image" + number
+                ]
+            );
+
+        }
+    );
 
 
     document.getElementById(
@@ -1375,12 +2223,32 @@ async function updateNews(
 
     showStatus(
         "publishStatus",
-        "⏳ 正在保存修改……",
+        "⏳ 正在处理图片……",
         "normal"
     );
 
 
     try {
+
+        /*
+         * 如果用户选择了新图片，
+         * uploadSelectedImages()
+         * 会自动上传并替换对应路径。
+         *
+         * 如果没有选择新图片，
+         * 原来的路径会被保留。
+         */
+
+        const imagePaths =
+            await uploadSelectedImages();
+
+
+        showStatus(
+            "publishStatus",
+            "⏳ 正在保存新闻修改……",
+            "normal"
+        );
+
 
         const response =
             await fetch(
@@ -1396,6 +2264,7 @@ async function updateNews(
                         "Authorization":
                             "Bearer " +
                             sessionToken
+
                     },
 
                     body: JSON.stringify({
@@ -1410,8 +2279,19 @@ async function updateNews(
                             author,
 
                         content:
-                            content
+                            content,
+
+                        image1:
+                            imagePaths.image1,
+
+                        image2:
+                            imagePaths.image2,
+
+                        image3:
+                            imagePaths.image3
+
                     })
+
                 }
             );
 
@@ -1563,6 +2443,7 @@ async function deleteNews(id) {
         if (editingNewsId === id) {
 
             cancelEdit();
+
         }
 
 
@@ -1604,6 +2485,13 @@ function clearForm() {
     ).value = "";
 
 
+    /*
+     * 清除图片
+     */
+
+    clearImageInputs();
+
+
     updatePublishTime();
 }
 
@@ -1616,6 +2504,15 @@ function cancelEdit() {
 
     editingNewsId =
         null;
+
+
+    editingImagePaths = {
+
+        image1: "",
+        image2: "",
+        image3: ""
+
+    };
 
 
     document.getElementById(
@@ -1669,6 +2566,15 @@ function logout() {
     allNews = [];
 
 
+    editingImagePaths = {
+
+        image1: "",
+        image2: "",
+        image3: ""
+
+    };
+
+
     document.getElementById(
         "adminPanel"
     ).classList.add(
@@ -1705,15 +2611,12 @@ function logout() {
 
     showStatus(
         "loginStatus",
-        "🚪 已退出当前后台会话。",
+        "🚪 已退出。",
         "success"
     );
 }
 
 </script>
-
-</body>
-</html>
 
 </body>
 </html>
