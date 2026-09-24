@@ -1,0 +1,43 @@
+{
+  "president": {
+    "id": "president",
+    "name": "总统选举",
+    "nameEn": "Presidential Election",
+    "nameJp": "大統領選挙",
+    "termYears": 3,
+    "electionStart": {
+      "month": 1,
+      "day": 4
+    },
+    "electionEnd": {
+      "month": 2,
+      "day": 3
+    },
+    "inauguration": {
+      "month": 2,
+      "day": 4
+    },
+    "page": "president-election.html"
+  },
+
+  "vicePresident": {
+    "id": "vice-president",
+    "name": "副总统选举",
+    "nameEn": "Vice Presidential Election",
+    "nameJp": "副大統領選挙",
+    "termYears": 1,
+    "electionStart": {
+      "month": 10,
+      "day": 2
+    },
+    "electionEnd": {
+      "month": 11,
+      "day": 1
+    },
+    "inauguration": {
+      "month": 11,
+      "day": 2
+    },
+    "page": "vice-president-election.html"
+  }
+}
