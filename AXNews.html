@@ -71,6 +71,8 @@ header p{
     opacity:.75;
 }
 
+.agency-filters{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 18px}.agency-filter{display:inline-block;padding:8px 14px;border:1px solid rgba(255,255,255,.18);border-radius:999px;color:#dcecff;text-decoration:none;background:rgba(255,255,255,.05)}.agency-filter:hover,.agency-filter.active{background:#2b567f;border-color:#72a9e8}.agency-info{margin:0 0 14px;color:#b9cce2;font-size:14px}
+
 /* 新闻卡片 */
 
 .card{
@@ -226,6 +228,10 @@ header p{
             autocomplete="off"
         >
 
+<nav class="agency-filters" aria-label="按发布机构筛选"><a class="agency-filter" href="./AXNews.html">全部新闻</a><a class="agency-filter" href="./AXNews.html?agency=president">总统府</a><a class="agency-filter" href="./AXNews.html?agency=vice-president">副总统办公室</a><a class="agency-filter" href="./AXNews.html?agency=government">政府</a></nav>
+
+        <div id="agencyInfo" class="agency-info" aria-live="polite"></div>
+
         <div
             id="newsInfo"
             class="news-info"
@@ -267,6 +273,8 @@ header p{
 <script>
 
 let allNews = [];
+const agencyNames = {"president":"总统府","vice-president":"副总统办公室","government":"政府"};
+const selectedAgency = new URLSearchParams(location.search).get("agency") || "";
 
 
 /* =========================
@@ -371,6 +379,8 @@ function renderNews(){
 
     const filteredNews = sortedNews.filter(news => {
 
+        if(selectedAgency && news.agencyId !== selectedAgency){ return false; }
+
         const title =
             String(news.title || "");
 
@@ -388,6 +398,14 @@ function renderNews(){
 
     });
 
+
+    const agencyInfo = document.getElementById("agencyInfo");
+    if(agencyInfo){ agencyInfo.textContent = selectedAgency ? "当前分类：" + (agencyNames[selectedAgency] || "发布机构") : ""; }
+
+    document.querySelectorAll(".agency-filter").forEach(link => {
+        const value = new URL(link.href).searchParams.get("agency") || "";
+        if(value === selectedAgency) link.classList.add("active");
+    });
 
     /* 新闻数量 */
 
