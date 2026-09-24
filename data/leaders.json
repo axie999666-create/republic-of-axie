@@ -1,0 +1,19 @@
+{
+  "president": {
+    "name": "暂未产生",
+    "party": "",
+    "termStart": "",
+    "termEnd": "",
+    "introduction": "",
+    "electionId": ""
+  },
+
+  "vicePresident": {
+    "name": "暂未产生",
+    "party": "",
+    "termStart": "",
+    "termEnd": "",
+    "introduction": "",
+    "electionId": ""
+  }
+}
