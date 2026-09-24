@@ -1,14 +1,25 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
+
 <meta charset="UTF-8">
-<meta name="google-site-verification" content="XECdWLqwJEmQT8tvbFPfcaOVh3DSHPjrzecBjzEXnuw" />
+
+<meta
+  name="google-site-verification"
+  content="XECdWLqwJEmQT8tvbFPfcaOVh3DSHPjrzecBjzEXnuw"
+/>
+
 <title>阿谢国官方网站 | Republic of Axie</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
-<meta name="description"
-      content="阿谢国（Republic of Axie）官方网站。提供国家介绍、宪法、国旗、城市及AXNews新闻等信息。">
+<meta
+  name="description"
+  content="阿谢国（Republic of Axie）官方网站。提供国家介绍、宪法、国旗、城市、总统与副总统选举及AXNews新闻等信息。"
+>
 
 <!-- Google 网站名称 -->
 <script type="application/ld+json">
@@ -24,281 +35,1072 @@
 <!-- Social / Open Graph -->
 <meta property="og:site_name" content="阿谢国">
 <meta property="og:title" content="阿谢国官方网站 | Republic of Axie">
-<meta property="og:description" content="阿谢国（Republic of Axie）——虚拟世界项目，国家宪法、国旗、城市展示平台。">
+<meta
+  property="og:description"
+  content="阿谢国（Republic of Axie）——虚拟世界项目，国家宪法、国旗、城市、选举及AXNews新闻展示平台。"
+>
 <meta property="og:image" content="/flag.jpg">
 <meta property="og:type" content="website">
 
 <meta name="twitter:card" content="summary_large_image">
 
-<link rel="icon" type="image/png" href="/ROA_flag.png">
+<link
+  rel="icon"
+  type="image/png"
+  href="/ROA_flag.png"
+>
+
+
 <style>
-/* 保持原有风格，做少量可访问性加强 */
+
+/* =========================================================
+   基础样式
+========================================================= */
+
 body {
   margin: 0;
-  font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-  background: linear-gradient(180deg, #0b1c2d, #102a44);
+
+  font-family:
+    "Segoe UI",
+    "PingFang SC",
+    "Microsoft YaHei",
+    sans-serif;
+
+  background:
+    linear-gradient(
+      180deg,
+      #0b1c2d,
+      #102a44
+    );
+
   color: #e8f1ff;
+
+  animation:
+    fadeIn 0.6s ease-in;
 }
-body {
-  animation: fadeIn 0.6s ease-in;
-}
+
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
+
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
 }
+
+
+/* =========================================================
+   无障碍跳转
+========================================================= */
+
 .skip-link {
+
   position: absolute;
+
   left: -999px;
   top: auto;
+
   overflow: hidden;
+
   background: #fff;
   color: #000;
+
   padding: 8px 12px;
+
   border-radius: 4px;
+
   z-index: 1000;
 }
+
+
 .skip-link:focus {
+
   left: 8px;
   top: 8px;
+
 }
+
+
+/* =========================================================
+   Header
+========================================================= */
 
 header {
+
   text-align: center;
+
   padding: 40px 20px;
-  background: rgba(0,0,0,0.5);
+
+  background:
+    rgba(0,0,0,0.5);
+
 }
+
 
 header h1 {
+
   margin: 0;
+
   font-size: 40px;
+
   letter-spacing: 3px;
+
 }
+
 
 header p {
+
   opacity: 0.8;
+
   margin-top: 10px;
+
 }
+
+
+/* =========================================================
+   导航栏
+========================================================= */
 
 nav {
+
   background: #081522;
+
   text-align: center;
+
   padding: 12px;
+
 }
 
-nav a, nav .button {
+
+nav a,
+nav .button {
+
   color: #9fd3ff;
+
   margin: 0 15px;
+
   text-decoration: none;
+
   font-weight: bold;
+
   font-size: 16px;
+
 }
+
 
 nav .button {
+
   background: none;
+
   border: none;
+
   cursor: pointer;
+
   padding: 6px 12px;
+
 }
 
-nav a:hover, nav .button:hover {
+
+nav a:hover,
+nav .button:hover {
+
   text-decoration: underline;
+
 }
+
+
+/* =========================================================
+   页面容器
+========================================================= */
 
 .container {
+
   max-width: 1000px;
+
   margin: 40px auto;
+
   padding: 0 20px;
+
 }
+
+
+/* =========================================================
+   通用卡片
+========================================================= */
 
 .card {
-  background: rgba(255,255,255,0.05);
+
+  background:
+    rgba(255,255,255,0.05);
+
   border-radius: 15px;
+
   padding: 30px;
+
   margin-bottom: 40px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+
+  box-shadow:
+    0 0 20px rgba(0,0,0,0.4);
+
 }
+
 
 h2 {
+
   color: #7ecbff;
+
   margin-top: 0;
+
 }
+
+
+/* =========================================================
+   城市
+========================================================= */
 
 .city {
-  background: rgba(0,0,0,0.3);
+
+  background:
+    rgba(0,0,0,0.3);
+
   padding: 15px;
+
   border-radius: 10px;
+
   margin-top: 10px;
+
 }
+
+
+/* =========================================================
+   国旗
+========================================================= */
 
 .flag-box {
+
   text-align: center;
+
 }
+
 
 .flag-box img {
+
   max-width: 300px;
+
   width: 100%;
+
   height: auto;
+
   border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+
+  box-shadow:
+    0 0 20px rgba(0,0,0,0.6);
+
 }
 
-/* 国庆倒计时样式 */
+
+/* =========================================================
+   国庆倒计时
+========================================================= */
+
 .countdown {
+
   text-align: center;
-  background: linear-gradient(90deg, #1e3c5a, #2c5a87);
+
+  background:
+    linear-gradient(
+      90deg,
+      #1e3c5a,
+      #2c5a87
+    );
+
   border-radius: 15px;
+
   padding: 30px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+
+  box-shadow:
+    0 0 20px rgba(0,0,0,0.5);
+
 }
+
 
 .countdown h2 {
+
   color: #ffd36a;
+
 }
+
 
 .timer {
+
   font-size: 32px;
+
   letter-spacing: 3px;
+
   margin-top: 15px;
+
   font-weight: bold;
+
   color: #ffffff;
+
 }
+
 
 .axie-date {
+
   margin-top: 10px;
+
   font-size: 16px;
+
   opacity: 0.9;
+
 }
+
+
+/* =========================================================
+   通用按钮
+========================================================= */
 
 .button {
+
   display: inline-block;
+
   margin-top: 20px;
+
   padding: 12px 25px;
+
   border-radius: 25px;
-  background: linear-gradient(90deg, #2b567f, #3a75b3);
+
+  background:
+    linear-gradient(
+      90deg,
+      #2b567f,
+      #3a75b3
+    );
+
   color: white;
+
   text-decoration: none;
+
   font-weight: bold;
-  transition: transform 0.2s, box-shadow 0.2s;
+
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+
 }
+
 
 .button:hover {
+
   transform: scale(1.05);
-  box-shadow: 0 0 15px rgba(100,180,255,0.7);
+
+  box-shadow:
+    0 0 15px rgba(100,180,255,0.7);
+
 }
+
+
+/* =========================================================
+   🗳️ 选举状态
+========================================================= */
+
+.election-card {
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(30,70,110,0.95),
+      rgba(20,50,85,0.95)
+    );
+
+  border:
+    1px solid rgba(126,203,255,0.25);
+
+  box-shadow:
+    0 0 25px rgba(0,0,0,0.45);
+
+}
+
+
+.election-header {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+  flex-wrap: wrap;
+
+}
+
+
+.election-badge {
+
+  display: inline-block;
+
+  padding: 6px 12px;
+
+  border-radius: 20px;
+
+  background:
+    rgba(80,200,120,0.18);
+
+  border:
+    1px solid rgba(80,200,120,0.35);
+
+  color: #9ff0b5;
+
+  font-size: 14px;
+
+  font-weight: bold;
+
+}
+
+
+.election-description {
+
+  line-height: 1.8;
+
+  opacity: 0.9;
+
+}
+
+
+.election-countdown {
+
+  font-size: 24px;
+
+  font-weight: bold;
+
+  margin: 20px 0;
+
+  color: #ffffff;
+
+  letter-spacing: 1px;
+
+}
+
+
+.election-date {
+
+  font-size: 14px;
+
+  opacity: 0.7;
+
+}
+
+
+.election-button {
+
+  margin-top: 15px;
+
+}
+
+
+/* =========================================================
+   新闻
+========================================================= */
+
+.news-item {
+
+  background:
+    rgba(0,0,0,0.25);
+
+  border-radius: 12px;
+
+  padding: 20px;
+
+  margin-bottom: 20px;
+
+}
+
+
+.news-item h3 {
+
+  margin-top: 0;
+
+}
+
+
+.news-item small {
+
+  opacity: 0.65;
+
+}
+
+
+.news-item img {
+
+  width: 100%;
+
+  max-width: 700px;
+
+  border-radius: 10px;
+
+  margin:
+    15px 0;
+
+  display: block;
+
+}
+
+
+/* =========================================================
+   Footer
+========================================================= */
 
 footer {
+
   text-align: center;
+
   padding: 30px;
+
   background: #081522;
+
   opacity: 0.7;
+
   margin-top: 60px;
+
 }
 
-@media (max-width: 600px) {
-  header h1 { font-size: 28px; }
-  .timer { font-size: 24px; }
+
+.footer-note {
+
+  font-size: 12px;
+
+  opacity: 0.5;
+
+  margin-top: 20px;
+
+  text-align: center;
+
+  padding-bottom: 30px;
+
 }
+
+
+/* =========================================================
+   移动端
+========================================================= */
+
+@media (max-width: 600px) {
+
+  header h1 {
+
+    font-size: 28px;
+
+  }
+
+
+  .timer {
+
+    font-size: 24px;
+
+  }
+
+
+  .election-countdown {
+
+    font-size: 20px;
+
+  }
+
+
+  nav a,
+  nav .button {
+
+    display: inline-block;
+
+    margin: 6px 8px;
+
+    font-size: 14px;
+
+  }
+
+
+  .card {
+
+    padding: 22px;
+
+  }
+
+}
+
 </style>
+
 </head>
+
 
 <body>
 
-<a href="#main-content" class="skip-link">跳过到主要内容</a>
+
+<!-- =======================================================
+     无障碍跳转
+======================================================= -->
+
+<a
+  href="#main-content"
+  class="skip-link"
+>
+  跳过到主要内容
+</a>
+
+
+<!-- =======================================================
+     网站头部
+======================================================= -->
 
 <header>
-  <h1 data-zh="阿谢国官方网站" data-en="Republic of Axie - Official Website" data-jp="阿謝国 公式サイト">阿谢国官方网站</h1>
-  <p data-zh="Republic of Axie · 国家门户网站" data-en="Republic of Axie · National Portal" data-jp="阿謝国 · 国家ポータルサイト">Republic of Axie · 国家门户网站</p>
+
+  <h1
+    data-zh="阿谢国官方网站"
+    data-en="Republic of Axie - Official Website"
+    data-jp="阿謝国 公式サイト"
+  >
+    阿谢国官方网站
+  </h1>
+
+
+  <p
+    data-zh="Republic of Axie · 国家门户网站"
+    data-en="Republic of Axie · National Portal"
+    data-jp="阿謝国 · 国家ポータルサイト"
+  >
+    Republic of Axie · 国家门户网站
+  </p>
+
 </header>
 
+
+<!-- =======================================================
+     导航栏
+======================================================= -->
+
 <nav>
-  <a href="#about" data-zh="国家介绍" data-en="About" data-jp="国家紹介">国家介绍</a>
-  <a href="#history" data-zh="建国历史" data-en="History" data-jp="建国の歴史">建国历史</a>
-  <a href="#cities" data-zh="城市" data-en="Cities" data-jp="都市">城市体系</a>
-  <a href="AXNews.html" data-zh="AXNews新闻" data-en="AXNews" data-jp="AXNewsニュース">AXNews新闻</a>
-  <a href="constitution.html" data-zh="国家宪法" data-en="Constitution" data-jp="国家憲法">国家宪法</a>
-  <a href="#flag" data-zh="国家象征" data-en="National Symbols" data-jp="国家の象徴">国家象征</a>
-  <a href="#contact" data-zh="联系我们" data-en="Contact" data-jp="お問い合わせ">联系我们</a>
-  <button id="langToggle" class="button" aria-label="切换语言" type="button">🌐 中文 / EN / 日本語</button>
+
+  <a
+    href="#about"
+    data-zh="国家介绍"
+    data-en="About"
+    data-jp="国家紹介"
+  >
+    国家介绍
+  </a>
+
+
+  <a
+    href="#history"
+    data-zh="建国历史"
+    data-en="History"
+    data-jp="建国の歴史"
+  >
+    建国历史
+  </a>
+
+
+  <a
+    href="#cities"
+    data-zh="城市"
+    data-en="Cities"
+    data-jp="都市"
+  >
+    城市体系
+  </a>
+
+
+  <a
+    href="AXNews.html"
+    data-zh="AXNews新闻"
+    data-en="AXNews"
+    data-jp="AXNewsニュース"
+  >
+    AXNews新闻
+  </a>
+
+
+  <a
+    href="constitution.html"
+    data-zh="国家宪法"
+    data-en="Constitution"
+    data-jp="国家憲法"
+  >
+    国家宪法
+  </a>
+
+
+  <a
+    href="#flag"
+    data-zh="国家象征"
+    data-en="National Symbols"
+    data-jp="国家の象徴"
+  >
+    国家象征
+  </a>
+
+
+  <a
+    href="#contact"
+    data-zh="联系我们"
+    data-en="Contact"
+    data-jp="お問い合わせ"
+  >
+    联系我们
+  </a>
+
+
+  <button
+    id="langToggle"
+    class="button"
+    aria-label="切换语言"
+    type="button"
+  >
+    🌐 中文 / EN / 日本語
+  </button>
+
 </nav>
 
+
+
+<!-- =======================================================
+     主体
+======================================================= -->
+
 <main id="main-content">
+
 <div class="container">
 
-<!-- 国家介绍 -->
-<section id="about" class="card">
-  <h2 data-zh="国家介绍" data-en="About the Republic of Axie" data-jp="阿謝国の紹介">国家介绍</h2>
+
+<!-- =====================================================
+     国家介绍
+===================================================== -->
+
+<section
+  id="about"
+  class="card"
+>
+
+  <h2
+    data-zh="国家介绍"
+    data-en="About the Republic of Axie"
+    data-jp="阿謝国の紹介"
+  >
+    国家介绍
+  </h2>
+
+
   <p
     data-zh="阿谢国（Republic of Axie）是建立于游戏 Mini World 虚拟世界中的架空国家。国家以和平、科技、民主、多元与可持续发展为核心理念，致力于构建一个自由、开放与包容的社区。"
     data-en="The Republic of Axie is a fictional nation created within the Mini World virtual world. It is founded on the principles of peace, technology, democracy, diversity, and sustainable development, aiming to build a free, open, and inclusive community."
-    data-jp="阿謝国（Republic of Axie）は、ゲーム『Mini World』の仮想世界に構築された架空の国家です。平和、技術、民主、多様性、持続可能な発展を基本理念とし、自由で開かれた包摂的なコミュニティを目指します。">
+    data-jp="阿謝国（Republic of Axie）は、ゲーム『Mini World』の仮想世界に構築された架空の国家です。平和、技術、民主、多様性、持続可能な発展を基本理念とし、自由で開かれた包摂的なコミュニティを目指します。"
+  >
     阿谢国（Republic of Axie）是建立于游戏 Mini World 虚拟世界中的架空国家。国家以和平、科技、民主、多元与可持续发展为核心理念，致力于构建一个自由、开放与包容的社区。
   </p>
 
-  <a class="button" href="constitution.html"
-     data-zh="📜 查看国家宪法"
-     data-en="📜 View the Constitution"
-     data-jp="📜 国家憲法を見る">📜 查看国家宪法</a>
+
+  <a
+    class="button"
+    href="constitution.html"
+    data-zh="📜 查看国家宪法"
+    data-en="📜 View the Constitution"
+    data-jp="📜 国家憲法を見る"
+  >
+    📜 查看国家宪法
+  </a>
+
 </section>
 
-<!-- 建国历史 -->
-<section id="history" class="card">
-  <h2 data-zh="建国历史" data-en="Founding History" data-jp="建国の歴史">建国历史</h2>
+
+
+<!-- =====================================================
+     建国历史
+===================================================== -->
+
+<section
+  id="history"
+  class="card"
+>
+
+  <h2
+    data-zh="建国历史"
+    data-en="Founding History"
+    data-jp="建国の歴史"
+  >
+    建国历史
+  </h2>
+
+
   <p
     data-zh="阿谢元年（2024年）2月3日，阿谢国在新阿谢市正式宣告成立。国家以彩虹白地蓝天星旗为象征，确立民主制度、科技发展与和平外交为基本路线。"
     data-en="On February 3, 2024, the Republic of Axie was officially founded in New Axie City. The nation adopted the Rainbow White-Blue Sky Star Flag as its symbol and established democracy, technological development, and peaceful diplomacy as its guiding principles."
-    data-jp="2024年2月3日に阿謝国はニュー阿謝市で正式に建国されました。国家の象徴として彩虹白地蓝天星旗を採用し、民主制度、技術発展、平和外交を基本方針としました。">
+    data-jp="2024年2月3日に阿謝国はニュー阿謝市で正式に建国されました。国家の象徴として彩虹白地蓝天星旗を採用し、民主制度、技術発展、平和外交を基本方針としました。"
+  >
     阿谢元年（2024年）2月3日，阿谢国在新阿谢市正式宣告成立。国家以彩虹白地蓝天星旗为象征，确立民主制度、科技发展与和平外交为基本路线。
   </p>
+
 </section>
 
-<!-- 国庆倒计时 -->
-<section class="card countdown">
-  <h2 id="countdown-title"
-      data-zh="阿谢国国庆日倒计时"
-      data-en="National Day Countdown"
-      data-jp="阿謝国 建国記念日カウントダウン">阿谢国国庆日倒计时</h2>
-  <div id="axieDate" class="axie-date">加载中...</div>
-  <div id="timer" class="timer">加载中...</div>
-</section>
-  <section id="news" class="card">
-    <h2>📰 AXNews 国家新闻</h2>
 
-    <div id="newsList">
-        正在加载新闻...
-    </div>
-    <a href="AXNews.html" class="button">
-📰 查看全部新闻
-</a>    
+
+<!-- =====================================================
+     国庆倒计时
+===================================================== -->
+
+<section
+  class="card countdown"
+>
+
+  <h2
+    id="countdown-title"
+    data-zh="阿谢国国庆日倒计时"
+    data-en="National Day Countdown"
+    data-jp="阿謝国 建国記念日カウントダウン"
+  >
+    阿谢国国庆日倒计时
+  </h2>
+
+
+  <div
+    id="axieDate"
+    class="axie-date"
+  >
+    加载中...
+  </div>
+
+
+  <div
+    id="timer"
+    class="timer"
+  >
+    加载中...
+  </div>
+
 </section>
 
-<!-- 城市体系 -->
-<section id="cities" class="card">
-  <h2 data-zh="国家城市体系" data-en="Cities" data-jp="都市">
-国家城市体系
-</h2>
-  <div class="city" data-zh="新阿谢市 — 国家首都及政治中心" data-en="New Axie City — Capital and Political Center" data-jp="ニュー阿謝市 — 首都および政治の中心">新阿谢市 — 国家首都及政治中心</div>
-  <div class="city" data-zh="阿浩市 — 国家工业枢纽城市" data-en="Ahao City — Industry Hub" data-jp="阿浩市 — 工業の中核都市">阿浩市 — 国家工业枢纽城市</div>
-  <div class="city" data-zh="明辉市 — 国防核心城市" data-en="Minghui City — Defense Core City" data-jp="明辉市 — 国防の中核都市">明辉市 — 国防核心城市</div>
-  <div class="city" data-zh="阿陈市 — 高度现代化港口都市" data-en="Achen City — Modern Port City" data-jp="阿陈市 — 近代的な港湾都市">阿陈市 — 高度现代化港口都市</div>
-  <div class="city" data-zh="立京市 — 历史文化古城" data-en="Liking City — Historic Cultural City" data-jp="立京市 — 歴史文化都市">立京市 — 历史文化古城</div>
-  <div class="city" data-zh="新桃市 — 低密度乡村型城市" data-en="Xintao City — A Low Density, Rural Oriented City" data-jp="新桃市 — 低密度の田園都市">新桃市 — 低密度乡村型城市</div>
+
+
+<!-- =====================================================
+     🗳️ 自动选举状态
+===================================================== -->
+
+<section
+  id="election-status"
+  class="card election-card"
+  style="display:none;"
+>
+
+  <div class="election-header">
+
+    <h2
+      id="election-title"
+      data-zh="🗳️ 选举动态"
+      data-en="🗳️ Election Update"
+      data-jp="🗳️ 選挙情報"
+    >
+      🗳️ 选举动态
+    </h2>
+
+
+    <span
+      id="election-badge"
+      class="election-badge"
+    >
+      ● 投票进行中
+    </span>
+
+  </div>
+
+
+  <p
+    id="election-description"
+    class="election-description"
+  >
+    正在读取选举信息……
+  </p>
+
+
+  <div
+    id="election-countdown"
+    class="election-countdown"
+  >
+  </div>
+
+
+  <div
+    id="election-date"
+    class="election-date"
+  >
+  </div>
+
+
+  <a
+    id="election-button"
+    href="#"
+    class="button election-button"
+  >
+    查看选举
+  </a>
+
 </section>
 
-<!-- 国旗 -->
-<section id="flag" class="card flag-box">
-  <h2 data-zh="国家象征 · 国旗" data-en="National Symbol · Flag" data-jp="国家の象徴・国旗">
+
+
+<!-- =====================================================
+     AXNews
+===================================================== -->
+
+<section
+  id="news"
+  class="card"
+>
+
+  <h2
+    data-zh="📰 AXNews 国家新闻"
+    data-en="📰 AXNews National News"
+    data-jp="📰 AXNews 国家ニュース"
+  >
+    📰 AXNews 国家新闻
+  </h2>
+
+
+  <div id="newsList">
+
+    正在加载新闻...
+
+  </div>
+
+
+  <a
+    href="AXNews.html"
+    class="button"
+    data-zh="📰 查看全部新闻"
+    data-en="📰 View All News"
+    data-jp="📰 すべてのニュースを見る"
+  >
+    📰 查看全部新闻
+  </a>
+
+</section>
+
+
+
+<!-- =====================================================
+     城市体系
+===================================================== -->
+
+<section
+  id="cities"
+  class="card"
+>
+
+  <h2
+    data-zh="国家城市体系"
+    data-en="Cities"
+    data-jp="都市"
+  >
+    国家城市体系
+  </h2>
+
+
+  <div
+    class="city"
+    data-zh="新阿谢市 — 国家首都及政治中心"
+    data-en="New Axie City — Capital and Political Center"
+    data-jp="ニュー阿謝市 — 首都および政治の中心"
+  >
+    新阿谢市 — 国家首都及政治中心
+  </div>
+
+
+  <div
+    class="city"
+    data-zh="阿浩市 — 国家工业枢纽城市"
+    data-en="Ahao City — Industry Hub"
+    data-jp="阿浩市 — 工業の中核都市"
+  >
+    阿浩市 — 国家工业枢纽城市
+  </div>
+
+
+  <div
+    class="city"
+    data-zh="明辉市 — 国防核心城市"
+    data-en="Minghui City — Defense Core City"
+    data-jp="明辉市 — 国防の中核都市"
+  >
+    明辉市 — 国防核心城市
+  </div>
+
+
+  <div
+    class="city"
+    data-zh="阿陈市 — 高度现代化港口都市"
+    data-en="Achen City — Modern Port City"
+    data-jp="阿陈市 — 近代的な港湾都市"
+  >
+    阿陈市 — 高度现代化港口都市
+  </div>
+
+
+  <div
+    class="city"
+    data-zh="立京市 — 历史文化古城"
+    data-en="Liking City — Historic Cultural City"
+    data-jp="立京市 — 歴史文化都市"
+  >
+    立京市 — 历史文化古城
+  </div>
+
+
+  <div
+    class="city"
+    data-zh="新桃市 — 低密度乡村型城市"
+    data-en="Xintao City — A Low Density, Rural Oriented City"
+    data-jp="新桃市 — 低密度の田園都市"
+  >
+    新桃市 — 低密度乡村型城市
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     国家象征 · 国旗
+===================================================== -->
+
+<section
+  id="flag"
+  class="card flag-box"
+>
+
+  <h2
+    data-zh="国家象征 · 国旗"
+    data-en="National Symbol · Flag"
+    data-jp="国家の象徴・国旗"
+  >
     国家象征 · 国旗
   </h2>
+
 
   <p
     data-zh="彩虹白地蓝天星旗 · 象征和平、包容多元、民主、科技与未来"
     data-en="Rainbow White-Blue Sky Star Flag · Symbol of peace, diversity, democracy, technology, and the future"
-    data-jp="彩虹白地蓝天星旗 · 平和、多様性、民主、技術、そして未来の象徴">
+    data-jp="彩虹白地蓝天星旗 · 平和、多様性、民主、技術、そして未来の象徴"
+  >
     彩虹白地蓝天星旗 · 象征和平、包容多元、民主、科技与未来
   </p>
 
-  <!-- ✅ 修复后的图片（带 fallback） -->
+
   <img
     src="./flag.jpg"
     alt="阿谢国国旗"
@@ -306,245 +1108,1385 @@ footer {
     width="300"
     onerror="this.onerror=null;this.src='https://via.placeholder.com/300x180?text=Flag+Missing';"
   >
+
 </section>
 
-<!-- 联系 -->
-<section id="contact" class="card">
-  <h2 data-zh="联系我们" data-en="Contact Us" data-jp="お問い合わせ">联系我们</h2>
+
+
+<!-- =====================================================
+     联系
+===================================================== -->
+
+<section
+  id="contact"
+  class="card"
+>
+
+  <h2
+    data-zh="联系我们"
+    data-en="Contact Us"
+    data-jp="お問い合わせ"
+  >
+    联系我们
+  </h2>
+
+
   <p
     data-zh="如对阿谢国感兴趣或世界观交流请您联系我们："
     data-en="If you are interested in the Republic of Axie or its world-building, please contact us:"
-    data-jp="阿謝国や世界観にご興味がある方は、こちらまでご連絡ください：">
+    data-jp="阿謝国や世界観にご興味がある方は、こちらまでご連絡ください："
+  >
     如对阿谢国感兴趣或世界观交流请您联系我们：
   </p>
-  <p><strong>📧 <a href="mailto:axie999666@gmail.com" style="color:inherit; text-decoration:none;">axie999666@gmail.com</a></strong></p>
+
+
+  <p>
+
+    <strong>
+
+      📧
+
+      <a
+        href="mailto:axie999666@gmail.com"
+        style="color:inherit;text-decoration:none;"
+      >
+        axie999666@gmail.com
+      </a>
+
+    </strong>
+
+  </p>
+
 </section>
 
+
 </div>
+
 </main>
+
+
+
+<!-- =======================================================
+     Footer
+======================================================= -->
 
 <footer
   data-zh="© Republic of Axie · 阿谢国官方网站"
   data-en="© Republic of Axie · Official Website"
-  data-jp="© 阿謝国 · 公式サイト">
+  data-jp="© 阿謝国 · 公式サイト"
+>
   © Republic of Axie · 阿谢国官方网站
 </footer>
 
-<div style="font-size:12px; opacity:0.5; margin-top:20px; text-align:center;"
-     data-zh="阿谢国为架空世界观创作项目 · Republic of Axie is a fictional nation project"
-     data-en="Republic of Axie is a fictional nation project"
-     data-jp="阿謝国は架空世界観の創作プロジェクトです">
-阿谢国为架空世界观创作项目 · Republic of Axie is a fictional nation project
+
+<div
+  class="footer-note"
+  data-zh="阿谢国为架空世界观创作项目 · Republic of Axie is a fictional nation project"
+  data-en="Republic of Axie is a fictional nation project"
+  data-jp="阿謝国は架空世界観の創作プロジェクトです"
+>
+  阿谢国为架空世界观创作项目 · Republic of Axie is a fictional nation project
 </div>
 
-<script>
-// ========= DOM缓存（优化性能） =========
-const axieDateEl = document.getElementById("axieDate");
-const timerEl = document.getElementById("timer");
-const countdownTitle = document.getElementById("countdown-title");
-const langBtn = document.getElementById('langToggle');
 
-// ========= 时间系统（东九区 UTC+9） =========
+
+<script>
+
+
+// =========================================================
+// DOM 缓存
+// =========================================================
+
+const axieDateEl =
+  document.getElementById("axieDate");
+
+const timerEl =
+  document.getElementById("timer");
+
+const countdownTitle =
+  document.getElementById("countdown-title");
+
+const langBtn =
+  document.getElementById("langToggle");
+
+
+// =========================================================
+// UTC+9 时间系统
+// =========================================================
+
 function getUTC9Time() {
+
   const now = new Date();
-  const utc = now.getTime() + now.getTimezoneOffset() * 60000;
-  return new Date(utc + 9 * 60 * 60 * 1000);
+
+  const utc =
+    now.getTime() +
+    now.getTimezoneOffset() * 60000;
+
+  return new Date(
+    utc +
+    9 * 60 * 60 * 1000
+  );
+
 }
 
-// ========= 多语言系统 =========
-let langs = ["zh", "en", "jp"];
+
+// =========================================================
+// 创建 UTC+9 日期
+//
+// 例如：
+// 2029年2月4日 00:00 UTC+9
+//
+// 不受用户电脑所在国家影响
+// =========================================================
+
+function createUTC9Date(
+  year,
+  month,
+  day,
+  hour = 0,
+  minute = 0,
+  second = 0
+) {
+
+  return new Date(
+    Date.UTC(
+      year,
+      month - 1,
+      day,
+      hour - 9,
+      minute,
+      second
+    )
+  );
+
+}
+
+
+// =========================================================
+// 阿谢纪年
+//
+// 阿谢元年 = 2024
+// 阿谢二年 = 2025
+// 阿谢三年 = 2026
+// =========================================================
+
+function getAxieYear(year) {
+
+  return year - 2023;
+
+}
+
+
+// =========================================================
+// 多语言系统
+// =========================================================
+
+const langs = [
+  "zh",
+  "en",
+  "jp"
+];
+
 let currentIndex = 0;
+
 let currentLang = "zh";
 
-function applyLanguage() {
-  document.querySelectorAll("[data-zh]").forEach(el => {
-    const text = el.getAttribute("data-" + currentLang);
-    if (!text) return;
 
-    if (el.children.length === 0) {
-      el.textContent = text;
-    } else {
-      el.innerHTML = text;
-    }
-  });
+function applyLanguage() {
+
+  document
+    .querySelectorAll("[data-zh]")
+    .forEach(el => {
+
+      const text =
+        el.getAttribute(
+          "data-" + currentLang
+        );
+
+      if (!text) {
+        return;
+      }
+
+
+      /*
+       * 如果元素没有子元素，
+       * 直接修改 textContent。
+       *
+       * 如果有子元素，
+       * 使用 innerHTML。
+       */
+
+      if (el.children.length === 0) {
+
+        el.textContent = text;
+
+      } else {
+
+        /*
+         * 这里仍然使用 innerHTML，
+         * 因为你现有网站部分内容
+         * 可能包含 HTML。
+         */
+
+        el.innerHTML = text;
+
+      }
+
+    });
+
 
   const titles = {
-    zh: "阿谢国官方网站 | Republic of Axie",
-    en: "Republic of Axie | Official Website",
-    jp: "阿谢国 | 公式サイト"
+
+    zh:
+      "阿谢国官方网站 | Republic of Axie",
+
+    en:
+      "Republic of Axie | Official Website",
+
+    jp:
+      "阿谢国 | 公式サイト"
+
   };
 
-  document.title = titles[currentLang];
+
+  document.title =
+    titles[currentLang];
+
 
   document.documentElement.lang = {
+
     zh: "zh-CN",
+
     en: "en",
+
     jp: "ja"
+
   }[currentLang];
+
+
+  /*
+   * 更新选举模块语言
+   */
+  updateElectionLanguage();
+
 }
+
 
 function toggleLang() {
-  currentIndex = (currentIndex + 1) % langs.length;
-  currentLang = langs[currentIndex];
+
+  currentIndex =
+    (currentIndex + 1) %
+    langs.length;
+
+  currentLang =
+    langs[currentIndex];
+
   applyLanguage();
+
 }
 
-// ========= 倒计时 =========
-function updateCountdown() {
-  const now = getUTC9Time();
-  const year = now.getFullYear();
 
-  let nationalDay = new Date(year, 1, 3, 0, 0, 0);
-  if (now > nationalDay) {
-    nationalDay = new Date(year + 1, 1, 3, 0, 0, 0);
+// =========================================================
+// 国庆倒计时
+// =========================================================
+
+function updateCountdown() {
+
+  const now =
+    getUTC9Time();
+
+  const year =
+    now.getFullYear();
+
+
+  /*
+   * 阿谢国国庆日：
+   *
+   * 每年 2月3日
+   */
+
+  let nationalDay =
+    createUTC9Date(
+      year,
+      2,
+      3
+    );
+
+
+  /*
+   * 如果今年国庆已经过去，
+   * 就计算下一年的国庆。
+   */
+
+  if (now >= nationalDay) {
+
+    nationalDay =
+      createUTC9Date(
+        year + 1,
+        2,
+        3
+      );
+
   }
 
-  const diff = nationalDay - now;
 
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-  const minutes = Math.floor((diff / (1000 * 60)) % 60);
-  const seconds = Math.floor((diff / 1000) % 60);
+  const diff =
+    nationalDay - now;
 
-  const axieYear = year - 2024 + 1;
+
+  const days =
+    Math.floor(
+      diff /
+      (1000 * 60 * 60 * 24)
+    );
+
+
+  const hours =
+    Math.floor(
+      (diff /
+      (1000 * 60 * 60)) % 24
+    );
+
+
+  const minutes =
+    Math.floor(
+      (diff /
+      (1000 * 60)) % 60
+    );
+
+
+  const seconds =
+    Math.floor(
+      (diff / 1000) % 60
+    );
+
+
+  const axieYear =
+    getAxieYear(
+      now.getFullYear()
+    );
+
 
   const dateText = {
-    zh: `今天是：阿谢${axieYear}年 ${now.getMonth() + 1}月 ${now.getDate()}日（UTC+9）`,
-    en: `Today is Axie Year ${axieYear}, ${now.getMonth() + 1}/${now.getDate()} (UTC+9)`,
-    jp: `本日は：阿謝${axieYear}年 ${now.getMonth() + 1}月 ${now.getDate()}日（UTC+9）`
+
+    zh:
+      `今天是：阿谢${axieYear}年 ${now.getMonth() + 1}月 ${now.getDate()}日（UTC+9）`,
+
+    en:
+      `Today is Axie Year ${axieYear}, ${now.getMonth() + 1}/${now.getDate()} (UTC+9)`,
+
+    jp:
+      `本日は：阿謝${axieYear}年 ${now.getMonth() + 1}月 ${now.getDate()}日（UTC+9）`
+
   };
 
+
   if (axieDateEl) {
-    axieDateEl.textContent = dateText[currentLang];
+
+    axieDateEl.textContent =
+      dateText[currentLang];
+
   }
 
-  if (now.getMonth() === 1 && now.getDate() === 3) {
+
+  /*
+   * 如果今天就是国庆日
+   */
+
+  if (
+    now.getMonth() === 1 &&
+    now.getDate() === 3
+  ) {
+
     const anniversaryText = {
-      zh: `🎉 今天是阿谢国 ${axieYear - 1} 周年国庆日！`,
-      en: `🎉 Today is the ${axieYear - 1}th Anniversary of the Republic of Axie!`,
-      jp: `🎉 本日は阿謝国 建国${axieYear - 1}周年です！`
+
+      zh:
+        `🎉 今天是阿谢国 ${axieYear - 1} 周年国庆日！`,
+
+      en:
+        `🎉 Today is the ${axieYear - 1}th Anniversary of the Republic of Axie!`,
+
+      jp:
+        `🎉 本日は阿謝国 建国${axieYear - 1}周年です！`
+
     };
 
+
     if (countdownTitle) {
-      countdownTitle.textContent = anniversaryText[currentLang];
+
+      countdownTitle.textContent =
+        anniversaryText[currentLang];
+
     }
 
+
     if (timerEl) {
+
       timerEl.textContent = {
-        zh: "彩虹白地蓝天星旗今天为国家飘扬!",
-        en: "The flag flies proudly for the nation!",
-        jp: "国旗は誇り高く掲げられています！"
+
+        zh:
+          "彩虹白地蓝天星旗今天为国家飘扬!",
+
+        en:
+          "The flag flies proudly for the nation!",
+
+        jp:
+          "国旗は誇り高く掲げられています！"
+
       }[currentLang];
+
     }
 
-  } else {
-    if (timerEl) {
-      timerEl.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-    }
   }
+
+
+  /*
+   * 普通日期
+   */
+
+  else {
+
+    /*
+     * 恢复标题
+     */
+
+    if (countdownTitle) {
+
+      countdownTitle.textContent = {
+
+        zh:
+          "阿谢国国庆日倒计时",
+
+        en:
+          "National Day Countdown",
+
+        jp:
+          "阿謝国 建国記念日カウントダウン"
+
+      }[currentLang];
+
+    }
+
+
+    if (timerEl) {
+
+      timerEl.textContent =
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+    }
+
+  }
+
 }
 
-// ========= 新闻加载 =========
-async function loadNews() {
-  const newsList = document.getElementById("newsList");
 
-  try {
-    const response = await fetch("./news.json");
+// =========================================================
+// 🗳️ 选举系统
+// =========================================================
 
-    if (!response.ok) {
-      throw new Error(
-        "无法读取 news.json，HTTP状态码：" + response.status
-      );
+let electionData = null;
+
+let currentElection = null;
+
+let electionEndTime = null;
+
+let electionCountdownTimer = null;
+
+
+// =========================================================
+// 选举模块语言
+// =========================================================
+
+function updateElectionLanguage() {
+
+  if (!currentElection) {
+    return;
+  }
+
+
+  const title =
+    document.getElementById(
+      "election-title"
+    );
+
+  const description =
+    document.getElementById(
+      "election-description"
+    );
+
+  const badge =
+    document.getElementById(
+      "election-badge"
+    );
+
+  const button =
+    document.getElementById(
+      "election-button"
+    );
+
+
+  if (!title ||
+      !description ||
+      !badge ||
+      !button) {
+
+    return;
+
+  }
+
+
+  const isPresident =
+    currentElection.id ===
+    "president";
+
+
+  const texts = {
+
+    zh: {
+
+      presidentTitle:
+        "🗳️ 阿谢国总统选举",
+
+      vicePresidentTitle:
+        "🗳️ 阿谢国副总统选举",
+
+      presidentDescription:
+        "阿谢国总统选举正在进行中。",
+
+      vicePresidentDescription:
+        "阿谢国副总统选举正在进行中。",
+
+      badge:
+        "● 投票进行中",
+
+      button:
+        "进入选举页面"
+
+    },
+
+
+    en: {
+
+      presidentTitle:
+        "🗳️ Axie Presidential Election",
+
+      vicePresidentTitle:
+        "🗳️ Axie Vice Presidential Election",
+
+      presidentDescription:
+        "The Presidential Election of the Republic of Axie is currently underway.",
+
+      vicePresidentDescription:
+        "The Vice Presidential Election of the Republic of Axie is currently underway.",
+
+      badge:
+        "● Voting Open",
+
+      button:
+        "Enter Election"
+
+    },
+
+
+    jp: {
+
+      presidentTitle:
+        "🗳️ 阿謝国 大統領選挙",
+
+      vicePresidentTitle:
+        "🗳️ 阿謝国 副大統領選挙",
+
+      presidentDescription:
+        "阿謝国大統領選挙が現在行われています。",
+
+      vicePresidentDescription:
+        "阿謝国副大統領選挙が現在行われています。",
+
+      badge:
+        "● 投票受付中",
+
+      button:
+        "選挙ページへ"
+
     }
 
-    const newsData = await response.json();
+  };
 
-    // 按时间倒序排列，最新的在前面
-    newsData.sort((a, b) => {
-      return Number(b.timestamp || 0) - Number(a.timestamp || 0);
-    });
+
+  const lang =
+    texts[currentLang];
+
+
+  title.textContent =
+    isPresident
+      ? lang.presidentTitle
+      : lang.vicePresidentTitle;
+
+
+  description.textContent =
+    isPresident
+      ? lang.presidentDescription
+      : lang.vicePresidentDescription;
+
+
+  badge.textContent =
+    lang.badge;
+
+
+  button.textContent =
+    lang.button;
+
+}
+
+
+// =========================================================
+// 检查当前是否处于选举期
+// =========================================================
+
+async function loadElectionStatus() {
+
+  const section =
+    document.getElementById(
+      "election-status"
+    );
+
+
+  if (!section) {
+    return;
+  }
+
+
+  try {
+
+    const response =
+      await fetch(
+        "./data/elections.json",
+        {
+          cache: "no-store"
+        }
+      );
+
+
+    if (!response.ok) {
+
+      throw new Error(
+        "无法读取 elections.json，HTTP状态码：" +
+        response.status
+      );
+
+    }
+
+
+    electionData =
+      await response.json();
+
+
+    const now =
+      getUTC9Time();
+
+
+    const year =
+      now.getFullYear();
+
+
+    /*
+     * =============================================
+     * 总统选举
+     * =============================================
+     */
+
+    const presidentStart =
+      createUTC9Date(
+        year,
+        electionData.president.electionStart.month,
+        electionData.president.electionStart.day
+      );
+
+
+    const presidentEnd =
+      createUTC9Date(
+        year,
+        electionData.president.electionEnd.month,
+        electionData.president.electionEnd.day,
+        23,
+        59,
+        59
+      );
+
+
+    /*
+     * =============================================
+     * 副总统选举
+     * =============================================
+     */
+
+    const vicePresidentStart =
+      createUTC9Date(
+        year,
+        electionData.vicePresident.electionStart.month,
+        electionData.vicePresident.electionStart.day
+      );
+
+
+    const vicePresidentEnd =
+      createUTC9Date(
+        year,
+        electionData.vicePresident.electionEnd.month,
+        electionData.vicePresident.electionEnd.day,
+        23,
+        59,
+        59
+      );
+
+
+    /*
+     * =============================================
+     * 判断当前选举
+     * =============================================
+     */
+
+    currentElection = null;
+
+    electionEndTime = null;
+
+
+    if (
+      now >= presidentStart &&
+      now <= presidentEnd
+    ) {
+
+      currentElection =
+        electionData.president;
+
+      electionEndTime =
+        presidentEnd;
+
+    }
+
+
+    else if (
+      now >= vicePresidentStart &&
+      now <= vicePresidentEnd
+    ) {
+
+      currentElection =
+        electionData.vicePresident;
+
+      electionEndTime =
+        vicePresidentEnd;
+
+    }
+
+
+    /*
+     * =============================================
+     * 当前没有选举
+     * =============================================
+     */
+
+    if (!currentElection) {
+
+      section.style.display =
+        "none";
+
+      if (electionCountdownTimer) {
+
+        clearInterval(
+          electionCountdownTimer
+        );
+
+        electionCountdownTimer =
+          null;
+
+      }
+
+      return;
+
+    }
+
+
+    /*
+     * =============================================
+     * 显示选举模块
+     * =============================================
+     */
+
+    section.style.display =
+      "block";
+
+
+    updateElectionLanguage();
+
+
+    const button =
+      document.getElementById(
+        "election-button"
+      );
+
+
+    button.href =
+      currentElection.page;
+
+
+    /*
+     * 显示选举日期
+     */
+
+    updateElectionDateText(
+      year
+    );
+
+
+    /*
+     * 更新倒计时
+     */
+
+    updateElectionCountdown();
+
+
+    if (electionCountdownTimer) {
+
+      clearInterval(
+        electionCountdownTimer
+      );
+
+    }
+
+
+    electionCountdownTimer =
+      setInterval(
+        updateElectionCountdown,
+        1000
+      );
+
+  }
+
+
+  catch (error) {
+
+    console.error(
+      "加载选举信息失败：",
+      error
+    );
+
+
+    section.style.display =
+      "none";
+
+  }
+
+}
+
+
+// =========================================================
+// 选举日期文字
+// =========================================================
+
+function updateElectionDateText(year) {
+
+  if (!currentElection) {
+    return;
+  }
+
+
+  const dateElement =
+    document.getElementById(
+      "election-date"
+    );
+
+
+  if (!dateElement) {
+    return;
+  }
+
+
+  const isPresident =
+    currentElection.id ===
+    "president";
+
+
+  const startMonth =
+    currentElection.electionStart.month;
+
+  const startDay =
+    currentElection.electionStart.day;
+
+  const endMonth =
+    currentElection.electionEnd.month;
+
+  const endDay =
+    currentElection.electionEnd.day;
+
+
+  const texts = {
+
+    zh:
+      `投票时间：${year}年${startMonth}月${startDay}日 — ${year}年${endMonth}月${endDay}日（UTC+9）`,
+
+    en:
+      `Voting period: ${year}/${startMonth}/${startDay} — ${year}/${endMonth}/${endDay} (UTC+9)`,
+
+    jp:
+      `投票期間：${year}年${startMonth}月${startDay}日 — ${year}年${endMonth}月${endDay}日（UTC+9）`
+
+  };
+
+
+  dateElement.textContent =
+    texts[currentLang];
+
+}
+
+
+// =========================================================
+// 选举倒计时
+// =========================================================
+
+function updateElectionCountdown() {
+
+  if (
+    !currentElection ||
+    !electionEndTime
+  ) {
+
+    return;
+
+  }
+
+
+  const countdown =
+    document.getElementById(
+      "election-countdown"
+    );
+
+
+  if (!countdown) {
+    return;
+  }
+
+
+  const remaining =
+    electionEndTime -
+    getUTC9Time();
+
+
+  /*
+   * 投票结束
+   */
+
+  if (remaining <= 0) {
+
+    countdown.textContent = {
+
+      zh:
+        "投票已经结束",
+
+      en:
+        "Voting has ended",
+
+      jp:
+        "投票は終了しました"
+
+    }[currentLang];
+
+
+    return;
+
+  }
+
+
+  const days =
+    Math.floor(
+      remaining /
+      (1000 * 60 * 60 * 24)
+    );
+
+
+  const hours =
+    Math.floor(
+      (remaining /
+      (1000 * 60 * 60)) % 24
+    );
+
+
+  const minutes =
+    Math.floor(
+      (remaining /
+      (1000 * 60)) % 60
+    );
+
+
+  const seconds =
+    Math.floor(
+      (remaining / 1000) % 60
+    );
+
+
+  const texts = {
+
+    zh:
+      `距离投票结束：${days}天 ${hours}小时 ${minutes}分 ${seconds}秒`,
+
+    en:
+      `Time remaining: ${days}d ${hours}h ${minutes}m ${seconds}s`,
+
+    jp:
+      `投票終了まで：${days}日 ${hours}時間 ${minutes}分 ${seconds}秒`
+
+  };
+
+
+  countdown.textContent =
+    texts[currentLang];
+
+}
+
+
+// =========================================================
+// AXNews 新闻加载
+// =========================================================
+
+async function loadNews() {
+
+  const newsList =
+    document.getElementById(
+      "newsList"
+    );
+
+
+  if (!newsList) {
+    return;
+  }
+
+
+  try {
+
+    const response =
+      await fetch(
+        "./news.json",
+        {
+          cache: "no-store"
+        }
+      );
+
+
+    if (!response.ok) {
+
+      throw new Error(
+        "无法读取 news.json，HTTP状态码：" +
+        response.status
+      );
+
+    }
+
+
+    const newsData =
+      await response.json();
+
+
+    /*
+     * 按时间倒序排列
+     */
+
+    newsData.sort(
+      (a, b) => {
+
+        return (
+          Number(b.timestamp || 0) -
+          Number(a.timestamp || 0)
+        );
+
+      }
+    );
+
 
     newsList.innerHTML = "";
 
-    // 官网首页只显示最新5条
-    const latestNews = newsData.slice(0, 5);
 
-    latestNews.forEach(news => {
-      let html = `
-        <div class="card">
-          <h3>${news.title || ""}</h3>
-          <small>${news.date || ""} | ${news.author || ""}</small>
-      `;
+    /*
+     * 官网首页只显示最新5条
+     */
 
-      // 第一张图片
-      if (news.image1) {
-        html += `
-          <img src="./${news.image1}"
-               alt=""
-               style="width:100%;max-width:700px;border-radius:10px;margin:15px 0;">
+    const latestNews =
+      newsData.slice(
+        0,
+        5
+      );
+
+
+    latestNews.forEach(
+      news => {
+
+        let html = `
+
+          <div class="news-item">
+
+            <h3>
+              ${escapeHTML(
+                news.title || ""
+              )}
+            </h3>
+
+            <small>
+              ${escapeHTML(
+                news.date || ""
+              )}
+
+              |
+
+              ${escapeHTML(
+                news.author || ""
+              )}
+            </small>
+
         `;
-      }
 
-      // 第二张图片
-      if (news.image2) {
+
+        /*
+         * 第一张图片
+         */
+
+        if (news.image1) {
+
+          html += `
+
+            <img
+              src="./${escapeHTML(
+                news.image1
+              )}"
+              alt=""
+              loading="lazy"
+            >
+
+          `;
+
+        }
+
+
+        /*
+         * 第二张图片
+         */
+
+        if (news.image2) {
+
+          html += `
+
+            <img
+              src="./${escapeHTML(
+                news.image2
+              )}"
+              alt=""
+              loading="lazy"
+            >
+
+          `;
+
+        }
+
+
+        /*
+         * 第三张图片
+         */
+
+        if (news.image3) {
+
+          html += `
+
+            <img
+              src="./${escapeHTML(
+                news.image3
+              )}"
+              alt=""
+              loading="lazy"
+            >
+
+          `;
+
+        }
+
+
+        /*
+         * 新闻正文
+         */
+
         html += `
-          <img src="./${news.image2}"
-               alt=""
-               style="width:100%;max-width:700px;border-radius:10px;margin:15px 0;">
+
+            <p
+              style="white-space:pre-line;"
+            >
+              ${escapeHTML(
+                news.content || ""
+              )}
+            </p>
+
+          </div>
+
         `;
+
+
+        newsList.innerHTML +=
+          html;
+
       }
+    );
 
-      // 第三张图片
-      if (news.image3) {
-        html += `
-          <img src="./${news.image3}"
-               alt=""
-               style="width:100%;max-width:700px;border-radius:10px;margin:15px 0;">
-        `;
-      }
 
-      // 新闻正文
-      html += `
-          <p style="white-space:pre-line;">${news.content || ""}</p>
-        </div>
-      `;
+    /*
+     * 没有新闻
+     */
 
-      newsList.innerHTML += html;
-    });
+    if (
+      latestNews.length === 0
+    ) {
 
-    // 没有新闻时
-    if (latestNews.length === 0) {
       newsList.innerHTML = `
-        <div class="card">
-          <h3>📰 暂无新闻</h3>
-          <p>目前还没有发布任何新闻。</p>
+
+        <div class="news-item">
+
+          <h3>
+            📰 暂无新闻
+          </h3>
+
+          <p>
+            目前还没有发布任何新闻。
+          </p>
+
         </div>
+
       `;
+
     }
 
-  } catch (err) {
-    console.error(err);
+  }
+
+
+  catch (err) {
+
+    console.error(
+      "AXNews加载失败：",
+      err
+    );
+
 
     newsList.innerHTML = `
-      <div class="card">
-        <h3>❌ 新闻加载失败</h3>
-        <p>AXNews 暂时无法读取新闻数据。</p>
+
+      <div class="news-item">
+
+        <h3>
+          ❌ 新闻加载失败
+        </h3>
+
+        <p>
+          AXNews 暂时无法读取新闻数据。
+        </p>
+
       </div>
+
     `;
+
   }
-};
+
+}
 
 
-// ========= 初始化 =========
-document.addEventListener("DOMContentLoaded", () => {
-  langBtn.addEventListener("click", toggleLang);
+// =========================================================
+// HTML 转义
+//
+// 防止新闻 JSON 中的特殊字符破坏页面 HTML
+// =========================================================
 
-  applyLanguage();
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
+function escapeHTML(text) {
 
-  // 加载最新新闻
-  loadNews();
-});
+  return String(text ?? "")
+
+    .replaceAll(
+      "&",
+      "&amp;"
+    )
+
+    .replaceAll(
+      "<",
+      "&lt;"
+    )
+
+    .replaceAll(
+      ">",
+      "&gt;"
+    )
+
+    .replaceAll(
+      '"',
+      "&quot;"
+    )
+
+    .replaceAll(
+      "'",
+      "&#039;"
+    );
+
+}
+
+
+// =========================================================
+// 初始化
+// =========================================================
+
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+    /*
+     * 语言按钮
+     */
+
+    if (langBtn) {
+
+      langBtn.addEventListener(
+        "click",
+        toggleLang
+      );
+
+    }
+
+
+    /*
+     * 初始语言
+     */
+
+    applyLanguage();
+
+
+    /*
+     * 国庆倒计时
+     */
+
+    updateCountdown();
+
+
+    setInterval(
+      updateCountdown,
+      1000
+    );
+
+
+    /*
+     * 加载 AXNews
+     */
+
+    loadNews();
+
+
+    /*
+     * 加载选举状态
+     */
+
+    loadElectionStatus();
+
+  }
+);
 
 </script>
+
+
+</body>
+</html>
