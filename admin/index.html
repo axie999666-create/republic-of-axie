@@ -74,7 +74,8 @@ label {
 }
 
 input,
-textarea {
+textarea,
+select {
     width: 100%;
     padding: 12px 14px;
     border-radius: 10px;
@@ -86,10 +87,13 @@ textarea {
 }
 
 input:focus,
-textarea:focus {
+textarea:focus,
+select:focus {
     border-color: #69a8ff;
     box-shadow: 0 0 0 3px rgba(105, 168, 255, 0.12);
 }
+
+select { cursor:pointer; }
 
 input[readonly] {
     opacity: 0.75;
@@ -437,6 +441,15 @@ footer {
         Timestamp 仅用于新闻排序。
     </div>
 
+
+<label for="agencyId">🏛️ 发布机构</label>
+    <select id="agencyId">
+        <option value="">公共 / AXNews（不归入机构分类）</option>
+        <option value="president">总统府</option>
+        <option value="vice-president">副总统办公室</option>
+        <option value="government">政府</option>
+    </select>
+    <div class="small-note">选择总统府、副总统办公室或政府后，新闻会出现在 AXNews 对应机构分类中。</div>
 
     <label for="newsAuthor">
         👤 作者
@@ -1606,6 +1619,10 @@ async function loadNewsManagement() {
    渲染新闻列表
 ========================================================= */
 
+function agencyLabel(id) {
+    return ({president:"总统府", "vice-president":"副总统办公室", government:"政府"})[id] || "公共 / 未分类";
+}
+
 function renderNewsManagement(
     newsData
 ) {
@@ -1680,9 +1697,7 @@ function renderNewsManagement(
                 "news-item-meta";
 
             meta.textContent =
-                `${news.date || ""} · ${
-                    news.author || "AXNews"
-                }`;
+                `${news.date || ""} · ${news.author || "AXNews"} · ${agencyLabel(news.agencyId)}`;
 
 
             /* 正文预览 */
@@ -1868,6 +1883,8 @@ async function publishNews() {
         "AXNews";
 
 
+    const agencyId = document.getElementById("agencyId").value;
+
     const content =
         document
             .getElementById("newsContent")
@@ -1909,7 +1926,8 @@ async function publishNews() {
             editingNewsId,
             title,
             author,
-            content
+            content,
+            agencyId
         );
 
         return;
@@ -1991,6 +2009,9 @@ async function publishNews() {
 
                         title:
                             title,
+
+                        agencyId:
+                            agencyId,
 
                         author:
                             author,
@@ -2109,6 +2130,9 @@ function editNews(id) {
         news.title || "";
 
 
+    document.getElementById("agencyId").value = news.agencyId || "";
+
+
     document.getElementById(
         "newsAuthor"
     ).value =
@@ -2206,7 +2230,8 @@ async function updateNews(
     id,
     title,
     author,
-    content
+    content,
+    agencyId
 ) {
 
     const button =
@@ -2271,6 +2296,9 @@ async function updateNews(
 
                         id:
                             id,
+
+                        agencyId:
+                            agencyId,
 
                         title:
                             title,
@@ -2472,6 +2500,8 @@ function clearForm() {
     document.getElementById(
         "newsTitle"
     ).value = "";
+
+    document.getElementById("agencyId").value = "";
 
 
     document.getElementById(
