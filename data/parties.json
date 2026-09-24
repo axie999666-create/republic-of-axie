@@ -1,0 +1,34 @@
+{
+  "parties": [
+    {
+      "id": "axie-peace-party",
+      "name": "阿谢和平党",
+      "nameEn": "Axie Peace Party",
+      "nameJp": "阿謝平和党"
+    },
+    {
+      "id": "axie-national-progressive-party",
+      "name": "阿谢国民进步党",
+      "nameEn": "Axie National Progressive Party",
+      "nameJp": "阿謝国民進歩党"
+    },
+    {
+      "id": "axie-national-party",
+      "name": "阿谢民族党",
+      "nameEn": "Axie National Party",
+      "nameJp": "阿謝民族党"
+    },
+    {
+      "id": "axie-peoples-party",
+      "name": "阿谢人民党",
+      "nameEn": "Axie People's Party",
+      "nameJp": "阿謝人民党"
+    },
+    {
+      "id": "axie-communist-peoples-party",
+      "name": "阿谢共产人民党",
+      "nameEn": "Axie Communist People's Party",
+      "nameJp": "阿謝共産人民党"
+    }
+  ]
+}
