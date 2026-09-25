@@ -292,7 +292,7 @@ async function loadAgencies(){
 
 function agencyName(id){
     const agency = agencies.find(item => item.id === id);
-    return agency ? agency.name : (id ? "其他机构" : "历史新闻（未分类）");
+    return agency ? agency.name : (id ? "其他机构" : "普通新闻");
 }
 
 function renderAgencyFilters(){
@@ -605,3 +605,4 @@ document.addEventListener(
 
 </body>
 </html>
+
