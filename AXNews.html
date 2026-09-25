@@ -71,6 +71,11 @@ header p{
     opacity:.75;
 }
 
+.agency-filters{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.agency-filters a{padding:7px 13px;border-radius:18px;background:rgba(255,255,255,.08);color:#d9e9fa;text-decoration:none;font-size:14px}
+.agency-filters a.active,.agency-filters a:hover{background:#3478db;color:#fff}
+.agency-tag{display:inline-block;margin-top:12px;padding:3px 10px;border-radius:14px;background:rgba(93,155,224,.2);color:#bcdcff;font-size:13px}
+
 /* 新闻卡片 */
 
 .card{
@@ -233,6 +238,8 @@ header p{
             正在加载新闻……
         </div>
 
+        <nav id="agencyFilters" class="agency-filters" aria-label="按发布机构筛选"></nav>
+
     </div>
 
 
@@ -267,6 +274,42 @@ header p{
 <script>
 
 let allNews = [];
+let agencies = [];
+const API_BASE = "https://axnews-admin-api.axie999666.workers.dev";
+const selectedAgencyId = new URLSearchParams(location.search).get("agency") || "";
+
+async function loadAgencies(){
+    try{
+        const response = await fetch(API_BASE + "/agencies");
+        if(!response.ok) throw new Error("分类列表加载失败");
+        const result = await response.json();
+        agencies = Array.isArray(result.agencies) ? result.agencies : [];
+    }catch(error){
+        console.warn("AXNews 机构分类暂不可用", error);
+        agencies = [];
+    }
+}
+
+function agencyName(id){
+    const agency = agencies.find(item => item.id === id);
+    return agency ? agency.name : (id ? "其他机构" : "历史新闻（未分类）");
+}
+
+function renderAgencyFilters(){
+    const nav = document.getElementById("agencyFilters");
+    if(!nav) return;
+    nav.innerHTML = "";
+    const links = [{id:"", name:"全部公告", href:"AXNews.html"}, ...agencies.map(item => ({
+        id:item.id, name:item.name, href:"AXNews.html?agency=" + encodeURIComponent(item.id)
+    }))];
+    links.forEach(item => {
+        const link = document.createElement("a");
+        link.href = item.href;
+        link.textContent = item.name;
+        if(item.id === selectedAgencyId) link.classList.add("active");
+        nav.appendChild(link);
+    });
+}
 
 
 /* =========================
@@ -304,7 +347,7 @@ async function loadNews(){
         }
 
         allNews = data;
-
+        await loadAgencies();
         renderNews();
 
     }
@@ -358,7 +401,9 @@ function renderNews(){
             .toLowerCase();
 
 
-    /* 复制数组后排序 */
+    renderAgencyFilters();
+
+    /* 复制数组后排序并先按机构筛选 */
 
     const sortedNews = [...allNews].sort(
         (a,b) =>
@@ -366,10 +411,13 @@ function renderNews(){
             Number(a.timestamp || 0)
     );
 
+    const selectedNews = selectedAgencyId
+        ? sortedNews.filter(news => news.agencyId === selectedAgencyId)
+        : sortedNews;
 
     /* 搜索 */
 
-    const filteredNews = sortedNews.filter(news => {
+    const filteredNews = selectedNews.filter(news => {
 
         const title =
             String(news.title || "");
@@ -391,10 +439,11 @@ function renderNews(){
 
     /* 新闻数量 */
 
-    newsInfo.textContent =
-        keyword
-            ? `找到 ${filteredNews.length} 条相关新闻`
-            : `共 ${filteredNews.length} 条新闻`;
+    const selectedAgency = agencies.find(item => item.id === selectedAgencyId);
+    const scopeLabel = selectedAgency ? selectedAgency.name + " · " : (selectedAgencyId ? "未知机构 · " : "");
+    newsInfo.textContent = scopeLabel + (keyword
+        ? "找到 " + filteredNews.length + " 条相关新闻"
+        : "共 " + filteredNews.length + " 条新闻");
 
 
     /* 没有结果 */
@@ -455,6 +504,11 @@ function renderNews(){
             `${news.date || ""} | ${news.author || ""}`;
 
         card.appendChild(meta);
+
+        const agencyTag = document.createElement("span");
+        agencyTag.className = "agency-tag";
+        agencyTag.textContent = agencyName(news.agencyId);
+        card.appendChild(agencyTag);
 
 
         /* 图片 */
