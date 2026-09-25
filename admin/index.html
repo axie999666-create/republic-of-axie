@@ -74,7 +74,8 @@ label {
 }
 
 input,
-textarea {
+textarea,
+select {
     width: 100%;
     padding: 12px 14px;
     border-radius: 10px;
@@ -86,7 +87,8 @@ textarea {
 }
 
 input:focus,
-textarea:focus {
+textarea:focus,
+select:focus {
     border-color: #69a8ff;
     box-shadow: 0 0 0 3px rgba(105, 168, 255, 0.12);
 }
@@ -410,6 +412,12 @@ footer {
         placeholder="请输入新闻标题"
     >
 
+
+    <label for="newsAgency">🏛️ 公告机构</label>
+    <select id="newsAgency" required>
+        <option value="">正在加载机构分类…</option>
+    </select>
+    <div class="small-note">选择公告所属机构，前台将按机构归档。</div>
 
     <label for="newsDate">
         📅 发布时间
@@ -748,6 +756,28 @@ footer {
 
 const API_BASE =
     "https://axnews-admin-api.axie999666.workers.dev";
+
+let agencies = [];
+
+async function loadAgencies(){
+    const response = await fetch(API_BASE + "/agencies");
+    const result = await response.json();
+    if(!response.ok || !result.success || !Array.isArray(result.agencies)) throw new Error("机构分类加载失败");
+    agencies = result.agencies;
+    const select = document.getElementById("newsAgency");
+    select.innerHTML = "<option value=\"\">请选择发布机构</option>";
+    agencies.forEach(item => {
+        const option = document.createElement("option");
+        option.value = item.id;
+        option.textContent = item.name;
+        select.appendChild(option);
+    });
+}
+
+function agencyName(id){
+    const item = agencies.find(entry => entry.id === id);
+    return item ? item.name : (id || "未分类");
+}
 
 const MAX_IMAGE_SIZE =
     5 * 1024 * 1024;
@@ -1506,6 +1536,7 @@ async function login() {
         );
 
 
+        await loadAgencies();
         updatePublishTime();
 
         await loadNewsManagement();
@@ -1680,7 +1711,7 @@ function renderNewsManagement(
                 "news-item-meta";
 
             meta.textContent =
-                `${news.date || ""} · ${
+                `${news.date || ""} · ${agencyName(news.agencyId)} · ${
                     news.author || "AXNews"
                 }`;
 
@@ -1874,6 +1905,12 @@ async function publishNews() {
             .value
             .trim();
 
+    const agencyId = document.getElementById("newsAgency").value;
+    if(!agencyId){
+        showStatus("publishStatus", "❌ 请选择公告机构。", "error");
+        return;
+    }
+
 
     if (!title) {
 
@@ -1909,7 +1946,8 @@ async function publishNews() {
             editingNewsId,
             title,
             author,
-            content
+            content,
+            agencyId
         );
 
         return;
@@ -1997,6 +2035,9 @@ async function publishNews() {
 
                         content:
                             content,
+
+                        agencyId:
+                            agencyId,
 
                         image1:
                             imagePaths.image1,
@@ -2108,6 +2149,8 @@ function editNews(id) {
     ).value =
         news.title || "";
 
+    document.getElementById("newsAgency").value = news.agencyId || "";
+
 
     document.getElementById(
         "newsAuthor"
@@ -2206,7 +2249,8 @@ async function updateNews(
     id,
     title,
     author,
-    content
+    content,
+    agencyId
 ) {
 
     const button =
@@ -2280,6 +2324,9 @@ async function updateNews(
 
                         content:
                             content,
+
+                        agencyId:
+                            agencyId,
 
                         image1:
                             imagePaths.image1,
@@ -2473,6 +2520,8 @@ function clearForm() {
         "newsTitle"
     ).value = "";
 
+    document.getElementById("newsAgency").value = "";
+
 
     document.getElementById(
         "newsAuthor"
@@ -2620,3 +2669,4 @@ function logout() {
 
 </body>
 </html>
+
