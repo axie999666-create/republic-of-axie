@@ -414,10 +414,10 @@ footer {
 
 
     <label for="newsAgency">🏛️ 公告机构</label>
-    <select id="newsAgency" required>
-        <option value="">正在加载机构分类…</option>
+    <select id="newsAgency">
+        <option value="">普通新闻（不选机构）</option>
     </select>
-    <div class="small-note">选择公告所属机构，前台将按机构归档。</div>
+    <div class="small-note">不选机构即发布普通新闻；普通新闻仅显示在“全部公告”，不会归入机构分类。</div>
 
     <label for="newsDate">
         📅 发布时间
@@ -765,7 +765,7 @@ async function loadAgencies(){
     if(!response.ok || !result.success || !Array.isArray(result.agencies)) throw new Error("机构分类加载失败");
     agencies = result.agencies;
     const select = document.getElementById("newsAgency");
-    select.innerHTML = "<option value=\"\">请选择发布机构</option>";
+    select.innerHTML = "<option value=\"\">普通新闻（不选机构）</option>";
     agencies.forEach(item => {
         const option = document.createElement("option");
         option.value = item.id;
@@ -776,7 +776,7 @@ async function loadAgencies(){
 
 function agencyName(id){
     const item = agencies.find(entry => entry.id === id);
-    return item ? item.name : (id || "未分类");
+    return item ? item.name : (id || "普通新闻");
 }
 
 const MAX_IMAGE_SIZE =
@@ -1906,10 +1906,6 @@ async function publishNews() {
             .trim();
 
     const agencyId = document.getElementById("newsAgency").value;
-    if(!agencyId){
-        showStatus("publishStatus", "❌ 请选择公告机构。", "error");
-        return;
-    }
 
 
     if (!title) {
