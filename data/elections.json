@@ -9,7 +9,7 @@
 
     "electionStart": {
       "month": 1,
-      "day": 4
+      "day": 3
     },
 
     "electionEnd": {
@@ -29,9 +29,16 @@
         "electionId": "president-axie4",
         "axieYear": 4,
         "gregorianYear": 2027,
+
         "name": "阿谢4年总统选举",
         "nameEn": "Axie Year 4 Presidential Election",
-        "nameJp": "阿謝4年大統領選挙"
+        "nameJp": "阿謝4年大統領選挙",
+
+        "start": "2027-01-03T00:00:00+09:00",
+        "end": "2027-02-03T23:59:59+09:00",
+        "inauguration": "2027-02-04T00:00:00+09:00",
+
+        "status": "scheduled"
       }
     ]
   },
@@ -66,9 +73,16 @@
         "electionId": "vice-president-axie3",
         "axieYear": 3,
         "gregorianYear": 2026,
+
         "name": "阿谢3年副总统选举",
         "nameEn": "Axie Year 3 Vice Presidential Election",
-        "nameJp": "阿謝3年副大統領選挙"
+        "nameJp": "阿謝3年副大統領選挙",
+
+        "start": "2026-10-02T00:00:00+09:00",
+        "end": "2026-11-01T23:59:59+09:00",
+        "inauguration": "2026-11-02T00:00:00+09:00",
+
+        "status": "scheduled"
       }
     ]
   }
