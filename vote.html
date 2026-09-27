@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
 
   <meta charset="UTF-8">
@@ -421,7 +422,8 @@
       transition:
         border-color 0.15s ease,
         background 0.15s ease,
-        box-shadow 0.15s ease;
+        box-shadow 0.15s ease,
+        opacity 0.15s ease;
 
     }
 
@@ -442,6 +444,24 @@
 
       box-shadow:
         0 4px 16px rgba(21, 87, 166, 0.10);
+
+    }
+
+
+    .candidate-option input:disabled
+    + .candidate-label {
+
+      cursor: not-allowed;
+
+      opacity: 0.72;
+
+    }
+
+
+    .candidate-option input:disabled
+    + .candidate-label:hover {
+
+      border-color: #e2e7ef;
 
     }
 
@@ -564,6 +584,10 @@
 
       cursor: pointer;
 
+      transition:
+        opacity 0.15s ease,
+        background 0.15s ease;
+
     }
 
 
@@ -579,6 +603,8 @@
       background: #b9c2ce;
 
       cursor: not-allowed;
+
+      opacity: 1;
 
     }
 
@@ -705,6 +731,15 @@
       background: #e9edf2;
 
       color: #445267;
+
+    }
+
+
+    .confirm-button:disabled {
+
+      cursor: not-allowed;
+
+      opacity: 0.65;
 
     }
 
@@ -915,7 +950,7 @@
 <script>
 
   /* =========================================================
-     阿谢纪年
+     基础设定
   ========================================================= */
 
   const AXIE_ERA_START_YEAR = 2024;
@@ -981,10 +1016,12 @@
 
     }
 
+
     const date =
       new Date(
         isoString
       );
+
 
     if (
       Number.isNaN(
@@ -995,6 +1032,7 @@
       return "暂无资料";
 
     }
+
 
     const formatter =
       new Intl.DateTimeFormat(
@@ -1032,15 +1070,19 @@
         }
       );
 
+
     const parts =
       formatter.formatToParts(
         date
       );
 
+
     const values = {};
 
+
     for (
-      const part of parts
+      const part
+      of parts
     ) {
 
       values[part.type] =
@@ -1048,23 +1090,28 @@
 
     }
 
+
     const gregorianYear =
       Number(
         values.year
       );
+
 
     const axieYear =
       gregorianYear
       - AXIE_ERA_START_YEAR
       + 1;
 
+
     const axieYearText =
       axieYear === 1
         ? "元年"
         : `${axieYear}年`;
 
+
     let result =
       `阿谢${axieYearText}${values.month}月${values.day}日`;
+
 
     if (includeTime) {
 
@@ -1073,13 +1120,14 @@
 
     }
 
+
     return result;
 
   }
 
 
   /* =========================================================
-     获取 URL electionId
+     获取 URL 中的 electionId
   ========================================================= */
 
   function getRequestedElectionId() {
@@ -1088,6 +1136,7 @@
       new URLSearchParams(
         window.location.search
       );
+
 
     return params.get(
       "id"
@@ -1108,7 +1157,7 @@
 
 
     if (
-      electionsData.president
+      electionsData?.president
       &&
       Array.isArray(
         electionsData.president.elections
@@ -1138,7 +1187,7 @@
 
 
     if (
-      electionsData.vicePresident
+      electionsData?.vicePresident
       &&
       Array.isArray(
         electionsData.vicePresident.elections
@@ -1186,6 +1235,7 @@
         electionsData
       );
 
+
     return (
       all.find(
         item =>
@@ -1199,7 +1249,7 @@
 
 
   /* =========================================================
-     判断选举当前状态
+     判断选举状态
   ========================================================= */
 
   function getElectionStatus(
@@ -1251,7 +1301,7 @@
 
 
     /*
-     * 投票区间：
+     * 正式投票时间：
      *
      * start <= now <= end
      */
@@ -1300,6 +1350,7 @@
 
     };
 
+
     return (
       map[status]
       || "未知状态"
@@ -1320,6 +1371,7 @@
       getAllElections(
         electionsData
       );
+
 
     const now =
       new Date();
@@ -1459,11 +1511,13 @@
               || 9999
             );
 
+
           const noB =
             Number(
               b.candidateNo
               || 9999
             );
+
 
           return noA - noB;
 
@@ -1508,116 +1562,127 @@
     return candidates
 
       .map(
-        candidate => `
+        candidate => {
 
-          <div
-            class="candidate-option"
-          >
+          const candidateId =
+            escapeHTML(
+              candidate.candidateId
+            );
 
-            <input
-              type="radio"
-              name="candidate"
-              id="candidate-${escapeHTML(
-                candidate.candidateId
-              )}"
-              value="${escapeHTML(
-                candidate.candidateId
-              )}"
-              ${disabled ? "disabled" : ""}
+
+          const candidateNumber =
+            escapeHTML(
+              candidate.candidateNo
+              || "-"
+            );
+
+
+          const candidateName =
+            escapeHTML(
+              candidate.names?.zh
+              || "未命名候选人"
+            );
+
+
+          const candidateEnglishName =
+            candidate.names?.en
+              ? `
+                <div
+                  class="candidate-name-en"
+                >
+                  ${escapeHTML(
+                    candidate.names.en
+                  )}
+                </div>
+              `
+              : "";
+
+
+          const candidateParty =
+            candidate.partyName
+              ? escapeHTML(
+                  candidate.partyName
+                )
+              : "独立候选人";
+
+
+          const introduction =
+            candidate.introduction
+              ? `
+                <div
+                  class="candidate-introduction"
+                >
+                  ${escapeHTML(
+                    candidate.introduction
+                  )}
+                </div>
+              `
+              : "";
+
+
+          return `
+
+            <div
+              class="candidate-option"
             >
 
+              <input
+                type="radio"
+                name="candidate"
+                id="candidate-${candidateId}"
+                value="${candidateId}"
+                ${disabled ? "disabled" : ""}
+              >
 
-            <label
-              class="candidate-label"
-              for="candidate-${escapeHTML(
-                candidate.candidateId
-              )}"
-              style="${
-                disabled
-                  ? "cursor:not-allowed;opacity:0.72;"
-                  : ""
-              }"
-            >
 
-              <div
-                class="candidate-main"
+              <label
+                class="candidate-label"
+                for="candidate-${candidateId}"
               >
 
                 <div
-                  class="candidate-number"
+                  class="candidate-main"
                 >
-                  ${escapeHTML(
-                    candidate.candidateNo
-                    || "-"
-                  )}
-                </div>
-
-
-                <div>
 
                   <div
-                    class="candidate-name"
+                    class="candidate-number"
                   >
-                    ${escapeHTML(
-                      candidate.names?.zh
-                      || "未命名候选人"
-                    )}
+                    ${candidateNumber}
                   </div>
 
 
-                  ${
-                    candidate.names?.en
-                      ? `
-                        <div
-                          class="candidate-name-en"
-                        >
-                          ${escapeHTML(
-                            candidate.names.en
-                          )}
-                        </div>
-                      `
-                      : ""
-                  }
+                  <div>
 
-
-                  <div
-                    class="candidate-party"
-                  >
-
-                    ${
-                      candidate.partyName
-                        ? escapeHTML(
-                            candidate.partyName
-                          )
-                        : "独立候选人"
-                    }
-
-                  </div>
-
-                </div>
-
-              </div>
-
-
-              ${
-                candidate.introduction
-                  ? `
                     <div
-                      class="candidate-introduction"
+                      class="candidate-name"
                     >
-                      ${escapeHTML(
-                        candidate.introduction
-                      )}
+                      ${candidateName}
                     </div>
-                  `
-                  : ""
-              }
 
-            </label>
 
-          </div>
+                    ${candidateEnglishName}
 
-        `
+
+                    <div
+                      class="candidate-party"
+                    >
+                      ${candidateParty}
+                    </div>
+
+                  </div>
+
+                </div>
+
+
+                ${introduction}
+
+              </label>
+
+            </div>
+
+          `;
+
+        }
       )
 
       .join("");
@@ -1637,8 +1702,10 @@
     const election =
       electionInfo.election;
 
+
     const typeData =
       electionInfo.typeData;
+
 
     const status =
       getElectionStatus(
@@ -1845,14 +1912,53 @@
 
 
   /* =========================================================
-     禁用投票区域
+     禁用确认按钮
+  ========================================================= */
+
+  function disableConfirmationButtons() {
+
+    const submitButton =
+      document.getElementById(
+        "submitButton"
+      );
+
+
+    const cancelButton =
+      document.getElementById(
+        "cancelButton"
+      );
+
+
+    if (submitButton) {
+
+      submitButton.disabled =
+        true;
+
+    }
+
+
+    if (cancelButton) {
+
+      cancelButton.disabled =
+        true;
+
+    }
+
+  }
+
+
+  /* =========================================================
+     锁定投票界面
   ========================================================= */
 
   function lockVotingInterface(
-    message
+    message,
+    buttonText = "投票已结束"
   ) {
 
     disableAllCandidates();
+
+    disableConfirmationButtons();
 
 
     const voteButton =
@@ -1867,7 +1973,7 @@
         true;
 
       voteButton.textContent =
-        "投票已结束";
+        buttonText;
 
     }
 
@@ -1910,6 +2016,7 @@
 
       notice.id =
         "dynamicVoteNotice";
+
 
       notice.className =
         "notice warning";
@@ -1999,19 +2106,29 @@
       );
 
 
-    /*
-     * ========================================================
-     * 确认选择
-     * ========================================================
-     */
+    if (
+      !confirmation ||
+      !confirmationName ||
+      !confirmationParty ||
+      !submitButton ||
+      !cancelButton
+    ) {
+
+      return;
+
+    }
+
+
+    /* ========================================================
+       确认选择
+    ======================================================== */
 
     voteButton.addEventListener(
       "click",
       () => {
 
         /*
-         * 第一次检查：
-         * 用户点击「确认选择」时检查时间。
+         * 点击「确认选择」时再次检查选举状态。
          */
 
         const currentStatus =
@@ -2024,15 +2141,25 @@
           currentStatus !== "active"
         ) {
 
-          lockVotingInterface(
-
+          if (
             currentStatus === "before"
+          ) {
 
-              ? "本次选举尚未开始，当前不能进行投票。"
+            lockVotingInterface(
+              "本次选举尚未开始，当前不能进行投票。",
+              "投票尚未开始"
+            );
 
-              : "本次选举的投票时间已经结束，当前不能提交新的选票。"
+          }
 
-          );
+          else {
+
+            lockVotingInterface(
+              "本次选举的投票时间已经结束，当前不能提交新的选票。",
+              "投票已结束"
+            );
+
+          }
 
           return;
 
@@ -2090,6 +2217,18 @@
           || "独立候选人";
 
 
+        /*
+         * 每次打开确认窗口时，
+         * 确保按钮处于可用状态。
+         */
+
+        submitButton.disabled =
+          false;
+
+        cancelButton.disabled =
+          false;
+
+
         confirmation.classList.add(
           "show"
         );
@@ -2117,6 +2256,15 @@
       "click",
       () => {
 
+        if (
+          cancelButton.disabled
+        ) {
+
+          return;
+
+        }
+
+
         confirmation.classList.remove(
           "show"
         );
@@ -2135,7 +2283,7 @@
 
         /*
          * =====================================================
-         * 第二次、也是关键的一次时间检查。
+         * 最终提交前再次检查选举状态。
          *
          * 防止：
          *
@@ -2147,7 +2295,7 @@
          * ↓
          * 点击提交
          *
-         * 这种情况下仍然必须拒绝提交。
+         * 必须拒绝。
          * =====================================================
          */
 
@@ -2161,15 +2309,25 @@
           currentStatus !== "active"
         ) {
 
-          lockVotingInterface(
-
+          if (
             currentStatus === "before"
+          ) {
 
-              ? "本次选举尚未开始，当前不能提交选票。"
+            lockVotingInterface(
+              "本次选举尚未开始，当前不能提交选票。",
+              "投票尚未开始"
+            );
 
-              : "本次选举已经结束，本次操作不能提交选票。"
+          }
 
-          );
+          else {
+
+            lockVotingInterface(
+              "本次选举已经结束，本次操作不能提交选票。",
+              "投票已结束"
+            );
+
+          }
 
           return;
 
@@ -2177,7 +2335,7 @@
 
 
         /*
-         * 再次确认候选人仍然存在。
+         * 再次确认候选人。
          */
 
         const selected =
@@ -2192,9 +2350,11 @@
             "show"
           );
 
+
           alert(
             "未检测到有效的候选人选择。"
           );
+
 
           return;
 
@@ -2215,9 +2375,11 @@
             "show"
           );
 
+
           alert(
             "无法确认所选候选人的资料。"
           );
+
 
           return;
 
@@ -2247,20 +2409,24 @@
           );
 
 
-        successResult.classList.add(
-          "show"
-        );
+        if (successResult) {
+
+          successResult.classList.add(
+            "show"
+          );
 
 
-        successResult.scrollIntoView({
+          successResult.scrollIntoView({
 
-          behavior:
-            "smooth",
+            behavior:
+              "smooth",
 
-          block:
-            "center"
+            block:
+              "center"
 
-        });
+          });
+
+        }
 
       }
     );
@@ -2269,7 +2435,7 @@
 
 
   /* =========================================================
-     渲染无正在进行的选举
+     渲染没有正在进行选举的页面
   ========================================================= */
 
   function renderNoActiveElection(
@@ -2669,11 +2835,15 @@
             class="vote-button"
             ${disabled ? "disabled" : ""}
           >
+
             ${
               status === "active"
                 ? "确认选择"
-                : "当前不可投票"
+                : status === "before"
+                  ? "投票尚未开始"
+                  : "投票已结束"
             }
+
           </button>
 
         </div>
@@ -3007,4 +3177,5 @@
 
 
 </body>
+
 </html>
