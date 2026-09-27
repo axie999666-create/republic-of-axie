@@ -1,22 +1,3 @@
 {
-  "applications": [
-    {
-      "applicationId": "APP-2026-85738A14",
-      "electionId": "president-axie4",
-      "position": "president",
-      "name": "王小桃",
-      "englishName": "WangHsiaotao",
-      "japaneseName": "王小桃",
-      "partyId": "other",
-      "partyName": "政党",
-      "photo": "",
-      "introduction": "1",
-      "campaignStatement": "1",
-      "submittedAt": "2026-09-27T09:31:11.724Z",
-      "status": "approved",
-      "reviewedAt": "2026-09-27T11:40:34.194Z",
-      "reviewedBy": "AXNewsAdmin",
-      "reviewNote": ""
-    }
-  ]
+  "applications": []
 }
