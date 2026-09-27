@@ -495,7 +495,9 @@ h2 {
 
   font-size: 14px;
 
-  opacity: 0.7;
+  opacity: 0.8;
+
+  line-height: 1.8;
 
 }
 
@@ -1331,6 +1333,116 @@ function getAxieYear(year) {
 
 
 // =========================================================
+// 将公历日期转换为阿谢纪年日期
+//
+// 阿谢元年 = 公历2024年
+//
+// 这里只负责“显示”
+// 程序内部时间仍然使用标准 Date
+// =========================================================
+
+function formatAxieDate(
+  dateString
+) {
+
+  const date =
+    new Date(dateString);
+
+
+  if (
+    Number.isNaN(
+      date.getTime()
+    )
+  ) {
+
+    return "";
+
+  }
+
+
+  const parts =
+    new Intl.DateTimeFormat(
+      "en-US",
+      {
+        timeZone: "Asia/Tokyo",
+        year: "numeric",
+        month: "numeric",
+        day: "numeric"
+      }
+    ).formatToParts(date);
+
+
+  let year = null;
+  let month = null;
+  let day = null;
+
+
+  parts.forEach(
+    part => {
+
+      if (part.type === "year") {
+        year = Number(part.value);
+      }
+
+      if (part.type === "month") {
+        month = Number(part.value);
+      }
+
+      if (part.type === "day") {
+        day = Number(part.value);
+      }
+
+    }
+  );
+
+
+  if (
+    !year ||
+    !month ||
+    !day
+  ) {
+
+    return "";
+
+  }
+
+
+  const axieYear =
+    getAxieYear(year);
+
+
+  /*
+   * 中文
+   */
+
+  if (currentLang === "zh") {
+
+    return `阿谢${axieYear}年${month}月${day}日`;
+
+  }
+
+
+  /*
+   * 日文
+   */
+
+  if (currentLang === "jp") {
+
+    return `阿謝${axieYear}年${month}月${day}日`;
+
+  }
+
+
+  /*
+   * 英文
+   */
+
+  return `Axie Year ${axieYear}, ${month}/${day}`;
+
+}
+
+
+// =========================================================
 // 多语言系统
 // =========================================================
 
@@ -1375,12 +1487,6 @@ function applyLanguage() {
 
       } else {
 
-        /*
-         * 这里仍然使用 innerHTML，
-         * 因为你现有网站部分内容
-         * 可能包含 HTML。
-         */
-
         el.innerHTML = text;
 
       }
@@ -1418,10 +1524,31 @@ function applyLanguage() {
 
 
   /*
+   * 更新国庆日期
+   */
+
+  updateCountdown();
+
+
+  /*
    * 更新选举模块语言
    */
 
   updateElectionLanguage();
+
+
+  /*
+   * 更新选举日期
+   */
+
+  updateElectionDateText();
+
+
+  /*
+   * 更新选举倒计时
+   */
+
+  updateElectionCountdown();
 
 }
 
@@ -1456,7 +1583,7 @@ function updateCountdown() {
   /*
    * 阿谢国国庆日：
    *
-   * 每年 2月3日
+   * 每年2月3日
    */
 
   let nationalDay =
@@ -1600,10 +1727,6 @@ function updateCountdown() {
 
   else {
 
-    /*
-     * 恢复标题
-     */
-
     if (countdownTitle) {
 
       countdownTitle.textContent = {
@@ -1638,13 +1761,6 @@ function updateCountdown() {
 // 🗳️ 选举系统
 //
 // 数据来源：./data/elections.json
-//
-// 系统逻辑：
-// 1. 读取所有已经定义的具体选举
-// 2. 使用 elections.json 中的 start / end
-// 3. 当前正在进行的选举优先显示
-// 4. 如果没有正在进行的选举，则显示最近的下一场选举
-// 5. 所有时间统一按照 UTC+9 处理
 // =========================================================
 
 let electionData = null;
@@ -1978,7 +2094,6 @@ function updateElectionLanguage() {
 // =========================================================
 // 更新投票按钮状态
 //
-// 规则：
 // 尚未开始 → 禁用
 // 正在进行 → 启用
 // 已结束 → 禁用
@@ -2080,18 +2195,26 @@ function updateVoteButton() {
 // =========================================================
 // 格式化选举日期
 //
-// 统一使用 UTC+9
+// 主要显示：阿谢纪年
+// 辅助显示：公历
 // =========================================================
 
 function formatElectionDate(
   dateString
 ) {
 
+  const axieDate =
+    formatAxieDate(
+      dateString
+    );
+
+
   const date =
     new Date(dateString);
 
 
   if (
+    !axieDate ||
     Number.isNaN(
       date.getTime()
     )
@@ -2102,19 +2225,53 @@ function formatElectionDate(
   }
 
 
-  return new Intl.DateTimeFormat(
-    currentLang === "jp"
-      ? "ja-JP"
-      : currentLang === "en"
-        ? "en-US"
-        : "zh-CN",
-    {
-      timeZone: "Asia/Tokyo",
-      year: "numeric",
-      month: "numeric",
-      day: "numeric"
-    }
-  ).format(date);
+  /*
+   * 公历辅助日期
+   */
+
+  const gregorianDate =
+    new Intl.DateTimeFormat(
+      currentLang === "jp"
+        ? "ja-JP"
+        : currentLang === "en"
+          ? "en-US"
+          : "zh-CN",
+      {
+        timeZone: "Asia/Tokyo",
+        year: "numeric",
+        month: "numeric",
+        day: "numeric"
+      }
+    ).format(date);
+
+
+  /*
+   * 中文
+   */
+
+  if (currentLang === "zh") {
+
+    return `${axieDate}（公历${gregorianDate}）`;
+
+  }
+
+
+  /*
+   * 日文
+   */
+
+  if (currentLang === "jp") {
+
+    return `${axieDate}（西暦${gregorianDate}）`;
+
+  }
+
+
+  /*
+   * 英文
+   */
+
+  return `${axieDate} (Gregorian ${gregorianDate})`;
 
 }
 
@@ -2145,6 +2302,7 @@ function updateElectionDateText() {
     formatElectionDate(
       currentElection.start
     );
+
 
   const end =
     formatElectionDate(
@@ -2225,12 +2383,6 @@ function formatRemaining(
 
 // =========================================================
 // 选举倒计时
-//
-// 即将开始：
-// 距离投票开始
-//
-// 进行中：
-// 距离投票结束
 // =========================================================
 
 function updateElectionCountdown() {
@@ -2268,9 +2420,7 @@ function updateElectionCountdown() {
 
 
   /*
-   * ============================
    * 尚未开始
-   * ============================
    */
 
   if (
@@ -2307,9 +2457,7 @@ function updateElectionCountdown() {
 
 
   /*
-   * ============================
    * 正在进行
-   * ============================
    */
 
   if (
@@ -2347,9 +2495,7 @@ function updateElectionCountdown() {
 
 
   /*
-   * ============================
    * 已结束
-   * ============================
    */
 
   countdown.textContent = {
@@ -2430,10 +2576,7 @@ function selectCurrentElection() {
 
 
   /*
-   * ============================
-   * 第一优先级：
-   * 当前正在进行的选举
-   * ============================
+   * 当前正在进行
    */
 
   const ongoing =
@@ -2465,10 +2608,7 @@ function selectCurrentElection() {
 
 
   /*
-   * ============================
-   * 第二优先级：
-   * 最近即将开始的选举
-   * ============================
+   * 最近即将开始
    */
 
   const upcoming =
@@ -2500,9 +2640,7 @@ function selectCurrentElection() {
 
 
   /*
-   * ============================
-   * 如果所有选举都已经结束
-   * ============================
+   * 全部结束
    */
 
   return null;
@@ -2565,7 +2703,7 @@ async function loadElectionStatus() {
 
 
     /*
-     * 没有任何可显示的选举
+     * 没有可显示的选举
      */
 
     if (!currentElection) {
@@ -2634,7 +2772,7 @@ async function loadElectionStatus() {
 
 
     /*
-     * 显示实际选举日期
+     * 显示阿谢纪年日期
      */
 
     updateElectionDateText();
@@ -2671,18 +2809,7 @@ async function loadElectionStatus() {
         () => {
 
           /*
-           * 重新根据当前时间判断选举
-           *
-           * 这样在：
-           *
-           * 2026-10-02 00:00
-           *
-           * 或
-           *
-           * 2026-11-02 00:00
-           *
-           * 等关键时间点，
-           * 页面可以自动切换到下一场选举。
+           * 重新根据当前时间选择选举
            */
 
           const selected =
@@ -2719,21 +2846,13 @@ async function loadElectionStatus() {
             }
 
 
-            /*
-             * 更新投票入口
-             */
-
             updateVoteButton();
 
           }
 
 
           /*
-           * 如果选举没有变化，
-           * 也必须每秒检查投票按钮。
-           *
-           * 这样到了正式投票开始时间，
-           * 按钮可以自动从禁用变为启用。
+           * 每秒检查投票按钮
            */
 
           updateVoteButton();
@@ -2799,6 +2918,10 @@ async function loadElectionStatus() {
 
 }
 
+
+// =========================================================
+// AXNews
+// =========================================================
 
 async function loadNews() {
 
@@ -3045,8 +3168,6 @@ async function loadNews() {
 
 // =========================================================
 // HTML 转义
-//
-// 防止新闻 JSON 中的特殊字符破坏页面 HTML
 // =========================================================
 
 function escapeHTML(text) {
