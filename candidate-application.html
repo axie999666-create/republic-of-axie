@@ -2,18 +2,12 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0"
   >
 
-  <title>候选人参选申请 | Republic of Axie</title>
-
-  <meta
-    name="description"
-    content="阿谢国候选人参选申请系统"
-  >
+  <title>候选人参选申请｜阿谢国</title>
 
   <style>
     * {
@@ -26,112 +20,146 @@
         -apple-system,
         BlinkMacSystemFont,
         "Segoe UI",
-        "PingFang SC",
+        "Noto Sans SC",
         "Microsoft YaHei",
         sans-serif;
 
-      background: #f5f7fb;
+      background: #f4f7fb;
       color: #172033;
     }
 
+    /* =========================
+       Header
+    ========================= */
+
     header {
-      background: #061b3a;
+      background: #071a3d;
       color: white;
       padding: 18px 24px;
+
+      box-shadow:
+        0 3px 12px rgba(0, 0, 0, 0.12);
     }
 
     .header-inner {
       max-width: 1100px;
-      margin: auto;
+      margin: 0 auto;
 
       display: flex;
       align-items: center;
       gap: 14px;
     }
 
-    .header-inner img {
-      width: 54px;
-      height: 36px;
-      object-fit: cover;
-      border-radius: 4px;
+    .flag {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
     }
 
-    .brand {
+    .site-title {
       font-size: 20px;
       font-weight: 700;
     }
 
-    .brand small {
-      display: block;
+    .site-subtitle {
+      margin-top: 3px;
+      color: #b9c8e5;
       font-size: 12px;
-      opacity: 0.75;
-      margin-top: 2px;
-      font-weight: 400;
     }
+
+    /* =========================
+       Main
+    ========================= */
 
     main {
       max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
+      margin: 0 auto;
+      padding: 38px 20px 70px;
     }
 
     .page-title {
-      margin-bottom: 28px;
+      margin-bottom: 25px;
     }
 
     .page-title h1 {
-      margin: 0 0 8px;
-      font-size: 32px;
+      margin: 0;
+      color: #071a3d;
+      font-size: 30px;
     }
 
     .page-title p {
-      margin: 0;
-      color: #667085;
-    }
-
-    .notice {
-      padding: 16px 18px;
-      border-radius: 10px;
-      margin-bottom: 22px;
+      margin: 9px 0 0;
+      color: #68758b;
+      font-size: 14px;
       line-height: 1.7;
     }
 
-    .notice.info {
-      background: #eaf2ff;
-      color: #174a8b;
-      border: 1px solid #cbdcf8;
+    /* =========================
+       Notice
+    ========================= */
+
+    .notice {
+      padding: 14px 16px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+
+      background: #eef5ff;
+      border: 1px solid #cfe0fa;
+      color: #31557f;
+
+      font-size: 14px;
+      line-height: 1.7;
     }
 
-    .notice.warning {
-      background: #fff8e6;
-      color: #7a5600;
-      border: 1px solid #f0d98a;
+    .notice strong {
+      color: #173f72;
     }
 
-    .notice.error {
-      color: #b42318;
-      background: #fff1f0;
-      border: 1px solid #f2c7c3;
-    }
+    /* =========================
+       Form Card
+    ========================= */
 
-    .card {
+    .form-card {
       background: white;
+      border: 1px solid #e0e6ef;
       border-radius: 14px;
-      padding: 28px;
-      margin-bottom: 22px;
+
+      padding: 26px;
 
       box-shadow:
-        0 4px 18px rgba(20, 40, 80, 0.06);
+        0 4px 15px rgba(0, 0, 0, 0.04);
     }
 
-    .card h2 {
-      margin-top: 0;
-      margin-bottom: 22px;
-      font-size: 21px;
+    .section {
+      margin-bottom: 30px;
     }
+
+    .section:last-child {
+      margin-bottom: 0;
+    }
+
+    .section-title {
+      margin: 0 0 17px;
+
+      color: #071a3d;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .section-description {
+      margin: -7px 0 16px;
+
+      color: #7a8799;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    /* =========================
+       Fields
+    ========================= */
 
     .field {
-      margin-bottom: 22px;
+      margin-bottom: 17px;
     }
 
     .field:last-child {
@@ -140,52 +168,125 @@
 
     label {
       display: block;
-      font-weight: 650;
-      margin-bottom: 8px;
+
+      margin-bottom: 7px;
+
+      color: #344054;
+      font-size: 14px;
+      font-weight: 600;
     }
 
     .required {
-      color: #c62828;
-      margin-left: 4px;
+      color: #c93636;
+      margin-left: 3px;
+    }
+
+    .optional {
+      color: #8792a5;
+      font-size: 12px;
+      font-weight: 400;
+      margin-left: 5px;
     }
 
     input,
     select,
     textarea {
       width: 100%;
-      padding: 12px 14px;
 
-      border: 1px solid #d5dae3;
+      border: 1px solid #d6deea;
       border-radius: 8px;
 
-      font-size: 15px;
-      font-family: inherit;
+      padding: 11px 12px;
 
       background: white;
       color: #172033;
 
-      transition: 0.15s;
+      font: inherit;
+      font-size: 14px;
+
+      outline: none;
     }
 
     input:focus,
     select:focus,
     textarea:focus {
-      outline: none;
-      border-color: #285ea8;
+      border-color: #0d5bd7;
+
       box-shadow:
-        0 0 0 3px rgba(40, 94, 168, 0.12);
+        0 0 0 3px rgba(13, 91, 215, 0.1);
     }
 
     textarea {
-      min-height: 150px;
+      min-height: 130px;
       resize: vertical;
       line-height: 1.7;
     }
 
+    .field-help {
+      margin-top: 6px;
+
+      color: #7d899a;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .field-error {
+      margin-top: 6px;
+
+      color: #b32f2f;
+      font-size: 12px;
+
+      display: none;
+    }
+
+    .field-error.show {
+      display: block;
+    }
+
+    /* =========================
+       Two columns
+    ========================= */
+
+    .two-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    /* =========================
+       Election information
+    ========================= */
+
+    .election-box {
+      background: #f7f9fc;
+      border: 1px solid #e4e9f0;
+
+      border-radius: 9px;
+      padding: 14px;
+    }
+
+    .election-name {
+      color: #071a3d;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .election-meta {
+      margin-top: 6px;
+
+      color: #718096;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    /* =========================
+       Position buttons
+    ========================= */
+
     .position-options {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
     }
 
     .position-option {
@@ -200,148 +301,340 @@
 
     .position-label {
       display: block;
-      padding: 18px;
 
-      border: 1px solid #d7dce5;
+      padding: 15px;
+
+      border: 1px solid #d7deea;
       border-radius: 10px;
 
       cursor: pointer;
 
-      transition: 0.15s;
+      transition:
+        border-color .15s,
+        background .15s;
     }
 
-    .position-label strong {
+    .position-label:hover {
+      background: #f8fafc;
+    }
+
+    .position-option input:checked
+      + .position-label {
+
+      border-color: #0d5bd7;
+      background: #eef5ff;
+    }
+
+    .position-name {
+      color: #071a3d;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .position-description {
+      margin-top: 4px;
+
+      color: #7a8799;
+      font-size: 12px;
+    }
+
+    /* =========================
+       Party
+    ========================= */
+
+    .other-party {
+      display: none;
+      margin-top: 12px;
+    }
+
+    .other-party.show {
       display: block;
-      font-size: 17px;
-      margin-bottom: 5px;
     }
 
-    .position-label span {
-      color: #667085;
-      font-size: 13px;
+    /* =========================
+       Photo upload
+    ========================= */
+
+    .photo-upload {
+      border: 2px dashed #d5deea;
+      border-radius: 12px;
+
+      padding: 24px;
+
+      text-align: center;
+
+      background: #fafbfd;
+
+      transition:
+        border-color .15s,
+        background .15s;
     }
 
-    .position-option input:checked + .position-label {
-      border-color: #285ea8;
-      background: #f0f6ff;
-      box-shadow:
-        0 0 0 2px rgba(40, 94, 168, 0.1);
+    .photo-upload.dragover {
+      border-color: #0d5bd7;
+      background: #eef5ff;
     }
 
-    .election-info {
-      margin-top: 16px;
-      padding: 15px;
+    .photo-icon {
+      font-size: 34px;
+      margin-bottom: 8px;
+    }
+
+    .photo-title {
+      color: #27364d;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .photo-description {
+      margin-top: 6px;
+
+      color: #7b8799;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .photo-select-button {
+      display: inline-block;
+
+      margin-top: 13px;
+
+      padding: 9px 16px;
+
       border-radius: 8px;
 
-      background: #f5f7fb;
-      color: #4c566a;
+      background: #0d5bd7;
+      color: white;
 
-      line-height: 1.7;
+      font-size: 13px;
+      font-weight: 600;
 
+      cursor: pointer;
+    }
+
+    .photo-select-button:hover {
+      background: #094cae;
+    }
+
+    #photoInput {
       display: none;
     }
 
-    .election-info.show {
+    .photo-preview-container {
+      display: none;
+
+      margin-top: 18px;
+
+      text-align: center;
+    }
+
+    .photo-preview-container.show {
       display: block;
     }
 
-    .photo-note {
-      margin-top: 7px;
-      color: #7b8494;
+    .photo-preview {
+      width: 160px;
+      height: 160px;
+
+      object-fit: cover;
+
+      border-radius: 10px;
+
+      border: 1px solid #dce3ec;
+
+      background: #f1f4f8;
+    }
+
+    .photo-file-name {
+      margin-top: 8px;
+
+      color: #4b5a70;
+      font-size: 13px;
+      word-break: break-word;
+    }
+
+    .photo-file-size {
+      margin-top: 3px;
+
+      color: #8792a5;
+      font-size: 12px;
+    }
+
+    .remove-photo {
+      margin-top: 9px;
+
+      border: none;
+      background: transparent;
+
+      color: #b32f2f;
+
+      font-size: 12px;
+
+      cursor: pointer;
+    }
+
+    .remove-photo:hover {
+      text-decoration: underline;
+    }
+
+    .photo-status {
+      margin-top: 12px;
+
       font-size: 13px;
       line-height: 1.6;
     }
 
+    .photo-status.uploading {
+      color: #315f9c;
+    }
+
+    .photo-status.success {
+      color: #16733c;
+    }
+
+    .photo-status.error {
+      color: #b32f2f;
+    }
+
+    /* =========================
+       Submit
+    ========================= */
+
     .submit-area {
-      text-align: center;
-      padding: 8px 0 30px;
+      margin-top: 30px;
+
+      padding-top: 22px;
+
+      border-top: 1px solid #edf0f5;
     }
 
     .submit-button {
+      width: 100%;
+
       border: none;
       border-radius: 9px;
 
-      padding: 14px 34px;
+      padding: 13px 18px;
 
-      background: #123f73;
+      background: #071a3d;
       color: white;
 
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 700;
 
       cursor: pointer;
-      transition: 0.15s;
     }
 
     .submit-button:hover {
-      background: #0d315a;
+      background: #0b2758;
     }
 
     .submit-button:disabled {
-      background: #aeb6c2;
+      opacity: .55;
       cursor: not-allowed;
     }
 
-    .success {
+    /* =========================
+       Result
+    ========================= */
+
+    .result {
       display: none;
 
-      background: white;
-      border-radius: 14px;
-      padding: 34px;
+      margin-top: 20px;
 
-      box-shadow:
-        0 4px 18px rgba(20, 40, 80, 0.06);
+      padding: 18px;
 
-      text-align: center;
+      border-radius: 10px;
+
+      font-size: 14px;
+      line-height: 1.7;
     }
 
-    .success.show {
+    .result.show {
       display: block;
     }
 
-    .success-icon {
-      font-size: 46px;
-      margin-bottom: 12px;
+    .result.success {
+      background: #edf9f2;
+      border: 1px solid #c9ead6;
+      color: #24633c;
     }
 
-    .success h2 {
-      margin: 0 0 12px;
+    .result.error {
+      background: #fff5f5;
+      border: 1px solid #f0caca;
+      color: #a52b2b;
+    }
+
+    .result-title {
+      font-weight: 700;
+      margin-bottom: 5px;
     }
 
     .application-id {
-      display: inline-block;
+      margin-top: 8px;
 
-      margin: 15px 0;
-      padding: 10px 15px;
+      padding: 9px 11px;
 
-      background: #f1f4f8;
       border-radius: 7px;
 
+      background: rgba(0,0,0,.04);
+
       font-family: monospace;
-      font-weight: 700;
+      word-break: break-all;
     }
 
-    @media (max-width: 650px) {
+    /* =========================
+       Mobile
+    ========================= */
 
-      .page-title h1 {
-        font-size: 27px;
+    @media (max-width: 700px) {
+
+      header {
+        padding: 15px;
       }
 
-      .card {
-        padding: 21px;
+      .site-title {
+        font-size: 17px;
+      }
+
+      .site-subtitle {
+        font-size: 11px;
+      }
+
+      main {
+        padding:
+          25px
+          13px
+          50px;
+      }
+
+      .page-title h1 {
+        font-size: 25px;
+      }
+
+      .form-card {
+        padding: 20px 16px;
+      }
+
+      .two-columns {
+        grid-template-columns: 1fr;
       }
 
       .position-options {
         grid-template-columns: 1fr;
       }
 
-      .submit-button {
-        width: 100%;
+      .photo-preview {
+        width: 140px;
+        height: 140px;
       }
 
     }
   </style>
 </head>
+
 
 <body>
 
@@ -350,13 +643,21 @@
   <div class="header-inner">
 
     <img
+      class="flag"
       src="/ROA_flag.png"
-      alt="Republic of Axie"
+      alt="阿谢国国旗"
     >
 
-    <div class="brand">
-      阿谢国
-      <small>Republic of Axie</small>
+    <div>
+
+      <div class="site-title">
+        阿谢国候选人参选申请
+      </div>
+
+      <div class="site-subtitle">
+        Republic of Axie · Candidate Application
+      </div>
+
     </div>
 
   </div>
@@ -368,174 +669,190 @@
 
   <div class="page-title">
 
-    <h1>候选人参选申请</h1>
+    <h1>
+      候选人参选申请
+    </h1>
 
     <p>
-      Candidate Application System
+      本页面用于提交阿谢国总统或副总统选举参选申请。
+      申请提交后将进入管理员审核程序，审核通过后方可成为正式候选人。
     </p>
 
   </div>
 
 
-  <div class="notice info">
+  <div class="notice">
 
-    本系统用于提交阿谢国总统及副总统选举候选人参选申请。
-    申请提交后需要经过审核，申请本身不会直接成为正式候选人。
+    <strong>申请说明：</strong>
+
+    请如实填写候选人资料。
+
+    候选人照片为
+    <strong>可选项目</strong>，
+    不上传照片不会影响申请提交。
 
   </div>
 
 
-  <div
-    id="loadingNotice"
-    class="notice info"
-  >
-    正在读取选举及政党资料……
-  </div>
+  <div class="form-card">
 
-
-  <form id="applicationForm">
 
     <!-- =========================
-         一、参选职位
+         选举
     ========================== -->
 
-    <section class="card">
+    <section class="section">
 
-      <h2>
-        一、参选职位
+      <h2 class="section-title">
+        1. 参选职位
       </h2>
 
-      <div class="field">
-
-        <label>
-
-          请选择参选职位
-
-          <span class="required">
-            *
-          </span>
-
-        </label>
+      <div class="section-description">
+        请选择本次申请所对应的选举职位。
+      </div>
 
 
-        <div class="position-options">
-
-          <div class="position-option">
-
-            <input
-              type="radio"
-              name="position"
-              id="positionPresident"
-              value="president"
-              required
-            >
-
-            <label
-              class="position-label"
-              for="positionPresident"
-            >
-
-              <strong>
-                总统
-              </strong>
-
-              <span>
-                President
-              </span>
-
-            </label>
-
-          </div>
+      <div class="position-options">
 
 
-          <div class="position-option">
+        <div class="position-option">
 
-            <input
-              type="radio"
-              name="position"
-              id="positionVicePresident"
-              value="vicePresident"
-              required
-            >
+          <input
+            type="radio"
+            name="position"
+            id="positionPresident"
+            value="president"
+            checked
+          >
 
-            <label
-              class="position-label"
-              for="positionVicePresident"
-            >
+          <label
+            class="position-label"
+            for="positionPresident"
+          >
 
-              <strong>
-                副总统
-              </strong>
+            <div class="position-name">
+              总统
+            </div>
 
-              <span>
-                Vice President
-              </span>
+            <div class="position-description">
+              President
+            </div>
 
-            </label>
-
-          </div>
+          </label>
 
         </div>
 
 
-        <div
-          id="electionInfo"
-          class="election-info"
-        ></div>
+        <div class="position-option">
+
+          <input
+            type="radio"
+            name="position"
+            id="positionVicePresident"
+            value="vicePresident"
+          >
+
+          <label
+            class="position-label"
+            for="positionVicePresident"
+          >
+
+            <div class="position-name">
+              副总统
+            </div>
+
+            <div class="position-description">
+              Vice President
+            </div>
+
+          </label>
+
+        </div>
+
 
       </div>
+
+
+      <div
+        class="field"
+        style="margin-top:16px;"
+      >
+
+        <label>
+          对应选举
+        </label>
+
+
+        <div
+          class="election-box"
+          id="electionBox"
+        >
+
+          <div class="election-name">
+            正在读取……
+          </div>
+
+          <div class="election-meta">
+            正在读取选举信息。
+          </div>
+
+        </div>
+
+      </div>
+
 
     </section>
 
 
     <!-- =========================
-         二、候选人基本资料
+         姓名
     ========================== -->
 
-    <section class="card">
+    <section class="section">
 
-      <h2>
-        二、候选人基本资料
+      <h2 class="section-title">
+        2. 候选人姓名
       </h2>
 
 
-      <div class="field">
-
-        <label for="name">
-
-          中文姓名
-
-          <span class="required">
-            *
-          </span>
-
-        </label>
-
-        <input
-          id="name"
-          name="name"
-          type="text"
-          maxlength="50"
-          required
-          placeholder="请输入姓名"
-        >
-
-      </div>
+      <div class="two-columns">
 
 
-      <div class="field">
+        <div class="field">
 
-        <label for="englishName">
-          英文姓名
-        </label>
+          <label for="name">
+            中文姓名
+            <span class="required">*</span>
+          </label>
 
-        <input
-          id="englishName"
-          name="englishName"
-          type="text"
-          maxlength="100"
-          placeholder="English Name"
-        >
+          <input
+            id="name"
+            type="text"
+            maxlength="100"
+            placeholder="请输入中文姓名"
+            required
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="englishName">
+            English Name
+            <span class="required">*</span>
+          </label>
+
+          <input
+            id="englishName"
+            type="text"
+            maxlength="100"
+            placeholder="请输入英文姓名"
+            required
+          >
+
+        </div>
+
 
       </div>
 
@@ -543,18 +860,37 @@
       <div class="field">
 
         <label for="japaneseName">
-          日文姓名
+
+          日本語氏名
+
+          <span class="optional">
+            可选
+          </span>
+
         </label>
 
         <input
           id="japaneseName"
-          name="japaneseName"
           type="text"
           maxlength="100"
-          placeholder="日本語氏名"
+          placeholder="请输入日文姓名（可选）"
         >
 
       </div>
+
+
+    </section>
+
+
+    <!-- =========================
+         政党
+    ========================== -->
+
+    <section class="section">
+
+      <h2 class="section-title">
+        3. 政党信息
+      </h2>
 
 
       <div class="field">
@@ -562,95 +898,163 @@
         <label for="party">
 
           所属政党
-
-          <span class="required">
-            *
-          </span>
+          <span class="required">*</span>
 
         </label>
 
 
-        <select
-          id="party"
-          name="party"
-          required
-        >
+        <select id="party">
 
           <option value="">
-            正在读取政党资料……
+            正在读取政党……
           </option>
 
         </select>
 
 
-        <!-- 其他政党 -->
+        <div class="field-help">
 
-        <div
-          id="otherPartyField"
-          class="field"
-          style="
-            display: none;
-            margin-top: 14px;
-          "
-        >
-
-          <label for="otherPartyName">
-
-            其他政党名称
-
-            <span class="required">
-              *
-            </span>
-
-          </label>
-
-          <input
-            id="otherPartyName"
-            name="otherPartyName"
-            type="text"
-            maxlength="100"
-            placeholder="请输入政党名称"
-          >
+          可以选择阿谢国现有政党，也可以选择“独立候选人”或“其他”。
 
         </div>
 
       </div>
 
 
-      <div class="field">
+      <div
+        class="field other-party"
+        id="otherPartyContainer"
+      >
 
-        <label for="photo">
-          候选人照片
+        <label for="otherPartyName">
+
+          其他政党名称
+
         </label>
 
         <input
-          id="photo"
-          name="photo"
+          id="otherPartyName"
           type="text"
-          maxlength="200"
-          placeholder="例如：candidate-images/example.jpg"
+          maxlength="100"
+          placeholder="请输入政党名称"
         >
 
-        <div class="photo-note">
-
-          第一阶段暂填写照片文件路径，
-          正式系统将支持照片上传。
-
-        </div>
-
       </div>
+
 
     </section>
 
 
     <!-- =========================
-         三、候选人介绍
+         照片
     ========================== -->
 
-    <section class="card">
+    <section class="section">
 
-      <h2>
-        三、候选人介绍
+      <h2 class="section-title">
+        4. 候选人照片
+        <span class="optional">
+          可选
+        </span>
+      </h2>
+
+
+      <div class="section-description">
+        可以上传候选人照片，也可以不上传。
+        支持 JPG、PNG、GIF、WebP，单个文件最大 5 MB。
+      </div>
+
+
+      <div
+        class="photo-upload"
+        id="photoUpload"
+      >
+
+        <div class="photo-icon">
+          📷
+        </div>
+
+        <div class="photo-title">
+          选择候选人照片
+        </div>
+
+        <div class="photo-description">
+
+          上传照片后，系统会在提交申请时自动保存。
+          <br>
+
+          不上传照片也可以继续申请。
+
+        </div>
+
+
+        <label
+          class="photo-select-button"
+          for="photoInput"
+        >
+          选择照片
+        </label>
+
+
+        <input
+          id="photoInput"
+          type="file"
+          accept="image/jpeg,image/png,image/gif,image/webp"
+        >
+
+
+        <div
+          class="photo-preview-container"
+          id="photoPreviewContainer"
+        >
+
+          <img
+            id="photoPreview"
+            class="photo-preview"
+            alt="候选人照片预览"
+          >
+
+          <div
+            id="photoFileName"
+            class="photo-file-name"
+          ></div>
+
+          <div
+            id="photoFileSize"
+            class="photo-file-size"
+          ></div>
+
+
+          <button
+            type="button"
+            class="remove-photo"
+            id="removePhotoButton"
+          >
+            移除照片
+          </button>
+
+        </div>
+
+
+        <div
+          id="photoStatus"
+          class="photo-status"
+        ></div>
+
+      </div>
+
+
+    </section>
+
+
+    <!-- =========================
+         简介
+    ========================== -->
+
+    <section class="section">
+
+      <h2 class="section-title">
+        5. 候选人简介
       </h2>
 
 
@@ -659,22 +1063,38 @@
         <label for="introduction">
 
           候选人简介
-
-          <span class="required">
-            *
-          </span>
+          <span class="required">*</span>
 
         </label>
 
+
         <textarea
           id="introduction"
-          name="introduction"
-          maxlength="1000"
+          maxlength="5000"
+          placeholder="请输入候选人简介，包括个人经历、公共事务经历等。"
           required
-          placeholder="请介绍候选人的经历、公共事务参与情况等。"
         ></textarea>
 
+
+        <div class="field-help">
+          最多 5000 字。
+        </div>
+
       </div>
+
+
+    </section>
+
+
+    <!-- =========================
+         竞选声明
+    ========================== -->
+
+    <section class="section">
+
+      <h2 class="section-title">
+        6. 竞选声明
+      </h2>
 
 
       <div class="field">
@@ -682,101 +1102,51 @@
         <label for="campaignStatement">
 
           竞选声明
-
-          <span class="required">
-            *
-          </span>
+          <span class="required">*</span>
 
         </label>
 
+
         <textarea
           id="campaignStatement"
-          name="campaignStatement"
           maxlength="5000"
+          placeholder="请输入候选人的竞选声明、施政方向或其他希望向选民说明的内容。"
           required
-          placeholder="请输入候选人的竞选声明或施政方向。"
         ></textarea>
 
+
+        <div class="field-help">
+          最多 5000 字。
+        </div>
+
       </div>
+
 
     </section>
 
 
     <!-- =========================
-         提交前提示
+         Submit
     ========================== -->
-
-    <div class="notice warning">
-
-      <strong>
-        提交前请注意：
-      </strong>
-
-      <br>
-
-      请确认以上资料真实、完整。
-      提交后，申请将进入审核流程。
-      当前版本为系统开发阶段，
-      提交不会直接产生正式参选资格。
-
-    </div>
-
 
     <div class="submit-area">
 
       <button
-        type="submit"
+        type="button"
         class="submit-button"
         id="submitButton"
-        disabled
       >
         提交参选申请
       </button>
 
     </div>
 
-  </form>
-
-
-  <!-- =========================
-       提交成功
-  ========================== -->
-
-  <div
-    id="successBox"
-    class="success"
-  >
-
-    <div class="success-icon">
-      ✅
-    </div>
-
-
-    <h2>
-      申请已提交
-    </h2>
-
-
-    <p id="successMessage">
-
-      候选人参选申请已经成功提交，
-      并已进入审核流程。
-
-    </p>
-
 
     <div
-      id="applicationId"
-      class="application-id"
+      id="result"
+      class="result"
     ></div>
 
-
-    <p>
-
-      申请状态目前为「待审核」。
-      请保存申请编号，以便后续查询申请状态。
-
-    </p>
 
   </div>
 
@@ -785,31 +1155,194 @@
 
 <script>
 
-  /*
-   * ========================================
-   * Cloudflare Worker API
-   * ========================================
-   */
+  /* =========================================================
+     API
+  ========================================================= */
 
   const API_BASE =
     "https://axnews-admin-api.axie999666.workers.dev";
 
 
+  /* =========================================================
+     基础常量
+  ========================================================= */
+
+  const MAX_IMAGE_SIZE =
+    5 * 1024 * 1024;
+
+
+  const ALLOWED_IMAGE_TYPES = {
+    "image/jpeg": "jpg",
+    "image/png": "png",
+    "image/gif": "gif",
+    "image/webp": "webp"
+  };
+
+
+  /* =========================================================
+     DOM
+  ========================================================= */
+
+  const positionInputs =
+    document.querySelectorAll(
+      'input[name="position"]'
+    );
+
+
+  const partySelect =
+    document.getElementById("party");
+
+
+  const otherPartyContainer =
+    document.getElementById(
+      "otherPartyContainer"
+    );
+
+
+  const otherPartyName =
+    document.getElementById(
+      "otherPartyName"
+    );
+
+
+  const electionBox =
+    document.getElementById(
+      "electionBox"
+    );
+
+
+  const photoInput =
+    document.getElementById(
+      "photoInput"
+    );
+
+
+  const photoUpload =
+    document.getElementById(
+      "photoUpload"
+    );
+
+
+  const photoPreviewContainer =
+    document.getElementById(
+      "photoPreviewContainer"
+    );
+
+
+  const photoPreview =
+    document.getElementById(
+      "photoPreview"
+    );
+
+
+  const photoFileName =
+    document.getElementById(
+      "photoFileName"
+    );
+
+
+  const photoFileSize =
+    document.getElementById(
+      "photoFileSize"
+    );
+
+
+  const photoStatus =
+    document.getElementById(
+      "photoStatus"
+    );
+
+
+  const removePhotoButton =
+    document.getElementById(
+      "removePhotoButton"
+    );
+
+
+  const submitButton =
+    document.getElementById(
+      "submitButton"
+    );
+
+
+  const resultBox =
+    document.getElementById(
+      "result"
+    );
+
+
+  /* =========================================================
+     当前状态
+  ========================================================= */
+
   let electionsData = null;
 
   let partiesData = null;
 
+  let currentElection = null;
 
-  /*
-   * ========================================
-   * 阿谢纪年日期格式
-   * ========================================
-   */
+  let selectedPhotoFile = null;
 
-  function formatAxieDate(dateString) {
+  let uploadedPhotoPath = "";
+
+
+  /* =========================================================
+     HTML escape
+  ========================================================= */
+
+  function escapeHtml(value) {
+
+    if (
+      value === null ||
+      value === undefined
+    ) {
+      return "";
+    }
+
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+
+  }
+
+
+  /* =========================================================
+     阿谢纪年
+  ========================================================= */
+
+  function formatAxieYear(year) {
+
+    const axieYear =
+      Number(year) - 2023;
+
+
+    if (axieYear === 1) {
+      return "阿谢元年";
+    }
+
+
+    if (axieYear > 1) {
+      return `阿谢${axieYear}年`;
+    }
+
+
+    return `阿谢${year}年`;
+
+  }
+
+
+  function formatAxieDate(value) {
+
+    if (!value) {
+      return "—";
+    }
+
 
     const date =
-      new Date(dateString);
+      new Date(value);
 
 
     if (
@@ -817,9 +1350,7 @@
         date.getTime()
       )
     ) {
-
-      return "日期未知";
-
+      return value;
     }
 
 
@@ -828,43 +1359,52 @@
 
 
     const month =
-      date.getMonth() + 1;
+      String(
+        date.getMonth() + 1
+      ).padStart(2, "0");
 
 
     const day =
-      date.getDate();
-
-
-    const axieYear =
-      year - 2023;
-
-
-    const yearText =
-      axieYear === 1
-        ? "元年"
-        : `${axieYear}年`;
+      String(
+        date.getDate()
+      ).padStart(2, "0");
 
 
     return (
-      `阿谢${yearText}` +
+      `${formatAxieYear(year)}` +
       `${month}月${day}日`
     );
 
   }
 
 
-  /*
-   * ========================================
-   * 获取职位对应的选举
-   * ========================================
-   */
+  /* =========================================================
+     获取职位
+  ========================================================= */
 
-  function getElectionForPosition(position) {
+  function getSelectedPosition() {
+
+    const selected =
+      document.querySelector(
+        'input[name="position"]:checked'
+      );
+
+
+    return selected
+      ? selected.value
+      : "president";
+
+  }
+
+
+  /* =========================================================
+     获取选举
+  ========================================================= */
+
+  function getElectionList(position) {
 
     if (!electionsData) {
-
-      return null;
-
+      return [];
     }
 
 
@@ -872,17 +1412,11 @@
       position === "president"
     ) {
 
-      return (
-        electionsData
-          .president
-          ?.elections
-          ?.find(
-            election =>
-              election.status !==
-              "cancelled"
-          )
-        || null
-      );
+      return Array.isArray(
+        electionsData.president?.elections
+      )
+        ? electionsData.president.elections
+        : [];
 
     }
 
@@ -891,168 +1425,336 @@
       position === "vicePresident"
     ) {
 
-      return (
-        electionsData
-          .vicePresident
-          ?.elections
-          ?.find(
-            election =>
-              election.status !==
-              "cancelled"
-          )
-        || null
-      );
+      return Array.isArray(
+        electionsData.vicePresident?.elections
+      )
+        ? electionsData.vicePresident.elections
+        : [];
 
     }
 
 
-    return null;
+    return [];
 
   }
 
 
-  /*
-   * ========================================
-   * 显示选举信息
-   * ========================================
-   */
+  function getCurrentElection(position) {
 
-  function updateElectionInfo() {
+    const list =
+      getElectionList(position);
 
-    const selected =
-      document.querySelector(
-        'input[name="position"]:checked'
+
+    if (!list.length) {
+      return null;
+    }
+
+
+    /*
+     * 优先选择未来或当前正在进行的选举。
+     *
+     * 已取消的选举不参与。
+     */
+
+    const available =
+      list.filter(
+        election =>
+          election.status !== "cancelled"
       );
 
 
-    const box =
-      document.getElementById(
-        "electionInfo"
+    if (!available.length) {
+      return null;
+    }
+
+
+    const now =
+      new Date();
+
+
+    /*
+     * 如果当前正在报名时间范围内，
+     * 优先选择该选举。
+     */
+
+    const active =
+      available.find(
+        election => {
+
+          if (
+            !election.start ||
+            !election.end
+          ) {
+            return false;
+          }
+
+
+          const start =
+            new Date(
+              election.start
+            );
+
+
+          const end =
+            new Date(
+              election.end
+            );
+
+
+          return (
+            now >= start &&
+            now <= end
+          );
+
+        }
       );
 
 
-    if (!selected) {
+    if (active) {
+      return active;
+    }
 
-      box.classList.remove(
-        "show"
-      );
 
-      box.innerHTML = "";
+    /*
+     * 否则选择最近的未来选举。
+     */
+
+    const future =
+      available
+        .filter(
+          election =>
+            election.start &&
+            new Date(
+              election.start
+            ) > now
+        )
+        .sort(
+          (a, b) =>
+            new Date(a.start) -
+            new Date(b.start)
+        );
+
+
+    if (future.length) {
+      return future[0];
+    }
+
+
+    /*
+     * 没有未来选举时，
+     * 使用最后一个可用选举。
+     */
+
+    return available[
+      available.length - 1
+    ];
+
+  }
+
+
+  /* =========================================================
+     显示选举
+  ========================================================= */
+
+  function renderElection(position) {
+
+    currentElection =
+      getCurrentElection(position);
+
+
+    if (!currentElection) {
+
+      electionBox.innerHTML = `
+        <div class="election-name">
+          暂无可申请的选举
+        </div>
+
+        <div class="election-meta">
+          当前没有可用的${escapeHtml(
+            position === "president"
+              ? "总统"
+              : "副总统"
+          )}选举。
+        </div>
+      `;
 
       return;
 
     }
 
 
-    const election =
-      getElectionForPosition(
-        selected.value
-      );
+    electionBox.innerHTML = `
 
+      <div class="election-name">
+        ${escapeHtml(
+          currentElection.name ||
+          `${formatAxieYear(
+            currentElection.gregorianYear
+          )}${
+            position === "president"
+              ? "总统选举"
+              : "副总统选举"
+          }`
+        )}
+      </div>
 
-    if (!election) {
+      <div class="election-meta">
 
-      box.classList.add(
-        "show"
-      );
+        选举编号：
+        ${escapeHtml(
+          currentElection.electionId
+        )}
 
-      box.innerHTML =
-        "目前没有找到该职位对应的选举。";
+        <br>
 
-      return;
+        参选时间：
+        ${escapeHtml(
+          formatAxieDate(
+            currentElection.start
+          )
+        )}
+        —
+        ${escapeHtml(
+          formatAxieDate(
+            currentElection.end
+          )
+        )}
 
-    }
-
-
-    box.classList.add(
-      "show"
-    );
-
-
-    box.innerHTML = `
-
-      <strong>
-        ${escapeHtml(election.name)}
-      </strong>
-
-      <br>
-
-      选举开始：
-      ${formatAxieDate(election.start)}
-
-      <br>
-
-      选举结束：
-      ${formatAxieDate(election.end)}
-
-      <br>
-
-      就任日期：
-      ${formatAxieDate(election.inauguration)}
+      </div>
 
     `;
 
   }
 
 
-  /*
-   * ========================================
-   * HTML 转义
-   * ========================================
-   */
+  /* =========================================================
+     加载选举
+  ========================================================= */
 
-  function escapeHtml(value) {
+  async function loadElections() {
 
-    return String(value ?? "")
-      .replace(
-        /&/g,
-        "&amp;"
-      )
-      .replace(
-        /</g,
-        "&lt;"
-      )
-      .replace(
-        />/g,
-        "&gt;"
-      )
-      .replace(
-        /"/g,
-        "&quot;"
-      )
-      .replace(
-        /'/g,
-        "&#039;"
+    try {
+
+      const response =
+        await fetch(
+          "./data/elections.json",
+          {
+            cache: "no-store"
+          }
+        );
+
+
+      if (!response.ok) {
+        throw new Error(
+          `选举数据加载失败（${response.status}）`
+        );
+      }
+
+
+      electionsData =
+        await response.json();
+
+
+      renderElection(
+        getSelectedPosition()
       );
+
+    } catch (error) {
+
+      console.error(error);
+
+
+      electionBox.innerHTML = `
+        <div class="election-name">
+          无法加载选举信息
+        </div>
+
+        <div class="election-meta">
+          ${escapeHtml(
+            error.message
+          )}
+        </div>
+      `;
+
+    }
 
   }
 
 
-  /*
-   * ========================================
-   * 读取政党
-   * ========================================
-   */
+  /* =========================================================
+     加载政党
+  ========================================================= */
+
+  async function loadParties() {
+
+    try {
+
+      const response =
+        await fetch(
+          "./data/parties.json",
+          {
+            cache: "no-store"
+          }
+        );
+
+
+      if (!response.ok) {
+        throw new Error(
+          `政党数据加载失败（${response.status}）`
+        );
+      }
+
+
+      partiesData =
+        await response.json();
+
+
+      renderParties();
+
+    } catch (error) {
+
+      console.error(error);
+
+
+      partySelect.innerHTML = `
+        <option value="">
+          政党信息加载失败
+        </option>
+      `;
+
+    }
+
+  }
+
 
   function renderParties() {
 
-    const select =
-      document.getElementById(
-        "party"
+    partySelect.innerHTML = "";
+
+
+    const defaultOption =
+      document.createElement(
+        "option"
       );
 
 
-    select.innerHTML = `
+    defaultOption.value = "";
 
-      <option value="">
-        请选择政党
-      </option>
+    defaultOption.textContent =
+      "请选择政党";
 
-    `;
+
+    partySelect.appendChild(
+      defaultOption
+    );
 
 
     const parties =
-      partiesData?.parties || [];
+      Array.isArray(
+        partiesData?.parties
+      )
+        ? partiesData.parties
+        : [];
 
 
     parties.forEach(
@@ -1065,24 +1767,32 @@
 
 
         option.value =
-          party.partyId;
+          party.partyId ||
+          party.id ||
+          "";
 
 
         option.textContent =
-          party.partyName;
+          party.name ||
+          party.nameZh ||
+          party.partyName ||
+          "未命名政党";
 
 
-        select.appendChild(
+        option.dataset.partyName =
+          party.name ||
+          party.nameZh ||
+          party.partyName ||
+          "";
+
+
+        partySelect.appendChild(
           option
         );
 
       }
     );
 
-
-    /*
-     * 无党籍
-     */
 
     const independent =
       document.createElement(
@@ -1095,17 +1805,17 @@
 
 
     independent.textContent =
-      "无党籍 / 独立候选人";
+      "独立候选人";
 
 
-    select.appendChild(
+    independent.dataset.partyName =
+      "独立候选人";
+
+
+    partySelect.appendChild(
       independent
     );
 
-
-    /*
-     * 其他政党
-     */
 
     const other =
       document.createElement(
@@ -1118,247 +1828,358 @@
 
 
     other.textContent =
-      "其他政党";
+      "其他";
 
 
-    select.appendChild(
+    other.dataset.partyName =
+      "其他";
+
+
+    partySelect.appendChild(
       other
     );
-
-
-    /*
-     * 数据读取完成，
-     * 允许提交按钮恢复
-     */
-
-    document.getElementById(
-      "submitButton"
-    ).disabled = false;
 
   }
 
 
-  /*
-   * ========================================
-   * 其他政党输入框
-   * ========================================
-   */
+  /* =========================================================
+     政党变化
+  ========================================================= */
 
-  function updateOtherPartyField() {
+  partySelect.addEventListener(
+    "change",
+    () => {
 
-    const party =
-      document.getElementById(
-        "party"
-      ).value;
+      if (
+        partySelect.value ===
+        "other"
+      ) {
+
+        otherPartyContainer
+          .classList.add("show");
+
+      } else {
+
+        otherPartyContainer
+          .classList.remove("show");
+
+        otherPartyName.value =
+          "";
+
+      }
+
+    }
+  );
 
 
-    const field =
-      document.getElementById(
-        "otherPartyField"
+  /* =========================================================
+     职位变化
+  ========================================================= */
+
+  positionInputs.forEach(
+    input => {
+
+      input.addEventListener(
+        "change",
+        () => {
+
+          renderElection(
+            getSelectedPosition()
+          );
+
+        }
       );
 
+    }
+  );
 
-    const input =
-      document.getElementById(
-        "otherPartyName"
+
+  /* =========================================================
+     文件大小
+  ========================================================= */
+
+  function formatFileSize(bytes) {
+
+    if (bytes < 1024) {
+      return `${bytes} B`;
+    }
+
+
+    if (bytes < 1024 * 1024) {
+
+      return (
+        `${(bytes / 1024).toFixed(1)} KB`
       );
 
+    }
 
-    if (
-      party === "other"
-    ) {
 
-      field.style.display =
-        "block";
+    return (
+      `${(bytes / 1024 / 1024).toFixed(2)} MB`
+    );
 
-      input.required =
-        true;
+  }
 
-    } else {
 
-      field.style.display =
-        "none";
+  /* =========================================================
+     设置照片状态
+  ========================================================= */
 
-      input.required =
-        false;
+  function setPhotoStatus(
+    text,
+    type = ""
+  ) {
 
-      input.value = "";
+    photoStatus.textContent =
+      text || "";
 
+    photoStatus.className =
+      "photo-status";
+
+
+    if (type) {
+      photoStatus.classList.add(
+        type
+      );
     }
 
   }
 
 
-  /*
-   * ========================================
-   * 生成申请编号
-   *
-   * 注意：
-   * 最终以 Worker 返回的
-   * applicationId 为准。
-   * ========================================
-   */
+  /* =========================================================
+     选择照片
+  ========================================================= */
 
-  function generateApplicationId() {
+  photoInput.addEventListener(
+    "change",
+    () => {
 
-    const year =
-      new Date()
-        .getFullYear();
+      const file =
+        photoInput.files?.[0];
 
 
-    const random =
-      Math.random()
-        .toString(36)
-        .substring(2, 8)
-        .toUpperCase();
+      if (!file) {
+        return;
+      }
 
 
-    return (
-      `APP-${year}-${random}`
+      handleSelectedPhoto(file);
+
+    }
+  );
+
+
+  function handleSelectedPhoto(file) {
+
+    /*
+     * 文件类型
+     */
+
+    if (
+      !ALLOWED_IMAGE_TYPES[
+        file.type
+      ]
+    ) {
+
+      alert(
+        "照片格式不受支持。\n\n请使用 JPG、PNG、GIF 或 WebP。"
+      );
+
+      clearPhoto();
+
+      return;
+
+    }
+
+
+    /*
+     * 文件大小
+     */
+
+    if (
+      file.size >
+      MAX_IMAGE_SIZE
+    ) {
+
+      alert(
+        "照片不能超过 5 MB。"
+      );
+
+      clearPhoto();
+
+      return;
+
+    }
+
+
+    selectedPhotoFile =
+      file;
+
+    uploadedPhotoPath =
+      "";
+
+
+    const objectUrl =
+      URL.createObjectURL(
+        file
+      );
+
+
+    photoPreview.src =
+      objectUrl;
+
+
+    photoFileName.textContent =
+      file.name;
+
+
+    photoFileSize.textContent =
+      formatFileSize(
+        file.size
+      );
+
+
+    photoPreviewContainer
+      .classList.add("show");
+
+
+    setPhotoStatus(
+      "照片已选择，将在提交申请时上传。",
+      ""
     );
 
   }
 
 
-  /*
-   * ========================================
-   * 提交申请
-   * ========================================
-   */
+  /* =========================================================
+     移除照片
+  ========================================================= */
 
-  document
-    .getElementById(
-      "applicationForm"
-    )
-    .addEventListener(
-      "submit",
-      async function(event) {
-
-        event.preventDefault();
+  removePhotoButton.addEventListener(
+    "click",
+    clearPhoto
+  );
 
 
-        /*
-         * ------------------------------
-         * 基本检查
-         * ------------------------------
-         */
+  function clearPhoto() {
 
-        const selected =
-          document.querySelector(
-            'input[name="position"]:checked'
-          );
+    selectedPhotoFile =
+      null;
+
+    uploadedPhotoPath =
+      "";
 
 
-        if (!selected) {
-
-          alert(
-            "请选择参选职位。"
-          );
-
-          return;
-
-        }
+    photoInput.value =
+      "";
 
 
-        const election =
-          getElectionForPosition(
-            selected.value
-          );
+    photoPreview.src =
+      "";
 
 
-        if (!election) {
-
-          alert(
-            "目前没有可申请的选举。"
-          );
-
-          return;
-
-        }
+    photoFileName.textContent =
+      "";
 
 
-        const partyId =
-          document.getElementById(
-            "party"
-          ).value;
+    photoFileSize.textContent =
+      "";
 
 
-        if (!partyId) {
-
-          alert(
-            "请选择所属政党。"
-          );
-
-          return;
-
-        }
+    photoPreviewContainer
+      .classList.remove("show");
 
 
-        /*
-         * ------------------------------
-         * 确定政党名称
-         * ------------------------------
-         */
+    setPhotoStatus(
+      "",
+      ""
+    );
 
-        let partyName = "";
-
-
-        if (
-          partyId ===
-          "independent"
-        ) {
-
-          partyName =
-            "无党籍 / 独立候选人";
-
-        }
+  }
 
 
-        else if (
-          partyId ===
-          "other"
-        ) {
+  /* =========================================================
+     拖放上传
+  ========================================================= */
 
-          partyName =
-            document
-              .getElementById(
-                "otherPartyName"
+  photoUpload.addEventListener(
+    "dragover",
+    event => {
+
+      event.preventDefault();
+
+      photoUpload.classList.add(
+        "dragover"
+      );
+
+    }
+  );
+
+
+  photoUpload.addEventListener(
+    "dragleave",
+    () => {
+
+      photoUpload.classList.remove(
+        "dragover"
+      );
+
+    }
+  );
+
+
+  photoUpload.addEventListener(
+    "drop",
+    event => {
+
+      event.preventDefault();
+
+
+      photoUpload.classList.remove(
+        "dragover"
+      );
+
+
+      const file =
+        event.dataTransfer.files?.[0];
+
+
+      if (file) {
+        handleSelectedPhoto(file);
+      }
+
+    }
+  );
+
+
+  /* =========================================================
+     Base64
+  ========================================================= */
+
+  function fileToBase64(file) {
+
+    return new Promise(
+      (resolve, reject) => {
+
+        const reader =
+          new FileReader();
+
+
+        reader.onload = () => {
+
+          const result =
+            reader.result;
+
+
+          if (
+            typeof result !==
+            "string"
+          ) {
+
+            reject(
+              new Error(
+                "无法读取照片文件。"
               )
-              .value
-              .trim();
-
-
-          if (!partyName) {
-
-            alert(
-              "请输入其他政党名称。"
-            );
-
-            return;
-
-          }
-
-        }
-
-
-        else {
-
-          const party =
-            (
-              partiesData
-                ?.parties
-              || []
-            ).find(
-              item =>
-                item.partyId ===
-                partyId
-            );
-
-
-          if (!party) {
-
-            alert(
-              "无法找到所选政党资料。"
             );
 
             return;
@@ -1366,461 +2187,703 @@
           }
 
 
-          partyName =
-            party.partyName;
+          /*
+           * result:
+           *
+           * data:image/jpeg;base64,XXXX
+           *
+           * 只把逗号后面的内容交给 Worker。
+           */
 
-        }
+          const comma =
+            result.indexOf(",");
 
 
-        /*
-         * ------------------------------
-         * 获取表单内容
-         * ------------------------------
-         */
+          if (comma === -1) {
 
-        const name =
-          document
-            .getElementById(
-              "name"
+            reject(
+              new Error(
+                "照片数据格式错误。"
+              )
+            );
+
+            return;
+
+          }
+
+
+          resolve(
+            result.slice(
+              comma + 1
             )
+          );
+
+        };
+
+
+        reader.onerror = () => {
+
+          reject(
+            new Error(
+              "读取照片失败。"
+            )
+          );
+
+        };
+
+
+        reader.readAsDataURL(
+          file
+        );
+
+      }
+    );
+
+  }
+
+
+  /* =========================================================
+     上传照片
+  ========================================================= */
+
+  async function uploadCandidatePhoto() {
+
+    if (!selectedPhotoFile) {
+
+      /*
+       * 没有照片：
+       * 直接返回空字符串。
+       */
+
+      return "";
+
+    }
+
+
+    setPhotoStatus(
+      "正在上传候选人照片……",
+      "uploading"
+    );
+
+
+    const base64 =
+      await fileToBase64(
+        selectedPhotoFile
+      );
+
+
+    const extension =
+      ALLOWED_IMAGE_TYPES[
+        selectedPhotoFile.type
+      ];
+
+
+    const response =
+      await fetch(
+        `${API_BASE}/upload-candidate-image`,
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type":
+              "application/json"
+          },
+
+          body: JSON.stringify({
+
+            fileName:
+              selectedPhotoFile.name,
+
+            content:
+              base64,
+
+            contentType:
+              selectedPhotoFile.type,
+
+            extension:
+              extension
+
+          })
+
+        }
+      );
+
+
+    let data = null;
+
+
+    try {
+
+      data =
+        await response.json();
+
+    } catch {
+
+      data = null;
+
+    }
+
+
+    if (!response.ok) {
+
+      throw new Error(
+        data?.error ||
+        `照片上传失败（HTTP ${response.status}）`
+      );
+
+    }
+
+
+    if (
+      !data?.path
+    ) {
+
+      throw new Error(
+        "照片上传成功，但服务器没有返回照片路径。"
+      );
+
+    }
+
+
+    uploadedPhotoPath =
+      data.path;
+
+
+    setPhotoStatus(
+      "照片上传成功。",
+      "success"
+    );
+
+
+    return uploadedPhotoPath;
+
+  }
+
+
+  /* =========================================================
+     获取政党资料
+  ========================================================= */
+
+  function getPartyInfo() {
+
+    const partyId =
+      partySelect.value;
+
+
+    if (!partyId) {
+
+      return {
+        partyId: "",
+        partyName: ""
+      };
+
+    }
+
+
+    if (
+      partyId ===
+      "independent"
+    ) {
+
+      return {
+        partyId: "independent",
+        partyName: "独立候选人"
+      };
+
+    }
+
+
+    if (
+      partyId ===
+      "other"
+    ) {
+
+      return {
+        partyId: "other",
+        partyName:
+          otherPartyName.value.trim()
+      };
+
+    }
+
+
+    const option =
+      partySelect.options[
+        partySelect.selectedIndex
+      ];
+
+
+    return {
+
+      partyId,
+
+      partyName:
+        option?.dataset?.partyName ||
+        option?.textContent ||
+        ""
+
+    };
+
+  }
+
+
+  /* =========================================================
+     验证
+  ========================================================= */
+
+  function validateForm() {
+
+    const position =
+      getSelectedPosition();
+
+
+    if (!currentElection) {
+
+      return "目前没有可用的选举。";
+
+    }
+
+
+    const name =
+      document
+        .getElementById("name")
+        .value
+        .trim();
+
+
+    const englishName =
+      document
+        .getElementById("englishName")
+        .value
+        .trim();
+
+
+    const partyInfo =
+      getPartyInfo();
+
+
+    const introduction =
+      document
+        .getElementById("introduction")
+        .value
+        .trim();
+
+
+    const campaignStatement =
+      document
+        .getElementById(
+          "campaignStatement"
+        )
+        .value
+        .trim();
+
+
+    if (!name) {
+      return "请输入中文姓名。";
+    }
+
+
+    if (!englishName) {
+      return "请输入英文姓名。";
+    }
+
+
+    if (!partyInfo.partyId) {
+      return "请选择所属政党。";
+    }
+
+
+    if (
+      partyInfo.partyId ===
+      "other" &&
+      !partyInfo.partyName
+    ) {
+
+      return "请选择“其他”后填写政党名称。";
+
+    }
+
+
+    if (!introduction) {
+      return "请输入候选人简介。";
+    }
+
+
+    if (!campaignStatement) {
+      return "请输入竞选声明。";
+    }
+
+
+    if (
+      introduction.length >
+      5000
+    ) {
+
+      return "候选人简介不能超过 5000 字。";
+
+    }
+
+
+    if (
+      campaignStatement.length >
+      5000
+    ) {
+
+      return "竞选声明不能超过 5000 字。";
+
+    }
+
+
+    /*
+     * 照片是可选的，
+     * 因此这里绝对不检查
+     * selectedPhotoFile 是否存在。
+     */
+
+
+    return "";
+
+  }
+
+
+  /* =========================================================
+     显示结果
+  ========================================================= */
+
+  function showResult(
+    type,
+    title,
+    message,
+    applicationId = ""
+  ) {
+
+    resultBox.className =
+      `result show ${type}`;
+
+
+    resultBox.innerHTML = `
+
+      <div class="result-title">
+        ${escapeHtml(title)}
+      </div>
+
+      <div>
+        ${escapeHtml(message)}
+      </div>
+
+      ${
+        applicationId
+          ? `
+            <div class="application-id">
+              申请编号：
+              ${escapeHtml(
+                applicationId
+              )}
+            </div>
+          `
+          : ""
+      }
+
+    `;
+
+
+    resultBox.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+
+  }
+
+
+  /* =========================================================
+     提交申请
+  ========================================================= */
+
+  submitButton.addEventListener(
+    "click",
+    submitApplication
+  );
+
+
+  async function submitApplication() {
+
+    /*
+     * 清除旧结果
+     */
+
+    resultBox.className =
+      "result";
+
+
+    resultBox.innerHTML =
+      "";
+
+
+    /*
+     * 表单验证
+     */
+
+    const validationError =
+      validateForm();
+
+
+    if (validationError) {
+
+      showResult(
+        "error",
+        "无法提交申请",
+        validationError
+      );
+
+      return;
+
+    }
+
+
+    /*
+     * 防止重复点击
+     */
+
+    submitButton.disabled =
+      true;
+
+    submitButton.textContent =
+      "正在提交……";
+
+
+    try {
+
+      /*
+       * 先上传照片。
+       *
+       * 没有照片时：
+       *
+       * uploadCandidatePhoto()
+       *
+       * 会直接返回 ""。
+       */
+
+      const photoPath =
+        await uploadCandidatePhoto();
+
+
+      const partyInfo =
+        getPartyInfo();
+
+
+      const position =
+        getSelectedPosition();
+
+
+      const japaneseName =
+        document
+          .getElementById(
+            "japaneseName"
+          )
+          .value
+          .trim();
+
+
+      const introduction =
+        document
+          .getElementById(
+            "introduction"
+          )
+          .value
+          .trim();
+
+
+      const campaignStatement =
+        document
+          .getElementById(
+            "campaignStatement"
+          )
+          .value
+          .trim();
+
+
+      /*
+       * 申请数据
+       */
+
+      const application = {
+
+        electionId:
+          currentElection.electionId,
+
+        position,
+
+        name:
+          document
+            .getElementById("name")
             .value
-            .trim();
+            .trim(),
 
-
-        const englishName =
+        englishName:
           document
             .getElementById(
               "englishName"
             )
             .value
-            .trim();
+            .trim(),
 
+        japaneseName,
 
-        const japaneseName =
-          document
-            .getElementById(
-              "japaneseName"
-            )
-            .value
-            .trim();
+        partyId:
+          partyInfo.partyId,
 
-
-        const photo =
-          document
-            .getElementById(
-              "photo"
-            )
-            .value
-            .trim()
-            || null;
-
-
-        const introduction =
-          document
-            .getElementById(
-              "introduction"
-            )
-            .value
-            .trim();
-
-
-        const campaignStatement =
-          document
-            .getElementById(
-              "campaignStatement"
-            )
-            .value
-            .trim();
-
+        partyName:
+          partyInfo.partyName,
 
         /*
-         * ------------------------------
-         * 客户端生成一个申请编号
+         * 有照片：
+         * candidate-images/xxx.jpg
          *
-         * Worker 如果生成了新的编号，
-         * 最终会以 Worker 的为准。
-         * ------------------------------
+         * 没有照片：
+         * ""
          */
 
-        const application = {
+        photo:
+          photoPath,
 
-          applicationId:
-            generateApplicationId(),
+        introduction,
 
-          electionId:
-            election.electionId,
+        campaignStatement
 
-          position:
-            selected.value,
-
-          name:
-            name,
-
-          englishName:
-            englishName,
-
-          japaneseName:
-            japaneseName,
-
-          partyId:
-            partyId,
-
-          partyName:
-            partyName,
-
-          photo:
-            photo,
-
-          introduction:
-            introduction,
-
-          campaignStatement:
-            campaignStatement,
-
-          submittedAt:
-            new Date().toISOString(),
-
-          status:
-            "pending"
-
-        };
-
-
-        /*
-         * ------------------------------
-         * 锁定提交按钮
-         * ------------------------------
-         */
-
-        const submitButton =
-          document.getElementById(
-            "submitButton"
-          );
-
-
-        submitButton.disabled =
-          true;
-
-
-        submitButton.textContent =
-          "正在提交……";
-
-
-        /*
-         * ------------------------------
-         * 请求 Cloudflare Worker
-         * ------------------------------
-         */
-
-        try {
-
-          const response =
-            await fetch(
-              `${API_BASE}/candidate-applications`,
-              {
-
-                method:
-                  "POST",
-
-                headers: {
-
-                  "Content-Type":
-                    "application/json"
-
-                },
-
-                body:
-                  JSON.stringify(
-                    application
-                  )
-
-              }
-            );
-
-
-          /*
-           * 尝试读取 JSON
-           */
-
-          let data = null;
-
-
-          try {
-
-            data =
-              await response.json();
-
-          } catch {
-
-            data = null;
-
-          }
-
-
-          /*
-           * Worker 返回 HTTP 错误
-           */
-
-          if (
-            !response.ok
-          ) {
-
-            throw new Error(
-              data?.message
-              ||
-              data?.error
-              ||
-              `服务器返回 HTTP ${response.status}`
-            );
-
-          }
-
-
-          /*
-           * ------------------------------
-           * 获取 Worker 最终申请编号
-           * ------------------------------
-           */
-
-          const finalApplicationId =
-            data
-              ?.application
-              ?.applicationId
-            ||
-            data
-              ?.applicationId
-            ||
-            application.applicationId;
-
-
-          /*
-           * 控制台记录
-           */
-
-          console.log(
-            "Candidate Application submitted:",
-            data
-          );
-
-
-          /*
-           * ------------------------------
-           * 显示成功页面
-           * ------------------------------
-           */
-
-          document
-            .getElementById(
-              "applicationId"
-            )
-            .textContent =
-            finalApplicationId;
-
-
-          document
-            .getElementById(
-              "applicationForm"
-            )
-            .style.display =
-            "none";
-
-
-          document
-            .getElementById(
-              "successBox"
-            )
-            .classList.add(
-              "show"
-            );
-
-
-        } catch (error) {
-
-          /*
-           * ------------------------------
-           * 提交失败
-           * ------------------------------
-           */
-
-          console.error(
-            "Candidate application error:",
-            error
-          );
-
-
-          alert(
-            `申请提交失败：${error.message}`
-          );
-
-
-          /*
-           * 恢复按钮
-           */
-
-          submitButton.disabled =
-            false;
-
-
-          submitButton.textContent =
-            "提交参选申请";
-
-        }
-
-      }
-    );
-
-
-  /*
-   * ========================================
-   * 职位选择事件
-   * ========================================
-   */
-
-  document
-    .querySelectorAll(
-      'input[name="position"]'
-    )
-    .forEach(
-      input => {
-
-        input.addEventListener(
-          "change",
-          updateElectionInfo
-        );
-
-      }
-    );
-
-
-  /*
-   * ========================================
-   * 政党选择事件
-   * ========================================
-   */
-
-  document
-    .getElementById(
-      "party"
-    )
-    .addEventListener(
-      "change",
-      updateOtherPartyField
-    );
-
-
-  /*
-   * ========================================
-   * 初始化
-   * ========================================
-   */
-
-  async function loadData() {
-
-    try {
-
-      const [
-        electionsResponse,
-        partiesResponse
-      ] = await Promise.all([
-
-        fetch(
-          "./data/elections.json",
-          {
-            cache:
-              "no-store"
-          }
-        ),
-
-        fetch(
-          "./data/parties.json",
-          {
-            cache:
-              "no-store"
-          }
-        )
-
-      ]);
-
-
-      if (
-        !electionsResponse.ok
-        ||
-        !partiesResponse.ok
-      ) {
-
-        throw new Error(
-          "无法读取 JSON 数据"
-        );
-
-      }
-
-
-      electionsData =
-        await electionsResponse.json();
-
-
-      partiesData =
-        await partiesResponse.json();
+      };
 
 
       /*
-       * 渲染政党
+       * 提交到 Worker
        */
 
-      renderParties();
+      const response =
+        await fetch(
+          `${API_BASE}/candidate-applications`,
+          {
+            method: "POST",
+
+            headers: {
+              "Content-Type":
+                "application/json"
+            },
+
+            body:
+              JSON.stringify(
+                application
+              )
+
+          }
+        );
+
+
+      let data = null;
+
+
+      try {
+
+        data =
+          await response.json();
+
+      } catch {
+
+        data = null;
+
+      }
+
+
+      if (!response.ok) {
+
+        throw new Error(
+          data?.error ||
+          `申请提交失败（HTTP ${response.status}）`
+        );
+
+      }
 
 
       /*
-       * 隐藏加载提示
+       * 成功
+       */
+
+      showResult(
+        "success",
+
+        "参选申请已提交",
+
+        "您的申请已经成功提交，并将进入管理员审核程序。审核通过后，系统会将您加入正式候选人名单。",
+
+        data?.application?.applicationId ||
+        data?.applicationId ||
+        ""
+      );
+
+
+      /*
+       * 防止再次重复提交
+       */
+
+      submitButton.textContent =
+        "申请已提交";
+
+
+      /*
+       * 禁用表单
        */
 
       document
-        .getElementById(
-          "loadingNotice"
+        .querySelectorAll(
+          "input, select, textarea"
         )
-        .style.display =
-        "none";
+        .forEach(
+          element => {
+            element.disabled =
+              true;
+          }
+        );
 
 
     } catch (error) {
 
-      console.error(
-        error
+      console.error(error);
+
+
+      showResult(
+        "error",
+
+        "申请提交失败",
+
+        error.message ||
+        "发生未知错误，请稍后重试。"
       );
 
 
-      const notice =
-        document.getElementById(
-          "loadingNotice"
-        );
+      submitButton.disabled =
+        false;
 
-
-      notice.className =
-        "notice error";
-
-
-      notice.textContent =
-        "页面加载失败：无法读取选举或政党资料。";
-
-
-      /*
-       * 数据加载失败时，
-       * 禁止提交
-       */
-
-      document
-        .getElementById(
-          "submitButton"
-        )
-        .disabled =
-        true;
+      submitButton.textContent =
+        "提交参选申请";
 
     }
 
   }
 
 
-  loadData();
+  /* =========================================================
+     初始化
+  ========================================================= */
+
+  async function initialize() {
+
+    await Promise.all([
+      loadElections(),
+      loadParties()
+    ]);
+
+  }
+
+
+  initialize();
 
 </script>
 
