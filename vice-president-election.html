@@ -336,8 +336,102 @@ function escapeHTML(value) {
 
 
 /* =========================
+   阿谢纪年日期格式化
+========================= */
+
+/*
+  阿谢元年 = 公历 2024 年
+
+  因此：
+
+  阿谢年 = 公历年份 - 2023
+
+  页面显示使用阿谢纪年。
+
+  注意：
+  这里仍然使用 Asia/Tokyo（UTC+9）
+  来确定选举实际发生的日期。
+
+  程序内部的选举状态判断和倒计时
+  仍然直接使用 ISO 时间戳。
+*/
+
+function formatAxieDate(dateString) {
+
+  if (!dateString) {
+    return "未公布";
+  }
+
+  const date =
+    new Date(dateString);
+
+  if (Number.isNaN(date.getTime())) {
+    return "日期错误";
+  }
+
+
+  const parts =
+    new Intl.DateTimeFormat(
+      "en-US",
+      {
+        timeZone: "Asia/Tokyo",
+        year: "numeric",
+        month: "numeric",
+        day: "numeric"
+      }
+    ).formatToParts(date);
+
+
+  let year = null;
+  let month = null;
+  let day = null;
+
+
+  for (const part of parts) {
+
+    if (part.type === "year") {
+      year = Number(part.value);
+    }
+
+    if (part.type === "month") {
+      month = Number(part.value);
+    }
+
+    if (part.type === "day") {
+      day = Number(part.value);
+    }
+
+  }
+
+
+  if (
+    !year ||
+    !month ||
+    !day
+  ) {
+    return "日期错误";
+  }
+
+
+  const axieYear =
+    year - 2023;
+
+
+  return `阿谢${axieYear}年${month}月${day}日`;
+}
+
+
+/* =========================
    日期格式化
 ========================= */
+
+/*
+  保留完整日期时间格式化函数，
+  方便以后其他模块使用。
+
+  当前选举页面的主要日期显示
+  使用 formatAxieDate()。
+*/
 
 function formatDate(dateString) {
 
@@ -345,7 +439,8 @@ function formatDate(dateString) {
     return "未公布";
   }
 
-  const date = new Date(dateString);
+  const date =
+    new Date(dateString);
 
   if (Number.isNaN(date.getTime())) {
     return "日期错误";
@@ -446,22 +541,30 @@ async function loadData() {
       electionData.name;
 
 
+    /*
+      使用阿谢纪年显示选举期间
+    */
+
     document.getElementById(
       "election-period"
     ).textContent =
-      `选举期间：${formatDate(
+      `选举期间：${formatAxieDate(
         electionData.start
-      )} ～ ${formatDate(
+      )} ～ ${formatAxieDate(
         electionData.end
-      )}`;
+      )}（UTC+9）`;
 
+
+    /*
+      使用阿谢纪年显示副总统就任日期
+    */
 
     document.getElementById(
       "inauguration-date"
     ).textContent =
-      `副总统就任：${formatDate(
+      `副总统就任：${formatAxieDate(
         electionData.inauguration
-      )}`;
+      )}（UTC+9）`;
 
 
     /* =========================
@@ -683,6 +786,10 @@ function updateElectionStatus() {
     );
 
 
+  /*
+    选举尚未开始
+  */
+
   if (now < start) {
 
     statusTitle.textContent =
@@ -696,6 +803,10 @@ function updateElectionStatus() {
     return;
   }
 
+
+  /*
+    选举进行中
+  */
 
   if (
     now >= start &&
@@ -714,6 +825,10 @@ function updateElectionStatus() {
     return;
   }
 
+
+  /*
+    选举已经结束
+  */
 
   statusTitle.textContent =
     "选举已结束";
@@ -779,6 +894,10 @@ function formatCountdown(milliseconds) {
 
 loadData();
 
+
+/*
+  每秒更新一次状态和倒计时
+*/
 
 setInterval(
   updateElectionStatus,
