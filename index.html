@@ -508,6 +508,28 @@ h2 {
 
 
 /* =========================================================
+   投票按钮
+========================================================= */
+
+.vote-button {
+
+  margin-left: 10px;
+
+}
+
+
+.vote-button.disabled {
+
+  opacity: 0.5;
+
+  pointer-events: none;
+
+  cursor: not-allowed;
+
+}
+
+
+/* =========================================================
    新闻
 ========================================================= */
 
@@ -634,6 +656,13 @@ footer {
 
   }
 
+
+  .vote-button {
+
+    margin-left: 0;
+
+  }
+
 }
 
 </style>
@@ -686,7 +715,17 @@ footer {
      导航栏
 ======================================================= -->
 
-<nav><a href="https://directory.republic-of-axie.org/" data-zh="网站查询" data-en="Site Directory" data-jp="サイト検索">网站查询</a>
+<nav>
+
+  <a
+    href="https://directory.republic-of-axie.org/"
+    data-zh="网站查询"
+    data-en="Site Directory"
+    data-jp="サイト検索"
+  >
+    网站查询
+  </a>
+
 
   <a
     href="#about"
@@ -942,12 +981,26 @@ footer {
   </div>
 
 
+  <!-- 选举介绍页面 -->
+
   <a
     id="election-button"
     href="#"
     class="button election-button"
   >
-    查看选举
+    进入选举页面
+  </a>
+
+
+  <!-- 投票入口 -->
+
+  <a
+    id="vote-button"
+    href="#"
+    class="button election-button vote-button"
+    aria-disabled="true"
+  >
+    🗳️ 进入投票
   </a>
 
 </section>
@@ -1367,6 +1420,7 @@ function applyLanguage() {
   /*
    * 更新选举模块语言
    */
+
   updateElectionLanguage();
 
 }
@@ -1718,12 +1772,18 @@ function updateElectionLanguage() {
       "election-button"
     );
 
+  const voteButton =
+    document.getElementById(
+      "vote-button"
+    );
+
 
   if (
     !title ||
     !description ||
     !badge ||
-    !button
+    !button ||
+    !voteButton
   ) {
 
     return;
@@ -1770,7 +1830,10 @@ function updateElectionLanguage() {
         "● 即将开始",
 
       button:
-        "进入选举页面"
+        "进入选举页面",
+
+      voteButton:
+        "🗳️ 进入投票"
 
     },
 
@@ -1802,7 +1865,10 @@ function updateElectionLanguage() {
         "● Upcoming",
 
       button:
-        "Enter Election"
+        "Enter Election",
+
+      voteButton:
+        "🗳️ Vote"
 
     },
 
@@ -1822,7 +1888,7 @@ function updateElectionLanguage() {
         "阿謝国副大統領選挙が現在行われています。",
 
       presidentUpcoming:
-        "次回の阿謝国大統領選挙が近づいています。",
+        "次回の阿謝国大統領選挙が予定されています。",
 
       vicePresidentUpcoming:
         "次回の阿謝国副大統領選挙が予定されています。",
@@ -1834,7 +1900,10 @@ function updateElectionLanguage() {
         "● 開催予定",
 
       button:
-        "選挙ページへ"
+        "選挙ページへ",
+
+      voteButton:
+        "🗳️ 投票する"
 
     }
 
@@ -1889,11 +1958,121 @@ function updateElectionLanguage() {
 
 
   /*
-   * 按钮
+   * 选举页面按钮
    */
 
   button.textContent =
     lang.button;
+
+
+  /*
+   * 投票按钮
+   */
+
+  voteButton.textContent =
+    lang.voteButton;
+
+}
+
+
+// =========================================================
+// 更新投票按钮状态
+//
+// 规则：
+// 尚未开始 → 禁用
+// 正在进行 → 启用
+// 已结束 → 禁用
+// =========================================================
+
+function updateVoteButton() {
+
+  const voteButton =
+    document.getElementById(
+      "vote-button"
+    );
+
+
+  if (
+    !voteButton ||
+    !currentElection
+  ) {
+
+    return;
+
+  }
+
+
+  const now =
+    new Date();
+
+
+  const start =
+    new Date(
+      currentElection.start
+    );
+
+
+  const end =
+    new Date(
+      currentElection.end
+    );
+
+
+  /*
+   * 正在投票
+   */
+
+  if (
+    now >= start &&
+    now <= end
+  ) {
+
+    voteButton.href =
+      "vote.html";
+
+    voteButton.classList.remove(
+      "disabled"
+    );
+
+    voteButton.style.pointerEvents =
+      "auto";
+
+    voteButton.style.opacity =
+      "1";
+
+    voteButton.setAttribute(
+      "aria-disabled",
+      "false"
+    );
+
+  }
+
+
+  /*
+   * 尚未开始 / 已结束
+   */
+
+  else {
+
+    voteButton.href =
+      "#";
+
+    voteButton.classList.add(
+      "disabled"
+    );
+
+    voteButton.style.pointerEvents =
+      "none";
+
+    voteButton.style.opacity =
+      "0.5";
+
+    voteButton.setAttribute(
+      "aria-disabled",
+      "true"
+    );
+
+  }
 
 }
 
@@ -2448,6 +2627,13 @@ async function loadElectionStatus() {
 
 
     /*
+     * 设置投票按钮
+     */
+
+    updateVoteButton();
+
+
+    /*
      * 显示实际选举日期
      */
 
@@ -2532,7 +2718,25 @@ async function loadElectionStatus() {
 
             }
 
+
+            /*
+             * 更新投票入口
+             */
+
+            updateVoteButton();
+
           }
+
+
+          /*
+           * 如果选举没有变化，
+           * 也必须每秒检查投票按钮。
+           *
+           * 这样到了正式投票开始时间，
+           * 按钮可以自动从禁用变为启用。
+           */
+
+          updateVoteButton();
 
 
           /*
@@ -2594,6 +2798,7 @@ async function loadElectionStatus() {
   }
 
 }
+
 
 async function loadNews() {
 
