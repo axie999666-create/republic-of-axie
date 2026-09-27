@@ -2,18 +2,9 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <title>候选人申请管理 | Republic of Axie</title>
-
-  <meta
-    name="description"
-    content="阿谢国候选人参选申请管理系统"
-  >
+  <title>候选人申请审核｜AXNews 管理后台</title>
 
   <style>
     * {
@@ -29,330 +20,635 @@
         "PingFang SC",
         "Microsoft YaHei",
         sans-serif;
-
-      background: #f4f6fa;
-      color: #172033;
+      background: #f4f7fb;
+      color: #182433;
     }
 
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    /* =========================
+       Header
+    ========================= */
+
     header {
-      background: #061b3a;
+      background: #071d49;
       color: white;
       padding: 18px 24px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
     }
 
     .header-inner {
-      max-width: 1180px;
+      max-width: 1200px;
       margin: auto;
 
       display: flex;
       align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
       gap: 14px;
     }
 
-    .header-inner img {
-      width: 54px;
-      height: 36px;
+    .brand img {
+      width: 48px;
+      height: 32px;
       object-fit: cover;
       border-radius: 4px;
     }
 
-    .brand {
-      font-size: 20px;
+    .brand-title {
+      font-size: 19px;
       font-weight: 700;
     }
 
-    .brand small {
-      display: block;
-      margin-top: 2px;
-
+    .brand-subtitle {
+      margin-top: 3px;
       font-size: 12px;
-      font-weight: 400;
       opacity: 0.75;
     }
 
+    .logout-button {
+      border: 1px solid rgba(255,255,255,0.35);
+      background: transparent;
+      color: white;
+      padding: 8px 14px;
+      border-radius: 8px;
+    }
+
+    .logout-button:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    /* =========================
+       Main
+    ========================= */
+
     main {
-      max-width: 1180px;
-      margin: 38px auto;
-      padding: 0 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px 20px 60px;
     }
 
     .page-title {
+      margin-bottom: 6px;
+      font-size: 28px;
+      font-weight: 750;
+    }
+
+    .page-description {
+      color: #64748b;
       margin-bottom: 26px;
     }
 
-    .page-title h1 {
-      margin: 0 0 7px;
-      font-size: 30px;
+    /* =========================
+       Login
+    ========================= */
+
+    #loginSection {
+      max-width: 460px;
+      margin: 70px auto;
     }
 
-    .page-title p {
-      margin: 0;
-      color: #667085;
-    }
-
-    .toolbar {
+    .login-card {
       background: white;
-      border-radius: 12px;
-      padding: 18px;
-
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      flex-wrap: wrap;
-
-      box-shadow:
-        0 3px 15px rgba(20, 40, 80, 0.06);
-
-      margin-bottom: 20px;
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
     }
 
-    .toolbar label {
+    .login-card h1 {
+      margin: 0 0 8px;
+      color: #071d49;
+      font-size: 25px;
+    }
+
+    .login-card p {
+      color: #64748b;
+      line-height: 1.6;
+    }
+
+    .form-group {
+      margin-top: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 14px;
       font-weight: 650;
     }
 
-    select {
-      padding: 9px 12px;
-      border: 1px solid #d5dae3;
-      border-radius: 7px;
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      border: 1px solid #d7dee8;
+      border-radius: 9px;
+      padding: 11px 13px;
       background: white;
-      font-size: 14px;
+      outline: none;
     }
 
-    .count {
-      margin-left: auto;
-      color: #667085;
-      font-size: 14px;
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: #3768b1;
+      box-shadow: 0 0 0 3px rgba(55, 104, 177, 0.12);
     }
 
-    .loading,
-    .empty,
-    .error {
-      background: white;
-      border-radius: 12px;
-      padding: 35px;
-      text-align: center;
+    .login-button {
+      width: 100%;
+      margin-top: 24px;
+      padding: 12px;
+      border: 0;
+      border-radius: 9px;
+      background: #0a3b82;
+      color: white;
+      font-weight: 700;
     }
 
-    .error {
+    .login-button:hover {
+      background: #092f68;
+    }
+
+    .login-button:disabled {
+      opacity: 0.65;
+      cursor: wait;
+    }
+
+    .error-message {
+      margin-top: 14px;
+      padding: 11px 13px;
+      border-radius: 8px;
+      background: #fff1f2;
       color: #b42318;
-      background: #fff1f0;
-      border: 1px solid #f2c7c3;
+      font-size: 14px;
+      line-height: 1.5;
     }
 
-    .application-list {
+    /* =========================
+       Toolbar
+    ========================= */
+
+    .toolbar {
+      background: white;
+      border-radius: 14px;
+      padding: 16px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+
+      box-shadow: 0 3px 15px rgba(15, 23, 42, 0.06);
+      margin-bottom: 20px;
+    }
+
+    .filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-button {
+      border: 1px solid #d7dee8;
+      background: white;
+      color: #465467;
+      border-radius: 8px;
+      padding: 8px 14px;
+    }
+
+    .filter-button:hover {
+      background: #f5f7fa;
+    }
+
+    .filter-button.active {
+      background: #0a3b82;
+      border-color: #0a3b82;
+      color: white;
+    }
+
+    .toolbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    .refresh-button {
+      border: 1px solid #ccd5e1;
+      background: white;
+      color: #1d3557;
+      padding: 8px 13px;
+      border-radius: 8px;
+    }
+
+    .refresh-button:hover {
+      background: #f5f7fa;
+    }
+
+    /* =========================
+       Application list
+    ========================= */
+
+    #applicationList {
       display: grid;
-      gap: 14px;
+      gap: 16px;
     }
 
     .application-card {
       background: white;
-      border-radius: 12px;
-      padding: 21px;
+      border-radius: 14px;
+      padding: 20px;
 
-      box-shadow:
-        0 3px 15px rgba(20, 40, 80, 0.05);
-
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 20px;
-      align-items: center;
+      box-shadow: 0 3px 15px rgba(15, 23, 42, 0.06);
+      border: 1px solid #e8edf3;
     }
 
-    .application-main h3 {
-      margin: 0 0 8px;
-      font-size: 18px;
-    }
-
-    .application-meta {
+    .application-header {
       display: flex;
-      gap: 9px;
-      flex-wrap: wrap;
-      color: #667085;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 15px;
+    }
+
+    .candidate-name {
+      margin: 0;
+      font-size: 21px;
+      color: #102c57;
+    }
+
+    .candidate-en {
+      margin-top: 3px;
+      color: #66758a;
       font-size: 13px;
     }
 
-    .badge {
+    .application-id {
+      margin-top: 7px;
+      color: #8a96a8;
+      font-size: 12px;
+      font-family: monospace;
+    }
+
+    .status-badge {
       display: inline-block;
-      padding: 4px 9px;
+      white-space: nowrap;
+      padding: 5px 10px;
       border-radius: 999px;
       font-size: 12px;
-      font-weight: 650;
+      font-weight: 700;
     }
 
-    .badge.pending {
-      background: #fff4cc;
-      color: #775900;
+    .status-pending {
+      background: #fff7df;
+      color: #8a5a00;
     }
 
-    .badge.approved {
-      background: #e4f6e9;
-      color: #176b35;
+    .status-approved {
+      background: #e9f8ef;
+      color: #19733e;
     }
 
-    .badge.rejected {
-      background: #ffe6e4;
-      color: #a32920;
+    .status-rejected {
+      background: #fff0f0;
+      color: #b42318;
+    }
+
+    .application-meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .meta-item {
+      background: #f7f9fc;
+      border-radius: 9px;
+      padding: 11px 13px;
+    }
+
+    .meta-label {
+      color: #77859a;
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+
+    .meta-value {
+      color: #25364d;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .application-preview {
+      margin-top: 15px;
+      color: #55657a;
+      font-size: 14px;
+      line-height: 1.65;
+
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
 
     .application-actions {
+      margin-top: 18px;
+
       display: flex;
-      gap: 8px;
+      gap: 9px;
       flex-wrap: wrap;
-      justify-content: flex-end;
     }
 
-    button {
-      border: none;
-      border-radius: 7px;
-      padding: 9px 14px;
-
-      font-size: 14px;
+    .action-button {
+      border: 0;
+      border-radius: 8px;
+      padding: 9px 15px;
       font-weight: 650;
-
-      cursor: pointer;
     }
 
     .view-button {
-      background: #edf2f8;
-      color: #24476e;
+      background: #edf3fb;
+      color: #17457f;
     }
 
     .approve-button {
-      background: #176b35;
+      background: #198754;
       color: white;
     }
 
     .reject-button {
-      background: #a32920;
+      background: #c93636;
       color: white;
     }
 
-    button:hover {
-      opacity: 0.88;
+    .action-button:hover {
+      filter: brightness(0.96);
     }
 
-    .modal {
+    .action-button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* =========================
+       Empty / loading
+    ========================= */
+
+    .state-box {
+      background: white;
+      border-radius: 14px;
+      padding: 50px 20px;
+      text-align: center;
+      color: #718096;
+      box-shadow: 0 3px 15px rgba(15, 23, 42, 0.06);
+    }
+
+    .loading {
+      color: #52657d;
+    }
+
+    /* =========================
+       Modal
+    ========================= */
+
+    .modal-overlay {
       position: fixed;
       inset: 0;
+      z-index: 1000;
 
-      background: rgba(5, 15, 30, 0.58);
+      background: rgba(7, 29, 73, 0.48);
 
       display: none;
       align-items: center;
       justify-content: center;
 
       padding: 20px;
-      z-index: 1000;
     }
 
-    .modal.show {
+    .modal-overlay.show {
       display: flex;
     }
 
-    .modal-box {
+    .modal {
       width: min(760px, 100%);
       max-height: 90vh;
       overflow-y: auto;
 
       background: white;
-      border-radius: 14px;
-      padding: 28px;
-
-      box-shadow:
-        0 15px 45px rgba(0, 0, 0, 0.2);
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
     }
 
     .modal-header {
+      padding: 20px 22px;
+      border-bottom: 1px solid #e6ebf1;
+
       display: flex;
       justify-content: space-between;
       gap: 15px;
-      align-items: flex-start;
-
-      margin-bottom: 22px;
+      align-items: center;
     }
 
     .modal-header h2 {
-      margin: 0 0 5px;
+      margin: 0;
+      color: #102c57;
+      font-size: 21px;
     }
 
-    .application-id {
-      color: #667085;
-      font-family: monospace;
-      font-size: 13px;
+    .modal-close {
+      border: 0;
+      background: transparent;
+      font-size: 25px;
+      color: #7a8798;
+      line-height: 1;
     }
 
-    .close-button {
-      background: #edf0f4;
-      color: #445066;
-      font-size: 18px;
-      width: 38px;
-      height: 38px;
-      padding: 0;
+    .modal-body {
+      padding: 22px;
+    }
+
+    .detail-section {
+      margin-bottom: 23px;
+    }
+
+    .detail-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .detail-section h3 {
+      margin: 0 0 10px;
+      color: #173a6b;
+      font-size: 15px;
     }
 
     .detail-grid {
       display: grid;
-      grid-template-columns: 150px 1fr;
-      gap: 13px 20px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
 
-      margin-bottom: 25px;
+    .detail-item {
+      padding: 11px 13px;
+      border-radius: 8px;
+      background: #f7f9fc;
+    }
+
+    .detail-item.full {
+      grid-column: 1 / -1;
     }
 
     .detail-label {
-      font-weight: 650;
-      color: #596579;
+      color: #78869a;
+      font-size: 12px;
+      margin-bottom: 5px;
     }
 
     .detail-value {
+      color: #27384e;
+      font-size: 14px;
+      line-height: 1.6;
+      word-break: break-word;
       white-space: pre-wrap;
-      line-height: 1.7;
     }
 
-    .statement {
-      background: #f5f7fb;
-      border-radius: 9px;
-      padding: 15px;
-      white-space: pre-wrap;
-      line-height: 1.75;
-    }
-
-    .modal-actions {
-      border-top: 1px solid #e6e9ef;
+    .review-area {
+      border-top: 1px solid #e6ebf1;
       padding-top: 20px;
+    }
 
+    .review-note {
+      width: 100%;
+      min-height: 110px;
+      resize: vertical;
+
+      border: 1px solid #d7dee8;
+      border-radius: 9px;
+      padding: 11px 13px;
+      outline: none;
+    }
+
+    .review-note:focus {
+      border-color: #3768b1;
+      box-shadow: 0 0 0 3px rgba(55, 104, 177, 0.12);
+    }
+
+    .review-actions {
       display: flex;
-      gap: 10px;
       justify-content: flex-end;
+      gap: 9px;
+      margin-top: 12px;
+      flex-wrap: wrap;
     }
 
-    .photo-preview {
-      max-width: 180px;
-      max-height: 220px;
-      border-radius: 8px;
-      object-fit: cover;
+    /* =========================
+       Toast
+    ========================= */
+
+    #toast {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 2000;
+
+      max-width: 360px;
+
+      background: #102c57;
+      color: white;
+      padding: 12px 16px;
+      border-radius: 9px;
+
+      box-shadow: 0 8px 30px rgba(0,0,0,0.18);
+
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
+
+      transition: 0.2s ease;
+      font-size: 14px;
+      line-height: 1.5;
     }
+
+    #toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #toast.success {
+      background: #198754;
+    }
+
+    #toast.error {
+      background: #b42318;
+    }
+
+    /* =========================
+       Responsive
+    ========================= */
 
     @media (max-width: 700px) {
+      header {
+        padding: 15px;
+      }
 
-      .application-card {
+      .header-inner {
+        align-items: flex-start;
+      }
+
+      .brand-title {
+        font-size: 16px;
+      }
+
+      .brand img {
+        width: 42px;
+        height: 28px;
+      }
+
+      main {
+        padding: 22px 14px 45px;
+      }
+
+      .page-title {
+        font-size: 23px;
+      }
+
+      .application-meta {
         grid-template-columns: 1fr;
       }
 
-      .application-actions {
-        justify-content: flex-start;
-      }
-
-      .count {
-        margin-left: 0;
+      .application-header {
+        flex-direction: column;
       }
 
       .detail-grid {
         grid-template-columns: 1fr;
-        gap: 5px;
       }
 
-      .detail-label {
-        margin-top: 8px;
+      .detail-item.full {
+        grid-column: auto;
+      }
+
+      .modal-overlay {
+        padding: 10px;
+      }
+
+      .modal {
+        max-height: 94vh;
       }
     }
   </style>
@@ -360,114 +656,196 @@
 
 <body>
 
-<header>
-
+<header id="mainHeader" style="display:none;">
   <div class="header-inner">
 
-    <img
-      src="/ROA_flag.png"
-      alt="Republic of Axie"
-    >
-
     <div class="brand">
-      阿谢国
-      <small>Republic of Axie · Administration</small>
+      <img src="/ROA_flag.png" alt="Republic of Axie">
+
+      <div>
+        <div class="brand-title">
+          AXNews 管理后台
+        </div>
+
+        <div class="brand-subtitle">
+          候选人申请审核系统
+        </div>
+      </div>
     </div>
 
-  </div>
+    <button
+      class="logout-button"
+      onclick="logout()"
+    >
+      退出登录
+    </button>
 
+  </div>
 </header>
 
 
-<main>
+<!-- =========================
+     Login
+========================= -->
+
+<section id="loginSection">
+
+  <div class="login-card">
+
+    <h1>管理员登录</h1>
+
+    <p>
+      候选人申请审核属于管理功能。
+      登录后才能读取申请资料并进行审核操作。
+    </p>
+
+    <form id="loginForm">
+
+      <div class="form-group">
+
+        <label for="password">
+          管理员密码
+        </label>
+
+        <input
+          id="password"
+          type="password"
+          autocomplete="current-password"
+          placeholder="请输入管理员密码"
+          required
+        >
+
+      </div>
+
+      <button
+        id="loginButton"
+        class="login-button"
+        type="submit"
+      >
+        登录管理后台
+      </button>
+
+      <div
+        id="loginError"
+        class="error-message"
+        style="display:none;"
+      ></div>
+
+    </form>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     Admin content
+========================= -->
+
+<main
+  id="adminSection"
+  style="display:none;"
+>
 
   <div class="page-title">
-    <h1>候选人申请管理</h1>
-    <p>Candidate Application Administration</p>
+    候选人申请审核
+  </div>
+
+  <div class="page-description">
+    审核提交至阿谢国总统、副总统选举的候选人申请。
   </div>
 
 
   <div class="toolbar">
 
-    <label for="statusFilter">
-      申请状态
-    </label>
+    <div class="filters">
 
-    <select id="statusFilter">
-
-      <option value="all">
+      <button
+        class="filter-button active"
+        data-filter="all"
+        onclick="setFilter('all')"
+      >
         全部
-      </option>
+      </button>
 
-      <option value="pending">
+      <button
+        class="filter-button"
+        data-filter="pending"
+        onclick="setFilter('pending')"
+      >
         待审核
-      </option>
+      </button>
 
-      <option value="approved">
+      <button
+        class="filter-button"
+        data-filter="approved"
+        onclick="setFilter('approved')"
+      >
         已通过
-      </option>
+      </button>
 
-      <option value="rejected">
+      <button
+        class="filter-button"
+        data-filter="rejected"
+        onclick="setFilter('rejected')"
+      >
         已驳回
-      </option>
+      </button>
 
-    </select>
+    </div>
 
-    <div
-      id="count"
-      class="count"
-    >
-      共 0 项
+
+    <div class="toolbar-right">
+
+      <span id="applicationCount">
+        0 项申请
+      </span>
+
+      <button
+        class="refresh-button"
+        onclick="loadApplications()"
+      >
+        ↻ 刷新
+      </button>
+
     </div>
 
   </div>
 
 
-  <div
-    id="loading"
-    class="loading"
-  >
-    正在读取申请资料……
+  <div id="applicationList">
+
+    <div class="state-box loading">
+      正在加载申请……
+    </div>
+
   </div>
-
-
-  <div
-    id="applicationList"
-    class="application-list"
-  ></div>
 
 </main>
 
 
 <!-- =========================
-     申请详情弹窗
-========================== -->
+     Detail Modal
+========================= -->
 
 <div
-  id="modal"
-  class="modal"
+  id="detailModal"
+  class="modal-overlay"
+  onclick="handleModalBackground(event)"
 >
 
-  <div class="modal-box">
+  <div class="modal">
 
     <div class="modal-header">
 
-      <div>
-
-        <h2 id="modalName">
-          候选人申请
-        </h2>
-
-        <div
-          id="modalApplicationId"
-          class="application-id"
-        ></div>
-
-      </div>
+      <h2>
+        候选人申请详情
+      </h2>
 
       <button
-        class="close-button"
+        class="modal-close"
         onclick="closeModal()"
+        aria-label="关闭"
       >
         ×
       </button>
@@ -475,141 +853,454 @@
     </div>
 
 
-    <div
-      id="modalContent"
-    ></div>
+    <div class="modal-body">
 
+      <div id="modalContent"></div>
 
-    <div
-      id="modalActions"
-      class="modal-actions"
-    ></div>
+    </div>
 
   </div>
 
 </div>
 
 
+<div id="toast"></div>
+
+
 <script>
+
+  /* =========================================================
+     基础配置
+  ========================================================= */
+
+  const API_BASE =
+    "https://axnews-admin-api.axie999666.workers.dev";
+
+  const TOKEN_KEY =
+    "axnews_admin_session_token";
+
+
+  /* =========================================================
+     状态
+  ========================================================= */
 
   let applications = [];
 
-  let currentApplicationId = null;
+  let currentFilter = "all";
+
+  let currentApplication = null;
+
+  let isSubmittingReview = false;
 
 
-  // ========================================
-  // 状态文字
-  // ========================================
+  /* =========================================================
+     DOM
+  ========================================================= */
 
-  function statusText(status) {
+  const loginSection =
+    document.getElementById("loginSection");
 
-    const map = {
+  const adminSection =
+    document.getElementById("adminSection");
 
-      pending: "待审核",
+  const mainHeader =
+    document.getElementById("mainHeader");
 
-      approved: "已通过",
+  const loginForm =
+    document.getElementById("loginForm");
 
-      rejected: "已驳回"
+  const loginButton =
+    document.getElementById("loginButton");
+
+  const loginError =
+    document.getElementById("loginError");
+
+  const applicationList =
+    document.getElementById("applicationList");
+
+  const applicationCount =
+    document.getElementById("applicationCount");
+
+  const detailModal =
+    document.getElementById("detailModal");
+
+  const modalContent =
+    document.getElementById("modalContent");
+
+  const toast =
+    document.getElementById("toast");
+
+
+  /* =========================================================
+     初始化
+  ========================================================= */
+
+  document.addEventListener(
+    "DOMContentLoaded",
+    init
+  );
+
+
+  function init() {
+
+    const token =
+      sessionStorage.getItem(TOKEN_KEY);
+
+    if (token) {
+
+      showAdmin();
+
+      loadApplications();
+
+    } else {
+
+      showLogin();
+
+    }
+
+  }
+
+
+  /* =========================================================
+     登录
+  ========================================================= */
+
+  loginForm.addEventListener(
+    "submit",
+    async function(event) {
+
+      event.preventDefault();
+
+      const password =
+        document
+          .getElementById("password")
+          .value
+          .trim();
+
+      if (!password) {
+
+        showLoginError(
+          "请输入管理员密码。"
+        );
+
+        return;
+
+      }
+
+
+      loginButton.disabled = true;
+
+      loginButton.textContent =
+        "正在登录……";
+
+      hideLoginError();
+
+
+      try {
+
+        const response =
+          await fetch(
+            `${API_BASE}/login`,
+            {
+              method: "POST",
+
+              headers: {
+                "Content-Type":
+                  "application/json"
+              },
+
+              body: JSON.stringify({
+                password
+              }),
+
+              cache: "no-store"
+            }
+          );
+
+
+        const data =
+          await parseJsonResponse(response);
+
+
+        if (
+          !response.ok ||
+          !data.success ||
+          !data.token
+        ) {
+
+          throw new Error(
+            data.message ||
+            data.error ||
+            "登录失败"
+          );
+
+        }
+
+
+        /*
+         * Token 只保存到当前浏览器标签页会话。
+         *
+         * 不写入 localStorage，
+         * 关闭浏览器标签页后通常会失效。
+         */
+        sessionStorage.setItem(
+          TOKEN_KEY,
+          data.token
+        );
+
+
+        document
+          .getElementById("password")
+          .value = "";
+
+
+        showAdmin();
+
+        await loadApplications();
+
+        showToast(
+          "登录成功",
+          "success"
+        );
+
+      } catch (error) {
+
+        console.error(
+          "Login error:",
+          error
+        );
+
+        showLoginError(
+          error.message ||
+          "登录失败，请检查密码或 Worker。"
+        );
+
+      } finally {
+
+        loginButton.disabled = false;
+
+        loginButton.textContent =
+          "登录管理后台";
+
+      }
+
+    }
+  );
+
+
+  /* =========================================================
+     显示 / 隐藏页面
+  ========================================================= */
+
+  function showLogin() {
+
+    loginSection.style.display =
+      "block";
+
+    adminSection.style.display =
+      "none";
+
+    mainHeader.style.display =
+      "none";
+
+  }
+
+
+  function showAdmin() {
+
+    loginSection.style.display =
+      "none";
+
+    adminSection.style.display =
+      "block";
+
+    mainHeader.style.display =
+      "block";
+
+  }
+
+
+  /* =========================================================
+     登出
+  ========================================================= */
+
+  function logout() {
+
+    sessionStorage.removeItem(
+      TOKEN_KEY
+    );
+
+    applications = [];
+
+    currentApplication = null;
+
+    closeModal();
+
+    showLogin();
+
+    showToast(
+      "已退出登录"
+    );
+
+  }
+
+
+  /* =========================================================
+     获取 Token
+  ========================================================= */
+
+  function getToken() {
+
+    return sessionStorage.getItem(
+      TOKEN_KEY
+    );
+
+  }
+
+
+  /* =========================================================
+     通用 API 请求
+  ========================================================= */
+
+  async function apiFetch(
+    path,
+    options = {}
+  ) {
+
+    const token =
+      getToken();
+
+
+    if (!token) {
+
+      logout();
+
+      throw new Error(
+        "登录状态已失效，请重新登录。"
+      );
+
+    }
+
+
+    const headers = {
+
+      ...(options.headers || {}),
+
+      "Authorization":
+        `Bearer ${token}`
 
     };
 
-    return map[status] || status;
+
+    const response =
+      await fetch(
+        `${API_BASE}${path}`,
+        {
+          ...options,
+          headers,
+          cache: "no-store"
+        }
+      );
+
+
+    /*
+     * 如果 Worker 返回 401，
+     * 说明 Token 已失效。
+     */
+    if (response.status === 401) {
+
+      sessionStorage.removeItem(
+        TOKEN_KEY
+      );
+
+      showLogin();
+
+      throw new Error(
+        "登录状态已失效，请重新登录。"
+      );
+
+    }
+
+
+    return response;
+
   }
 
 
-  // ========================================
-  // 职位文字
-  // ========================================
+  /* =========================================================
+     JSON Response 解析
+  ========================================================= */
 
-  function positionText(position) {
+  async function parseJsonResponse(
+    response
+  ) {
 
-    if (position === "president") {
-      return "总统";
+    const text =
+      await response.text();
+
+
+    if (!text) {
+
+      return {};
+
     }
 
-    if (position === "vicePresident") {
-      return "副总统";
+
+    try {
+
+      return JSON.parse(text);
+
+    } catch {
+
+      return {
+        success: false,
+        message: text
+      };
+
     }
 
-    return position || "未知";
   }
 
 
-  // ========================================
-  // 日期
-  // ========================================
-
-  function formatDate(dateString) {
-
-    if (!dateString) {
-      return "—";
-    }
-
-    const date =
-      new Date(dateString);
-
-    if (Number.isNaN(date.getTime())) {
-      return "—";
-    }
-
-    return date.toLocaleString(
-      "zh-CN",
-      {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-        hour: "2-digit",
-        minute: "2-digit"
-      }
-    );
-  }
-
-
-  // ========================================
-  // 转义 HTML
-  // ========================================
-
-  function escapeHTML(value) {
-
-    if (value === null || value === undefined) {
-      return "";
-    }
-
-    return String(value)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-  }
-
-
-  // ========================================
-  // 加载数据
-  // ========================================
+  /* =========================================================
+     加载申请
+  ========================================================= */
 
   async function loadApplications() {
+
+    applicationList.innerHTML = `
+      <div class="state-box loading">
+        正在从管理 API 获取候选人申请……
+      </div>
+    `;
+
 
     try {
 
       const response =
-        await fetch(
-          "../data/candidate-applications.json",
+        await apiFetch(
+          "/candidate-applications",
           {
-            cache: "no-store"
+            method: "GET"
           }
         );
 
 
-      if (!response.ok) {
-        throw new Error(
-          "HTTP " + response.status
-        );
-      }
-
-
       const data =
-        await response.json();
+        await parseJsonResponse(
+          response
+        );
+
+
+      if (!response.ok || !data.success) {
+
+        throw new Error(
+          data.message ||
+          data.error ||
+          "无法读取候选人申请"
+        );
+
+      }
 
 
       applications =
@@ -618,10 +1309,27 @@
           : [];
 
 
-      document
-        .getElementById("loading")
-        .style.display =
-        "none";
+      /*
+       * Worker 已经会排序。
+       * 这里再做一次保险排序。
+       */
+      applications.sort(
+        (a, b) => {
+
+          const aTime =
+            new Date(
+              a.submittedAt || 0
+            ).getTime();
+
+          const bTime =
+            new Date(
+              b.submittedAt || 0
+            ).getTime();
+
+          return bTime - aTime;
+
+        }
+      );
 
 
       renderApplications();
@@ -629,191 +1337,332 @@
 
     } catch (error) {
 
-      console.error(error);
+      console.error(
+        "Load applications error:",
+        error
+      );
 
 
-      const loading =
-        document.getElementById("loading");
+      applicationList.innerHTML = `
+        <div class="state-box">
+          <div style="font-size:18px;font-weight:700;color:#b42318;">
+            无法加载申请
+          </div>
 
+          <div style="margin-top:8px;">
+            ${escapeHtml(
+              error.message ||
+              "未知错误"
+            )}
+          </div>
 
-      loading.className =
-        "error";
-
-
-      loading.textContent =
-        "页面加载失败：无法读取候选人申请资料。";
+          <button
+            class="refresh-button"
+            style="margin-top:18px;"
+            onclick="loadApplications()"
+          >
+            重新加载
+          </button>
+        </div>
+      `;
 
     }
 
   }
 
 
-  // ========================================
-  // 渲染申请列表
-  // ========================================
+  /* =========================================================
+     筛选
+  ========================================================= */
 
-  function renderApplications() {
+  function setFilter(filter) {
 
-    const list =
-      document.getElementById(
-        "applicationList"
-      );
-
-
-    const filter =
-      document.getElementById(
-        "statusFilter"
-      ).value;
-
-
-    const filtered =
-      filter === "all"
-
-        ? applications
-
-        : applications.filter(
-            application =>
-              application.status === filter
-          );
+    currentFilter =
+      filter;
 
 
     document
-      .getElementById("count")
-      .textContent =
-      `共 ${filtered.length} 项`;
+      .querySelectorAll(
+        ".filter-button"
+      )
+      .forEach(button => {
+
+        button.classList.toggle(
+          "active",
+          button.dataset.filter === filter
+        );
+
+      });
 
 
-    if (filtered.length === 0) {
+    renderApplications();
 
-      list.innerHTML = `
-        <div class="empty">
-          暂无符合条件的候选人申请。
+  }
+
+
+  /* =========================================================
+     渲染申请列表
+  ========================================================= */
+
+  function renderApplications() {
+
+    const filtered =
+      applications.filter(
+        application => {
+
+          if (
+            currentFilter === "all"
+          ) {
+
+            return true;
+
+          }
+
+          return (
+            application.status ===
+            currentFilter
+          );
+
+        }
+      );
+
+
+    applicationCount.textContent =
+      `${filtered.length} 项申请`;
+
+
+    if (!filtered.length) {
+
+      applicationList.innerHTML = `
+        <div class="state-box">
+          当前筛选条件下没有申请。
         </div>
       `;
 
       return;
+
     }
 
 
-    list.innerHTML =
-      filtered.map(
-        application => {
-
-          return `
-            <div class="application-card">
-
-              <div class="application-main">
-
-                <h3>
-                  ${escapeHTML(
-                    application.name
-                  )}
-                </h3>
-
-                <div class="application-meta">
-
-                  <span>
-                    ${escapeHTML(
-                      positionText(
-                        application.position
-                      )
-                    )}
-                  </span>
-
-                  <span>·</span>
-
-                  <span>
-                    ${escapeHTML(
-                      application.partyName
-                      || application.partyId
-                      || "未填写"
-                    )}
-                  </span>
-
-                  <span>·</span>
-
-                  <span>
-                    ${formatDate(
-                      application.submittedAt
-                    )}
-                  </span>
-
-                  <span
-                    class="badge ${
-                      escapeHTML(
-                        application.status
-                      )
-                    }"
-                  >
-                    ${escapeHTML(
-                      statusText(
-                        application.status
-                      )
-                    )}
-                  </span>
-
-                </div>
-
-              </div>
-
-
-              <div class="application-actions">
-
-                <button
-                  class="view-button"
-                  onclick="openApplication(
-                    '${escapeHTML(
-                      application.applicationId
-                    )}'
-                  )"
-                >
-                  查看
-                </button>
-
-                ${
-                  application.status === "pending"
-                    ? `
-                      <button
-                        class="approve-button"
-                        onclick="approveApplication(
-                          '${escapeHTML(
-                            application.applicationId
-                          )}'
-                        )"
-                      >
-                        通过
-                      </button>
-
-                      <button
-                        class="reject-button"
-                        onclick="rejectApplication(
-                          '${escapeHTML(
-                            application.applicationId
-                          )}'
-                        )"
-                      >
-                        驳回
-                      </button>
-                    `
-                    : ""
-                }
-
-              </div>
-
-            </div>
-          `;
-
-        }
-      ).join("");
+    applicationList.innerHTML =
+      filtered
+        .map(
+          application =>
+            renderApplicationCard(
+              application
+            )
+        )
+        .join("");
 
   }
 
 
-  // ========================================
-  // 打开详情
-  // ========================================
+  /* =========================================================
+     申请卡片
+  ========================================================= */
 
-  function openApplication(applicationId) {
+  function renderApplicationCard(
+    application
+  ) {
+
+    const status =
+      application.status || "pending";
+
+
+    const statusText =
+      getStatusText(status);
+
+
+    const positionText =
+      getPositionText(
+        application.position
+      );
+
+
+    const submittedAt =
+      formatDateTime(
+        application.submittedAt
+      );
+
+
+    const partyName =
+      application.partyName ||
+      "未填写";
+
+
+    const introduction =
+      application.introduction ||
+      "未填写";
+
+
+    const canReview =
+      status === "pending";
+
+
+    return `
+      <article
+        class="application-card"
+      >
+
+        <div class="application-header">
+
+          <div>
+
+            <h2 class="candidate-name">
+              ${escapeHtml(
+                application.name ||
+                "未填写姓名"
+              )}
+            </h2>
+
+            ${
+              application.englishName
+                ? `
+                  <div class="candidate-en">
+                    ${escapeHtml(
+                      application.englishName
+                    )}
+                  </div>
+                `
+                : ""
+            }
+
+            <div class="application-id">
+              ${escapeHtml(
+                application.applicationId ||
+                "无申请编号"
+              )}
+            </div>
+
+          </div>
+
+
+          <span
+            class="status-badge status-${escapeHtml(
+              status
+            )}"
+          >
+            ${escapeHtml(
+              statusText
+            )}
+          </span>
+
+        </div>
+
+
+        <div class="application-meta">
+
+          <div class="meta-item">
+
+            <div class="meta-label">
+              参选职位
+            </div>
+
+            <div class="meta-value">
+              ${escapeHtml(
+                positionText
+              )}
+            </div>
+
+          </div>
+
+
+          <div class="meta-item">
+
+            <div class="meta-label">
+              政党
+            </div>
+
+            <div class="meta-value">
+              ${escapeHtml(
+                partyName
+              )}
+            </div>
+
+          </div>
+
+
+          <div class="meta-item">
+
+            <div class="meta-label">
+              提交时间
+            </div>
+
+            <div class="meta-value">
+              ${escapeHtml(
+                submittedAt
+              )}
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="application-preview">
+          ${escapeHtml(
+            introduction
+          )}
+        </div>
+
+
+        <div class="application-actions">
+
+          <button
+            class="action-button view-button"
+            onclick="openApplication(
+              '${escapeJs(
+                application.applicationId
+              )}'
+            )"
+          >
+            查看详情
+          </button>
+
+
+          ${
+            canReview
+              ? `
+                <button
+                  class="action-button approve-button"
+                  onclick="approveApplication(
+                    '${escapeJs(
+                      application.applicationId
+                    )}'
+                  )"
+                >
+                  ✓ 通过
+                </button>
+
+                <button
+                  class="action-button reject-button"
+                  onclick="rejectApplication(
+                    '${escapeJs(
+                      application.applicationId
+                    )}'
+                  )"
+                >
+                  × 驳回
+                </button>
+              `
+              : ""
+          }
+
+        </div>
+
+      </article>
+    `;
+
+  }
+
+
+  /* =========================================================
+     打开详情
+  ========================================================= */
+
+  function openApplication(
+    applicationId
+  ) {
 
     const application =
       applications.find(
@@ -824,240 +1673,447 @@
 
 
     if (!application) {
+
+      showToast(
+        "找不到该申请。",
+        "error"
+      );
+
       return;
+
     }
 
 
-    currentApplicationId =
-      applicationId;
+    currentApplication =
+      application;
 
 
-    document
-      .getElementById("modalName")
-      .textContent =
-      application.name || "候选人申请";
+    renderModal(
+      application
+    );
 
 
-    document
-      .getElementById(
-        "modalApplicationId"
-      )
-      .textContent =
-      application.applicationId || "";
+    detailModal.classList.add(
+      "show"
+    );
+
+  }
 
 
-    document
-      .getElementById("modalContent")
-      .innerHTML = `
+  /* =========================================================
+     Modal
+  ========================================================= */
+
+  function renderModal(
+    application
+  ) {
+
+    const status =
+      application.status ||
+      "pending";
+
+
+    const canReview =
+      status === "pending";
+
+
+    const photo =
+      application.photo ||
+      "";
+
+
+    modalContent.innerHTML = `
+
+      <div class="detail-section">
+
+        <h3>
+          基本信息
+        </h3>
 
         <div class="detail-grid">
 
-          <div class="detail-label">
-            参选职位
-          </div>
+          <div class="detail-item">
 
-          <div class="detail-value">
-            ${escapeHTML(
-              positionText(
-                application.position
-              )
-            )}
-          </div>
+            <div class="detail-label">
+              姓名
+            </div>
 
-
-          <div class="detail-label">
-            中文姓名
-          </div>
-
-          <div class="detail-value">
-            ${escapeHTML(
-              application.name
-            )}
-          </div>
-
-
-          <div class="detail-label">
-            英文姓名
-          </div>
-
-          <div class="detail-value">
-            ${escapeHTML(
-              application.englishName
-            ) || "—"}
-          </div>
-
-
-          <div class="detail-label">
-            日文姓名
-          </div>
-
-          <div class="detail-value">
-            ${escapeHTML(
-              application.japaneseName
-            ) || "—"}
-          </div>
-
-
-          <div class="detail-label">
-            所属政党
-          </div>
-
-          <div class="detail-value">
-            ${escapeHTML(
-              application.partyName
-              || application.partyId
-              || "未填写"
-            )}
-          </div>
-
-
-          <div class="detail-label">
-            选举
-          </div>
-
-          <div class="detail-value">
-            ${escapeHTML(
-              application.electionId
-            )}
-          </div>
-
-
-          <div class="detail-label">
-            申请时间
-          </div>
-
-          <div class="detail-value">
-            ${formatDate(
-              application.submittedAt
-            )}
-          </div>
-
-
-          <div class="detail-label">
-            当前状态
-          </div>
-
-          <div class="detail-value">
-
-            <span
-              class="badge ${
-                escapeHTML(
-                  application.status
-                )
-              }"
-            >
-              ${escapeHTML(
-                statusText(
-                  application.status
-                )
+            <div class="detail-value">
+              ${escapeHtml(
+                application.name ||
+                "未填写"
               )}
-            </span>
+            </div>
+
+          </div>
+
+
+          <div class="detail-item">
+
+            <div class="detail-label">
+              English Name
+            </div>
+
+            <div class="detail-value">
+              ${escapeHtml(
+                application.englishName ||
+                "未填写"
+              )}
+            </div>
+
+          </div>
+
+
+          <div class="detail-item">
+
+            <div class="detail-label">
+              日本語名
+            </div>
+
+            <div class="detail-value">
+              ${escapeHtml(
+                application.japaneseName ||
+                "未填写"
+              )}
+            </div>
+
+          </div>
+
+
+          <div class="detail-item">
+
+            <div class="detail-label">
+              申请编号
+            </div>
+
+            <div class="detail-value">
+              ${escapeHtml(
+                application.applicationId ||
+                "未填写"
+              )}
+            </div>
 
           </div>
 
         </div>
 
+      </div>
+
+
+      <div class="detail-section">
+
+        <h3>
+          参选信息
+        </h3>
+
+        <div class="detail-grid">
+
+          <div class="detail-item">
+
+            <div class="detail-label">
+              参选职位
+            </div>
+
+            <div class="detail-value">
+              ${escapeHtml(
+                getPositionText(
+                  application.position
+                )
+              )}
+            </div>
+
+          </div>
+
+
+          <div class="detail-item">
+
+            <div class="detail-label">
+              对应选举
+            </div>
+
+            <div class="detail-value">
+              ${escapeHtml(
+                application.electionId ||
+                "未填写"
+              )}
+            </div>
+
+          </div>
+
+
+          <div class="detail-item">
+
+            <div class="detail-label">
+              政党
+            </div>
+
+            <div class="detail-value">
+              ${escapeHtml(
+                application.partyName ||
+                "未填写"
+              )}
+            </div>
+
+          </div>
+
+
+          <div class="detail-item">
+
+            <div class="detail-label">
+              政党 ID
+            </div>
+
+            <div class="detail-value">
+              ${escapeHtml(
+                application.partyId ||
+                "未填写"
+              )}
+            </div>
+
+          </div>
+
+
+          <div class="detail-item full">
+
+            <div class="detail-label">
+              照片路径
+            </div>
+
+            <div class="detail-value">
+              ${
+                photo
+                  ? escapeHtml(photo)
+                  : "未提供"
+              }
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="detail-section">
 
         <h3>
           候选人简介
         </h3>
 
-        <div class="statement">
-          ${escapeHTML(
-            application.introduction
-          ) || "—"}
+        <div class="detail-item">
+
+          <div class="detail-value">
+            ${escapeHtml(
+              application.introduction ||
+              "未填写"
+            )}
+          </div>
+
         </div>
 
+      </div>
+
+
+      <div class="detail-section">
 
         <h3>
-          竞选声明
+          候选人声明
         </h3>
 
-        <div class="statement">
-          ${escapeHTML(
-            application.campaignStatement
-          ) || "—"}
+        <div class="detail-item">
+
+          <div class="detail-value">
+            ${escapeHtml(
+              application.campaignStatement ||
+              "未填写"
+            )}
+          </div>
+
         </div>
 
-      `;
+      </div>
 
 
-    const actions =
-      document.getElementById(
-        "modalActions"
-      );
+      <div class="detail-section">
+
+        <h3>
+          申请记录
+        </h3>
+
+        <div class="detail-grid">
+
+          <div class="detail-item">
+
+            <div class="detail-label">
+              提交时间
+            </div>
+
+            <div class="detail-value">
+              ${escapeHtml(
+                formatDateTime(
+                  application.submittedAt
+                )
+              )}
+            </div>
+
+          </div>
 
 
-    if (
-      application.status ===
-      "pending"
-    ) {
+          <div class="detail-item">
 
-      actions.innerHTML = `
+            <div class="detail-label">
+              当前状态
+            </div>
 
-        <button
-          class="reject-button"
-          onclick="rejectApplication(
-            '${escapeHTML(
-              application.applicationId
-            )}'
-          )"
-        >
-          驳回申请
-        </button>
+            <div class="detail-value">
+              ${escapeHtml(
+                getStatusText(status)
+              )}
+            </div>
 
-        <button
-          class="approve-button"
-          onclick="approveApplication(
-            '${escapeHTML(
-              application.applicationId
-            )}'
-          )"
-        >
-          通过申请
-        </button>
-
-      `;
-
-    } else {
-
-      actions.innerHTML = `
-        <span style="color:#667085;">
-          当前申请已经完成审核。
-        </span>
-      `;
-
-    }
+          </div>
 
 
-    document
-      .getElementById("modal")
-      .classList.add("show");
+          <div class="detail-item">
+
+            <div class="detail-label">
+              审核时间
+            </div>
+
+            <div class="detail-value">
+              ${
+                application.reviewedAt
+                  ? escapeHtml(
+                      formatDateTime(
+                        application.reviewedAt
+                      )
+                    )
+                  : "尚未审核"
+              }
+            </div>
+
+          </div>
+
+
+          <div class="detail-item">
+
+            <div class="detail-label">
+              审核人
+            </div>
+
+            <div class="detail-value">
+              ${escapeHtml(
+                application.reviewedBy ||
+                "尚未审核"
+              )}
+            </div>
+
+          </div>
+
+
+          ${
+            application.reviewNote
+              ? `
+                <div class="detail-item full">
+
+                  <div class="detail-label">
+                    审核备注
+                  </div>
+
+                  <div class="detail-value">
+                    ${escapeHtml(
+                      application.reviewNote
+                    )}
+                  </div>
+
+                </div>
+              `
+              : ""
+          }
+
+        </div>
+
+      </div>
+
+
+      ${
+        canReview
+          ? `
+            <div class="detail-section review-area">
+
+              <h3>
+                审核操作
+              </h3>
+
+              <textarea
+                id="modalReviewNote"
+                class="review-note"
+                maxlength="5000"
+                placeholder="可填写审核备注。若驳回申请，建议说明原因。"
+              ></textarea>
+
+
+              <div class="review-actions">
+
+                <button
+                  class="action-button approve-button"
+                  onclick="approveCurrentApplication()"
+                >
+                  ✓ 审核通过
+                </button>
+
+                <button
+                  class="action-button reject-button"
+                  onclick="rejectCurrentApplication()"
+                >
+                  × 驳回申请
+                </button>
+
+              </div>
+
+            </div>
+          `
+          : ""
+      }
+
+    `;
 
   }
 
 
-  // ========================================
-  // 关闭弹窗
-  // ========================================
-
   function closeModal() {
 
-    document
-      .getElementById("modal")
-      .classList.remove("show");
+    detailModal.classList.remove(
+      "show"
+    );
 
-    currentApplicationId =
+    currentApplication =
       null;
 
   }
 
 
-  // ========================================
-  // 模拟审核
-  // ========================================
+  function handleModalBackground(
+    event
+  ) {
 
-  function approveApplication(
+    if (
+      event.target ===
+      detailModal
+    ) {
+
+      closeModal();
+
+    }
+
+  }
+
+
+  /* =========================================================
+     审核：通过
+  ========================================================= */
+
+  async function approveApplication(
     applicationId
   ) {
 
@@ -1070,47 +2126,61 @@
 
 
     if (!application) {
+
+      showToast(
+        "找不到该申请。",
+        "error"
+      );
+
       return;
+
+    }
+
+
+    if (
+      application.status !==
+      "pending"
+    ) {
+
+      showToast(
+        "该申请已经审核过。",
+        "error"
+      );
+
+      return;
+
     }
 
 
     const confirmed =
-      confirm(
-        `确定通过 ${application.name} 的参选申请吗？`
+      window.confirm(
+        `确定要通过候选人「${
+          application.name || ""
+        }」的申请吗？`
       );
 
 
     if (!confirmed) {
+
       return;
+
     }
 
 
-    application.status =
-      "approved";
-
-
-    application.reviewedAt =
-      new Date().toISOString();
-
-
-    application.reviewStatus =
-      "approved";
-
-
-    closeModal();
-
-    renderApplications();
-
-
-    alert(
-      "申请已经模拟审核通过。\n\n" +
-      "注意：当前版本不会修改正式 candidates.json。"
+    await submitReview(
+      applicationId,
+      "approved",
+      ""
     );
 
   }
 
 
-  function rejectApplication(
+  /* =========================================================
+     审核：驳回
+  ========================================================= */
+
+  async function rejectApplication(
     applicationId
   ) {
 
@@ -1123,87 +2193,553 @@
 
 
     if (!application) {
+
+      showToast(
+        "找不到该申请。",
+        "error"
+      );
+
       return;
+
     }
 
 
-    const confirmed =
-      confirm(
-        `确定驳回 ${application.name} 的参选申请吗？`
+    if (
+      application.status !==
+      "pending"
+    ) {
+
+      showToast(
+        "该申请已经审核过。",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    const note =
+      window.prompt(
+        `请输入驳回「${
+          application.name || ""
+        }」申请的审核备注：`,
+        ""
       );
 
 
-    if (!confirmed) {
+    if (note === null) {
+
       return;
+
     }
 
 
-    application.status =
-      "rejected";
-
-
-    application.reviewedAt =
-      new Date().toISOString();
-
-
-    application.reviewStatus =
-      "rejected";
-
-
-    closeModal();
-
-    renderApplications();
-
-
-    alert(
-      "申请已经模拟驳回。"
+    await submitReview(
+      applicationId,
+      "rejected",
+      note.trim()
     );
 
   }
 
 
-  // ========================================
-  // 筛选
-  // ========================================
+  /* =========================================================
+     Modal 中审核
+  ========================================================= */
 
-  document
-    .getElementById(
-      "statusFilter"
-    )
-    .addEventListener(
-      "change",
-      renderApplications
+  async function approveCurrentApplication() {
+
+    if (!currentApplication) {
+
+      return;
+
+    }
+
+
+    const confirmed =
+      window.confirm(
+        `确定要通过候选人「${
+          currentApplication.name || ""
+        }」的申请吗？`
+      );
+
+
+    if (!confirmed) {
+
+      return;
+
+    }
+
+
+    const noteElement =
+      document.getElementById(
+        "modalReviewNote"
+      );
+
+
+    const note =
+      noteElement
+        ? noteElement.value.trim()
+        : "";
+
+
+    await submitReview(
+      currentApplication.applicationId,
+      "approved",
+      note
     );
 
+  }
 
-  // ========================================
-  // 点击背景关闭
-  // ========================================
 
-  document
-    .getElementById("modal")
-    .addEventListener(
-      "click",
-      function(event) {
+  async function rejectCurrentApplication() {
 
-        if (
-          event.target ===
-          this
-        ) {
+    if (!currentApplication) {
 
-          closeModal();
+      return;
+
+    }
+
+
+    const noteElement =
+      document.getElementById(
+        "modalReviewNote"
+      );
+
+
+    const note =
+      noteElement
+        ? noteElement.value.trim()
+        : "";
+
+
+    if (!note) {
+
+      const confirmed =
+        window.confirm(
+          "你没有填写驳回原因。\n\n确定仍然驳回吗？"
+        );
+
+
+      if (!confirmed) {
+
+        return;
+
+      }
+
+    }
+
+
+    await submitReview(
+      currentApplication.applicationId,
+      "rejected",
+      note
+    );
+
+  }
+
+
+  /* =========================================================
+     真正提交审核
+  ========================================================= */
+
+  async function submitReview(
+    applicationId,
+    status,
+    reviewNote
+  ) {
+
+    if (isSubmittingReview) {
+
+      return;
+
+    }
+
+
+    isSubmittingReview = true;
+
+
+    try {
+
+      const response =
+        await apiFetch(
+          `/candidate-applications/${encodeURIComponent(
+            applicationId
+          )}/review`,
+          {
+            method: "POST",
+
+            headers: {
+              "Content-Type":
+                "application/json"
+            },
+
+            body: JSON.stringify({
+
+              status,
+
+              reviewNote:
+                reviewNote || ""
+
+            })
+
+          }
+        );
+
+
+      const data =
+        await parseJsonResponse(
+          response
+        );
+
+
+      if (
+        !response.ok ||
+        !data.success
+      ) {
+
+        throw new Error(
+          data.message ||
+          data.error ||
+          "审核操作失败"
+        );
+
+      }
+
+
+      /*
+       * 用 Worker 返回的最新申请
+       * 更新前端内存。
+       */
+      if (data.application) {
+
+        const index =
+          applications.findIndex(
+            item =>
+              item.applicationId ===
+              applicationId
+          );
+
+
+        if (index !== -1) {
+
+          applications[index] =
+            data.application;
 
         }
 
       }
+
+
+      closeModal();
+
+      renderApplications();
+
+
+      if (
+        status === "approved"
+      ) {
+
+        showToast(
+          "候选人申请已审核通过，并已保存。",
+          "success"
+        );
+
+      } else {
+
+        showToast(
+          "候选人申请已驳回，并已保存。",
+          "success"
+        );
+
+      }
+
+
+    } catch (error) {
+
+      console.error(
+        "Review error:",
+        error
+      );
+
+
+      showToast(
+        error.message ||
+        "审核失败，请稍后重试。",
+        "error"
+      );
+
+    } finally {
+
+      isSubmittingReview = false;
+
+    }
+
+  }
+
+
+  /* =========================================================
+     状态文字
+  ========================================================= */
+
+  function getStatusText(
+    status
+  ) {
+
+    switch (status) {
+
+      case "approved":
+        return "已通过";
+
+      case "rejected":
+        return "已驳回";
+
+      case "pending":
+      default:
+        return "待审核";
+
+    }
+
+  }
+
+
+  /* =========================================================
+     职位文字
+  ========================================================= */
+
+  function getPositionText(
+    position
+  ) {
+
+    switch (position) {
+
+      case "president":
+        return "总统";
+
+      case "vicePresident":
+        return "副总统";
+
+      default:
+        return position || "未填写";
+
+    }
+
+  }
+
+
+  /* =========================================================
+     日期格式
+  ========================================================= */
+
+  function formatDateTime(
+    value
+  ) {
+
+    if (!value) {
+
+      return "未填写";
+
+    }
+
+
+    const date =
+      new Date(value);
+
+
+    if (
+      Number.isNaN(
+        date.getTime()
+      )
+    ) {
+
+      return value;
+
+    }
+
+
+    return date.toLocaleString(
+      "zh-CN",
+      {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false
+      }
+    );
+
+  }
+
+
+  /* =========================================================
+     HTML 转义
+  ========================================================= */
+
+  function escapeHtml(
+    value
+  ) {
+
+    return String(
+      value ?? ""
+    )
+      .replaceAll(
+        "&",
+        "&amp;"
+      )
+      .replaceAll(
+        "<",
+        "&lt;"
+      )
+      .replaceAll(
+        ">",
+        "&gt;"
+      )
+      .replaceAll(
+        '"',
+        "&quot;"
+      )
+      .replaceAll(
+        "'",
+        "&#039;"
+      );
+
+  }
+
+
+  /* =========================================================
+     JS 字符串转义
+  ========================================================= */
+
+  function escapeJs(
+    value
+  ) {
+
+    return String(
+      value ?? ""
+    )
+      .replaceAll(
+        "\\",
+        "\\\\"
+      )
+      .replaceAll(
+        "'",
+        "\\'"
+      )
+      .replaceAll(
+        "\n",
+        "\\n"
+      )
+      .replaceAll(
+        "\r",
+        "\\r"
+      );
+
+  }
+
+
+  /* =========================================================
+     登录错误
+  ========================================================= */
+
+  function showLoginError(
+    message
+  ) {
+
+    loginError.textContent =
+      message;
+
+    loginError.style.display =
+      "block";
+
+  }
+
+
+  function hideLoginError() {
+
+    loginError.textContent =
+      "";
+
+    loginError.style.display =
+      "none";
+
+  }
+
+
+  /* =========================================================
+     Toast
+  ========================================================= */
+
+  let toastTimer = null;
+
+
+  function showToast(
+    message,
+    type = ""
+  ) {
+
+    clearTimeout(
+      toastTimer
     );
 
 
-  // ========================================
-  // 初始化
-  // ========================================
+    toast.textContent =
+      message;
 
-  loadApplications();
+
+    toast.className =
+      "";
+
+
+    toast.classList.add(
+      "show"
+    );
+
+
+    if (type) {
+
+      toast.classList.add(
+        type
+      );
+
+    }
+
+
+    toastTimer =
+      setTimeout(
+        () => {
+
+          toast.classList.remove(
+            "show"
+          );
+
+        },
+        3000
+      );
+
+  }
+
+
+  /* =========================================================
+     ESC 关闭 Modal
+  ========================================================= */
+
+  document.addEventListener(
+    "keydown",
+    event => {
+
+      if (
+        event.key === "Escape"
+      ) {
+
+        closeModal();
+
+      }
+
+    }
+  );
 
 </script>
 
