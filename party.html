@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>政党资料｜阿谢国</title>
+
+  <meta
+    name="description"
+    content="阿谢国官方政党资料"
+  >
+
+  <link
+    rel="icon"
+    href="/ROA_flag.png"
+  >
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Noto Sans SC",
+        "Noto Sans JP",
+        Arial,
+        sans-serif;
+
+      color: #172033;
+
+      background:
+        linear-gradient(
+          135deg,
+          #eef4ff 0%,
+          #f8fbff 45%,
+          #e9f1ff 100%
+        );
+
+      min-height: 100vh;
+    }
+
+
+    /* =========================================================
+       Header
+    ========================================================= */
+
+    header {
+      background:
+        linear-gradient(
+          135deg,
+          #0b1f4d,
+          #123b82
+        );
+
+      color: white;
+
+      padding: 24px 20px;
+
+      box-shadow:
+        0 4px 18px
+        rgba(0, 0, 0, 0.12);
+    }
+
+
+    .header-inner {
+      max-width: 1100px;
+
+      margin: auto;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 20px;
+    }
+
+
+    .brand {
+      display: flex;
+
+      align-items: center;
+
+      gap: 14px;
+    }
+
+
+    .brand img {
+      width: 52px;
+      height: 36px;
+
+      object-fit: cover;
+
+      border-radius: 5px;
+
+      box-shadow:
+        0 2px 8px
+        rgba(0, 0, 0, 0.2);
+    }
+
+
+    .brand-title {
+      font-size: 20px;
+
+      font-weight: 700;
+    }
+
+
+    .brand-subtitle {
+      margin-top: 3px;
+
+      font-size: 13px;
+
+      opacity: 0.82;
+    }
+
+
+    .back-link {
+      color: white;
+
+      text-decoration: none;
+
+      padding: 9px 14px;
+
+      border:
+        1px solid
+        rgba(255, 255, 255, 0.35);
+
+      border-radius: 8px;
+
+      transition: 0.2s;
+    }
+
+
+    .back-link:hover {
+      background:
+        rgba(255, 255, 255, 0.12);
+    }
+
+
+    /* =========================================================
+       Main
+    ========================================================= */
+
+    main {
+      max-width: 1000px;
+
+      margin: 45px auto;
+
+      padding:
+        0 20px 60px;
+    }
+
+
+    .page-title {
+      text-align: center;
+
+      margin-bottom: 35px;
+    }
+
+
+    .page-title h1 {
+      margin: 0 0 10px;
+
+      font-size: 34px;
+    }
+
+
+    .page-title p {
+      margin: 0;
+
+      color: #667085;
+
+      font-size: 15px;
+    }
+
+
+    /* =========================================================
+       Card
+    ========================================================= */
+
+    .card {
+      background:
+        rgba(255, 255, 255, 0.94);
+
+      border-radius: 18px;
+
+      padding: 28px;
+
+      box-shadow:
+        0 10px 35px
+        rgba(30, 60, 110, 0.09);
+
+      border:
+        1px solid
+        rgba(30, 70, 130, 0.08);
+
+      margin-bottom: 25px;
+    }
+
+
+    /* =========================================================
+       Party Hero
+    ========================================================= */
+
+    .party-hero {
+      text-align: center;
+
+      padding:
+        35px 20px 30px;
+    }
+
+
+    .party-symbol {
+      width: 110px;
+      height: 110px;
+
+      margin:
+        0 auto 20px;
+
+      border-radius: 50%;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      background:
+        linear-gradient(
+          135deg,
+          #edf4ff,
+          #dceaff
+        );
+
+      border:
+        1px solid
+        #d1def0;
+
+      font-size: 48px;
+    }
+
+
+    .party-name {
+      margin: 0;
+
+      font-size: 32px;
+
+      font-weight: 800;
+
+      color: #102f68;
+    }
+
+
+    .party-english-name {
+      margin-top: 8px;
+
+      color: #667085;
+
+      font-size: 16px;
+    }
+
+
+    .party-japanese-name {
+      margin-top: 5px;
+
+      color: #7b8494;
+
+      font-size: 14px;
+    }
+
+
+    .party-badge {
+      display: inline-block;
+
+      margin-top: 18px;
+
+      padding:
+        7px 14px;
+
+      border-radius: 999px;
+
+      background: #e8f1ff;
+
+      color: #315f9f;
+
+      font-size: 13px;
+
+      font-weight: 700;
+    }
+
+
+    /* =========================================================
+       Info
+    ========================================================= */
+
+    .info-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+      gap: 15px;
+    }
+
+
+    .info-box {
+      background: #f5f8fd;
+
+      border-radius: 12px;
+
+      padding: 16px 18px;
+    }
+
+
+    .info-label {
+      font-size: 12px;
+
+      color: #7a8496;
+
+      margin-bottom: 6px;
+    }
+
+
+    .info-value {
+      font-weight: 650;
+
+      line-height: 1.5;
+    }
+
+
+    /* =========================================================
+       Section
+    ========================================================= */
+
+    .section-title {
+      margin:
+        0 0 18px;
+
+      font-size: 23px;
+    }
+
+
+    .description {
+      color: #465267;
+
+      line-height: 1.85;
+
+      font-size: 16px;
+
+      white-space: pre-line;
+    }
+
+
+    /* =========================================================
+       Candidate List
+    ========================================================= */
+
+    .candidate-list {
+      display: grid;
+
+      gap: 14px;
+    }
+
+
+    .candidate-item {
+      display: flex;
+
+      align-items: center;
+
+      gap: 15px;
+
+      padding: 15px;
+
+      border:
+        1px solid
+        #e1e7f0;
+
+      border-radius: 13px;
+
+      background: #fbfcfe;
+
+      text-decoration: none;
+
+      color: inherit;
+
+      transition: 0.2s;
+    }
+
+
+    .candidate-item:hover {
+      border-color: #a9c2e6;
+
+      background: #f4f8ff;
+
+      transform:
+        translateY(-1px);
+    }
+
+
+    .candidate-number {
+      width: 42px;
+      height: 42px;
+
+      flex:
+        0 0 42px;
+
+      border-radius: 50%;
+
+      background: #123b82;
+
+      color: white;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      font-weight: 800;
+    }
+
+
+    .candidate-photo {
+      width: 60px;
+      height: 60px;
+
+      flex:
+        0 0 60px;
+
+      border-radius: 10px;
+
+      object-fit: cover;
+
+      background: #edf1f7;
+
+      border:
+        1px solid
+        #dce3ee;
+    }
+
+
+    .candidate-placeholder {
+      width: 60px;
+      height: 60px;
+
+      flex:
+        0 0 60px;
+
+      border-radius: 10px;
+
+      background: #edf1f7;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      font-size: 25px;
+
+      color: #8993a5;
+    }
+
+
+    .candidate-info {
+      min-width: 0;
+
+      flex: 1;
+    }
+
+
+    .candidate-name {
+      font-size: 18px;
+
+      font-weight: 750;
+    }
+
+
+    .candidate-position {
+      margin-top: 5px;
+
+      color: #667085;
+
+      font-size: 13px;
+    }
+
+
+    .candidate-arrow {
+      color: #5275a8;
+
+      font-size: 20px;
+    }
+
+
+    /* =========================================================
+       Empty / Error
+    ========================================================= */
+
+    .message-box {
+      padding: 18px;
+
+      border-radius: 12px;
+
+      background: #f5f8fd;
+
+      color: #667085;
+
+      line-height: 1.7;
+
+      text-align: center;
+    }
+
+
+    .error-box {
+      padding: 20px;
+
+      border-radius: 12px;
+
+      background: #fff0f0;
+
+      border:
+        1px solid
+        #f0b8b8;
+
+      color: #9b2c2c;
+
+      line-height: 1.7;
+
+      text-align: center;
+    }
+
+
+    /* =========================================================
+       Footer
+    ========================================================= */
+
+    footer {
+      text-align: center;
+
+      color: #7b8494;
+
+      font-size: 13px;
+
+      padding:
+        25px 20px 40px;
+    }
+
+
+    /* =========================================================
+       Responsive
+    ========================================================= */
+
+    @media (max-width: 700px) {
+
+      .header-inner {
+        align-items: flex-start;
+      }
+
+
+      .page-title h1 {
+        font-size: 28px;
+      }
+
+
+      .party-name {
+        font-size: 27px;
+      }
+
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+
+      .candidate-item {
+        gap: 10px;
+      }
+
+
+      .candidate-photo,
+      .candidate-placeholder {
+        width: 52px;
+        height: 52px;
+
+        flex-basis: 52px;
+      }
+
+
+      .candidate-arrow {
+        display: none;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ============================================================
+     Header
+============================================================ -->
+
+<header>
+
+  <div class="header-inner">
+
+    <div class="brand">
+
+      <img
+        src="/ROA_flag.png"
+        alt="阿谢国国旗"
+      >
+
+      <div>
+
+        <div class="brand-title">
+          阿谢国政党资料
+        </div>
+
+        <div class="brand-subtitle">
+          Republic of Axie Political Parties
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <a
+      href="index.html"
+      class="back-link"
+    >
+      返回首页
+    </a>
+
+  </div>
+
+</header>
+
+
+
+<!-- ============================================================
+     Main
+============================================================ -->
+
+<main>
+
+
+  <div class="page-title">
+
+    <h1>
+      政党资料
+    </h1>
+
+    <p>
+      阿谢国官方政党信息
+    </p>
+
+  </div>
+
+
+
+  <!-- ========================================================
+       Party Hero
+  ========================================================= -->
+
+  <section
+    id="party-hero-card"
+    class="card party-hero"
+    style="display:none;"
+  >
+
+    <div
+      class="party-symbol"
+      id="party-symbol"
+    >
+      🏛️
+    </div>
+
+
+    <h2
+      class="party-name"
+      id="party-name"
+    >
+      —
+    </h2>
+
+
+    <div
+      class="party-english-name"
+      id="party-name-en"
+    >
+      —
+    </div>
+
+
+    <div
+      class="party-japanese-name"
+      id="party-name-ja"
+    >
+      —
+    </div>
+
+
+    <div
+      class="party-badge"
+      id="party-status"
+    >
+      —
+    </div>
+
+  </section>
+
+
+
+  <!-- ========================================================
+       Basic Information
+  ========================================================= -->
+
+  <section
+    id="party-info-card"
+    class="card"
+    style="display:none;"
+  >
+
+    <h2 class="section-title">
+      基本资料
+    </h2>
+
+
+    <div class="info-grid">
+
+      <div class="info-box">
+
+        <div class="info-label">
+          政党 ID
+        </div>
+
+        <div
+          id="party-id"
+          class="info-value"
+        >
+          —
+        </div>
+
+      </div>
+
+
+      <div class="info-box">
+
+        <div class="info-label">
+          政党简称
+        </div>
+
+        <div
+          id="party-abbreviation"
+          class="info-value"
+        >
+          —
+        </div>
+
+      </div>
+
+
+      <div class="info-box">
+
+        <div class="info-label">
+          中文名称
+        </div>
+
+        <div
+          id="party-name-zh"
+          class="info-value"
+        >
+          —
+        </div>
+
+      </div>
+
+
+      <div class="info-box">
+
+        <div class="info-label">
+          English Name
+        </div>
+
+        <div
+          id="party-name-en-info"
+          class="info-value"
+        >
+          —
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ========================================================
+       Description
+  ========================================================= -->
+
+  <section
+    id="party-description-card"
+    class="card"
+    style="display:none;"
+  >
+
+    <h2 class="section-title">
+      政党简介
+    </h2>
+
+
+    <div
+      id="party-description"
+      class="description"
+    >
+      —
+    </div>
+
+  </section>
+
+
+
+  <!-- ========================================================
+       Candidates
+  ========================================================= -->
+
+  <section
+    id="party-candidates-card"
+    class="card"
+    style="display:none;"
+  >
+
+    <h2 class="section-title">
+      相关候选人
+    </h2>
+
+
+    <div
+      id="candidate-list"
+      class="candidate-list"
+    ></div>
+
+  </section>
+
+
+
+  <!-- ========================================================
+       Error
+  ========================================================= -->
+
+  <section
+    id="error-card"
+    class="card"
+    style="display:none;"
+  >
+
+    <div
+      id="error-message"
+      class="error-box"
+    >
+      无法读取政党资料。
+    </div>
+
+  </section>
+
+
+</main>
+
+
+
+<footer>
+
+  © Republic of Axie · 阿谢国官方政党资料
+
+</footer>
+
+
+
+<script>
+
+  // ============================================================
+  // 数据地址
+  // ============================================================
+
+  const PARTIES_URL =
+    "./data/parties.json";
+
+
+  const CANDIDATES_URL =
+    "./data/candidates.json";
+
+
+  // ============================================================
+  // 获取 URL 中的 party ID
+  // ============================================================
+
+  function getPartyId() {
+
+    const params =
+      new URLSearchParams(
+        window.location.search
+      );
+
+
+    return params.get("id");
+
+  }
+
+
+  // ============================================================
+  // HTML 转义
+  // ============================================================
+
+  function escapeHTML(value) {
+
+    return String(value ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+
+  }
+
+
+  // ============================================================
+  // 获取政党
+  // ============================================================
+
+  function findParty(
+    partiesData,
+    partyId
+  ) {
+
+    if (
+      !partiesData ||
+      !Array.isArray(
+        partiesData.parties
+      )
+    ) {
+
+      return null;
+
+    }
+
+
+    return (
+      partiesData.parties.find(
+        party =>
+          party.partyId ===
+          partyId
+      ) || null
+    );
+
+  }
+
+
+  // ============================================================
+  // 显示政党资料
+  // ============================================================
+
+  function renderParty(
+    party
+  ) {
+
+    document.getElementById(
+      "party-hero-card"
+    ).style.display =
+      "block";
+
+
+    document.getElementById(
+      "party-info-card"
+    ).style.display =
+      "block";
+
+
+    document.getElementById(
+      "party-description-card"
+    ).style.display =
+      "block";
+
+
+    document.getElementById(
+      "party-name"
+    ).textContent =
+      party.names?.zh ||
+      party.partyName ||
+      "未知政党";
+
+
+    document.getElementById(
+      "party-name-en"
+    ).textContent =
+      party.names?.en ||
+      "—";
+
+
+    document.getElementById(
+      "party-name-ja"
+    ).textContent =
+      party.names?.ja ||
+      "—";
+
+
+    document.getElementById(
+      "party-status"
+    ).textContent =
+      party.status === "active"
+        ? "现行政党"
+        : "非现行政党";
+
+
+    document.getElementById(
+      "party-id"
+    ).textContent =
+      party.partyId ||
+      "—";
+
+
+    document.getElementById(
+      "party-abbreviation"
+    ).textContent =
+      party.abbreviation ||
+      "—";
+
+
+    document.getElementById(
+      "party-name-zh"
+    ).textContent =
+      party.names?.zh ||
+      party.partyName ||
+      "—";
+
+
+    document.getElementById(
+      "party-name-en-info"
+    ).textContent =
+      party.names?.en ||
+      "—";
+
+
+    document.getElementById(
+      "party-description"
+    ).textContent =
+      party.description ||
+      "暂无政党简介。";
+
+  }
+
+
+  // ============================================================
+  // 渲染候选人
+  // ============================================================
+
+  function renderCandidates(
+    candidatesData,
+    partyId
+  ) {
+
+    const card =
+      document.getElementById(
+        "party-candidates-card"
+      );
+
+
+    const list =
+      document.getElementById(
+        "candidate-list"
+      );
+
+
+    if (
+      !candidatesData ||
+      !Array.isArray(
+        candidatesData.candidates
+      )
+    ) {
+
+      return;
+
+    }
+
+
+    const candidates =
+      candidatesData.candidates
+
+        .filter(candidate =>
+          candidate.partyId ===
+          partyId
+        )
+
+        .sort(
+          (a, b) =>
+            Number(a.candidateNo) -
+            Number(b.candidateNo)
+        );
+
+
+    if (
+      candidates.length === 0
+    ) {
+
+      return;
+
+    }
+
+
+    card.style.display =
+      "block";
+
+
+    list.innerHTML =
+      candidates
+        .map(candidate => {
+
+          const name =
+            candidate.names?.zh ||
+            candidate.names?.en ||
+            candidate.candidateId;
+
+
+          const position =
+            candidate.position ===
+            "president"
+              ? "总统候选人"
+              : candidate.position ===
+                "vicePresident"
+                ? "副总统候选人"
+                : "候选人";
+
+
+          let photoHTML = "";
+
+
+          if (
+            candidate.photo
+          ) {
+
+            photoHTML = `
+
+              <img
+                class="candidate-photo"
+                src="${escapeHTML(
+                  candidate.photo
+                )}"
+                alt="${escapeHTML(
+                  name
+                )}"
+                onerror="
+                  this.style.display='none';
+                  this.nextElementSibling.style.display='flex';
+                "
+              >
+
+              <div
+                class="candidate-placeholder"
+                style="display:none;"
+              >
+                👤
+              </div>
+
+            `;
+
+          }
+
+          else {
+
+            photoHTML = `
+
+              <div
+                class="candidate-placeholder"
+              >
+                👤
+              </div>
+
+            `;
+
+          }
+
+
+          return `
+
+            <a
+              class="candidate-item"
+              href="candidate.html?id=${encodeURIComponent(
+                candidate.candidateId
+              )}"
+            >
+
+              <div
+                class="candidate-number"
+              >
+                ${escapeHTML(
+                  candidate.candidateNo ||
+                  "?"
+                )}
+              </div>
+
+
+              ${photoHTML}
+
+
+              <div
+                class="candidate-info"
+              >
+
+                <div
+                  class="candidate-name"
+                >
+                  ${escapeHTML(
+                    name
+                  )}
+                </div>
+
+
+                <div
+                  class="candidate-position"
+                >
+                  ${escapeHTML(
+                    position
+                  )}
+                </div>
+
+              </div>
+
+
+              <div
+                class="candidate-arrow"
+              >
+                →
+              </div>
+
+            </a>
+
+          `;
+
+        })
+        .join("");
+
+  }
+
+
+  // ============================================================
+  // 错误
+  // ============================================================
+
+  function showError(
+    message
+  ) {
+
+    document.getElementById(
+      "error-card"
+    ).style.display =
+      "block";
+
+
+    document.getElementById(
+      "error-message"
+    ).textContent =
+      message;
+
+  }
+
+
+  // ============================================================
+  // 初始化
+  // ============================================================
+
+  async function loadPartyPage() {
+
+    try {
+
+      const partyId =
+        getPartyId();
+
+
+      if (!partyId) {
+
+        showError(
+          "缺少政党 ID。请通过正确的政党资料链接访问本页面。"
+        );
+
+        return;
+
+      }
+
+
+      const [
+        partiesResponse,
+        candidatesResponse
+      ] =
+        await Promise.all([
+
+          fetch(
+            PARTIES_URL,
+            {
+              cache: "no-store"
+            }
+          ),
+
+          fetch(
+            CANDIDATES_URL,
+            {
+              cache: "no-store"
+            }
+          )
+
+        ]);
+
+
+      if (
+        !partiesResponse.ok
+      ) {
+
+        throw new Error(
+          "无法读取 parties.json"
+        );
+
+      }
+
+
+      const partiesData =
+        await partiesResponse.json();
+
+
+      let candidatesData =
+        null;
+
+
+      if (
+        candidatesResponse.ok
+      ) {
+
+        candidatesData =
+          await candidatesResponse.json();
+
+      }
+
+
+      const party =
+        findParty(
+          partiesData,
+          partyId
+        );
+
+
+      if (!party) {
+
+        showError(
+          "未找到对应的政党资料。"
+        );
+
+        return;
+
+      }
+
+
+      renderParty(
+        party
+      );
+
+
+      renderCandidates(
+        candidatesData,
+        party.partyId
+      );
+
+
+      // 修改网页标题
+
+      document.title =
+        `${party.names?.zh || party.partyName}｜阿谢国`;
+
+
+    }
+
+
+    catch (error) {
+
+      console.error(
+        "Party page error:",
+        error
+      );
+
+
+      showError(
+        "读取政党资料失败：" +
+        (
+          error.message ||
+          "未知错误"
+        )
+      );
+
+    }
+
+  }
+
+
+  // ============================================================
+  // 启动
+  // ============================================================
+
+  loadPartyPage();
+
+</script>
+
+</body>
+</html>
