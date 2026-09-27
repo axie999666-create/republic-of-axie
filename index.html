@@ -1582,15 +1582,109 @@ function updateCountdown() {
 
 // =========================================================
 // 🗳️ 选举系统
+//
+// 数据来源：./data/elections.json
+//
+// 系统逻辑：
+// 1. 读取所有已经定义的具体选举
+// 2. 使用 elections.json 中的 start / end
+// 3. 当前正在进行的选举优先显示
+// 4. 如果没有正在进行的选举，则显示最近的下一场选举
+// 5. 所有时间统一按照 UTC+9 处理
 // =========================================================
 
 let electionData = null;
 
 let currentElection = null;
 
-let electionEndTime = null;
-
 let electionCountdownTimer = null;
+
+
+// =========================================================
+// 将所有具体选举记录整理成统一数组
+// =========================================================
+
+function getElectionRecords() {
+
+  if (!electionData) {
+    return [];
+  }
+
+
+  const records = [];
+
+
+  /*
+   * 总统选举
+   */
+
+  if (
+    electionData.president &&
+    Array.isArray(
+      electionData.president.elections
+    )
+  ) {
+
+    electionData.president.elections.forEach(
+      election => {
+
+        records.push({
+
+          ...election,
+
+          type: "president",
+
+          typeName:
+            electionData.president.name,
+
+          page:
+            electionData.president.page
+
+        });
+
+      }
+    );
+
+  }
+
+
+  /*
+   * 副总统选举
+   */
+
+  if (
+    electionData.vicePresident &&
+    Array.isArray(
+      electionData.vicePresident.elections
+    )
+  ) {
+
+    electionData.vicePresident.elections.forEach(
+      election => {
+
+        records.push({
+
+          ...election,
+
+          type: "vicePresident",
+
+          typeName:
+            electionData.vicePresident.name,
+
+          page:
+            electionData.vicePresident.page
+
+        });
+
+      }
+    );
+
+  }
+
+
+  return records;
+
+}
 
 
 // =========================================================
@@ -1625,10 +1719,12 @@ function updateElectionLanguage() {
     );
 
 
-  if (!title ||
-      !description ||
-      !badge ||
-      !button) {
+  if (
+    !title ||
+    !description ||
+    !badge ||
+    !button
+  ) {
 
     return;
 
@@ -1636,8 +1732,13 @@ function updateElectionLanguage() {
 
 
   const isPresident =
-    currentElection.id ===
+    currentElection.type ===
     "president";
+
+
+  const isOngoing =
+    currentElection.status ===
+    "ongoing";
 
 
   const texts = {
@@ -1650,14 +1751,23 @@ function updateElectionLanguage() {
       vicePresidentTitle:
         "🗳️ 阿谢国副总统选举",
 
-      presidentDescription:
+      presidentOngoing:
         "阿谢国总统选举正在进行中。",
 
-      vicePresidentDescription:
+      vicePresidentOngoing:
         "阿谢国副总统选举正在进行中。",
 
-      badge:
+      presidentUpcoming:
+        "下一次阿谢国总统选举即将举行。",
+
+      vicePresidentUpcoming:
+        "下一次阿谢国副总统选举即将举行。",
+
+      ongoingBadge:
         "● 投票进行中",
+
+      upcomingBadge:
+        "● 即将开始",
 
       button:
         "进入选举页面"
@@ -1673,14 +1783,23 @@ function updateElectionLanguage() {
       vicePresidentTitle:
         "🗳️ Axie Vice Presidential Election",
 
-      presidentDescription:
+      presidentOngoing:
         "The Presidential Election of the Republic of Axie is currently underway.",
 
-      vicePresidentDescription:
+      vicePresidentOngoing:
         "The Vice Presidential Election of the Republic of Axie is currently underway.",
 
-      badge:
+      presidentUpcoming:
+        "The next Presidential Election of the Republic of Axie is upcoming.",
+
+      vicePresidentUpcoming:
+        "The next Vice Presidential Election of the Republic of Axie is upcoming.",
+
+      ongoingBadge:
         "● Voting Open",
+
+      upcomingBadge:
+        "● Upcoming",
 
       button:
         "Enter Election"
@@ -1696,14 +1815,23 @@ function updateElectionLanguage() {
       vicePresidentTitle:
         "🗳️ 阿謝国 副大統領選挙",
 
-      presidentDescription:
+      presidentOngoing:
         "阿謝国大統領選挙が現在行われています。",
 
-      vicePresidentDescription:
+      vicePresidentOngoing:
         "阿謝国副大統領選挙が現在行われています。",
 
-      badge:
+      presidentUpcoming:
+        "次回の阿謝国大統領選挙が近づいています。",
+
+      vicePresidentUpcoming:
+        "次回の阿謝国副大統領選挙が予定されています。",
+
+      ongoingBadge:
         "● 投票受付中",
+
+      upcomingBadge:
+        "● 開催予定",
 
       button:
         "選挙ページへ"
@@ -1717,21 +1845,52 @@ function updateElectionLanguage() {
     texts[currentLang];
 
 
+  /*
+   * 标题
+   */
+
   title.textContent =
     isPresident
       ? lang.presidentTitle
       : lang.vicePresidentTitle;
 
 
-  description.textContent =
-    isPresident
-      ? lang.presidentDescription
-      : lang.vicePresidentDescription;
+  /*
+   * 描述
+   */
 
+  if (isOngoing) {
+
+    description.textContent =
+      isPresident
+        ? lang.presidentOngoing
+        : lang.vicePresidentOngoing;
+
+  }
+
+  else {
+
+    description.textContent =
+      isPresident
+        ? lang.presidentUpcoming
+        : lang.vicePresidentUpcoming;
+
+  }
+
+
+  /*
+   * 状态标签
+   */
 
   badge.textContent =
-    lang.badge;
+    isOngoing
+      ? lang.ongoingBadge
+      : lang.upcomingBadge;
 
+
+  /*
+   * 按钮
+   */
 
   button.textContent =
     lang.button;
@@ -1740,7 +1899,440 @@ function updateElectionLanguage() {
 
 
 // =========================================================
-// 检查当前是否处于选举期
+// 格式化选举日期
+//
+// 统一使用 UTC+9
+// =========================================================
+
+function formatElectionDate(
+  dateString
+) {
+
+  const date =
+    new Date(dateString);
+
+
+  if (
+    Number.isNaN(
+      date.getTime()
+    )
+  ) {
+
+    return "";
+
+  }
+
+
+  return new Intl.DateTimeFormat(
+    currentLang === "jp"
+      ? "ja-JP"
+      : currentLang === "en"
+        ? "en-US"
+        : "zh-CN",
+    {
+      timeZone: "Asia/Tokyo",
+      year: "numeric",
+      month: "numeric",
+      day: "numeric"
+    }
+  ).format(date);
+
+}
+
+
+// =========================================================
+// 选举日期文字
+// =========================================================
+
+function updateElectionDateText() {
+
+  if (!currentElection) {
+    return;
+  }
+
+
+  const dateElement =
+    document.getElementById(
+      "election-date"
+    );
+
+
+  if (!dateElement) {
+    return;
+  }
+
+
+  const start =
+    formatElectionDate(
+      currentElection.start
+    );
+
+  const end =
+    formatElectionDate(
+      currentElection.end
+    );
+
+
+  const texts = {
+
+    zh:
+      `投票时间：${start} — ${end}（UTC+9）`,
+
+    en:
+      `Voting period: ${start} — ${end} (UTC+9)`,
+
+    jp:
+      `投票期間：${start} — ${end}（UTC+9）`
+
+  };
+
+
+  dateElement.textContent =
+    texts[currentLang];
+
+}
+
+
+// =========================================================
+// 倒计时格式化
+// =========================================================
+
+function formatRemaining(
+  milliseconds
+) {
+
+  const totalSeconds =
+    Math.max(
+      0,
+      Math.floor(
+        milliseconds / 1000
+      )
+    );
+
+
+  const days =
+    Math.floor(
+      totalSeconds / 86400
+    );
+
+
+  const hours =
+    Math.floor(
+      (totalSeconds % 86400) /
+      3600
+    );
+
+
+  const minutes =
+    Math.floor(
+      (totalSeconds % 3600) /
+      60
+    );
+
+
+  const seconds =
+    totalSeconds % 60;
+
+
+  return {
+    days,
+    hours,
+    minutes,
+    seconds
+  };
+
+}
+
+
+// =========================================================
+// 选举倒计时
+//
+// 即将开始：
+// 距离投票开始
+//
+// 进行中：
+// 距离投票结束
+// =========================================================
+
+function updateElectionCountdown() {
+
+  if (!currentElection) {
+    return;
+  }
+
+
+  const countdown =
+    document.getElementById(
+      "election-countdown"
+    );
+
+
+  if (!countdown) {
+    return;
+  }
+
+
+  const now =
+    new Date();
+
+
+  const start =
+    new Date(
+      currentElection.start
+    );
+
+
+  const end =
+    new Date(
+      currentElection.end
+    );
+
+
+  /*
+   * ============================
+   * 尚未开始
+   * ============================
+   */
+
+  if (
+    now < start
+  ) {
+
+    const remaining =
+      formatRemaining(
+        start - now
+      );
+
+
+    const texts = {
+
+      zh:
+        `距离投票开始：${remaining.days}天 ${remaining.hours}小时 ${remaining.minutes}分 ${remaining.seconds}秒`,
+
+      en:
+        `Time until voting begins: ${remaining.days}d ${remaining.hours}h ${remaining.minutes}m ${remaining.seconds}s`,
+
+      jp:
+        `投票開始まで：${remaining.days}日 ${remaining.hours}時間 ${remaining.minutes}分 ${remaining.seconds}秒`
+
+    };
+
+
+    countdown.textContent =
+      texts[currentLang];
+
+
+    return;
+
+  }
+
+
+  /*
+   * ============================
+   * 正在进行
+   * ============================
+   */
+
+  if (
+    now >= start &&
+    now <= end
+  ) {
+
+    const remaining =
+      formatRemaining(
+        end - now
+      );
+
+
+    const texts = {
+
+      zh:
+        `距离投票结束：${remaining.days}天 ${remaining.hours}小时 ${remaining.minutes}分 ${remaining.seconds}秒`,
+
+      en:
+        `Time remaining: ${remaining.days}d ${remaining.hours}h ${remaining.minutes}m ${remaining.seconds}s`,
+
+      jp:
+        `投票終了まで：${remaining.days}日 ${remaining.hours}時間 ${remaining.minutes}分 ${remaining.seconds}秒`
+
+    };
+
+
+    countdown.textContent =
+      texts[currentLang];
+
+
+    return;
+
+  }
+
+
+  /*
+   * ============================
+   * 已结束
+   * ============================
+   */
+
+  countdown.textContent = {
+
+    zh:
+      "投票已经结束",
+
+    en:
+      "Voting has ended",
+
+    jp:
+      "投票は終了しました"
+
+  }[currentLang];
+
+}
+
+
+// =========================================================
+// 根据当前时间选择应该显示的选举
+// =========================================================
+
+function selectCurrentElection() {
+
+  const records =
+    getElectionRecords();
+
+
+  if (
+    records.length === 0
+  ) {
+
+    return null;
+
+  }
+
+
+  const now =
+    new Date();
+
+
+  /*
+   * 转换日期
+   */
+
+  const processed =
+    records
+      .map(
+        election => {
+
+          return {
+
+            ...election,
+
+            startTime:
+              new Date(
+                election.start
+              ),
+
+            endTime:
+              new Date(
+                election.end
+              )
+
+          };
+
+        }
+      )
+      .filter(
+        election =>
+          !Number.isNaN(
+            election.startTime.getTime()
+          ) &&
+          !Number.isNaN(
+            election.endTime.getTime()
+          )
+      );
+
+
+  /*
+   * ============================
+   * 第一优先级：
+   * 当前正在进行的选举
+   * ============================
+   */
+
+  const ongoing =
+    processed
+      .filter(
+        election =>
+          now >= election.startTime &&
+          now <= election.endTime
+      )
+      .sort(
+        (a, b) =>
+          a.endTime - b.endTime
+      );
+
+
+  if (
+    ongoing.length > 0
+  ) {
+
+    const election =
+      ongoing[0];
+
+    election.status =
+      "ongoing";
+
+    return election;
+
+  }
+
+
+  /*
+   * ============================
+   * 第二优先级：
+   * 最近即将开始的选举
+   * ============================
+   */
+
+  const upcoming =
+    processed
+      .filter(
+        election =>
+          now <
+          election.startTime
+      )
+      .sort(
+        (a, b) =>
+          a.startTime - b.startTime
+      );
+
+
+  if (
+    upcoming.length > 0
+  ) {
+
+    const election =
+      upcoming[0];
+
+    election.status =
+      "scheduled";
+
+    return election;
+
+  }
+
+
+  /*
+   * ============================
+   * 如果所有选举都已经结束
+   * ============================
+   */
+
+  return null;
+
+}
+
+
+// =========================================================
+// 加载选举状态
 // =========================================================
 
 async function loadElectionStatus() {
@@ -1757,6 +2349,10 @@ async function loadElectionStatus() {
 
 
   try {
+
+    /*
+     * 读取 elections.json
+     */
 
     const response =
       await fetch(
@@ -1781,107 +2377,16 @@ async function loadElectionStatus() {
       await response.json();
 
 
-    const now =
-      getUTC9Time();
-
-
-    const year =
-      now.getFullYear();
-
-
     /*
-     * =============================================
-     * 总统选举
-     * =============================================
+     * 根据实际日期选择选举
      */
 
-    const presidentStart =
-      createUTC9Date(
-        year,
-        electionData.president.electionStart.month,
-        electionData.president.electionStart.day
-      );
-
-
-    const presidentEnd =
-      createUTC9Date(
-        year,
-        electionData.president.electionEnd.month,
-        electionData.president.electionEnd.day,
-        23,
-        59,
-        59
-      );
+    currentElection =
+      selectCurrentElection();
 
 
     /*
-     * =============================================
-     * 副总统选举
-     * =============================================
-     */
-
-    const vicePresidentStart =
-      createUTC9Date(
-        year,
-        electionData.vicePresident.electionStart.month,
-        electionData.vicePresident.electionStart.day
-      );
-
-
-    const vicePresidentEnd =
-      createUTC9Date(
-        year,
-        electionData.vicePresident.electionEnd.month,
-        electionData.vicePresident.electionEnd.day,
-        23,
-        59,
-        59
-      );
-
-
-    /*
-     * =============================================
-     * 判断当前选举
-     * =============================================
-     */
-
-    currentElection = null;
-
-    electionEndTime = null;
-
-
-    if (
-      now >= presidentStart &&
-      now <= presidentEnd
-    ) {
-
-      currentElection =
-        electionData.president;
-
-      electionEndTime =
-        presidentEnd;
-
-    }
-
-
-    else if (
-      now >= vicePresidentStart &&
-      now <= vicePresidentEnd
-    ) {
-
-      currentElection =
-        electionData.vicePresident;
-
-      electionEndTime =
-        vicePresidentEnd;
-
-    }
-
-
-    /*
-     * =============================================
-     * 当前没有选举
-     * =============================================
+     * 没有任何可显示的选举
      */
 
     if (!currentElection) {
@@ -1889,7 +2394,10 @@ async function loadElectionStatus() {
       section.style.display =
         "none";
 
-      if (electionCountdownTimer) {
+
+      if (
+        electionCountdownTimer
+      ) {
 
         clearInterval(
           electionCountdownTimer
@@ -1900,23 +2408,30 @@ async function loadElectionStatus() {
 
       }
 
+
       return;
 
     }
 
 
     /*
-     * =============================================
      * 显示选举模块
-     * =============================================
      */
 
     section.style.display =
       "block";
 
 
+    /*
+     * 更新语言
+     */
+
     updateElectionLanguage();
 
+
+    /*
+     * 设置选举页面链接
+     */
 
     const button =
       document.getElementById(
@@ -1924,17 +2439,19 @@ async function loadElectionStatus() {
       );
 
 
-    button.href =
-      currentElection.page;
+    if (button) {
+
+      button.href =
+        currentElection.page;
+
+    }
 
 
     /*
-     * 显示选举日期
+     * 显示实际选举日期
      */
 
-    updateElectionDateText(
-      year
-    );
+    updateElectionDateText();
 
 
     /*
@@ -1944,7 +2461,13 @@ async function loadElectionStatus() {
     updateElectionCountdown();
 
 
-    if (electionCountdownTimer) {
+    /*
+     * 清除旧计时器
+     */
+
+    if (
+      electionCountdownTimer
+    ) {
 
       clearInterval(
         electionCountdownTimer
@@ -1953,9 +2476,90 @@ async function loadElectionStatus() {
     }
 
 
+    /*
+     * 每秒更新
+     */
+
     electionCountdownTimer =
       setInterval(
-        updateElectionCountdown,
+        () => {
+
+          /*
+           * 重新根据当前时间判断选举
+           *
+           * 这样在：
+           *
+           * 2026-10-02 00:00
+           *
+           * 或
+           *
+           * 2026-11-02 00:00
+           *
+           * 等关键时间点，
+           * 页面可以自动切换到下一场选举。
+           */
+
+          const selected =
+            selectCurrentElection();
+
+
+          /*
+           * 如果选举发生变化
+           */
+
+          if (
+            selected &&
+            (
+              !currentElection ||
+              selected.electionId !==
+              currentElection.electionId
+            )
+          ) {
+
+            currentElection =
+              selected;
+
+
+            updateElectionLanguage();
+
+            updateElectionDateText();
+
+
+            if (button) {
+
+              button.href =
+                currentElection.page;
+
+            }
+
+          }
+
+
+          /*
+           * 如果没有可显示的选举
+           */
+
+          if (!selected) {
+
+            section.style.display =
+              "none";
+
+            return;
+
+          }
+
+
+          /*
+           * 正常显示
+           */
+
+          section.style.display =
+            "block";
+
+
+          updateElectionCountdown();
+
+        },
         1000
       );
 
@@ -1973,178 +2577,23 @@ async function loadElectionStatus() {
     section.style.display =
       "none";
 
+
+    if (
+      electionCountdownTimer
+    ) {
+
+      clearInterval(
+        electionCountdownTimer
+      );
+
+      electionCountdownTimer =
+        null;
+
+    }
+
   }
 
 }
-
-
-// =========================================================
-// 选举日期文字
-// =========================================================
-
-function updateElectionDateText(year) {
-
-  if (!currentElection) {
-    return;
-  }
-
-
-  const dateElement =
-    document.getElementById(
-      "election-date"
-    );
-
-
-  if (!dateElement) {
-    return;
-  }
-
-
-  const isPresident =
-    currentElection.id ===
-    "president";
-
-
-  const startMonth =
-    currentElection.electionStart.month;
-
-  const startDay =
-    currentElection.electionStart.day;
-
-  const endMonth =
-    currentElection.electionEnd.month;
-
-  const endDay =
-    currentElection.electionEnd.day;
-
-
-  const texts = {
-
-    zh:
-      `投票时间：${year}年${startMonth}月${startDay}日 — ${year}年${endMonth}月${endDay}日（UTC+9）`,
-
-    en:
-      `Voting period: ${year}/${startMonth}/${startDay} — ${year}/${endMonth}/${endDay} (UTC+9)`,
-
-    jp:
-      `投票期間：${year}年${startMonth}月${startDay}日 — ${year}年${endMonth}月${endDay}日（UTC+9）`
-
-  };
-
-
-  dateElement.textContent =
-    texts[currentLang];
-
-}
-
-
-// =========================================================
-// 选举倒计时
-// =========================================================
-
-function updateElectionCountdown() {
-
-  if (
-    !currentElection ||
-    !electionEndTime
-  ) {
-
-    return;
-
-  }
-
-
-  const countdown =
-    document.getElementById(
-      "election-countdown"
-    );
-
-
-  if (!countdown) {
-    return;
-  }
-
-
-  const remaining =
-    electionEndTime -
-    getUTC9Time();
-
-
-  /*
-   * 投票结束
-   */
-
-  if (remaining <= 0) {
-
-    countdown.textContent = {
-
-      zh:
-        "投票已经结束",
-
-      en:
-        "Voting has ended",
-
-      jp:
-        "投票は終了しました"
-
-    }[currentLang];
-
-
-    return;
-
-  }
-
-
-  const days =
-    Math.floor(
-      remaining /
-      (1000 * 60 * 60 * 24)
-    );
-
-
-  const hours =
-    Math.floor(
-      (remaining /
-      (1000 * 60 * 60)) % 24
-    );
-
-
-  const minutes =
-    Math.floor(
-      (remaining /
-      (1000 * 60)) % 60
-    );
-
-
-  const seconds =
-    Math.floor(
-      (remaining / 1000) % 60
-    );
-
-
-  const texts = {
-
-    zh:
-      `距离投票结束：${days}天 ${hours}小时 ${minutes}分 ${seconds}秒`,
-
-    en:
-      `Time remaining: ${days}d ${hours}h ${minutes}m ${seconds}s`,
-
-    jp:
-      `投票終了まで：${days}日 ${hours}時間 ${minutes}分 ${seconds}秒`
-
-  };
-
-
-  countdown.textContent =
-    texts[currentLang];
-
-}
-
-
-// =========================================================
-// AXNews 新闻加载
-// =========================================================
 
 async function loadNews() {
 
