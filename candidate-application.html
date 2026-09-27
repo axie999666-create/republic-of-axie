@@ -216,6 +216,14 @@
         0 0 0 3px rgba(13, 91, 215, 0.1);
     }
 
+    input:disabled,
+    select:disabled,
+    textarea:disabled {
+      background: #f3f5f8;
+      color: #7a8494;
+      cursor: not-allowed;
+    }
+
     textarea {
       min-height: 130px;
       resize: vertical;
@@ -228,19 +236,6 @@
       color: #7d899a;
       font-size: 12px;
       line-height: 1.6;
-    }
-
-    .field-error {
-      margin-top: 6px;
-
-      color: #b32f2f;
-      font-size: 12px;
-
-      display: none;
-    }
-
-    .field-error.show {
-      display: block;
     }
 
     /* =========================
@@ -698,7 +693,7 @@
 
 
     <!-- =========================
-         选举
+         1. 选举
     ========================== -->
 
     <section class="section">
@@ -713,7 +708,6 @@
 
 
       <div class="position-options">
-
 
         <div class="position-option">
 
@@ -769,7 +763,6 @@
 
         </div>
 
-
       </div>
 
 
@@ -800,12 +793,11 @@
 
       </div>
 
-
     </section>
 
 
     <!-- =========================
-         姓名
+         2. 姓名
     ========================== -->
 
     <section class="section">
@@ -816,7 +808,6 @@
 
 
       <div class="two-columns">
-
 
         <div class="field">
 
@@ -853,7 +844,6 @@
 
         </div>
 
-
       </div>
 
 
@@ -878,12 +868,11 @@
 
       </div>
 
-
     </section>
 
 
     <!-- =========================
-         政党
+         3. 政党
     ========================== -->
 
     <section class="section">
@@ -913,9 +902,7 @@
 
 
         <div class="field-help">
-
           可以选择阿谢国现有政党，也可以选择“独立候选人”或“其他”。
-
         </div>
 
       </div>
@@ -927,9 +914,7 @@
       >
 
         <label for="otherPartyName">
-
           其他政党名称
-
         </label>
 
         <input
@@ -941,27 +926,31 @@
 
       </div>
 
-
     </section>
 
 
     <!-- =========================
-         照片
+         4. 照片
     ========================== -->
 
     <section class="section">
 
       <h2 class="section-title">
+
         4. 候选人照片
+
         <span class="optional">
           可选
         </span>
+
       </h2>
 
 
       <div class="section-description">
+
         可以上传候选人照片，也可以不上传。
         支持 JPG、PNG、GIF、WebP，单个文件最大 5 MB。
+
       </div>
 
 
@@ -981,6 +970,7 @@
         <div class="photo-description">
 
           上传照片后，系统会在提交申请时自动保存。
+
           <br>
 
           不上传照片也可以继续申请。
@@ -1043,12 +1033,11 @@
 
       </div>
 
-
     </section>
 
 
     <!-- =========================
-         简介
+         5. 简介
     ========================== -->
 
     <section class="section">
@@ -1082,12 +1071,11 @@
 
       </div>
 
-
     </section>
 
 
     <!-- =========================
-         竞选声明
+         6. 竞选声明
     ========================== -->
 
     <section class="section">
@@ -1120,7 +1108,6 @@
         </div>
 
       </div>
-
 
     </section>
 
@@ -1451,8 +1438,6 @@
 
 
     /*
-     * 优先选择未来或当前正在进行的选举。
-     *
      * 已取消的选举不参与。
      */
 
@@ -1473,7 +1458,7 @@
 
 
     /*
-     * 如果当前正在报名时间范围内，
+     * 如果当前正在进行选举，
      * 优先选择该选举。
      */
 
@@ -1972,7 +1957,7 @@
   function handleSelectedPhoto(file) {
 
     /*
-     * 文件类型
+     * 检查 MIME 类型。
      */
 
     if (
@@ -1993,7 +1978,7 @@
 
 
     /*
-     * 文件大小
+     * 检查文件大小。
      */
 
     if (
@@ -2019,10 +2004,19 @@
       "";
 
 
+    /*
+     * 浏览器本地预览。
+     */
+
     const objectUrl =
       URL.createObjectURL(
         file
       );
+
+
+    photoPreview.onload = () => {
+      URL.revokeObjectURL(objectUrl);
+    };
 
 
     photoPreview.src =
@@ -2153,109 +2147,52 @@
 
 
   /* =========================================================
-     Base64
-  ========================================================= */
-
-  function fileToBase64(file) {
-
-    return new Promise(
-      (resolve, reject) => {
-
-        const reader =
-          new FileReader();
-
-
-        reader.onload = () => {
-
-          const result =
-            reader.result;
-
-
-          if (
-            typeof result !==
-            "string"
-          ) {
-
-            reject(
-              new Error(
-                "无法读取照片文件。"
-              )
-            );
-
-            return;
-
-          }
-
-
-          /*
-           * result:
-           *
-           * data:image/jpeg;base64,XXXX
-           *
-           * 只把逗号后面的内容交给 Worker。
-           */
-
-          const comma =
-            result.indexOf(",");
-
-
-          if (comma === -1) {
-
-            reject(
-              new Error(
-                "照片数据格式错误。"
-              )
-            );
-
-            return;
-
-          }
-
-
-          resolve(
-            result.slice(
-              comma + 1
-            )
-          );
-
-        };
-
-
-        reader.onerror = () => {
-
-          reject(
-            new Error(
-              "读取照片失败。"
-            )
-          );
-
-        };
-
-
-        reader.readAsDataURL(
-          file
-        );
-
-      }
-    );
-
-  }
-
-
-  /* =========================================================
      上传照片
   ========================================================= */
 
   async function uploadCandidatePhoto() {
 
+    /*
+     * 没有照片：
+     * 直接返回空字符串。
+     */
+
     if (!selectedPhotoFile) {
 
-      /*
-       * 没有照片：
-       * 直接返回空字符串。
-       */
-
       return "";
+
+    }
+
+
+    /*
+     * 再次验证 MIME 类型。
+     */
+
+    if (
+      !ALLOWED_IMAGE_TYPES[
+        selectedPhotoFile.type
+      ]
+    ) {
+
+      throw new Error(
+        "照片格式不受支持，请使用 JPG、PNG、GIF 或 WebP。"
+      );
+
+    }
+
+
+    /*
+     * 再次验证文件大小。
+     */
+
+    if (
+      selectedPhotoFile.size >
+      MAX_IMAGE_SIZE
+    ) {
+
+      throw new Error(
+        "照片不能超过 5 MB。"
+      );
 
     }
 
@@ -2266,45 +2203,44 @@
     );
 
 
-    const base64 =
-      await fileToBase64(
-        selectedPhotoFile
-      );
+    /*
+     * 使用 multipart/form-data。
+     *
+     * Worker 端通过：
+     *
+     * request.formData()
+     *
+     * 获取：
+     *
+     * formData.get("file")
+     */
+
+    const formData =
+      new FormData();
 
 
-    const extension =
-      ALLOWED_IMAGE_TYPES[
-        selectedPhotoFile.type
-      ];
+    formData.append(
+      "file",
+      selectedPhotoFile,
+      selectedPhotoFile.name
+    );
 
+
+    /*
+     * 不要手动设置 Content-Type。
+     *
+     * 浏览器会自动生成：
+     *
+     * multipart/form-data;
+     * boundary=...
+     */
 
     const response =
       await fetch(
         `${API_BASE}/upload-candidate-image`,
         {
           method: "POST",
-
-          headers: {
-            "Content-Type":
-              "application/json"
-          },
-
-          body: JSON.stringify({
-
-            fileName:
-              selectedPhotoFile.name,
-
-            content:
-              base64,
-
-            contentType:
-              selectedPhotoFile.type,
-
-            extension:
-              extension
-
-          })
-
+          body: formData
         }
       );
 
@@ -2333,6 +2269,10 @@
 
     }
 
+
+    /*
+     * Worker 应返回 path。
+     */
 
     if (
       !data?.path
@@ -2433,10 +2373,6 @@
 
   function validateForm() {
 
-    const position =
-      getSelectedPosition();
-
-
     if (!currentElection) {
 
       return "目前没有可用的选举。";
@@ -2494,8 +2430,7 @@
 
 
     if (
-      partyInfo.partyId ===
-      "other" &&
+      partyInfo.partyId === "other" &&
       !partyInfo.partyName
     ) {
 
@@ -2535,11 +2470,9 @@
 
 
     /*
-     * 照片是可选的，
-     * 因此这里绝对不检查
-     * selectedPhotoFile 是否存在。
+     * 照片是可选项目，
+     * 因此这里不要求 selectedPhotoFile。
      */
-
 
     return "";
 
@@ -2608,7 +2541,7 @@
   async function submitApplication() {
 
     /*
-     * 清除旧结果
+     * 清除旧结果。
      */
 
     resultBox.className =
@@ -2620,7 +2553,7 @@
 
 
     /*
-     * 表单验证
+     * 表单验证。
      */
 
     const validationError =
@@ -2641,7 +2574,7 @@
 
 
     /*
-     * 防止重复点击
+     * 防止重复点击。
      */
 
     submitButton.disabled =
@@ -2654,13 +2587,13 @@
     try {
 
       /*
+       * 第一步：
+       *
+       * 如果有照片，
        * 先上传照片。
        *
-       * 没有照片时：
-       *
-       * uploadCandidatePhoto()
-       *
-       * 会直接返回 ""。
+       * 如果没有照片，
+       * 返回空字符串。
        */
 
       const photoPath =
@@ -2703,7 +2636,8 @@
 
 
       /*
-       * 申请数据
+       * 第二步：
+       * 创建候选人参选申请数据。
        */
 
       const application = {
@@ -2737,9 +2671,11 @@
 
         /*
          * 有照片：
-         * candidate-images/xxx.jpg
+         *
+         * candidate-images/xxxx.jpg
          *
          * 没有照片：
+         *
          * ""
          */
 
@@ -2754,7 +2690,8 @@
 
 
       /*
-       * 提交到 Worker
+       * 第三步：
+       * 提交候选人申请。
        */
 
       const response =
@@ -2803,7 +2740,8 @@
 
 
       /*
-       * 成功
+       * 第四步：
+       * 显示成功结果。
        */
 
       showResult(
@@ -2820,7 +2758,7 @@
 
 
       /*
-       * 防止再次重复提交
+       * 防止再次重复提交。
        */
 
       submitButton.textContent =
@@ -2828,7 +2766,7 @@
 
 
       /*
-       * 禁用表单
+       * 禁用所有表单输入。
        */
 
       document
@@ -2837,15 +2775,44 @@
         )
         .forEach(
           element => {
+
             element.disabled =
               true;
+
           }
         );
+
+
+      /*
+       * 禁用移除照片按钮。
+       */
+
+      removePhotoButton.disabled =
+        true;
 
 
     } catch (error) {
 
       console.error(error);
+
+
+      /*
+       * 如果照片上传失败，
+       * 这里也会统一显示错误。
+       */
+
+      if (
+        selectedPhotoFile &&
+        !uploadedPhotoPath
+      ) {
+
+        setPhotoStatus(
+          error.message ||
+          "照片上传失败。",
+          "error"
+        );
+
+      }
 
 
       showResult(
