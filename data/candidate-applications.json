@@ -1,3 +1,22 @@
 {
-  "applications": []
+  "applications": [
+    {
+      "applicationId": "APP-2026-85738A14",
+      "electionId": "president-axie4",
+      "position": "president",
+      "name": "阿道夫希特勒",
+      "englishName": "Adolf hitler",
+      "japaneseName": "アドルフ　ヒトラー",
+      "partyId": "other",
+      "partyName": "阿谢万字会",
+      "photo": "",
+      "introduction": "本人曾以德国士兵参加过第一次世界大战，后来当上德国元首",
+      "campaignStatement": "我参加阿谢国总统选举让阿谢国称霸世界",
+      "submittedAt": "2026-09-27T09:31:11.724Z",
+      "status": "pending",
+      "reviewedAt": null,
+      "reviewedBy": null,
+      "reviewNote": ""
+    }
+  ]
 }
