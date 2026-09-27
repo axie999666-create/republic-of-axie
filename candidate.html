@@ -11,6 +11,16 @@
 
   <title>候选人资料 | Republic of Axie</title>
 
+  <meta
+    name="description"
+    content="阿谢国官方候选人资料"
+  >
+
+  <link
+    rel="icon"
+    href="/ROA_flag.png"
+  >
+
 
   <style>
 
@@ -311,9 +321,17 @@
     }
 
 
+    /* =========================================================
+       政党
+    ========================================================= */
+
     .party {
 
-      display: inline-block;
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 9px;
 
       padding: 8px 12px;
 
@@ -327,6 +345,81 @@
       font-size: 14px;
 
       margin-bottom: 22px;
+
+    }
+
+
+    .party-link {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 7px;
+
+      color: #bde7ff;
+
+      transition:
+        color 0.2s,
+        opacity 0.2s;
+
+    }
+
+
+    .party-link:hover {
+
+      color: #ffffff;
+
+      text-decoration: underline;
+
+    }
+
+
+    .party-arrow {
+
+      opacity: 0.65;
+
+      font-size: 16px;
+
+      transition:
+        transform 0.2s,
+        opacity 0.2s;
+
+    }
+
+
+    .party-link:hover .party-arrow {
+
+      transform:
+        translateX(3px);
+
+      opacity: 1;
+
+    }
+
+
+    .party-abbreviation {
+
+      display: inline-block;
+
+      padding:
+        2px 6px;
+
+      border-radius: 5px;
+
+      background:
+        rgba(255, 255, 255, 0.08);
+
+      font-size: 11px;
+
+      opacity: 0.75;
+
+    }
+
+
+    .party-fallback {
+
+      opacity: 0.85;
 
     }
 
@@ -540,6 +633,20 @@
 
       }
 
+
+      .party {
+
+        max-width: 100%;
+
+      }
+
+
+      .party-link {
+
+        flex-wrap: wrap;
+
+      }
+
     }
 
   </style>
@@ -621,6 +728,10 @@
 <script>
 
 
+  // ============================================================
+  // HTML 转义
+  // ============================================================
+
   function escapeHTML(value) {
 
     return String(value ?? "")
@@ -654,6 +765,10 @@
 
 
 
+  // ============================================================
+  // 换行处理
+  // ============================================================
+
   function formatStatement(value) {
 
     return escapeHTML(value)
@@ -666,6 +781,10 @@
   }
 
 
+
+  // ============================================================
+  // 日期格式化
+  // ============================================================
 
   function formatDate(dateString) {
 
@@ -720,6 +839,10 @@
 
 
 
+  // ============================================================
+  // 获取候选人 ID
+  // ============================================================
+
   function getCandidateId() {
 
     const params =
@@ -733,6 +856,10 @@
   }
 
 
+
+  // ============================================================
+  // 获取职位名称
+  // ============================================================
 
   function getPositionName(
     position
@@ -764,12 +891,22 @@
 
 
 
+  // ============================================================
+  // 获取选举资料
+  // ============================================================
+
   function getElectionInfo(
     elections,
     candidate
   ) {
 
-    let election = null;
+    if (
+      !elections
+    ) {
+
+      return null;
+
+    }
 
 
     if (
@@ -777,12 +914,22 @@
       "president"
     ) {
 
-      election =
-        elections.president.elections.find(
-          item =>
-            item.electionId ===
-            candidate.electionId
+      if (
+        elections.president &&
+        Array.isArray(
+          elections.president.elections
+        )
+      ) {
+
+        return (
+          elections.president.elections.find(
+            item =>
+              item.electionId ===
+              candidate.electionId
+          ) || null
         );
+
+      }
 
     }
 
@@ -792,31 +939,198 @@
       "vicePresident"
     ) {
 
-      election =
-        elections.vicePresident.elections.find(
-          item =>
-            item.electionId ===
-            candidate.electionId
+      if (
+        elections.vicePresident &&
+        Array.isArray(
+          elections.vicePresident.elections
+        )
+      ) {
+
+        return (
+          elections.vicePresident.elections.find(
+            item =>
+              item.electionId ===
+              candidate.electionId
+          ) || null
         );
+
+      }
 
     }
 
 
-    return election;
+    return null;
 
   }
 
 
 
+  // ============================================================
+  // 获取政党资料
+  // ============================================================
+
+  function getPartyInfo(
+    parties,
+    candidate
+  ) {
+
+    if (
+      !parties ||
+      !Array.isArray(
+        parties.parties
+      )
+    ) {
+
+      return null;
+
+    }
+
+
+    if (
+      !candidate.partyId
+    ) {
+
+      return null;
+
+    }
+
+
+    return (
+      parties.parties.find(
+        party =>
+          party.partyId ===
+          candidate.partyId
+      ) || null
+    );
+
+  }
+
+
+
+  // ============================================================
+  // 生成政党 HTML
+  // ============================================================
+
+  function renderParty(
+    candidate,
+    party
+  ) {
+
+    // 如果成功找到政党资料
+
+    if (
+      party
+    ) {
+
+      const partyName =
+        party.names?.zh ||
+        party.partyName ||
+        "未知政党";
+
+
+      const abbreviation =
+        party.abbreviation ||
+        "";
+
+
+      return `
+
+        <div class="party">
+
+          <a
+            class="party-link"
+            href="party.html?id=${encodeURIComponent(
+              party.partyId
+            )}"
+          >
+
+            <span>
+              ${escapeHTML(
+                partyName
+              )}
+            </span>
+
+
+            ${
+              abbreviation
+                ?
+
+                `
+                  <span
+                    class="party-abbreviation"
+                  >
+                    ${escapeHTML(
+                      abbreviation
+                    )}
+                  </span>
+                `
+
+                :
+
+                ""
+            }
+
+
+            <span
+              class="party-arrow"
+            >
+              →
+            </span>
+
+          </a>
+
+        </div>
+
+      `;
+
+    }
+
+
+    // 如果 parties.json 中没有对应政党
+    // 则使用 candidates.json 中的备用名称
+
+    return `
+
+      <div class="party">
+
+        <span class="party-fallback">
+
+          ${escapeHTML(
+            candidate.partyName ||
+            "暂无政党资料"
+          )}
+
+        </span>
+
+      </div>
+
+    `;
+
+  }
+
+
+
+  // ============================================================
+  // 渲染候选人
+  // ============================================================
+
   function renderCandidate(
     candidate,
-    election
+    election,
+    party
   ) {
 
     const content =
       document.getElementById(
         "content"
       );
+
+
+    const candidateName =
+      candidate.names?.zh ||
+      candidate.names?.en ||
+      candidate.candidateId ||
+      "未知候选人";
 
 
     const photo =
@@ -831,7 +1145,7 @@
               candidate.photo
             )}"
             alt="${escapeHTML(
-              candidate.names.zh
+              candidateName
             )}"
             onerror="
               this.style.display='none';
@@ -868,6 +1182,13 @@
         "vice-president-election.html";
 
 
+    const partyHTML =
+      renderParty(
+        candidate,
+        party
+      );
+
+
     content.innerHTML = `
 
       <article
@@ -899,7 +1220,8 @@
 
               候选人编号：
               ${escapeHTML(
-                candidate.candidateNo
+                candidate.candidateNo ||
+                "暂无资料"
               )}
 
             </div>
@@ -911,7 +1233,7 @@
             >
 
               ${escapeHTML(
-                candidate.names.zh
+                candidateName
               )}
 
             </div>
@@ -923,7 +1245,8 @@
             >
 
               ${escapeHTML(
-                candidate.names.en
+                candidate.names?.en ||
+                "—"
               )}
 
             </div>
@@ -935,20 +1258,15 @@
             >
 
               ${escapeHTML(
-                candidate.names.ja
+                candidate.names?.ja ||
+                "—"
               )}
 
             </div>
 
 
 
-            <div class="party">
-
-              ${escapeHTML(
-                candidate.partyName
-              )}
-
-            </div>
+            ${partyHTML}
 
 
 
@@ -971,8 +1289,10 @@
                   class="info-value"
                 >
 
-                  ${getPositionName(
-                    candidate.position
+                  ${escapeHTML(
+                    getPositionName(
+                      candidate.position
+                    )
                   )}
 
                 </div>
@@ -1090,7 +1410,8 @@
           >
 
             ${escapeHTML(
-              candidate.introduction
+              candidate.introduction ||
+              "暂无候选人简介。"
             )}
 
           </div>
@@ -1113,7 +1434,8 @@
           >
 
             ${formatStatement(
-              candidate.campaignStatement
+              candidate.campaignStatement ||
+              "暂无候选人声明。"
             )}
 
           </div>
@@ -1129,6 +1451,10 @@
 
 
 
+  // ============================================================
+  // 错误页面
+  // ============================================================
+
   function showError(
     title,
     message
@@ -1141,11 +1467,15 @@
       <div class="error">
 
         <h1>
-          ${escapeHTML(title)}
+          ${escapeHTML(
+            title
+          )}
         </h1>
 
         <p>
-          ${escapeHTML(message)}
+          ${escapeHTML(
+            message
+          )}
         </p>
 
       </div>
@@ -1155,6 +1485,10 @@
   }
 
 
+
+  // ============================================================
+  // 主加载函数
+  // ============================================================
 
   async function loadCandidate() {
 
@@ -1178,22 +1512,44 @@
 
 
 
+      // ========================================================
+      // 同时读取三个数据文件
+      // ========================================================
+
       const [
         candidateResponse,
-        electionResponse
+        electionResponse,
+        partyResponse
       ] = await Promise.all([
 
         fetch(
-          "./data/candidates.json"
+          "./data/candidates.json",
+          {
+            cache: "no-store"
+          }
         ),
 
         fetch(
-          "./data/elections.json"
+          "./data/elections.json",
+          {
+            cache: "no-store"
+          }
+        ),
+
+        fetch(
+          "./data/parties.json",
+          {
+            cache: "no-store"
+          }
         )
 
       ]);
 
 
+
+      // ========================================================
+      // candidates.json 必须正常
+      // ========================================================
 
       if (
         !candidateResponse.ok
@@ -1207,6 +1563,10 @@
 
 
 
+      // ========================================================
+      // elections.json 必须正常
+      // ========================================================
+
       if (
         !electionResponse.ok
       ) {
@@ -1219,13 +1579,83 @@
 
 
 
+      // ========================================================
+      // 读取候选人资料
+      // ========================================================
+
       const candidateData =
         await candidateResponse.json();
 
 
+      // ========================================================
+      // 读取选举资料
+      // ========================================================
+
       const electionData =
         await electionResponse.json();
 
+
+      // ========================================================
+      // 读取政党资料
+      //
+      // 如果 parties.json 暂时不可用，
+      // 候选人页面仍然可以正常显示。
+      // ========================================================
+
+      let partyData =
+        null;
+
+
+      if (
+        partyResponse.ok
+      ) {
+
+        try {
+
+          partyData =
+            await partyResponse.json();
+
+        }
+
+        catch (
+          partyJSONError
+        ) {
+
+          console.warn(
+            "无法解析 parties.json：",
+            partyJSONError
+          );
+
+        }
+
+      }
+
+      else {
+
+        console.warn(
+          "无法读取 parties.json"
+        );
+
+      }
+
+
+
+      // ========================================================
+      // 查找候选人
+      // ========================================================
+
+      if (
+        !candidateData ||
+        !Array.isArray(
+          candidateData.candidates
+        )
+      ) {
+
+        throw new Error(
+          "candidates.json 数据格式错误"
+        );
+
+      }
 
 
       const candidate =
@@ -1250,6 +1680,10 @@
 
 
 
+      // ========================================================
+      // 查找选举
+      // ========================================================
+
       const election =
         getElectionInfo(
           electionData,
@@ -1258,14 +1692,35 @@
 
 
 
+      // ========================================================
+      // 查找政党
+      // ========================================================
+
+      const party =
+        getPartyInfo(
+          partyData,
+          candidate
+        );
+
+
+
+      // ========================================================
+      // 渲染页面
+      // ========================================================
+
       renderCandidate(
         candidate,
-        election
+        election,
+        party
       );
 
 
+      // ========================================================
+      // 修改网页标题
+      // ========================================================
+
       document.title =
-        `${candidate.names.zh}｜候选人资料 | Republic of Axie`;
+        `${candidate.names?.zh || candidate.candidateId}｜候选人资料 | Republic of Axie`;
 
     }
 
@@ -1273,13 +1728,14 @@
     catch (error) {
 
       console.error(
+        "Candidate page error:",
         error
       );
 
 
       showError(
         "资料读取失败",
-        "无法读取候选人资料，请稍后再试。"
+        "无法读取候选人资料，请检查数据文件是否正确，或稍后再试。"
       );
 
     }
@@ -1287,6 +1743,10 @@
   }
 
 
+
+  // ============================================================
+  // 启动
+  // ============================================================
 
   loadCandidate();
 
