@@ -1,0 +1,1584 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>选举历史 | Republic of Axie</title>
+
+  <meta
+    name="description"
+    content="阿谢国历次总统及副总统选举资料"
+  >
+
+  <link
+    rel="icon"
+    href="/ROA_flag.png"
+  >
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+
+    body {
+
+      margin: 0;
+
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Noto Sans SC",
+        "Microsoft YaHei",
+        Arial,
+        sans-serif;
+
+      background: #f4f7fb;
+
+      color: #172033;
+
+      line-height: 1.7;
+
+    }
+
+
+    /* =========================================================
+       Header
+    ========================================================= */
+
+    header {
+
+      background: #0b1f3a;
+
+      color: white;
+
+      padding: 22px 20px;
+
+      box-shadow:
+        0 2px 12px rgba(0, 0, 0, 0.12);
+
+    }
+
+
+    .header-inner {
+
+      max-width: 1100px;
+
+      margin: auto;
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 15px;
+
+    }
+
+
+    .flag {
+
+      width: 52px;
+
+      height: 35px;
+
+      object-fit: cover;
+
+      border-radius: 4px;
+
+      box-shadow:
+        0 1px 5px rgba(0, 0, 0, 0.25);
+
+    }
+
+
+    .site-title {
+
+      margin: 0;
+
+      font-size: 22px;
+
+      font-weight: 700;
+
+    }
+
+
+    .site-subtitle {
+
+      margin: 2px 0 0;
+
+      font-size: 13px;
+
+      opacity: 0.75;
+
+    }
+
+
+    /* =========================================================
+       Main
+    ========================================================= */
+
+    main {
+
+      max-width: 1100px;
+
+      margin: 45px auto;
+
+      padding: 0 20px;
+
+    }
+
+
+    .back-link {
+
+      display: inline-block;
+
+      margin-bottom: 22px;
+
+      color: #1557a6;
+
+      text-decoration: none;
+
+      font-size: 14px;
+
+    }
+
+
+    .back-link:hover {
+
+      text-decoration: underline;
+
+    }
+
+
+    /* =========================================================
+       Page title
+    ========================================================= */
+
+    .page-title {
+
+      margin-bottom: 30px;
+
+    }
+
+
+    .page-title h1 {
+
+      margin: 0 0 6px;
+
+      font-size: 32px;
+
+      color: #102a4c;
+
+    }
+
+
+    .page-title p {
+
+      margin: 0;
+
+      color: #6b7789;
+
+      font-size: 14px;
+
+    }
+
+
+    /* =========================================================
+       Section
+    ========================================================= */
+
+    .section {
+
+      margin-bottom: 38px;
+
+    }
+
+
+    .section-title {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 12px;
+
+      margin-bottom: 18px;
+
+    }
+
+
+    .section-title h2 {
+
+      margin: 0;
+
+      font-size: 22px;
+
+      color: #102a4c;
+
+    }
+
+
+    .section-title-line {
+
+      flex: 1;
+
+      height: 1px;
+
+      background: #dfe5ed;
+
+    }
+
+
+    /* =========================================================
+       Election Card
+    ========================================================= */
+
+    .election-list {
+
+      display: grid;
+
+      gap: 18px;
+
+    }
+
+
+    .election-card {
+
+      background: white;
+
+      border-radius: 15px;
+
+      padding: 25px 28px;
+
+      box-shadow:
+        0 7px 25px rgba(20, 45, 80, 0.07);
+
+      transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+
+    }
+
+
+    .election-card:hover {
+
+      transform: translateY(-2px);
+
+      box-shadow:
+        0 12px 32px rgba(20, 45, 80, 0.11);
+
+    }
+
+
+    .election-card-top {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: flex-start;
+
+      gap: 20px;
+
+      margin-bottom: 10px;
+
+    }
+
+
+    .election-name {
+
+      font-size: 20px;
+
+      font-weight: 700;
+
+      color: #102a4c;
+
+    }
+
+
+    .election-name a {
+
+      color: inherit;
+
+      text-decoration: none;
+
+    }
+
+
+    .election-name a:hover {
+
+      color: #1557a6;
+
+    }
+
+
+    /* =========================================================
+       Status
+    ========================================================= */
+
+    .status {
+
+      display: inline-block;
+
+      flex-shrink: 0;
+
+      padding: 5px 12px;
+
+      border-radius: 999px;
+
+      font-size: 12px;
+
+      font-weight: 600;
+
+    }
+
+
+    .status-scheduled {
+
+      background: #e9f1fb;
+
+      color: #1557a6;
+
+    }
+
+
+    .status-active {
+
+      background: #e8f6ee;
+
+      color: #18794e;
+
+    }
+
+
+    .status-completed {
+
+      background: #eef1f5;
+
+      color: #596577;
+
+    }
+
+
+    .status-cancelled {
+
+      background: #fbecec;
+
+      color: #a33b3b;
+
+    }
+
+
+    .status-unknown {
+
+      background: #eef1f5;
+
+      color: #596577;
+
+    }
+
+
+    /* =========================================================
+       English / Japanese
+    ========================================================= */
+
+    .election-en {
+
+      color: #6f7b8d;
+
+      font-size: 13px;
+
+      margin-bottom: 2px;
+
+    }
+
+
+    .election-jp {
+
+      color: #8993a1;
+
+      font-size: 12px;
+
+      margin-bottom: 15px;
+
+    }
+
+
+    /* =========================================================
+       Details
+    ========================================================= */
+
+    .election-details {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+      gap: 12px;
+
+    }
+
+
+    .detail-item {
+
+      background: #f7f9fc;
+
+      border-radius: 9px;
+
+      padding: 12px 15px;
+
+    }
+
+
+    .detail-label {
+
+      font-size: 11px;
+
+      color: #7b8798;
+
+      margin-bottom: 3px;
+
+    }
+
+
+    .detail-value {
+
+      font-size: 13px;
+
+      font-weight: 600;
+
+      color: #33435a;
+
+    }
+
+
+    /* =========================================================
+       Election Type
+    ========================================================= */
+
+    .election-type {
+
+      margin-top: 17px;
+
+      font-size: 13px;
+
+      color: #637084;
+
+    }
+
+
+    /* =========================================================
+       Empty
+    ========================================================= */
+
+    .empty-card {
+
+      background: white;
+
+      border-radius: 14px;
+
+      padding: 30px;
+
+      text-align: center;
+
+      color: #7a8697;
+
+      box-shadow:
+        0 7px 25px rgba(20, 45, 80, 0.05);
+
+    }
+
+
+    /* =========================================================
+       Error
+    ========================================================= */
+
+    .error-card {
+
+      background: white;
+
+      border-radius: 16px;
+
+      padding: 55px 30px;
+
+      text-align: center;
+
+      box-shadow:
+        0 8px 30px rgba(20, 45, 80, 0.06);
+
+    }
+
+
+    .error-card h1 {
+
+      margin: 0 0 10px;
+
+      color: #102a4c;
+
+    }
+
+
+    .error-card p {
+
+      color: #687589;
+
+      margin: 0;
+
+    }
+
+
+    /* =========================================================
+       Footer
+    ========================================================= */
+
+    footer {
+
+      margin-top: 60px;
+
+      padding: 30px 20px;
+
+      background: #0b1f3a;
+
+      color:
+        rgba(255, 255, 255, 0.75);
+
+      text-align: center;
+
+      font-size: 13px;
+
+    }
+
+
+    /* =========================================================
+       Responsive
+    ========================================================= */
+
+    @media (max-width: 760px) {
+
+      main {
+
+        margin: 30px auto;
+
+      }
+
+
+      .page-title h1 {
+
+        font-size: 28px;
+
+      }
+
+
+      .election-card {
+
+        padding: 22px 20px;
+
+      }
+
+
+      .election-card-top {
+
+        flex-direction: column;
+
+        gap: 10px;
+
+      }
+
+
+      .election-details {
+
+        grid-template-columns: 1fr;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+  <div class="header-inner">
+
+    <img
+      src="/ROA_flag.png"
+      alt="Republic of Axie"
+      class="flag"
+    >
+
+    <div>
+
+      <h1 class="site-title">
+        Republic of Axie
+      </h1>
+
+      <p class="site-subtitle">
+        阿谢国选举历史
+      </p>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+
+<main>
+
+  <a
+    href="javascript:history.back()"
+    class="back-link"
+  >
+    ← 返回上一页
+  </a>
+
+
+  <div id="content">
+
+    <div class="error-card">
+
+      <h1>
+        正在读取选举资料
+      </h1>
+
+      <p>
+        请稍候……
+      </p>
+
+    </div>
+
+  </div>
+
+</main>
+
+
+
+<footer>
+
+  Republic of Axie · 阿谢国
+
+</footer>
+
+
+
+<script>
+
+  /* =========================================================
+     阿谢纪年
+     
+     阿谢元年 = 2024年
+  ========================================================= */
+
+  const AXIE_ERA_START_YEAR = 2024;
+
+
+  /* =========================================================
+     HTML 转义
+  ========================================================= */
+
+  function escapeHTML(value) {
+
+    if (
+      value === null ||
+      value === undefined
+    ) {
+
+      return "";
+
+    }
+
+
+    return String(value)
+
+      .replace(
+        /&/g,
+        "&amp;"
+      )
+
+      .replace(
+        /</g,
+        "&lt;"
+      )
+
+      .replace(
+        />/g,
+        "&gt;"
+      )
+
+      .replace(
+        /"/g,
+        "&quot;"
+      )
+
+      .replace(
+        /'/g,
+        "&#039;"
+      );
+
+  }
+
+
+  /* =========================================================
+     阿谢纪年日期
+     
+     2024 → 阿谢元年
+     2025 → 阿谢2年
+     2026 → 阿谢3年
+     2027 → 阿谢4年
+  ========================================================= */
+
+  function formatAxieDate(
+    isoString,
+    includeTime = false
+  ) {
+
+    if (!isoString) {
+
+      return "暂无资料";
+
+    }
+
+
+    const date =
+      new Date(
+        isoString
+      );
+
+
+    if (
+      Number.isNaN(
+        date.getTime()
+      )
+    ) {
+
+      return "暂无资料";
+
+    }
+
+
+    const formatter =
+      new Intl.DateTimeFormat(
+        "zh-CN",
+        {
+
+          timeZone:
+            "Asia/Tokyo",
+
+          year:
+            "numeric",
+
+          month:
+            "numeric",
+
+          day:
+            "numeric",
+
+          ...(includeTime
+            ? {
+
+                hour:
+                  "2-digit",
+
+                minute:
+                  "2-digit",
+
+                hour12:
+                  false
+
+              }
+
+            : {})
+
+        }
+      );
+
+
+    const parts =
+      formatter.formatToParts(
+        date
+      );
+
+
+    const values = {};
+
+
+    for (
+      const part of parts
+    ) {
+
+      values[part.type] =
+        part.value;
+
+    }
+
+
+    const gregorianYear =
+      Number(
+        values.year
+      );
+
+
+    const axieYear =
+      gregorianYear
+      - AXIE_ERA_START_YEAR
+      + 1;
+
+
+    const axieYearText =
+      axieYear === 1
+        ? "元年"
+        : `${axieYear}年`;
+
+
+    let result =
+      `阿谢${axieYearText}${values.month}月${values.day}日`;
+
+
+    if (includeTime) {
+
+      result +=
+        ` ${values.hour}:${values.minute}`;
+
+    }
+
+
+    return result;
+
+  }
+
+
+  /* =========================================================
+     状态名称
+  ========================================================= */
+
+  function getStatusName(
+    status
+  ) {
+
+    const names = {
+
+      scheduled:
+        "已安排",
+
+      active:
+        "进行中",
+
+      completed:
+        "已完成",
+
+      cancelled:
+        "已取消"
+
+    };
+
+
+    return (
+      names[status]
+      || status
+      || "未知状态"
+    );
+
+  }
+
+
+  /* =========================================================
+     状态 CSS
+  ========================================================= */
+
+  function getStatusClass(
+    status
+  ) {
+
+    const classes = {
+
+      scheduled:
+        "status-scheduled",
+
+      active:
+        "status-active",
+
+      completed:
+        "status-completed",
+
+      cancelled:
+        "status-cancelled"
+
+    };
+
+
+    return (
+      classes[status]
+      || "status-unknown"
+    );
+
+  }
+
+
+  /* =========================================================
+     获取选举页面
+  ========================================================= */
+
+  function getElectionPage(
+    typeData
+  ) {
+
+    return (
+      typeData.page
+      || "#"
+    );
+
+  }
+
+
+  /* =========================================================
+     判断选举是否已经开始/结束
+     
+     注意：
+     这里只根据当前时间进行页面显示，
+     不修改 elections.json 中的 status。
+  ========================================================= */
+
+  function getDisplayStatus(
+    election
+  ) {
+
+    if (
+      election.status
+      === "cancelled"
+    ) {
+
+      return "cancelled";
+
+    }
+
+
+    const now =
+      new Date();
+
+
+    const start =
+      election.start
+        ? new Date(
+            election.start
+          )
+        : null;
+
+
+    const end =
+      election.end
+        ? new Date(
+            election.end
+          )
+        : null;
+
+
+    if (
+      start &&
+      end &&
+      !Number.isNaN(
+        start.getTime()
+      ) &&
+      !Number.isNaN(
+        end.getTime()
+      )
+    ) {
+
+      if (
+        now < start
+      ) {
+
+        return "scheduled";
+
+      }
+
+
+      if (
+        now > end
+      ) {
+
+        /*
+         * 如果数据明确写了 completed，
+         * 保留 completed。
+         *
+         * 如果仍是 scheduled，
+         * 页面可以根据日期识别为已完成。
+         */
+
+        if (
+          election.status
+          === "completed"
+        ) {
+
+          return "completed";
+
+        }
+
+
+        return "completed";
+
+      }
+
+
+      return "active";
+
+    }
+
+
+    return (
+      election.status
+      || "unknown"
+    );
+
+  }
+
+
+  /* =========================================================
+     创建选举卡片
+  ========================================================= */
+
+  function renderElectionCard(
+    election,
+    typeData
+  ) {
+
+    const status =
+      getDisplayStatus(
+        election
+      );
+
+
+    const statusName =
+      getStatusName(
+        status
+      );
+
+
+    const statusClass =
+      getStatusClass(
+        status
+      );
+
+
+    const electionName =
+      election.name
+      || "暂无选举名称";
+
+
+    const electionNameEn =
+      election.nameEn
+      || "";
+
+
+    const electionNameJp =
+      election.nameJp
+      || "";
+
+
+    const page =
+      getElectionPage(
+        typeData
+      );
+
+
+    let nameHTML =
+      escapeHTML(
+        electionName
+      );
+
+
+    if (
+      page &&
+      page !== "#"
+    ) {
+
+      nameHTML = `
+
+        <a
+          href="${escapeHTML(
+            page
+          )}"
+        >
+          ${escapeHTML(
+            electionName
+          )}
+        </a>
+
+      `;
+
+    }
+
+
+    return `
+
+      <article
+        class="election-card"
+      >
+
+        <div
+          class="election-card-top"
+        >
+
+          <div>
+
+            <div
+              class="election-name"
+            >
+              ${nameHTML}
+            </div>
+
+
+            ${
+              electionNameEn
+                ? `
+                  <div
+                    class="election-en"
+                  >
+                    ${escapeHTML(
+                      electionNameEn
+                    )}
+                  </div>
+                `
+                : ""
+            }
+
+
+            ${
+              electionNameJp
+                ? `
+                  <div
+                    class="election-jp"
+                  >
+                    ${escapeHTML(
+                      electionNameJp
+                    )}
+                  </div>
+                `
+                : ""
+            }
+
+          </div>
+
+
+          <span
+            class="status ${statusClass}"
+          >
+            ${escapeHTML(
+              statusName
+            )}
+          </span>
+
+        </div>
+
+
+
+        <div
+          class="election-details"
+        >
+
+          <div
+            class="detail-item"
+          >
+
+            <div
+              class="detail-label"
+            >
+              选举开始
+            </div>
+
+
+            <div
+              class="detail-value"
+            >
+              ${formatAxieDate(
+                election.start
+              )}
+            </div>
+
+          </div>
+
+
+
+          <div
+            class="detail-item"
+          >
+
+            <div
+              class="detail-label"
+            >
+              选举结束
+            </div>
+
+
+            <div
+              class="detail-value"
+            >
+              ${formatAxieDate(
+                election.end
+              )}
+            </div>
+
+          </div>
+
+
+
+          <div
+            class="detail-item"
+          >
+
+            <div
+              class="detail-label"
+            >
+              就职日期
+            </div>
+
+
+            <div
+              class="detail-value"
+            >
+              ${formatAxieDate(
+                election.inauguration
+              )}
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <div
+          class="election-type"
+        >
+
+          选举类型：
+          ${escapeHTML(
+            typeData.name
+            || "暂无资料"
+          )}
+
+        </div>
+
+      </article>
+
+    `;
+
+  }
+
+
+  /* =========================================================
+     生成选举分类
+  ========================================================= */
+
+  function renderSection(
+    title,
+    elections,
+    typeData
+  ) {
+
+    if (
+      !Array.isArray(
+        elections
+      )
+      ||
+      elections.length === 0
+    ) {
+
+      return `
+
+        <section
+          class="section"
+        >
+
+          <div
+            class="section-title"
+          >
+
+            <h2>
+              ${escapeHTML(
+                title
+              )}
+            </h2>
+
+            <div
+              class="section-title-line"
+            ></div>
+
+          </div>
+
+
+          <div
+            class="empty-card"
+          >
+            暂无相关选举资料。
+          </div>
+
+        </section>
+
+      `;
+
+    }
+
+
+    const sorted =
+      [...elections].sort(
+        (a, b) => {
+
+          const yearA =
+            Number(
+              a.axieYear
+              || 0
+            );
+
+
+          const yearB =
+            Number(
+              b.axieYear
+              || 0
+            );
+
+
+          return (
+            yearB
+            - yearA
+          );
+
+        }
+      );
+
+
+    const cards =
+      sorted
+        .map(
+          election =>
+            renderElectionCard(
+              election,
+              typeData
+            )
+        )
+        .join("");
+
+
+    return `
+
+      <section
+        class="section"
+      >
+
+        <div
+          class="section-title"
+        >
+
+          <h2>
+            ${escapeHTML(
+              title
+            )}
+          </h2>
+
+
+          <div
+            class="section-title-line"
+          ></div>
+
+        </div>
+
+
+        <div
+          class="election-list"
+        >
+
+          ${cards}
+
+        </div>
+
+      </section>
+
+    `;
+
+  }
+
+
+  /* =========================================================
+     主页面
+  ========================================================= */
+
+  function renderHistory(
+    data
+  ) {
+
+    const president =
+      data.president
+      || {};
+
+
+    const vicePresident =
+      data.vicePresident
+      || {};
+
+
+    return `
+
+      <div
+        class="page-title"
+      >
+
+        <h1>
+          阿谢国选举历史
+        </h1>
+
+
+        <p>
+          阿谢国总统及副总统选举资料档案
+        </p>
+
+      </div>
+
+
+
+      ${renderSection(
+        "总统选举",
+        president.elections,
+        president
+      )}
+
+
+
+      ${renderSection(
+        "副总统选举",
+        vicePresident.elections,
+        vicePresident
+      )}
+
+    `;
+
+  }
+
+
+  /* =========================================================
+     错误页面
+  ========================================================= */
+
+  function showError(
+    message
+  ) {
+
+    document.getElementById(
+      "content"
+    ).innerHTML = `
+
+      <div
+        class="error-card"
+      >
+
+        <h1>
+          无法读取选举资料
+        </h1>
+
+
+        <p>
+          ${escapeHTML(
+            message
+          )}
+        </p>
+
+      </div>
+
+    `;
+
+  }
+
+
+  /* =========================================================
+     加载 elections.json
+  ========================================================= */
+
+  async function loadElectionHistory() {
+
+    try {
+
+      const response =
+        await fetch(
+          "./data/elections.json"
+        );
+
+
+      if (
+        !response.ok
+      ) {
+
+        throw new Error(
+          "elections.json 无法读取。"
+        );
+
+      }
+
+
+      const data =
+        await response.json();
+
+
+      if (
+        !data
+        ||
+        typeof data !== "object"
+      ) {
+
+        throw new Error(
+          "elections.json 数据格式不正确。"
+        );
+
+      }
+
+
+      document.getElementById(
+        "content"
+      ).innerHTML =
+        renderHistory(
+          data
+        );
+
+    }
+
+
+    catch (error) {
+
+      console.error(
+        error
+      );
+
+
+      showError(
+        error.message
+        || "读取选举资料时发生未知错误。"
+      );
+
+    }
+
+  }
+
+
+  /* =========================================================
+     启动
+  ========================================================= */
+
+  loadElectionHistory();
+
+</script>
+
+
+</body>
+</html>
