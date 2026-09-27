@@ -1,16 +1,16 @@
 {
   "results": [
     {
-      "electionId": "president-axie4",
-      "status": "not_started",
+      "electionId": "vice-president-axie3",
+      "status": "pending",
       "publishedAt": null,
       "totalVotes": null,
       "candidateResults": [],
       "winnerCandidateId": null
     },
     {
-      "electionId": "vice-president-axie3",
-      "status": "not_started",
+      "electionId": "president-axie4",
+      "status": "pending",
       "publishedAt": null,
       "totalVotes": null,
       "candidateResults": [],
