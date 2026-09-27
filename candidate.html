@@ -729,6 +729,22 @@
 
 
   // ============================================================
+  // 阿谢纪年设置
+  //
+  // 阿谢元年 = 公历 2024 年
+  //
+  // 因此：
+  // 2024 → 阿谢1年
+  // 2025 → 阿谢2年
+  // 2026 → 阿谢3年
+  // 2027 → 阿谢4年
+  // ============================================================
+
+  const AXIE_ERA_START_YEAR = 2024;
+
+
+
+  // ============================================================
   // HTML 转义
   // ============================================================
 
@@ -783,10 +799,23 @@
 
 
   // ============================================================
-  // 日期格式化
+  // 阿谢纪年日期格式化
+  //
+  // JSON / 数据库内部仍使用 ISO 8601：
+  //
+  // 2026-10-02T00:00:00+09:00
+  //
+  // 页面显示：
+  //
+  // 阿谢3年10月2日 00:00
+  //
+  // 所有面向用户的日期均通过这里转换。
   // ============================================================
 
-  function formatDate(dateString) {
+  function formatAxieDate(
+    dateString,
+    options = {}
+  ) {
 
     if (!dateString) {
 
@@ -810,30 +839,154 @@
     }
 
 
-    return new Intl.DateTimeFormat(
-      "zh-CN",
-      {
+    // ----------------------------------------------------------
+    // 强制使用阿谢国网站统一时区 UTC+9
+    // ----------------------------------------------------------
 
-        timeZone:
-          "Asia/Tokyo",
+    const parts =
+      new Intl.DateTimeFormat(
+        "en-US",
+        {
 
-        year: "numeric",
+          timeZone:
+            "Asia/Tokyo",
 
-        month: "2-digit",
+          year: "numeric",
 
-        day: "2-digit",
+          month: "numeric",
 
-        hour: "2-digit",
+          day: "numeric",
 
-        minute: "2-digit",
+          hour: "numeric",
 
-        second: "2-digit",
+          minute: "numeric",
 
-        hour12: false
+          second: "numeric",
+
+          hour12: false
+
+        }
+
+      ).formatToParts(date);
+
+
+    const values = {};
+
+
+    parts.forEach(
+      part => {
+
+        values[part.type] =
+          part.value;
 
       }
+    );
 
-    ).format(date);
+
+    const gregorianYear =
+      Number(
+        values.year
+      );
+
+
+    const axieYear =
+      gregorianYear -
+      AXIE_ERA_START_YEAR +
+      1;
+
+
+    if (
+      !Number.isFinite(
+        axieYear
+      ) ||
+      axieYear < 1
+    ) {
+
+      return "暂无资料";
+
+    }
+
+
+    const month =
+      Number(
+        values.month
+      );
+
+
+    const day =
+      Number(
+        values.day
+      );
+
+
+    const hour =
+      String(
+        values.hour
+      ).padStart(
+        2,
+        "0"
+      );
+
+
+    const minute =
+      String(
+        values.minute
+      ).padStart(
+        2,
+        "0"
+      );
+
+
+    const second =
+      String(
+        values.second
+      ).padStart(
+        2,
+        "0"
+      );
+
+
+    // ----------------------------------------------------------
+    // 只显示日期
+    // ----------------------------------------------------------
+
+    if (
+      options.dateOnly === true
+    ) {
+
+      return (
+        `阿谢${axieYear}年` +
+        `${month}月` +
+        `${day}日`
+      );
+
+    }
+
+
+    // ----------------------------------------------------------
+    // 日期 + 时间，但默认不显示秒
+    // ----------------------------------------------------------
+
+    if (
+      options.showSeconds === true
+    ) {
+
+      return (
+        `阿谢${axieYear}年` +
+        `${month}月` +
+        `${day}日 ` +
+        `${hour}:${minute}:${second}`
+      );
+
+    }
+
+
+    return (
+      `阿谢${axieYear}年` +
+      `${month}月` +
+      `${day}日 ` +
+      `${hour}:${minute}`
+    );
 
   }
 
@@ -1375,11 +1528,9 @@
                   class="info-value"
                 >
 
-                  ${formatDate(
+                  ${formatAxieDate(
                     candidate.registeredAt
                   )}
-
-                  （UTC+9）
 
                 </div>
 
