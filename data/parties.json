@@ -1,34 +1,76 @@
-{
+{{
   "parties": [
     {
-      "id": "axie-peace-party",
-      "name": "阿谢和平党",
-      "nameEn": "Axie Peace Party",
-      "nameJp": "阿謝平和党"
+      "partyId": "axie-peace-party",
+      "partyName": "阿谢和平党",
+      "names": {
+        "zh": "阿谢和平党",
+        "en": "Axie Peace Party",
+        "ja": "阿謝平和党"
+      },
+      "abbreviation": "APP",
+      "description": "阿谢国政党之一，致力于维护和平、社会稳定以及国家制度的持续发展。",
+      "status": "active"
     },
     {
-      "id": "axie-national-progressive-party",
-      "name": "阿谢国民进步党",
-      "nameEn": "Axie National Progressive Party",
-      "nameJp": "阿謝国民進歩党"
+      "partyId": "axie-national-progressive-party",
+      "partyName": "阿谢国民进步党",
+      "names": {
+        "zh": "阿谢国民进步党",
+        "en": "Axie National Progressive Party",
+        "ja": "阿謝国民進歩党"
+      },
+      "abbreviation": "ANPP",
+      "description": "阿谢国政党之一，致力于推动国家发展、社会进步以及公共制度完善。",
+      "status": "active"
     },
     {
-      "id": "axie-national-party",
-      "name": "阿谢民族党",
-      "nameEn": "Axie National Party",
-      "nameJp": "阿謝民族党"
+      "partyId": "axie-national-party",
+      "partyName": "阿谢民族党",
+      "names": {
+        "zh": "阿谢民族党",
+        "en": "Axie National Party",
+        "ja": "阿謝民族党"
+      },
+      "abbreviation": "ANP",
+      "description": "阿谢国政党之一，重视国家认同、国家发展以及国家文化建设，重视建设强悍的阿谢国防军。",
+      "status": "active"
     },
     {
-      "id": "axie-peoples-party",
-      "name": "阿谢人民党",
-      "nameEn": "Axie People's Party",
-      "nameJp": "阿謝人民党"
+      "partyId": "axie-people-party",
+      "partyName": "阿谢人民党",
+      "names": {
+        "zh": "阿谢人民党",
+        "en": "Axie People's Party",
+        "ja": "阿謝人民党"
+      },
+      "abbreviation": "APP",
+      "description": "阿谢国政党之一，重视公共利益、社会民生以及人民参与国家事务。",
+      "status": "active"
     },
     {
-      "id": "axie-communist-peoples-party",
-      "name": "阿谢共产人民党",
-      "nameEn": "Axie Communist People's Party",
-      "nameJp": "阿謝共産人民党"
+      "partyId": "axie-communist-peoples-party",
+      "partyName": "阿谢共产人民党",
+      "names": {
+        "zh": "阿谢共产人民党",
+        "en": "Axie Communist People's Party",
+        "ja": "阿謝共産人民党"
+      },
+      "abbreviation": "ACPP",
+      "description": "阿谢国政党之一，主张通过公共制度和社会组织参与国家建设。",
+      "status": "active"
+    },
+    {
+      "partyId": "axie-bright-party",
+      "partyName": "阿谢光明党",
+      "names": {
+        "zh": "阿谢光明党",
+        "en": "Axie Bright Party",
+        "ja": "阿謝光明党"
+      },
+      "abbreviation": "ABP",
+      "description": "阿谢国政党之一，致力于推动社会发展、公共服务改善以及不同群体之间的沟通与合作。",
+      "status": "active"
     }
   ]
 }
