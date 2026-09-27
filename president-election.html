@@ -335,8 +335,99 @@ function escapeHTML(value) {
 
 
 /* =========================
+   阿谢纪年日期格式化
+========================= */
+
+/*
+  阿谢元年 = 公历 2024 年
+
+  因此：
+  阿谢年 = 公历年份 - 2023
+
+  选举网站对外显示使用阿谢纪年，
+  但内部仍然使用 ISO 时间进行状态判断和倒计时。
+*/
+
+function formatAxieDate(dateString) {
+
+  if (!dateString) {
+    return "未公布";
+  }
+
+  const date = new Date(dateString);
+
+  if (Number.isNaN(date.getTime())) {
+    return "日期错误";
+  }
+
+  /*
+    使用东京时区（UTC+9）取得实际日期，
+    与 elections.json 中的选举时间保持一致。
+  */
+
+  const parts =
+    new Intl.DateTimeFormat(
+      "en-US",
+      {
+        timeZone: "Asia/Tokyo",
+        year: "numeric",
+        month: "numeric",
+        day: "numeric"
+      }
+    ).formatToParts(date);
+
+
+  let year = null;
+  let month = null;
+  let day = null;
+
+
+  for (const part of parts) {
+
+    if (part.type === "year") {
+      year = Number(part.value);
+    }
+
+    if (part.type === "month") {
+      month = Number(part.value);
+    }
+
+    if (part.type === "day") {
+      day = Number(part.value);
+    }
+
+  }
+
+
+  if (
+    !year ||
+    !month ||
+    !day
+  ) {
+    return "日期错误";
+  }
+
+
+  const axieYear =
+    year - 2023;
+
+
+  return `阿谢${axieYear}年${month}月${day}日`;
+}
+
+
+/* =========================
    日期格式化
 ========================= */
+
+/*
+  保留这个函数用于其他需要完整日期时间
+  的情况。
+
+  选举页面主要显示阿谢纪年，
+  所以选举期间和就任日期使用
+  formatAxieDate()。
+*/
 
 function formatDate(dateString) {
 
@@ -440,22 +531,30 @@ async function loadData() {
       electionData.name;
 
 
+    /*
+      使用阿谢纪年显示选举期间
+    */
+
     document.getElementById(
       "election-period"
     ).textContent =
-      `选举期间：${formatDate(
+      `选举期间：${formatAxieDate(
         electionData.start
-      )} ～ ${formatDate(
+      )} ～ ${formatAxieDate(
         electionData.end
-      )}`;
+      )}（UTC+9）`;
 
+
+    /*
+      使用阿谢纪年显示总统就任日期
+    */
 
     document.getElementById(
       "inauguration-date"
     ).textContent =
-      `总统就任：${formatDate(
+      `总统就任：${formatAxieDate(
         electionData.inauguration
-      )}`;
+      )}（UTC+9）`;
 
 
     /* =========================
@@ -616,7 +715,6 @@ function renderCandidates(candidates) {
 
 
             <!--
-              关键：
               点击后进入候选人详细资料页
             -->
 
