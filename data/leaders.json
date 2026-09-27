@@ -1,19 +1,23 @@
 {
-  "president": {
-    "name": "暂未产生",
-    "party": "",
-    "termStart": "",
-    "termEnd": "",
-    "introduction": "",
-    "electionId": ""
-  },
-
-  "vicePresident": {
-    "name": "暂未产生",
-    "party": "",
-    "termStart": "",
-    "termEnd": "",
-    "introduction": "",
-    "electionId": ""
-  }
+  "leaders": [
+    {
+      "leaderId": "AX-PRES-001",
+      "position": "president",
+      "names": {
+        "zh": "阿谢",
+        "en": "Axie Leo Kiahoon",
+        "ja": "阿謝"
+      },
+      "partyId": "axie-peace-party",
+      "partyName": "阿谢和平党",
+      "photo": "leader-images/AX-PRES-001.jpg",
+      "term": {
+        "termNo": 1,
+        "startDate": "2024-02-04T00:00:00+09:00",
+        "endDate": "2027-02-03T23:59:59+09:00"
+      },
+      "electionId": "president-axie1",
+      "status": "former"
+    }
+  ]
 }
