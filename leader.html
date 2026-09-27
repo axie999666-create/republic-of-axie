@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>领导人资料 | Republic of Axie</title>
+
+  <meta
+    name="description"
+    content="阿谢国领导人资料"
+  >
+
+  <link rel="icon" href="/ROA_flag.png">
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Noto Sans SC",
+        "Microsoft YaHei",
+        Arial,
+        sans-serif;
+
+      background: #f4f7fb;
+      color: #172033;
+      line-height: 1.7;
+    }
+
+    /* =========================
+       Header
+    ========================= */
+
+    header {
+      background: #0b1f3a;
+      color: white;
+      padding: 22px 20px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: auto;
+
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .flag {
+      width: 52px;
+      height: 35px;
+      object-fit: cover;
+      border-radius: 4px;
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+    }
+
+    .site-title {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .site-subtitle {
+      margin: 2px 0 0;
+      font-size: 13px;
+      opacity: 0.75;
+    }
+
+    /* =========================
+       Main
+    ========================= */
+
+    main {
+      max-width: 1100px;
+      margin: 45px auto;
+      padding: 0 20px;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 22px;
+
+      color: #1557a6;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    /* =========================
+       Leader Hero
+    ========================= */
+
+    .leader-card {
+      background: white;
+      border-radius: 16px;
+      padding: 35px;
+
+      box-shadow:
+        0 8px 30px rgba(20, 45, 80, 0.08);
+
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 40px;
+
+      margin-bottom: 28px;
+    }
+
+    .leader-photo-box {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .leader-photo {
+      width: 230px;
+      height: 290px;
+
+      object-fit: cover;
+
+      border-radius: 12px;
+
+      background: #e9eef5;
+
+      box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    .no-photo {
+      width: 230px;
+      height: 290px;
+
+      border-radius: 12px;
+
+      background: #e9eef5;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      color: #7b8798;
+      font-size: 15px;
+      text-align: center;
+    }
+
+    .leader-main h1 {
+      margin: 0 0 5px;
+
+      font-size: 34px;
+      line-height: 1.25;
+
+      color: #102a4c;
+    }
+
+    .leader-en-name {
+      font-size: 17px;
+      color: #637084;
+      margin-bottom: 2px;
+    }
+
+    .leader-ja-name {
+      font-size: 15px;
+      color: #7d8898;
+      margin-bottom: 22px;
+    }
+
+    .position {
+      display: inline-block;
+
+      padding: 6px 13px;
+
+      border-radius: 999px;
+
+      background: #e9f1fb;
+      color: #1557a6;
+
+      font-size: 14px;
+      font-weight: 600;
+
+      margin-bottom: 20px;
+    }
+
+    .status {
+      display: inline-block;
+
+      margin-left: 8px;
+
+      padding: 6px 13px;
+
+      border-radius: 999px;
+
+      background: #eef1f5;
+      color: #596577;
+
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* =========================
+       Party
+    ========================= */
+
+    .party-box {
+      margin-top: 20px;
+      padding: 18px 20px;
+
+      border-radius: 10px;
+
+      background: #f5f8fc;
+
+      border-left: 4px solid #1557a6;
+    }
+
+    .party-label {
+      font-size: 12px;
+      color: #7b8798;
+      margin-bottom: 3px;
+    }
+
+    .party-name {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .party-name a {
+      color: #1557a6;
+      text-decoration: none;
+    }
+
+    .party-name a:hover {
+      text-decoration: underline;
+    }
+
+    .party-description {
+      margin-top: 6px;
+      color: #667386;
+      font-size: 14px;
+    }
+
+    /* =========================
+       Information
+    ========================= */
+
+    .section {
+      background: white;
+      border-radius: 16px;
+
+      padding: 30px 35px;
+
+      margin-bottom: 28px;
+
+      box-shadow:
+        0 8px 30px rgba(20, 45, 80, 0.06);
+    }
+
+    .section h2 {
+      margin: 0 0 22px;
+
+      font-size: 22px;
+
+      color: #102a4c;
+
+      padding-bottom: 12px;
+
+      border-bottom: 1px solid #e6ebf2;
+    }
+
+    .info-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+      gap: 16px;
+    }
+
+    .info-item {
+      background: #f7f9fc;
+
+      border-radius: 10px;
+
+      padding: 16px 18px;
+    }
+
+    .info-label {
+      font-size: 12px;
+
+      color: #7b8798;
+
+      margin-bottom: 4px;
+    }
+
+    .info-value {
+      font-size: 15px;
+
+      font-weight: 600;
+
+      color: #24344d;
+
+      word-break: break-word;
+    }
+
+    .info-value a {
+      color: #1557a6;
+      text-decoration: none;
+    }
+
+    .info-value a:hover {
+      text-decoration: underline;
+    }
+
+    /* =========================
+       Election
+    ========================= */
+
+    .election-card {
+      background: #f7f9fc;
+
+      border-radius: 12px;
+
+      padding: 20px;
+    }
+
+    .election-name {
+      font-size: 18px;
+
+      font-weight: 700;
+
+      color: #17375e;
+
+      margin-bottom: 8px;
+    }
+
+    .election-name a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .election-name a:hover {
+      text-decoration: underline;
+    }
+
+    .election-info {
+      color: #657286;
+
+      font-size: 14px;
+    }
+
+    /* =========================
+       Error
+    ========================= */
+
+    .error-card {
+      background: white;
+
+      border-radius: 16px;
+
+      padding: 55px 30px;
+
+      text-align: center;
+
+      box-shadow:
+        0 8px 30px rgba(20, 45, 80, 0.06);
+    }
+
+    .error-card h1 {
+      margin: 0 0 10px;
+
+      color: #102a4c;
+    }
+
+    .error-card p {
+      color: #687589;
+      margin: 0;
+    }
+
+    /* =========================
+       Footer
+    ========================= */
+
+    footer {
+      margin-top: 60px;
+
+      padding: 30px 20px;
+
+      background: #0b1f3a;
+
+      color: rgba(255, 255, 255, 0.75);
+
+      text-align: center;
+
+      font-size: 13px;
+    }
+
+    /* =========================
+       Responsive
+    ========================= */
+
+    @media (max-width: 760px) {
+
+      main {
+        margin: 30px auto;
+      }
+
+      .leader-card {
+        grid-template-columns: 1fr;
+
+        gap: 25px;
+
+        padding: 25px;
+      }
+
+      .leader-photo {
+        width: 190px;
+        height: 240px;
+      }
+
+      .no-photo {
+        width: 190px;
+        height: 240px;
+      }
+
+      .leader-main h1 {
+        font-size: 28px;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 25px 20px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+<header>
+
+  <div class="header-inner">
+
+    <img
+      src="/ROA_flag.png"
+      alt="Republic of Axie"
+      class="flag"
+    >
+
+    <div>
+
+      <h1 class="site-title">
+        Republic of Axie
+      </h1>
+
+      <p class="site-subtitle">
+        阿谢国领导人资料
+      </p>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<main>
+
+  <a
+    href="javascript:history.back()"
+    class="back-link"
+  >
+    ← 返回上一页
+  </a>
+
+
+  <div id="content">
+
+    <div class="error-card">
+
+      <h1>正在读取领导人资料</h1>
+
+      <p>
+        请稍候……
+      </p>
+
+    </div>
+
+  </div>
+
+</main>
+
+
+<footer>
+
+  Republic of Axie · 阿谢国
+
+</footer>
+
+
+<script>
+
+  /* =========================================================
+     基础设置
+  ========================================================= */
+
+  const AXIE_ERA_START_YEAR = 2024;
+
+
+  /* =========================================================
+     HTML 转义
+  ========================================================= */
+
+  function escapeHTML(value) {
+
+    if (value === null || value === undefined) {
+      return "";
+    }
+
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+
+  }
+
+
+  /* =========================================================
+     URL 参数
+  ========================================================= */
+
+  function getLeaderId() {
+
+    const params =
+      new URLSearchParams(window.location.search);
+
+    return params.get("id");
+
+  }
+
+
+  /* =========================================================
+     阿谢纪年
+     
+     阿谢元年 = 2024年
+     
+     2024 → 阿谢1年
+     2025 → 阿谢2年
+     2026 → 阿谢3年
+     2027 → 阿谢4年
+  ========================================================= */
+
+  function formatAxieDate(
+    isoString,
+    includeTime = true
+  ) {
+
+    if (!isoString) {
+      return "暂无资料";
+    }
+
+    const date = new Date(isoString);
+
+    if (Number.isNaN(date.getTime())) {
+      return "暂无资料";
+    }
+
+    const formatter =
+      new Intl.DateTimeFormat(
+        "zh-CN",
+        {
+          timeZone: "Asia/Tokyo",
+
+          year: "numeric",
+          month: "numeric",
+          day: "numeric",
+
+          ...(includeTime
+            ? {
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: false
+              }
+            : {})
+        }
+      );
+
+    const parts =
+      formatter.formatToParts(date);
+
+    const values = {};
+
+    for (const part of parts) {
+      values[part.type] = part.value;
+    }
+
+    const gregorianYear =
+      Number(values.year);
+
+    const axieYear =
+      gregorianYear
+      - AXIE_ERA_START_YEAR
+      + 1;
+
+    let result =
+      `阿谢${axieYear}年${values.month}月${values.day}日`;
+
+    if (includeTime) {
+
+      result +=
+        ` ${values.hour}:${values.minute}`;
+
+    }
+
+    return result;
+
+  }
+
+
+  /* =========================================================
+     职务名称
+  ========================================================= */
+
+  function getPositionName(position) {
+
+    const names = {
+
+      president: "总统",
+
+      vicePresident: "副总统"
+
+    };
+
+    return (
+      names[position]
+      || position
+      || "暂无资料"
+    );
+
+  }
+
+
+  /* =========================================================
+     状态名称
+  ========================================================= */
+
+  function getStatusName(status) {
+
+    const names = {
+
+      current: "现任",
+
+      former: "前任"
+
+    };
+
+    return (
+      names[status]
+      || status
+      || "暂无资料"
+    );
+
+  }
+
+
+  /* =========================================================
+     读取选举
+  ========================================================= */
+
+  function getElectionInfo(
+    elections,
+    leader
+  ) {
+
+    if (!Array.isArray(elections)) {
+      return null;
+    }
+
+    return elections.find(
+      election =>
+        election.electionId
+        === leader.electionId
+    ) || null;
+
+  }
+
+
+  /* =========================================================
+     读取政党
+  ========================================================= */
+
+  function getPartyInfo(
+    parties,
+    leader
+  ) {
+
+    if (!Array.isArray(parties)) {
+      return null;
+    }
+
+    return parties.find(
+      party =>
+        party.partyId
+        === leader.partyId
+    ) || null;
+
+  }
+
+
+  /* =========================================================
+     选举页面
+  ========================================================= */
+
+  function getElectionPage(position) {
+
+    if (position === "president") {
+      return "president-election.html";
+    }
+
+    if (position === "vicePresident") {
+      return "vice-president-election.html";
+    }
+
+    return null;
+
+  }
+
+
+  /* =========================================================
+     政党 HTML
+  ========================================================= */
+
+  function renderParty(
+    party,
+    leader
+  ) {
+
+    const partyName =
+      party?.partyName
+      || leader.partyName
+      || "暂无资料";
+
+    let html = "";
+
+    if (leader.partyId) {
+
+      html += `
+        <a
+          href="party.html?id=${encodeURIComponent(
+            leader.partyId
+          )}"
+        >
+          ${escapeHTML(partyName)}
+        </a>
+      `;
+
+    } else {
+
+      html += escapeHTML(partyName);
+
+    }
+
+
+    if (party?.description) {
+
+      html += `
+        <div class="party-description">
+          ${escapeHTML(party.description)}
+        </div>
+      `;
+
+    }
+
+    return html;
+
+  }
+
+
+  /* =========================================================
+     选举 HTML
+  ========================================================= */
+
+  function renderElection(
+    election,
+    leader
+  ) {
+
+    if (!election) {
+
+      return `
+        <div class="election-card">
+
+          <div class="election-name">
+            ${escapeHTML(
+              leader.electionId
+              || "暂无选举资料"
+            )}
+          </div>
+
+          <div class="election-info">
+            暂无对应选举的详细资料。
+          </div>
+
+        </div>
+      `;
+
+    }
+
+
+    const electionName =
+      election.name
+      || election.title
+      || election.electionName
+      || election.electionId
+      || "暂无资料";
+
+
+    const electionPage =
+      getElectionPage(
+        leader.position
+      );
+
+
+    let nameHTML =
+      escapeHTML(electionName);
+
+
+    if (electionPage) {
+
+      nameHTML = `
+        <a
+          href="${electionPage}"
+        >
+          ${escapeHTML(electionName)}
+        </a>
+      `;
+
+    }
+
+
+    let periodHTML = "";
+
+    const startDate =
+      election.startDate
+      || election.start
+      || null;
+
+    const endDate =
+      election.endDate
+      || election.end
+      || null;
+
+
+    if (startDate && endDate) {
+
+      periodHTML = `
+        选举期间：
+        ${formatAxieDate(startDate, false)}
+        –
+        ${formatAxieDate(endDate, false)}
+      `;
+
+    } else {
+
+      periodHTML =
+        "选举日期暂无资料。";
+
+    }
+
+
+    return `
+      <div class="election-card">
+
+        <div class="election-name">
+          ${nameHTML}
+        </div>
+
+        <div class="election-info">
+          ${periodHTML}
+        </div>
+
+      </div>
+    `;
+
+  }
+
+
+  /* =========================================================
+     领导人 HTML
+  ========================================================= */
+
+  function renderLeader(
+    leader,
+    elections,
+    parties
+  ) {
+
+    const name =
+      leader.names?.zh
+      || "暂无姓名";
+
+    const enName =
+      leader.names?.en
+      || "暂无资料";
+
+    const jaName =
+      leader.names?.ja
+      || "暂无资料";
+
+
+    const positionName =
+      getPositionName(
+        leader.position
+      );
+
+
+    const statusName =
+      getStatusName(
+        leader.status
+      );
+
+
+    const party =
+      getPartyInfo(
+        parties,
+        leader
+      );
+
+
+    const election =
+      getElectionInfo(
+        elections,
+        leader
+      );
+
+
+    let photoHTML = "";
+
+    if (leader.photo) {
+
+      photoHTML = `
+        <img
+          src="${escapeHTML(leader.photo)}"
+          alt="${escapeHTML(name)}"
+          class="leader-photo"
+          onerror="
+            this.style.display='none';
+            this.nextElementSibling.style.display='flex';
+          "
+        >
+
+        <div
+          class="no-photo"
+          style="display:none;"
+        >
+          暂无领导人照片
+        </div>
+      `;
+
+    } else {
+
+      photoHTML = `
+        <div class="no-photo">
+          暂无领导人照片
+        </div>
+      `;
+
+    }
+
+
+    return `
+
+      <section class="leader-card">
+
+        <div class="leader-photo-box">
+
+          ${photoHTML}
+
+        </div>
+
+
+        <div class="leader-main">
+
+          <span class="position">
+            ${escapeHTML(positionName)}
+          </span>
+
+          <span class="status">
+            ${escapeHTML(statusName)}
+          </span>
+
+
+          <h1>
+            ${escapeHTML(name)}
+          </h1>
+
+
+          <div class="leader-en-name">
+            ${escapeHTML(enName)}
+          </div>
+
+
+          <div class="leader-ja-name">
+            ${escapeHTML(jaName)}
+          </div>
+
+
+          <div class="party-box">
+
+            <div class="party-label">
+              所属政党
+            </div>
+
+            <div class="party-name">
+              ${renderParty(
+                party,
+                leader
+              )}
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <section class="section">
+
+        <h2>
+          基本资料
+        </h2>
+
+
+        <div class="info-grid">
+
+          <div class="info-item">
+
+            <div class="info-label">
+              领导人编号
+            </div>
+
+            <div class="info-value">
+              ${escapeHTML(
+                leader.leaderId
+                || "暂无资料"
+              )}
+            </div>
+
+          </div>
+
+
+          <div class="info-item">
+
+            <div class="info-label">
+              职务
+            </div>
+
+            <div class="info-value">
+              ${escapeHTML(positionName)}
+            </div>
+
+          </div>
+
+
+          <div class="info-item">
+
+            <div class="info-label">
+              任期届次
+            </div>
+
+            <div class="info-value">
+              ${
+                leader.term?.termNo
+                  ? `第${escapeHTML(
+                      leader.term.termNo
+                    )}任`
+                  : "暂无资料"
+              }
+            </div>
+
+          </div>
+
+
+          <div class="info-item">
+
+            <div class="info-label">
+              任期开始
+            </div>
+
+            <div class="info-value">
+              ${formatAxieDate(
+                leader.term?.startDate
+              )}
+            </div>
+
+          </div>
+
+
+          <div class="info-item">
+
+            <div class="info-label">
+              任期结束
+            </div>
+
+            <div class="info-value">
+              ${formatAxieDate(
+                leader.term?.endDate
+              )}
+            </div>
+
+          </div>
+
+
+          <div class="info-item">
+
+            <div class="info-label">
+              对应选举
+            </div>
+
+            <div class="info-value">
+
+              ${
+                election
+                  ? escapeHTML(
+                      election.name
+                      || election.title
+                      || election.electionName
+                      || election.electionId
+                    )
+                  : escapeHTML(
+                      leader.electionId
+                      || "暂无资料"
+                    )
+              }
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <section class="section">
+
+        <h2>
+          任期信息
+        </h2>
+
+
+        <div class="election-card">
+
+          <div class="election-name">
+
+            ${
+              leader.term?.termNo
+                ? `第${escapeHTML(
+                    leader.term.termNo
+                  )}任${escapeHTML(
+                    positionName
+                  )}`
+                : escapeHTML(
+                    positionName
+                  )
+            }
+
+          </div>
+
+
+          <div class="election-info">
+
+            任期：
+            ${formatAxieDate(
+              leader.term?.startDate,
+              false
+            )}
+            –
+            ${formatAxieDate(
+              leader.term?.endDate,
+              false
+            )}
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <section class="section">
+
+        <h2>
+          当选信息
+        </h2>
+
+        ${renderElection(
+          election,
+          leader
+        )}
+
+      </section>
+
+    `;
+
+  }
+
+
+  /* =========================================================
+     错误页面
+  ========================================================= */
+
+  function showError(
+    message
+  ) {
+
+    document.getElementById(
+      "content"
+    ).innerHTML = `
+
+      <div class="error-card">
+
+        <h1>
+          无法读取领导人资料
+        </h1>
+
+        <p>
+          ${escapeHTML(message)}
+        </p>
+
+      </div>
+
+    `;
+
+  }
+
+
+  /* =========================================================
+     主程序
+  ========================================================= */
+
+  async function loadLeader() {
+
+    const leaderId =
+      getLeaderId();
+
+
+    if (!leaderId) {
+
+      showError(
+        "未指定领导人编号。"
+      );
+
+      return;
+
+    }
+
+
+    try {
+
+      const [
+        leadersResponse,
+        electionsResponse,
+        partiesResponse
+      ] = await Promise.all([
+
+        fetch(
+          "./data/leaders.json"
+        ),
+
+        fetch(
+          "./data/elections.json"
+        ),
+
+        fetch(
+          "./data/parties.json"
+        )
+
+      ]);
+
+
+      if (!leadersResponse.ok) {
+
+        throw new Error(
+          "leaders.json 无法读取。"
+        );
+
+      }
+
+
+      const leadersData =
+        await leadersResponse.json();
+
+
+      let electionsData = {
+        elections: []
+      };
+
+      let partiesData = {
+        parties: []
+      };
+
+
+      if (electionsResponse.ok) {
+
+        electionsData =
+          await electionsResponse.json();
+
+      }
+
+
+      if (partiesResponse.ok) {
+
+        partiesData =
+          await partiesResponse.json();
+
+      }
+
+
+      const leaders =
+        Array.isArray(
+          leadersData
+        )
+          ? leadersData
+          : leadersData.leaders;
+
+
+      const elections =
+        Array.isArray(
+          electionsData
+        )
+          ? electionsData
+          : electionsData.elections;
+
+
+      const parties =
+        Array.isArray(
+          partiesData
+        )
+          ? partiesData
+          : partiesData.parties;
+
+
+      if (!Array.isArray(leaders)) {
+
+        throw new Error(
+          "leaders.json 数据格式不正确。"
+        );
+
+      }
+
+
+      const leader =
+        leaders.find(
+          item =>
+            item.leaderId
+            === leaderId
+        );
+
+
+      if (!leader) {
+
+        showError(
+          `未找到领导人「${leaderId}」的资料。`
+        );
+
+        return;
+
+      }
+
+
+      document.title =
+        `${
+          leader.names?.zh
+          || "领导人"
+        } | Republic of Axie`;
+
+
+      document.getElementById(
+        "content"
+      ).innerHTML =
+        renderLeader(
+          leader,
+          elections,
+          parties
+        );
+
+
+    } catch (error) {
+
+      console.error(
+        error
+      );
+
+      showError(
+        error.message
+        || "读取资料时发生未知错误。"
+      );
+
+    }
+
+  }
+
+
+  /* =========================================================
+     启动
+  ========================================================= */
+
+  loadLeader();
+
+</script>
+
+</body>
+</html>
