@@ -89,6 +89,188 @@
       background: rgba(255,255,255,.15);
     }
 
+    .logout-button {
+      border: 1px solid rgba(255,255,255,.3);
+      background: rgba(255,255,255,.08);
+      color: white;
+      padding: 9px 13px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      display: none;
+    }
+
+    .logout-button:hover {
+      background: rgba(255,255,255,.15);
+    }
+
+
+    /* =========================
+       Login
+    ========================= */
+
+    .login-page {
+      min-height: calc(100vh - 81px);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 30px 20px 60px;
+    }
+
+    .login-card {
+      width: min(430px, 100%);
+
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+
+      padding: 30px;
+
+      box-shadow:
+        0 10px 35px rgba(7, 26, 61, .08);
+    }
+
+    .login-icon {
+      width: 62px;
+      height: 62px;
+
+      margin: 0 auto 18px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 16px;
+
+      background: #eef4ff;
+
+      font-size: 30px;
+    }
+
+    .login-title {
+      margin: 0;
+
+      text-align: center;
+
+      font-size: 25px;
+      color: #071a3d;
+    }
+
+    .login-subtitle {
+      margin: 8px 0 25px;
+
+      text-align: center;
+
+      color: #748096;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .login-label {
+      display: block;
+
+      margin-bottom: 7px;
+
+      color: #344054;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .login-input {
+      width: 100%;
+
+      padding: 12px 13px;
+
+      border: 1px solid #d7deea;
+      border-radius: 9px;
+
+      outline: none;
+
+      font: inherit;
+      font-size: 14px;
+
+      transition: .15s;
+    }
+
+    .login-input:focus {
+      border-color: #0d5bd7;
+
+      box-shadow:
+        0 0 0 3px rgba(13,91,215,.1);
+    }
+
+    .login-button {
+      width: 100%;
+
+      margin-top: 16px;
+
+      border: none;
+
+      background: #0d5bd7;
+      color: white;
+
+      padding: 12px 15px;
+
+      border-radius: 9px;
+
+      cursor: pointer;
+
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .login-button:hover {
+      background: #094cae;
+    }
+
+    .login-button:disabled {
+      opacity: .6;
+      cursor: not-allowed;
+    }
+
+    .login-status {
+      min-height: 20px;
+
+      margin-top: 14px;
+
+      text-align: center;
+
+      font-size: 13px;
+
+      line-height: 1.5;
+    }
+
+    .login-status.error {
+      color: #a52b2b;
+    }
+
+    .login-status.success {
+      color: #16733c;
+    }
+
+    .login-security {
+      margin-top: 22px;
+
+      padding: 11px 12px;
+
+      background: #f8fafc;
+
+      border: 1px solid #edf0f5;
+
+      border-radius: 8px;
+
+      color: #7b8799;
+
+      font-size: 12px;
+
+      line-height: 1.6;
+
+      text-align: center;
+    }
+
+
     /* =========================
        Main
     ========================= */
@@ -97,6 +279,12 @@
       max-width: 1180px;
       margin: 0 auto;
       padding: 34px 20px 60px;
+
+      display: none;
+    }
+
+    main.show {
+      display: block;
     }
 
     .page-title {
@@ -114,6 +302,7 @@
       color: #68758b;
       font-size: 14px;
     }
+
 
     /* =========================
        Stats
@@ -145,6 +334,7 @@
       font-weight: 700;
       color: #071a3d;
     }
+
 
     /* =========================
        Toolbar
@@ -197,6 +387,12 @@
     .refresh-button:hover {
       background: #094cae;
     }
+
+    .refresh-button:disabled {
+      opacity: .6;
+      cursor: not-allowed;
+    }
+
 
     /* =========================
        Application card
@@ -314,6 +510,7 @@
       padding: 12px;
     }
 
+
     /* =========================
        Actions
     ========================= */
@@ -361,6 +558,7 @@
       cursor: not-allowed;
     }
 
+
     /* =========================
        Empty / Loading
     ========================= */
@@ -385,6 +583,7 @@
       background: #fff7f7;
       color: #a52b2b;
     }
+
 
     /* =========================
        Modal
@@ -481,6 +680,7 @@
       color: #344054;
     }
 
+
     /* =========================
        Responsive
     ========================= */
@@ -499,9 +699,24 @@
         font-size: 11px;
       }
 
-      .header-button {
+      .header-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .header-button,
+      .logout-button {
         font-size: 12px;
         padding: 8px 10px;
+      }
+
+      .login-page {
+        min-height: calc(100vh - 100px);
+        padding: 25px 13px 45px;
+      }
+
+      .login-card {
+        padding: 25px 20px;
       }
 
       main {
@@ -547,13 +762,23 @@
 
 <body>
 
+<!-- =========================================================
+     Header
+========================================================= -->
+
 <header>
+
   <div class="header-inner">
 
     <div class="brand">
-      <img src="/ROA_flag.png" alt="阿谢国国旗">
+
+      <img
+        src="/ROA_flag.png"
+        alt="阿谢国国旗"
+      >
 
       <div>
+
         <div class="brand-title">
           阿谢国管理系统
         </div>
@@ -561,30 +786,118 @@
         <div class="brand-subtitle">
           Republic of Axie Administration System
         </div>
+
       </div>
+
     </div>
 
+
     <div class="header-actions">
+
       <a
         class="header-button"
         href="/"
       >
         返回官网
       </a>
+
+      <button
+        class="logout-button"
+        id="logoutButton"
+      >
+        🚪 退出登录
+      </button>
+
     </div>
 
   </div>
+
 </header>
 
 
-<main>
+<!-- =========================================================
+     Login Page
+========================================================= -->
+
+<section
+  class="login-page"
+  id="loginPage"
+>
+
+  <div class="login-card">
+
+    <div class="login-icon">
+      🔐
+    </div>
+
+
+    <h1 class="login-title">
+      管理员登录
+    </h1>
+
+
+    <p class="login-subtitle">
+      请登录阿谢国管理系统后继续访问<br>
+      候选人申请审核功能。
+    </p>
+
+
+    <label
+      class="login-label"
+      for="adminPassword"
+    >
+      管理员密码
+    </label>
+
+
+    <input
+      type="password"
+      id="adminPassword"
+      class="login-input"
+      placeholder="请输入管理员密码"
+      autocomplete="current-password"
+    >
+
+
+    <button
+      class="login-button"
+      id="loginButton"
+    >
+      🔓 登录管理系统
+    </button>
+
+
+    <div
+      class="login-status"
+      id="loginStatus"
+    ></div>
+
+
+    <div class="login-security">
+      🔒 登录凭证仅用于当前管理系统访问。
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     Main
+========================================================= -->
+
+<main id="adminMain">
 
   <div class="page-title">
-    <h1>候选人申请审核</h1>
+
+    <h1>
+      候选人申请审核
+    </h1>
 
     <p>
       管理候选人参选申请，并根据审核结果将申请转为正式候选人。
     </p>
+
   </div>
 
 
@@ -595,6 +908,7 @@
   <section class="stats">
 
     <div class="stat-card">
+
       <div class="stat-label">
         全部申请
       </div>
@@ -605,10 +919,12 @@
       >
         0
       </div>
+
     </div>
 
 
     <div class="stat-card">
+
       <div class="stat-label">
         待审核
       </div>
@@ -619,10 +935,12 @@
       >
         0
       </div>
+
     </div>
 
 
     <div class="stat-card">
+
       <div class="stat-label">
         已处理
       </div>
@@ -633,6 +951,7 @@
       >
         0
       </div>
+
     </div>
 
   </section>
@@ -672,6 +991,7 @@
       已驳回
     </button>
 
+
     <button
       class="refresh-button"
       id="refreshButton"
@@ -700,9 +1020,9 @@
 </main>
 
 
-<!-- =========================
+<!-- =========================================================
      Reject Modal
-========================== -->
+========================================================= -->
 
 <div
   class="modal-overlay"
@@ -716,6 +1036,7 @@
       <h2>
         驳回候选人申请
       </h2>
+
 
       <button
         class="modal-close"
@@ -734,6 +1055,7 @@
         请填写本次审核的意见。
       </p>
 
+
       <textarea
         id="reviewNote"
         class="review-note"
@@ -750,6 +1072,7 @@
         >
           取消
         </button>
+
 
         <button
           class="action-button reject-button"
@@ -768,6 +1091,7 @@
 
 
 <script>
+
   /* =========================================================
      基础设置
   ========================================================= */
@@ -776,17 +1100,9 @@
     "https://axnews-admin-api.axie999666.workers.dev";
 
 
-  /*
-   * 当前管理员登录 Token
-   *
-   * 如果你的登录页面使用 localStorage 保存 Token，
-   * 这里会自动读取。
-   *
-   * 兼容以下两个常见名称：
-   *
-   * axnews_admin_token
-   * AXNEWS_ADMIN_TOKEN
-   */
+  /* =========================================================
+     登录 Token
+  ========================================================= */
 
   function getAuthToken() {
 
@@ -795,6 +1111,33 @@
       localStorage.getItem("AXNEWS_ADMIN_TOKEN") ||
       localStorage.getItem("adminToken") ||
       ""
+    );
+
+  }
+
+
+  function saveAuthToken(token) {
+
+    localStorage.setItem(
+      "axnews_admin_token",
+      token
+    );
+
+  }
+
+
+  function clearAuthToken() {
+
+    localStorage.removeItem(
+      "axnews_admin_token"
+    );
+
+    localStorage.removeItem(
+      "AXNEWS_ADMIN_TOKEN"
+    );
+
+    localStorage.removeItem(
+      "adminToken"
     );
 
   }
@@ -814,6 +1157,25 @@
   /* =========================================================
      DOM
   ========================================================= */
+
+  const loginPage =
+    document.getElementById("loginPage");
+
+  const adminMain =
+    document.getElementById("adminMain");
+
+  const adminPassword =
+    document.getElementById("adminPassword");
+
+  const loginButton =
+    document.getElementById("loginButton");
+
+  const loginStatus =
+    document.getElementById("loginStatus");
+
+  const logoutButton =
+    document.getElementById("logoutButton");
+
 
   const applicationsContainer =
     document.getElementById("applications");
@@ -841,12 +1203,244 @@
 
 
   /* =========================================================
+     登录状态 UI
+  ========================================================= */
+
+  function showLoginPage() {
+
+    loginPage.style.display = "flex";
+
+    adminMain.classList.remove("show");
+
+    logoutButton.style.display = "none";
+
+  }
+
+
+  function showAdminPage() {
+
+    loginPage.style.display = "none";
+
+    adminMain.classList.add("show");
+
+    logoutButton.style.display = "block";
+
+  }
+
+
+  function showLoginStatus(message, type = "") {
+
+    loginStatus.textContent =
+      message;
+
+    loginStatus.className =
+      "login-status" +
+      (type ? " " + type : "");
+
+  }
+
+
+  /* =========================================================
+     登录
+  ========================================================= */
+
+  async function login() {
+
+    const password =
+      adminPassword.value.trim();
+
+
+    if (!password) {
+
+      showLoginStatus(
+        "❌ 请输入管理员密码。",
+        "error"
+      );
+
+      adminPassword.focus();
+
+      return;
+
+    }
+
+
+    loginButton.disabled = true;
+
+    loginButton.textContent =
+      "⏳ 登录中……";
+
+
+    showLoginStatus("");
+
+
+    try {
+
+      const response =
+        await fetch(
+          API_BASE + "/login",
+          {
+            method: "POST",
+
+            headers: {
+              "Content-Type":
+                "application/json"
+            },
+
+            body: JSON.stringify({
+              password: password
+            })
+          }
+        );
+
+
+      let result = null;
+
+
+      try {
+
+        result =
+          await response.json();
+
+      } catch {
+
+        result = null;
+
+      }
+
+
+      if (
+        !response.ok ||
+        !result?.success
+      ) {
+
+        throw new Error(
+          result?.error ||
+          `登录失败（HTTP ${response.status}）`
+        );
+
+      }
+
+
+      if (!result.token) {
+
+        throw new Error(
+          "服务器没有返回登录凭证。"
+        );
+
+      }
+
+
+      /*
+       * 保存 Token
+       */
+
+      saveAuthToken(
+        result.token
+      );
+
+
+      /*
+       * 清空密码
+       */
+
+      adminPassword.value = "";
+
+
+      /*
+       * 显示后台
+       */
+
+      showAdminPage();
+
+
+      /*
+       * 读取候选人申请
+       */
+
+      await loadApplications();
+
+
+    } catch (error) {
+
+      console.error(error);
+
+      clearAuthToken();
+
+      showLoginPage();
+
+      showLoginStatus(
+        "❌ " + error.message,
+        "error"
+      );
+
+    } finally {
+
+      loginButton.disabled = false;
+
+      loginButton.textContent =
+        "🔓 登录管理系统";
+
+    }
+
+  }
+
+
+  /* =========================================================
+     登出
+  ========================================================= */
+
+  function logout() {
+
+    clearAuthToken();
+
+    applications = [];
+
+    currentFilter = "all";
+
+    showLoginPage();
+
+    showLoginStatus(
+      "已退出登录。",
+      "success"
+    );
+
+  }
+
+
+  loginButton.addEventListener(
+    "click",
+    login
+  );
+
+
+  adminPassword.addEventListener(
+    "keydown",
+    event => {
+
+      if (event.key === "Enter") {
+        login();
+      }
+
+    }
+  );
+
+
+  logoutButton.addEventListener(
+    "click",
+    logout
+  );
+
+
+  /* =========================================================
      HTML 转义
   ========================================================= */
 
   function escapeHtml(value) {
 
-    if (value === null || value === undefined) {
+    if (
+      value === null ||
+      value === undefined
+    ) {
       return "";
     }
 
@@ -870,36 +1464,61 @@
       return "—";
     }
 
-    const date = new Date(value);
 
-    if (Number.isNaN(date.getTime())) {
+    const date =
+      new Date(value);
+
+
+    if (
+      Number.isNaN(
+        date.getTime()
+      )
+    ) {
       return value;
     }
+
 
     const year =
       date.getFullYear();
 
+
     const axieYear =
       year - 2023;
+
 
     const yearText =
       axieYear === 1
         ? "阿谢元年"
         : `阿谢${axieYear}年`;
 
+
     const month =
-      String(date.getMonth() + 1).padStart(2, "0");
+      String(
+        date.getMonth() + 1
+      ).padStart(2, "0");
+
 
     const day =
-      String(date.getDate()).padStart(2, "0");
+      String(
+        date.getDate()
+      ).padStart(2, "0");
+
 
     const hour =
-      String(date.getHours()).padStart(2, "0");
+      String(
+        date.getHours()
+      ).padStart(2, "0");
+
 
     const minute =
-      String(date.getMinutes()).padStart(2, "0");
+      String(
+        date.getMinutes()
+      ).padStart(2, "0");
 
-    return `${yearText}${month}月${day}日 ${hour}:${minute}`;
+
+    return (
+      `${yearText}${month}月${day}日 ${hour}:${minute}`
+    );
 
   }
 
@@ -949,13 +1568,19 @@
 
   function getPositionText(position) {
 
-    if (position === "president") {
+    if (
+      position === "president"
+    ) {
       return "总统候选人";
     }
 
-    if (position === "vicePresident") {
+
+    if (
+      position === "vicePresident"
+    ) {
       return "副总统候选人";
     }
+
 
     return position || "未知职位";
 
@@ -968,16 +1593,13 @@
 
   async function loadApplications() {
 
-    const token = getAuthToken();
+    const token =
+      getAuthToken();
+
 
     if (!token) {
 
-      applicationsContainer.innerHTML = `
-        <div class="message error-message">
-          <strong>未登录</strong>
-          请先登录阿谢国管理系统。
-        </div>
-      `;
+      showLoginPage();
 
       return;
 
@@ -993,43 +1615,56 @@
 
     try {
 
-      const response = await fetch(
-        `${API_BASE}/candidate-applications`,
-        {
-          method: "GET",
+      const response =
+        await fetch(
+          `${API_BASE}/candidate-applications`,
+          {
+            method: "GET",
 
-          headers: {
-            "Authorization": `Bearer ${token}`
-          },
+            headers: {
+              "Authorization":
+                `Bearer ${token}`
+            },
 
-          cache: "no-store"
-        }
-      );
+            cache: "no-store"
+          }
+        );
 
 
       let data = null;
 
+
       try {
-        data = await response.json();
+
+        data =
+          await response.json();
+
       } catch {
+
         data = null;
+
       }
 
 
       if (!response.ok) {
 
-        if (response.status === 401) {
+        if (
+          response.status === 401
+        ) {
 
-          applicationsContainer.innerHTML = `
-            <div class="message error-message">
-              <strong>登录已失效</strong>
-              请重新登录管理员系统。
-            </div>
-          `;
+          clearAuthToken();
+
+          showLoginPage();
+
+          showLoginStatus(
+            "登录凭证已失效，请重新登录。",
+            "error"
+          );
 
           return;
 
         }
+
 
         throw new Error(
           data?.error ||
@@ -1048,7 +1683,9 @@
        */
 
       applications =
-        Array.isArray(data?.applications)
+        Array.isArray(
+          data?.applications
+        )
           ? data.applications
           : [];
 
@@ -1059,9 +1696,11 @@
 
       renderApplications();
 
+
     } catch (error) {
 
       console.error(error);
+
 
       applicationsContainer.innerHTML = `
         <div class="message error-message">
@@ -1081,17 +1720,25 @@
 
   function sortApplications() {
 
-    applications.sort((a, b) => {
+    applications.sort(
+      (a, b) => {
 
-      const aTime =
-        new Date(a.submittedAt || 0).getTime();
+        const aTime =
+          new Date(
+            a.submittedAt || 0
+          ).getTime();
 
-      const bTime =
-        new Date(b.submittedAt || 0).getTime();
 
-      return bTime - aTime;
+        const bTime =
+          new Date(
+            b.submittedAt || 0
+          ).getTime();
 
-    });
+
+        return bTime - aTime;
+
+      }
+    );
 
   }
 
@@ -1105,10 +1752,13 @@
     const total =
       applications.length;
 
+
     const pending =
       applications.filter(
-        app => app.status === "pending"
+        app =>
+          app.status === "pending"
       ).length;
+
 
     const processed =
       total - pending;
@@ -1117,8 +1767,10 @@
     totalCount.textContent =
       total;
 
+
     pendingCount.textContent =
       pending;
+
 
     processedCount.textContent =
       processed;
@@ -1132,12 +1784,16 @@
 
   function getFilteredApplications() {
 
-    if (currentFilter === "all") {
+    if (
+      currentFilter === "all"
+    ) {
       return applications;
     }
 
+
     return applications.filter(
-      app => app.status === currentFilter
+      app =>
+        app.status === currentFilter
     );
 
   }
@@ -1158,16 +1814,28 @@
       let text =
         "目前没有申请记录。";
 
-      if (currentFilter === "pending") {
-        text = "目前没有待审核申请。";
+
+      if (
+        currentFilter === "pending"
+      ) {
+        text =
+          "目前没有待审核申请。";
       }
 
-      if (currentFilter === "approved") {
-        text = "目前没有已批准申请。";
+
+      if (
+        currentFilter === "approved"
+      ) {
+        text =
+          "目前没有已批准申请。";
       }
 
-      if (currentFilter === "rejected") {
-        text = "目前没有已驳回申请。";
+
+      if (
+        currentFilter === "rejected"
+      ) {
+        text =
+          "目前没有已驳回申请。";
       }
 
 
@@ -1184,7 +1852,11 @@
 
 
     applicationsContainer.innerHTML =
-      list.map(renderApplication).join("");
+      list
+        .map(
+          renderApplication
+        )
+        .join("");
 
   }
 
@@ -1236,15 +1908,25 @@
           <div class="application-main">
 
             <div class="application-name">
-              ${escapeHtml(app.name || "未填写姓名")}
+              ${escapeHtml(
+                app.name ||
+                "未填写姓名"
+              )}
             </div>
+
 
             <div class="application-en">
-              ${escapeHtml(englishName)}
+              ${escapeHtml(
+                englishName
+              )}
             </div>
 
+
             <div class="application-id">
-              ${escapeHtml(app.applicationId || "无申请编号")}
+              ${escapeHtml(
+                app.applicationId ||
+                "无申请编号"
+              )}
             </div>
 
           </div>
@@ -1276,7 +1958,9 @@
 
               <div class="info-value">
                 ${escapeHtml(
-                  getPositionText(app.position)
+                  getPositionText(
+                    app.position
+                  )
                 )}
               </div>
 
@@ -1291,7 +1975,8 @@
 
               <div class="info-value">
                 ${escapeHtml(
-                  app.electionId || "—"
+                  app.electionId ||
+                  "—"
                 )}
               </div>
 
@@ -1306,7 +1991,8 @@
 
               <div class="info-value">
                 ${escapeHtml(
-                  app.name || "—"
+                  app.name ||
+                  "—"
                 )}
               </div>
 
@@ -1335,7 +2021,9 @@
               </div>
 
               <div class="info-value">
-                ${escapeHtml(party)}
+                ${escapeHtml(
+                  party
+                )}
               </div>
 
             </div>
@@ -1348,36 +2036,48 @@
               </div>
 
               <div class="info-value">
-                ${escapeHtml(photo)}
-              </div>
-
-            </div>
-
-
-            <div class="info-item full-width">
-
-              <div class="info-label">
-                候选人简介
-              </div>
-
-              <div class="info-value text-box">
                 ${escapeHtml(
-                  app.introduction || "未填写"
+                  photo
                 )}
               </div>
 
             </div>
 
 
-            <div class="info-item full-width">
+            <div
+              class="info-item full-width"
+            >
+
+              <div class="info-label">
+                候选人简介
+              </div>
+
+              <div
+                class="info-value text-box"
+              >
+                ${escapeHtml(
+                  app.introduction ||
+                  "未填写"
+                )}
+              </div>
+
+            </div>
+
+
+            <div
+              class="info-item full-width"
+            >
 
               <div class="info-label">
                 竞选声明
               </div>
 
-              <div class="info-value text-box">
+              <div
+                class="info-value text-box"
+              >
                 ${escapeHtml(
-                  app.campaignStatement || "未填写"
+                  app.campaignStatement ||
+                  "未填写"
                 )}
               </div>
 
@@ -1427,13 +2127,17 @@
             ${
               reviewNoteText
                 ? `
-                  <div class="info-item full-width">
+                  <div
+                    class="info-item full-width"
+                  >
 
                     <div class="info-label">
                       审核意见
                     </div>
 
-                    <div class="info-value text-box">
+                    <div
+                      class="info-value text-box"
+                    >
                       ${escapeHtml(
                         reviewNoteText
                       )}
@@ -1452,7 +2156,9 @@
         ${
           canReview
             ? `
-              <div class="application-actions">
+              <div
+                class="application-actions"
+              >
 
                 <button
                   class="action-button approve-button"
@@ -1460,6 +2166,7 @@
                 >
                   ✓ 批准申请
                 </button>
+
 
                 <button
                   class="action-button reject-button"
@@ -1471,7 +2178,9 @@
               </div>
             `
             : `
-              <div class="application-actions">
+              <div
+                class="application-actions"
+              >
 
                 <span
                   style="
@@ -1497,24 +2206,39 @@
      批准申请
   ========================================================= */
 
-  async function approveApplication(applicationId) {
+  async function approveApplication(
+    applicationId
+  ) {
 
     const app =
       applications.find(
         item =>
-          item.applicationId === applicationId
+          item.applicationId ===
+          applicationId
       );
 
 
     if (!app) {
-      alert("找不到该申请。");
+
+      alert(
+        "找不到该申请。"
+      );
+
       return;
+
     }
 
 
-    if (app.status !== "pending") {
-      alert("该申请已经完成审核。");
+    if (
+      app.status !== "pending"
+    ) {
+
+      alert(
+        "该申请已经完成审核。"
+      );
+
       return;
+
     }
 
 
@@ -1534,8 +2258,15 @@
 
 
     if (!token) {
-      alert("登录已失效，请重新登录。");
+
+      alert(
+        "登录已失效，请重新登录。"
+      );
+
+      showLoginPage();
+
       return;
+
     }
 
 
@@ -1552,7 +2283,8 @@
 
 
     buttons.forEach(
-      button => button.disabled = true
+      button =>
+        button.disabled = true
     );
 
 
@@ -1565,28 +2297,65 @@
             method: "POST",
 
             headers: {
-              "Authorization": `Bearer ${token}`,
-              "Content-Type": "application/json"
+
+              "Authorization":
+                `Bearer ${token}`,
+
+              "Content-Type":
+                "application/json"
+
             },
 
             body: JSON.stringify({
-              status: "approved",
-              reviewNote: "申请审核通过"
+
+              status:
+                "approved",
+
+              reviewNote:
+                "申请审核通过"
+
             })
+
           }
         );
 
 
       let data = null;
 
+
       try {
-        data = await response.json();
+
+        data =
+          await response.json();
+
       } catch {
+
         data = null;
+
       }
 
 
-      if (!response.ok) {
+      if (
+        !response.ok
+      ) {
+
+        if (
+          response.status === 401
+        ) {
+
+          clearAuthToken();
+
+          showLoginPage();
+
+          showLoginStatus(
+            "登录凭证已失效，请重新登录。",
+            "error"
+          );
+
+          return;
+
+        }
+
 
         throw new Error(
           data?.error ||
@@ -1595,10 +2364,6 @@
 
       }
 
-
-      /*
-       * 成功后直接重新读取服务器数据。
-       */
 
       await loadApplications();
 
@@ -1614,13 +2379,15 @@
 
       console.error(error);
 
+
       alert(
         `批准失败：\n${error.message}`
       );
 
 
       buttons.forEach(
-        button => button.disabled = false
+        button =>
+          button.disabled = false
       );
 
     }
@@ -1632,24 +2399,39 @@
      驳回 Modal
   ========================================================= */
 
-  function openRejectModal(applicationId) {
+  function openRejectModal(
+    applicationId
+  ) {
 
     const app =
       applications.find(
         item =>
-          item.applicationId === applicationId
+          item.applicationId ===
+          applicationId
       );
 
 
     if (!app) {
-      alert("找不到该申请。");
+
+      alert(
+        "找不到该申请。"
+      );
+
       return;
+
     }
 
 
-    if (app.status !== "pending") {
-      alert("该申请已经完成审核。");
+    if (
+      app.status !== "pending"
+    ) {
+
+      alert(
+        "该申请已经完成审核。"
+      );
+
       return;
+
     }
 
 
@@ -1657,8 +2439,7 @@
       applicationId;
 
 
-    reviewNote.value =
-      "";
+    reviewNote.value = "";
 
 
     document.getElementById(
@@ -1667,25 +2448,33 @@
       `正在驳回 ${app.name || "该候选人"} 的参选申请。建议填写明确的审核意见。`;
 
 
-    rejectModal.classList.add("show");
+    rejectModal.classList.add(
+      "show"
+    );
 
 
-    setTimeout(() => {
-      reviewNote.focus();
-    }, 50);
+    setTimeout(
+      () => {
+        reviewNote.focus();
+      },
+      50
+    );
 
   }
 
 
   function closeRejectModal() {
 
-    rejectModal.classList.remove("show");
+    rejectModal.classList.remove(
+      "show"
+    );
+
 
     rejectApplicationId =
       null;
 
-    reviewNote.value =
-      "";
+
+    reviewNote.value = "";
 
   }
 
@@ -1696,7 +2485,9 @@
 
   async function rejectApplication() {
 
-    if (!rejectApplicationId) {
+    if (
+      !rejectApplicationId
+    ) {
       return;
     }
 
@@ -1728,6 +2519,8 @@
         "登录已失效，请重新登录。"
       );
 
+      showLoginPage();
+
       return;
 
     }
@@ -1735,6 +2528,7 @@
 
     confirmRejectButton.disabled =
       true;
+
 
     confirmRejectButton.textContent =
       "正在提交……";
@@ -1749,28 +2543,67 @@
             method: "POST",
 
             headers: {
-              "Authorization": `Bearer ${token}`,
-              "Content-Type": "application/json"
+
+              "Authorization":
+                `Bearer ${token}`,
+
+              "Content-Type":
+                "application/json"
+
             },
 
             body: JSON.stringify({
-              status: "rejected",
-              reviewNote: note
+
+              status:
+                "rejected",
+
+              reviewNote:
+                note
+
             })
+
           }
         );
 
 
       let data = null;
 
+
       try {
-        data = await response.json();
+
+        data =
+          await response.json();
+
       } catch {
+
         data = null;
+
       }
 
 
-      if (!response.ok) {
+      if (
+        !response.ok
+      ) {
+
+        if (
+          response.status === 401
+        ) {
+
+          clearAuthToken();
+
+          closeRejectModal();
+
+          showLoginPage();
+
+          showLoginStatus(
+            "登录凭证已失效，请重新登录。",
+            "error"
+          );
+
+          return;
+
+        }
+
 
         throw new Error(
           data?.error ||
@@ -1781,6 +2614,7 @@
 
 
       closeRejectModal();
+
 
       await loadApplications();
 
@@ -1793,6 +2627,7 @@
     } catch (error) {
 
       console.error(error);
+
 
       alert(
         `驳回失败：\n${error.message}`
@@ -1816,34 +2651,44 @@
   ========================================================= */
 
   document
-    .querySelectorAll(".filter-button")
-    .forEach(button => {
+    .querySelectorAll(
+      ".filter-button"
+    )
+    .forEach(
+      button => {
 
-      button.addEventListener(
-        "click",
-        () => {
+        button.addEventListener(
+          "click",
+          () => {
 
-          document
-            .querySelectorAll(".filter-button")
-            .forEach(
-              item =>
-                item.classList.remove("active")
+            document
+              .querySelectorAll(
+                ".filter-button"
+              )
+              .forEach(
+                item =>
+                  item.classList.remove(
+                    "active"
+                  )
+              );
+
+
+            button.classList.add(
+              "active"
             );
 
 
-          button.classList.add("active");
+            currentFilter =
+              button.dataset.filter;
 
 
-          currentFilter =
-            button.dataset.filter;
+            renderApplications();
 
+          }
+        );
 
-          renderApplications();
-
-        }
-      );
-
-    });
+      }
+    );
 
 
   /* =========================================================
@@ -1857,6 +2702,7 @@
       refreshButton.disabled =
         true;
 
+
       refreshButton.textContent =
         "正在刷新……";
 
@@ -1866,6 +2712,7 @@
 
       refreshButton.disabled =
         false;
+
 
       refreshButton.textContent =
         "↻ 刷新申请";
@@ -1879,7 +2726,9 @@
   ========================================================= */
 
   document
-    .getElementById("closeModalButton")
+    .getElementById(
+      "closeModalButton"
+    )
     .addEventListener(
       "click",
       closeRejectModal
@@ -1887,7 +2736,9 @@
 
 
   document
-    .getElementById("cancelRejectButton")
+    .getElementById(
+      "cancelRejectButton"
+    )
     .addEventListener(
       "click",
       closeRejectModal
@@ -1905,7 +2756,8 @@
     event => {
 
       if (
-        event.target === rejectModal
+        event.target ===
+        rejectModal
       ) {
 
         closeRejectModal();
@@ -1920,7 +2772,32 @@
      页面启动
   ========================================================= */
 
-  loadApplications();
+  const existingToken =
+    getAuthToken();
+
+
+  if (existingToken) {
+
+    /*
+     * 有旧 Token：
+     * 先显示管理页面，
+     * 然后验证 Token。
+     */
+
+    showAdminPage();
+
+    loadApplications();
+
+  } else {
+
+    /*
+     * 没有 Token：
+     * 显示登录页面。
+     */
+
+    showLoginPage();
+
+  }
 
 </script>
 
