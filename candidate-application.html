@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>候选人参选申请 | Republic of Axie</title>
+
+  <meta
+    name="description"
+    content="阿谢国候选人参选申请系统"
+  >
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "PingFang SC",
+        "Microsoft YaHei",
+        sans-serif;
+
+      background: #f5f7fb;
+      color: #172033;
+    }
+
+    header {
+      background: #061b3a;
+      color: white;
+      padding: 18px 24px;
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: auto;
+
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .header-inner img {
+      width: 54px;
+      height: 36px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    .brand {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .brand small {
+      display: block;
+      font-size: 12px;
+      opacity: 0.75;
+      margin-top: 2px;
+      font-weight: 400;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .page-title {
+      margin-bottom: 28px;
+    }
+
+    .page-title h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+    }
+
+    .page-title p {
+      margin: 0;
+      color: #667085;
+    }
+
+    .notice {
+      padding: 16px 18px;
+      border-radius: 10px;
+      margin-bottom: 22px;
+      line-height: 1.7;
+    }
+
+    .notice.info {
+      background: #eaf2ff;
+      color: #174a8b;
+      border: 1px solid #cbdcf8;
+    }
+
+    .notice.warning {
+      background: #fff8e6;
+      color: #7a5600;
+      border: 1px solid #f0d98a;
+    }
+
+    .card {
+      background: white;
+      border-radius: 14px;
+      padding: 28px;
+      margin-bottom: 22px;
+
+      box-shadow:
+        0 4px 18px rgba(20, 40, 80, 0.06);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: 22px;
+      font-size: 21px;
+    }
+
+    .field {
+      margin-bottom: 22px;
+    }
+
+    .field:last-child {
+      margin-bottom: 0;
+    }
+
+    label {
+      display: block;
+      font-weight: 650;
+      margin-bottom: 8px;
+    }
+
+    .required {
+      color: #c62828;
+      margin-left: 4px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px 14px;
+
+      border: 1px solid #d5dae3;
+      border-radius: 8px;
+
+      font-size: 15px;
+      font-family: inherit;
+
+      background: white;
+      color: #172033;
+
+      transition: 0.15s;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #285ea8;
+      box-shadow: 0 0 0 3px rgba(40, 94, 168, 0.12);
+    }
+
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+      line-height: 1.7;
+    }
+
+    .position-options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .position-option {
+      position: relative;
+    }
+
+    .position-option input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .position-label {
+      display: block;
+      padding: 18px;
+
+      border: 1px solid #d7dce5;
+      border-radius: 10px;
+
+      cursor: pointer;
+
+      transition: 0.15s;
+    }
+
+    .position-label strong {
+      display: block;
+      font-size: 17px;
+      margin-bottom: 5px;
+    }
+
+    .position-label span {
+      color: #667085;
+      font-size: 13px;
+    }
+
+    .position-option input:checked + .position-label {
+      border-color: #285ea8;
+      background: #f0f6ff;
+      box-shadow: 0 0 0 2px rgba(40, 94, 168, 0.1);
+    }
+
+    .election-info {
+      margin-top: 16px;
+      padding: 15px;
+      border-radius: 8px;
+      background: #f5f7fb;
+      color: #4c566a;
+      line-height: 1.7;
+      display: none;
+    }
+
+    .election-info.show {
+      display: block;
+    }
+
+    .photo-note {
+      margin-top: 7px;
+      color: #7b8494;
+      font-size: 13px;
+    }
+
+    .submit-area {
+      text-align: center;
+      padding: 8px 0 30px;
+    }
+
+    .submit-button {
+      border: none;
+      border-radius: 9px;
+
+      padding: 14px 34px;
+
+      background: #123f73;
+      color: white;
+
+      font-size: 16px;
+      font-weight: 700;
+
+      cursor: pointer;
+      transition: 0.15s;
+    }
+
+    .submit-button:hover {
+      background: #0d315a;
+    }
+
+    .submit-button:disabled {
+      background: #aeb6c2;
+      cursor: not-allowed;
+    }
+
+    .success {
+      display: none;
+
+      background: white;
+      border-radius: 14px;
+      padding: 34px;
+
+      box-shadow:
+        0 4px 18px rgba(20, 40, 80, 0.06);
+
+      text-align: center;
+    }
+
+    .success.show {
+      display: block;
+    }
+
+    .success-icon {
+      font-size: 46px;
+      margin-bottom: 12px;
+    }
+
+    .success h2 {
+      margin: 0 0 12px;
+    }
+
+    .application-id {
+      display: inline-block;
+
+      margin: 15px 0;
+      padding: 10px 15px;
+
+      background: #f1f4f8;
+      border-radius: 7px;
+
+      font-family: monospace;
+      font-weight: 700;
+    }
+
+    .empty {
+      text-align: center;
+      color: #667085;
+      padding: 30px 10px;
+    }
+
+    .error {
+      color: #b42318;
+      background: #fff1f0;
+      border: 1px solid #f2c7c3;
+    }
+
+    @media (max-width: 650px) {
+      .page-title h1 {
+        font-size: 27px;
+      }
+
+      .card {
+        padding: 21px;
+      }
+
+      .position-options {
+        grid-template-columns: 1fr;
+      }
+
+      .submit-button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-inner">
+
+    <img
+      src="/ROA_flag.png"
+      alt="Republic of Axie"
+    >
+
+    <div class="brand">
+      阿谢国
+      <small>Republic of Axie</small>
+    </div>
+
+  </div>
+</header>
+
+
+<main>
+
+  <div class="page-title">
+    <h1>候选人参选申请</h1>
+    <p>Candidate Application System</p>
+  </div>
+
+
+  <div class="notice info">
+    本系统用于提交阿谢国总统及副总统选举候选人参选申请。
+    申请提交后需要经过审核，申请本身不会直接成为正式候选人。
+  </div>
+
+
+  <div
+    id="loadingNotice"
+    class="notice info"
+  >
+    正在读取选举及政党资料……
+  </div>
+
+
+  <form id="applicationForm">
+
+    <!-- =========================
+         参选职位
+    ========================== -->
+
+    <section class="card">
+
+      <h2>一、参选职位</h2>
+
+      <div class="field">
+
+        <label>
+          请选择参选职位
+          <span class="required">*</span>
+        </label>
+
+        <div class="position-options">
+
+          <div class="position-option">
+            <input
+              type="radio"
+              name="position"
+              id="positionPresident"
+              value="president"
+              required
+            >
+
+            <label
+              class="position-label"
+              for="positionPresident"
+            >
+              <strong>总统</strong>
+              <span>President</span>
+            </label>
+          </div>
+
+
+          <div class="position-option">
+            <input
+              type="radio"
+              name="position"
+              id="positionVicePresident"
+              value="vicePresident"
+              required
+            >
+
+            <label
+              class="position-label"
+              for="positionVicePresident"
+            >
+              <strong>副总统</strong>
+              <span>Vice President</span>
+            </label>
+          </div>
+
+        </div>
+
+
+        <div
+          id="electionInfo"
+          class="election-info"
+        ></div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         基本资料
+    ========================== -->
+
+    <section class="card">
+
+      <h2>二、候选人基本资料</h2>
+
+      <div class="field">
+
+        <label for="name">
+          中文姓名
+          <span class="required">*</span>
+        </label>
+
+        <input
+          id="name"
+          name="name"
+          type="text"
+          maxlength="50"
+          required
+          placeholder="请输入姓名"
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label for="englishName">
+          英文姓名
+        </label>
+
+        <input
+          id="englishName"
+          name="englishName"
+          type="text"
+          maxlength="100"
+          placeholder="English Name"
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label for="japaneseName">
+          日文姓名
+        </label>
+
+        <input
+          id="japaneseName"
+          name="japaneseName"
+          type="text"
+          maxlength="100"
+          placeholder="日本語氏名"
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label for="party">
+          所属政党
+          <span class="required">*</span>
+        </label>
+
+        <select
+          id="party"
+          name="party"
+          required
+        >
+
+          <option value="">
+            正在读取政党资料……
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="field">
+
+        <label for="photo">
+          候选人照片
+        </label>
+
+        <input
+          id="photo"
+          name="photo"
+          type="text"
+          maxlength="200"
+          placeholder="例如：candidate-images/example.jpg"
+        >
+
+        <div class="photo-note">
+          第一阶段暂填写照片文件路径，正式系统将支持照片上传。
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         候选人介绍
+    ========================== -->
+
+    <section class="card">
+
+      <h2>三、候选人介绍</h2>
+
+      <div class="field">
+
+        <label for="introduction">
+          候选人简介
+          <span class="required">*</span>
+        </label>
+
+        <textarea
+          id="introduction"
+          name="introduction"
+          maxlength="1000"
+          required
+          placeholder="请介绍候选人的经历、公共事务参与情况等。"
+        ></textarea>
+
+      </div>
+
+
+      <div class="field">
+
+        <label for="campaignStatement">
+          竞选声明
+          <span class="required">*</span>
+        </label>
+
+        <textarea
+          id="campaignStatement"
+          name="campaignStatement"
+          maxlength="5000"
+          required
+          placeholder="请输入候选人的竞选声明或施政方向。"
+        ></textarea>
+
+      </div>
+
+    </section>
+
+
+    <div class="notice warning">
+      <strong>提交前请注意：</strong><br>
+      请确认以上资料真实、完整。提交后，申请将进入审核流程。
+      当前版本为系统开发阶段，提交不会产生正式参选资格。
+    </div>
+
+
+    <div class="submit-area">
+
+      <button
+        type="submit"
+        class="submit-button"
+        id="submitButton"
+        disabled
+      >
+        提交参选申请
+      </button>
+
+    </div>
+
+  </form>
+
+
+  <!-- =========================
+       提交成功
+  ========================== -->
+
+  <div
+    id="successBox"
+    class="success"
+  >
+
+    <div class="success-icon">
+      ✅
+    </div>
+
+    <h2>申请已提交</h2>
+
+    <p>
+      候选人参选申请已经完成本地流程测试。
+    </p>
+
+    <div
+      id="applicationId"
+      class="application-id"
+    ></div>
+
+    <p>
+      当前版本不会将申请直接写入正式候选人数据库。
+      后续接入正式后台后，申请将进入审核流程。
+    </p>
+
+  </div>
+
+</main>
+
+
+<script>
+
+  let electionsData = null;
+  let partiesData = null;
+
+
+  // ========================================
+  // 阿谢纪年日期格式
+  // ========================================
+
+  function formatAxieDate(dateString) {
+
+    const date = new Date(dateString);
+
+    if (Number.isNaN(date.getTime())) {
+      return "日期未知";
+    }
+
+    const year =
+      date.getFullYear();
+
+    const month =
+      date.getMonth() + 1;
+
+    const day =
+      date.getDate();
+
+    const axieYear =
+      year - 2023;
+
+    const yearText =
+      axieYear === 1
+        ? "元年"
+        : `${axieYear}年`;
+
+    return `阿谢${yearText}${month}月${day}日`;
+  }
+
+
+  // ========================================
+  // 获取职位对应的选举
+  // ========================================
+
+  function getElectionForPosition(position) {
+
+    if (!electionsData) {
+      return null;
+    }
+
+    if (position === "president") {
+
+      return (
+        electionsData
+          .president
+          ?.elections
+          ?.find(election =>
+            election.status !== "cancelled"
+          )
+        || null
+      );
+
+    }
+
+
+    if (position === "vicePresident") {
+
+      return (
+        electionsData
+          .vicePresident
+          ?.elections
+          ?.find(election =>
+            election.status !== "cancelled"
+          )
+        || null
+      );
+
+    }
+
+    return null;
+  }
+
+
+  // ========================================
+  // 显示选举信息
+  // ========================================
+
+  function updateElectionInfo() {
+
+    const selected =
+      document.querySelector(
+        'input[name="position"]:checked'
+      );
+
+    const box =
+      document.getElementById(
+        "electionInfo"
+      );
+
+    if (!selected) {
+
+      box.classList.remove("show");
+      box.innerHTML = "";
+
+      return;
+    }
+
+
+    const election =
+      getElectionForPosition(
+        selected.value
+      );
+
+
+    if (!election) {
+
+      box.classList.add("show");
+
+      box.innerHTML =
+        "目前没有找到该职位对应的选举。";
+
+      return;
+    }
+
+
+    box.classList.add("show");
+
+    box.innerHTML = `
+      <strong>${election.name}</strong><br>
+      选举开始：
+      ${formatAxieDate(election.start)}<br>
+      选举结束：
+      ${formatAxieDate(election.end)}<br>
+      就任日期：
+      ${formatAxieDate(election.inauguration)}
+    `;
+  }
+
+
+  // ========================================
+  // 读取政党
+  // ========================================
+
+  function renderParties() {
+
+    const select =
+      document.getElementById("party");
+
+    select.innerHTML = `
+      <option value="">
+        请选择政党
+      </option>
+    `;
+
+
+    const parties =
+      partiesData?.parties || [];
+
+
+    parties.forEach(party => {
+
+      const option =
+        document.createElement("option");
+
+      option.value =
+        party.partyId;
+
+      option.textContent =
+        party.partyName;
+
+      select.appendChild(option);
+
+    });
+
+
+    const independent =
+      document.createElement("option");
+
+    independent.value =
+      "independent";
+
+    independent.textContent =
+      "无党籍 / 独立候选人";
+
+    select.appendChild(independent);
+
+
+    const other =
+      document.createElement("option");
+
+    other.value =
+      "other";
+
+    other.textContent =
+      "其他政党";
+
+    select.appendChild(other);
+
+
+    document.getElementById(
+      "submitButton"
+    ).disabled = false;
+  }
+
+
+  // ========================================
+  // 生成申请编号
+  // ========================================
+
+  function generateApplicationId() {
+
+    const year =
+      new Date().getFullYear();
+
+    const random =
+      Math.random()
+        .toString(36)
+        .substring(2, 8)
+        .toUpperCase();
+
+    return `APP-${year}-${random}`;
+  }
+
+
+  // ========================================
+  // 提交申请
+  // ========================================
+
+  document
+    .getElementById("applicationForm")
+    .addEventListener(
+      "submit",
+      function(event) {
+
+        event.preventDefault();
+
+
+        const selected =
+          document.querySelector(
+            'input[name="position"]:checked'
+          );
+
+
+        if (!selected) {
+
+          alert("请选择参选职位。");
+
+          return;
+        }
+
+
+        const election =
+          getElectionForPosition(
+            selected.value
+          );
+
+
+        if (!election) {
+
+          alert(
+            "目前没有可申请的选举。"
+          );
+
+          return;
+        }
+
+
+        const partyId =
+          document.getElementById(
+            "party"
+          ).value;
+
+
+        if (!partyId) {
+
+          alert(
+            "请选择所属政党。"
+          );
+
+          return;
+        }
+
+
+        const application = {
+
+          applicationId:
+            generateApplicationId(),
+
+          electionId:
+            election.electionId,
+
+          position:
+            selected.value,
+
+          name:
+            document
+              .getElementById("name")
+              .value
+              .trim(),
+
+          englishName:
+            document
+              .getElementById("englishName")
+              .value
+              .trim(),
+
+          japaneseName:
+            document
+              .getElementById("japaneseName")
+              .value
+              .trim(),
+
+          partyId:
+            partyId,
+
+          photo:
+            document
+              .getElementById("photo")
+              .value
+              .trim()
+              || null,
+
+          introduction:
+            document
+              .getElementById("introduction")
+              .value
+              .trim(),
+
+          campaignStatement:
+            document
+              .getElementById(
+                "campaignStatement"
+              )
+              .value
+              .trim(),
+
+          submittedAt:
+            new Date().toISOString(),
+
+          status:
+            "pending"
+
+        };
+
+
+        console.log(
+          "Candidate Application:",
+          application
+        );
+
+
+        document
+          .getElementById(
+            "applicationId"
+          )
+          .textContent =
+          application.applicationId;
+
+
+        document
+          .getElementById(
+            "applicationForm"
+          )
+          .style.display =
+          "none";
+
+
+        document
+          .getElementById(
+            "successBox"
+          )
+          .classList.add("show");
+
+      }
+    );
+
+
+  // ========================================
+  // 职位选择事件
+  // ========================================
+
+  document
+    .querySelectorAll(
+      'input[name="position"]'
+    )
+    .forEach(input => {
+
+      input.addEventListener(
+        "change",
+        updateElectionInfo
+      );
+
+    });
+
+
+  // ========================================
+  // 初始化
+  // ========================================
+
+  async function loadData() {
+
+    try {
+
+      const [
+        electionsResponse,
+        partiesResponse
+      ] = await Promise.all([
+
+        fetch(
+          "./data/elections.json",
+          {
+            cache: "no-store"
+          }
+        ),
+
+        fetch(
+          "./data/parties.json",
+          {
+            cache: "no-store"
+          }
+        )
+
+      ]);
+
+
+      if (
+        !electionsResponse.ok ||
+        !partiesResponse.ok
+      ) {
+
+        throw new Error(
+          "无法读取 JSON 数据"
+        );
+
+      }
+
+
+      electionsData =
+        await electionsResponse.json();
+
+      partiesData =
+        await partiesResponse.json();
+
+
+      renderParties();
+
+
+      document
+        .getElementById(
+          "loadingNotice"
+        )
+        .style.display =
+        "none";
+
+
+    } catch (error) {
+
+      console.error(error);
+
+
+      const notice =
+        document.getElementById(
+          "loadingNotice"
+        );
+
+      notice.className =
+        "notice error";
+
+      notice.textContent =
+        "页面加载失败：无法读取选举或政党资料。";
+
+    }
+
+  }
+
+
+  loadData();
+
+</script>
+
+</body>
+</html>
