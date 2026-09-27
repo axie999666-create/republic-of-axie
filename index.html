@@ -2566,39 +2566,130 @@ function updateElectionCountdown() {
 async function loadElectionStatus() {
 
   const section =
-    document.getElementById(
-      "election-status"
-    );
-
+    document.getElementById("election-status");
 
   if (!section) {
     return;
   }
 
-
   try {
+
+    // =====================================================
+    // 读取 elections.json
+    // =====================================================
 
     const response =
       await fetch(
-        "./data/elections.json",
+        "./data/elections.json?version=1",
         {
           cache: "no-store"
         }
       );
 
+    console.log(
+      "elections.json HTTP状态：",
+      response.status
+    );
+
+    console.log(
+      "elections.json 实际地址：",
+      response.url
+    );
+
+
+    // =====================================================
+    // HTTP错误
+    // =====================================================
 
     if (!response.ok) {
 
       throw new Error(
-        "无法读取 elections.json，HTTP状态码：" +
-        response.status
+        "HTTP " +
+        response.status +
+        "：无法读取 elections.json"
       );
 
     }
 
 
-    electionData =
-      await response.json();
+    // =====================================================
+    // 先读取纯文本
+    //
+    // 不直接使用 response.json()
+    // 这样可以准确判断到底返回了什么。
+    // =====================================================
+
+    const rawText =
+      await response.text();
+
+
+    console.log(
+      "elections.json 原始内容：",
+      rawText
+    );
+
+
+    if (!rawText.trim()) {
+
+      throw new Error(
+        "elections.json 是空文件"
+      );
+
+    }
+
+
+    // =====================================================
+    // 手动解析 JSON
+    // =====================================================
+
+    try {
+
+      electionData =
+        JSON.parse(rawText);
+
+    }
+
+    catch (jsonError) {
+
+      console.error(
+        "elections.json JSON解析失败：",
+        jsonError
+      );
+
+      throw new Error(
+        "elections.json JSON格式错误：" +
+        jsonError.message
+      );
+
+    }
+
+
+    // =====================================================
+    // 检查基本数据结构
+    // =====================================================
+
+    if (
+      !electionData ||
+      typeof electionData !== "object"
+    ) {
+
+      throw new Error(
+        "elections.json 不是有效的数据对象"
+      );
+
+    }
+
+
+    if (
+      !electionData.president &&
+      !electionData.vicePresident
+    ) {
+
+      throw new Error(
+        "elections.json 中没有 president 或 vicePresident 数据"
+      );
+
+    }
 
 
     // =====================================================
@@ -2632,7 +2723,7 @@ async function loadElectionStatus() {
 
 
     // =====================================================
-    // 更新所有内容
+    // 更新内容
     // =====================================================
 
     updateElectionLanguage();
@@ -2659,7 +2750,7 @@ async function loadElectionStatus() {
 
 
     // =====================================================
-    // 每秒自动更新
+    // 每秒更新
     // =====================================================
 
     if (electionCountdownTimer) {
@@ -2679,7 +2770,7 @@ async function loadElectionStatus() {
 
 
         // -----------------------------------------------
-        // 如果选举发生变化
+        // 如果当前选举发生变化
         // -----------------------------------------------
 
         if (
@@ -2715,7 +2806,7 @@ async function loadElectionStatus() {
 
 
         // -----------------------------------------------
-        // 如果没有任何未来选举
+        // 没有未来选举
         // -----------------------------------------------
 
         if (!selected) {
@@ -2735,7 +2826,6 @@ async function loadElectionStatus() {
         section.style.display =
           "block";
 
-
         updateElectionCountdown();
 
         updateVoteButton();
@@ -2748,17 +2838,25 @@ async function loadElectionStatus() {
   catch (error) {
 
     console.error(
-      "加载选举信息失败：",
+      "================================"
+    );
+
+    console.error(
+      "❌ 加载选举信息失败"
+    );
+
+    console.error(
       error
     );
 
+    console.error(
+      "================================"
+    );
 
-    /*
-     * 不再默默隐藏。
-     *
-     * 这样如果 JSON 路径或者 GitHub Pages
-     * 出了问题，首页会直接告诉你。
-     */
+
+    // =====================================================
+    // 显示错误
+    // =====================================================
 
     section.style.display =
       "block";
@@ -2800,14 +2898,6 @@ async function loadElectionStatus() {
       );
 
 
-    if (badge) {
-
-      badge.textContent =
-        "⚠️ 数据加载失败";
-
-    }
-
-
     if (title) {
 
       title.textContent =
@@ -2816,10 +2906,19 @@ async function loadElectionStatus() {
     }
 
 
+    if (badge) {
+
+      badge.textContent =
+        "⚠️ 数据加载失败";
+
+    }
+
+
     if (description) {
 
       description.textContent =
-        "无法读取 elections.json，请检查 data/elections.json 是否存在以及网站路径是否正确。";
+        error.message ||
+        "未知错误";
 
     }
 
