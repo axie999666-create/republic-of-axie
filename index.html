@@ -1764,14 +1764,12 @@ function updateCountdown() {
 // =========================================================
 
 let electionData = null;
-
 let currentElection = null;
-
 let electionCountdownTimer = null;
 
 
 // =========================================================
-// 将所有具体选举记录整理成统一数组
+// 将 elections.json 整理成统一数组
 // =========================================================
 
 function getElectionRecords() {
@@ -1780,79 +1778,198 @@ function getElectionRecords() {
     return [];
   }
 
-
   const records = [];
 
-
-  /*
-   * 总统选举
-   */
-
+  // 总统选举
   if (
     electionData.president &&
-    Array.isArray(
-      electionData.president.elections
-    )
+    Array.isArray(electionData.president.elections)
   ) {
 
-    electionData.president.elections.forEach(
-      election => {
+    electionData.president.elections.forEach(election => {
 
-        records.push({
+      records.push({
+        ...election,
 
-          ...election,
+        type: "president",
 
-          type: "president",
+        typeName:
+          electionData.president.name,
 
-          typeName:
-            electionData.president.name,
+        page:
+          electionData.president.page
 
-          page:
-            electionData.president.page
+      });
 
-        });
-
-      }
-    );
+    });
 
   }
 
 
-  /*
-   * 副总统选举
-   */
-
+  // 副总统选举
   if (
     electionData.vicePresident &&
-    Array.isArray(
-      electionData.vicePresident.elections
-    )
+    Array.isArray(electionData.vicePresident.elections)
   ) {
 
-    electionData.vicePresident.elections.forEach(
-      election => {
+    electionData.vicePresident.elections.forEach(election => {
 
-        records.push({
+      records.push({
+        ...election,
 
-          ...election,
+        type: "vicePresident",
 
-          type: "vicePresident",
+        typeName:
+          electionData.vicePresident.name,
 
-          typeName:
-            electionData.vicePresident.name,
+        page:
+          electionData.vicePresident.page
 
-          page:
-            electionData.vicePresident.page
+      });
 
-        });
-
-      }
-    );
+    });
 
   }
 
 
   return records;
+
+}
+
+
+// =========================================================
+// 根据时间选择首页应该显示的选举
+//
+// 优先级：
+//
+// 1. 正在进行的选举
+// 2. 最近即将开始的选举
+//
+// 这样即使当前没有投票，首页也不会消失。
+// =========================================================
+
+function selectCurrentElection() {
+
+  const records =
+    getElectionRecords();
+
+
+  if (records.length === 0) {
+    return null;
+  }
+
+
+  const now =
+    new Date();
+
+
+  const processed =
+    records
+      .map(election => {
+
+        const startTime =
+          new Date(election.start);
+
+        const endTime =
+          new Date(election.end);
+
+
+        return {
+          ...election,
+
+          startTime,
+          endTime
+
+        };
+
+      })
+      .filter(election => {
+
+        return (
+          !Number.isNaN(
+            election.startTime.getTime()
+          ) &&
+          !Number.isNaN(
+            election.endTime.getTime()
+          )
+        );
+
+      });
+
+
+  // =======================================================
+  // ① 正在进行的选举
+  // =======================================================
+
+  const ongoing =
+    processed
+      .filter(election => {
+
+        return (
+          now >= election.startTime &&
+          now <= election.endTime
+        );
+
+      })
+      .sort((a, b) => {
+
+        return (
+          a.endTime -
+          b.endTime
+        );
+
+      });
+
+
+  if (ongoing.length > 0) {
+
+    ongoing[0].status =
+      "ongoing";
+
+    return ongoing[0];
+
+  }
+
+
+  // =======================================================
+  // ② 最近即将开始的选举
+  // =======================================================
+
+  const upcoming =
+    processed
+      .filter(election => {
+
+        return (
+          now <
+          election.startTime
+        );
+
+      })
+      .sort((a, b) => {
+
+        return (
+          a.startTime -
+          b.startTime
+        );
+
+      });
+
+
+  if (upcoming.length > 0) {
+
+    upcoming[0].status =
+      "scheduled";
+
+    return upcoming[0];
+
+  }
+
+
+  // =======================================================
+  // ③ 所有已结束
+  // =======================================================
+
+  return null;
 
 }
 
@@ -2030,42 +2147,25 @@ function updateElectionLanguage() {
     texts[currentLang];
 
 
-  /*
-   * 标题
-   */
-
   title.textContent =
     isPresident
       ? lang.presidentTitle
       : lang.vicePresidentTitle;
 
 
-  /*
-   * 描述
-   */
+  description.textContent =
+    isOngoing
+      ? (
+          isPresident
+            ? lang.presidentOngoing
+            : lang.vicePresidentOngoing
+        )
+      : (
+          isPresident
+            ? lang.presidentUpcoming
+            : lang.vicePresidentUpcoming
+        );
 
-  if (isOngoing) {
-
-    description.textContent =
-      isPresident
-        ? lang.presidentOngoing
-        : lang.vicePresidentOngoing;
-
-  }
-
-  else {
-
-    description.textContent =
-      isPresident
-        ? lang.presidentUpcoming
-        : lang.vicePresidentUpcoming;
-
-  }
-
-
-  /*
-   * 状态标签
-   */
 
   badge.textContent =
     isOngoing
@@ -2073,17 +2173,9 @@ function updateElectionLanguage() {
       : lang.upcomingBadge;
 
 
-  /*
-   * 选举页面按钮
-   */
-
   button.textContent =
     lang.button;
 
-
-  /*
-   * 投票按钮
-   */
 
   voteButton.textContent =
     lang.voteButton;
@@ -2092,11 +2184,7 @@ function updateElectionLanguage() {
 
 
 // =========================================================
-// 更新投票按钮状态
-//
-// 尚未开始 → 禁用
-// 正在进行 → 启用
-// 已结束 → 禁用
+// 更新投票按钮
 // =========================================================
 
 function updateVoteButton() {
@@ -2133,14 +2221,12 @@ function updateVoteButton() {
     );
 
 
-  /*
-   * 正在投票
-   */
-
-  if (
+  const votingOpen =
     now >= start &&
-    now <= end
-  ) {
+    now <= end;
+
+
+  if (votingOpen) {
 
     voteButton.href =
       "vote.html";
@@ -2161,11 +2247,6 @@ function updateVoteButton() {
     );
 
   }
-
-
-  /*
-   * 尚未开始 / 已结束
-   */
 
   else {
 
@@ -2194,9 +2275,6 @@ function updateVoteButton() {
 
 // =========================================================
 // 格式化选举日期
-//
-// 主要显示：阿谢纪年
-// 辅助显示：公历
 // =========================================================
 
 function formatElectionDate(
@@ -2225,10 +2303,6 @@ function formatElectionDate(
   }
 
 
-  /*
-   * 公历辅助日期
-   */
-
   const gregorianDate =
     new Intl.DateTimeFormat(
       currentLang === "jp"
@@ -2245,20 +2319,12 @@ function formatElectionDate(
     ).format(date);
 
 
-  /*
-   * 中文
-   */
-
   if (currentLang === "zh") {
 
     return `${axieDate}（公历${gregorianDate}）`;
 
   }
 
-
-  /*
-   * 日文
-   */
 
   if (currentLang === "jp") {
 
@@ -2267,17 +2333,13 @@ function formatElectionDate(
   }
 
 
-  /*
-   * 英文
-   */
-
   return `${axieDate} (Gregorian ${gregorianDate})`;
 
 }
 
 
 // =========================================================
-// 选举日期文字
+// 更新选举日期
 // =========================================================
 
 function updateElectionDateText() {
@@ -2349,7 +2411,8 @@ function formatRemaining(
 
   const days =
     Math.floor(
-      totalSeconds / 86400
+      totalSeconds /
+      86400
     );
 
 
@@ -2368,7 +2431,8 @@ function formatRemaining(
 
 
   const seconds =
-    totalSeconds % 60;
+    totalSeconds %
+    60;
 
 
   return {
@@ -2382,7 +2446,7 @@ function formatRemaining(
 
 
 // =========================================================
-// 选举倒计时
+// 更新选举倒计时
 // =========================================================
 
 function updateElectionCountdown() {
@@ -2419,13 +2483,8 @@ function updateElectionCountdown() {
     );
 
 
-  /*
-   * 尚未开始
-   */
-
-  if (
-    now < start
-  ) {
+  // 尚未开始
+  if (now < start) {
 
     const remaining =
       formatRemaining(
@@ -2433,7 +2492,7 @@ function updateElectionCountdown() {
       );
 
 
-    const texts = {
+    countdown.textContent = {
 
       zh:
         `距离投票开始：${remaining.days}天 ${remaining.hours}小时 ${remaining.minutes}分 ${remaining.seconds}秒`,
@@ -2444,11 +2503,7 @@ function updateElectionCountdown() {
       jp:
         `投票開始まで：${remaining.days}日 ${remaining.hours}時間 ${remaining.minutes}分 ${remaining.seconds}秒`
 
-    };
-
-
-    countdown.textContent =
-      texts[currentLang];
+    }[currentLang];
 
 
     return;
@@ -2456,10 +2511,7 @@ function updateElectionCountdown() {
   }
 
 
-  /*
-   * 正在进行
-   */
-
+  // 正在进行
   if (
     now >= start &&
     now <= end
@@ -2471,7 +2523,7 @@ function updateElectionCountdown() {
       );
 
 
-    const texts = {
+    countdown.textContent = {
 
       zh:
         `距离投票结束：${remaining.days}天 ${remaining.hours}小时 ${remaining.minutes}分 ${remaining.seconds}秒`,
@@ -2482,11 +2534,7 @@ function updateElectionCountdown() {
       jp:
         `投票終了まで：${remaining.days}日 ${remaining.hours}時間 ${remaining.minutes}分 ${remaining.seconds}秒`
 
-    };
-
-
-    countdown.textContent =
-      texts[currentLang];
+    }[currentLang];
 
 
     return;
@@ -2494,10 +2542,7 @@ function updateElectionCountdown() {
   }
 
 
-  /*
-   * 已结束
-   */
-
+  // 已结束
   countdown.textContent = {
 
     zh:
@@ -2510,140 +2555,6 @@ function updateElectionCountdown() {
       "投票は終了しました"
 
   }[currentLang];
-
-}
-
-
-// =========================================================
-// 根据当前时间选择应该显示的选举
-// =========================================================
-
-function selectCurrentElection() {
-
-  const records =
-    getElectionRecords();
-
-
-  if (
-    records.length === 0
-  ) {
-
-    return null;
-
-  }
-
-
-  const now =
-    new Date();
-
-
-  /*
-   * 转换日期
-   */
-
-  const processed =
-    records
-      .map(
-        election => {
-
-          return {
-
-            ...election,
-
-            startTime:
-              new Date(
-                election.start
-              ),
-
-            endTime:
-              new Date(
-                election.end
-              )
-
-          };
-
-        }
-      )
-      .filter(
-        election =>
-          !Number.isNaN(
-            election.startTime.getTime()
-          ) &&
-          !Number.isNaN(
-            election.endTime.getTime()
-          )
-      );
-
-
-  /*
-   * 当前正在进行
-   */
-
-  const ongoing =
-    processed
-      .filter(
-        election =>
-          now >= election.startTime &&
-          now <= election.endTime
-      )
-      .sort(
-        (a, b) =>
-          a.endTime - b.endTime
-      );
-
-
-  if (
-    ongoing.length > 0
-  ) {
-
-    const election =
-      ongoing[0];
-
-    election.status =
-      "ongoing";
-
-    return election;
-
-  }
-
-
-  /*
-   * 最近即将开始
-   */
-
-  const upcoming =
-    processed
-      .filter(
-        election =>
-          now <
-          election.startTime
-      )
-      .sort(
-        (a, b) =>
-          a.startTime - b.startTime
-      );
-
-
-  if (
-    upcoming.length > 0
-  ) {
-
-    const election =
-      upcoming[0];
-
-    election.status =
-      "scheduled";
-
-    return election;
-
-  }
-
-
-  /*
-   * 全部结束
-   */
-
-  return null;
 
 }
 
@@ -2666,10 +2577,6 @@ async function loadElectionStatus() {
 
 
   try {
-
-    /*
-     * 读取 elections.json
-     */
 
     const response =
       await fetch(
@@ -2694,61 +2601,48 @@ async function loadElectionStatus() {
       await response.json();
 
 
-    /*
-     * 根据实际日期选择选举
-     */
+    // =====================================================
+    // 第一次选择选举
+    // =====================================================
 
     currentElection =
       selectCurrentElection();
 
-
-    /*
-     * 没有可显示的选举
-     */
 
     if (!currentElection) {
 
       section.style.display =
         "none";
 
-
-      if (
-        electionCountdownTimer
-      ) {
-
-        clearInterval(
-          electionCountdownTimer
-        );
-
-        electionCountdownTimer =
-          null;
-
-      }
-
+      console.warn(
+        "当前没有可显示的选举。"
+      );
 
       return;
 
     }
 
 
-    /*
-     * 显示选举模块
-     */
+    // =====================================================
+    // 显示选举模块
+    // =====================================================
 
     section.style.display =
       "block";
 
 
-    /*
-     * 更新语言
-     */
+    // =====================================================
+    // 更新所有内容
+    // =====================================================
 
     updateElectionLanguage();
 
+    updateElectionDateText();
 
-    /*
-     * 设置选举页面链接
-     */
+    updateElectionCountdown();
+
+    updateVoteButton();
+
 
     const button =
       document.getElementById(
@@ -2764,34 +2658,11 @@ async function loadElectionStatus() {
     }
 
 
-    /*
-     * 设置投票按钮
-     */
+    // =====================================================
+    // 每秒自动更新
+    // =====================================================
 
-    updateVoteButton();
-
-
-    /*
-     * 显示阿谢纪年日期
-     */
-
-    updateElectionDateText();
-
-
-    /*
-     * 更新倒计时
-     */
-
-    updateElectionCountdown();
-
-
-    /*
-     * 清除旧计时器
-     */
-
-    if (
-      electionCountdownTimer
-    ) {
+    if (electionCountdownTimer) {
 
       clearInterval(
         electionCountdownTimer
@@ -2800,91 +2671,76 @@ async function loadElectionStatus() {
     }
 
 
-    /*
-     * 每秒更新
-     */
-
     electionCountdownTimer =
-      setInterval(
-        () => {
+      setInterval(() => {
 
-          /*
-           * 重新根据当前时间选择选举
-           */
-
-          const selected =
-            selectCurrentElection();
+        const selected =
+          selectCurrentElection();
 
 
-          /*
-           * 如果选举发生变化
-           */
+        // -----------------------------------------------
+        // 如果选举发生变化
+        // -----------------------------------------------
 
-          if (
-            selected &&
-            (
-              !currentElection ||
-              selected.electionId !==
-              currentElection.electionId
-            )
-          ) {
+        if (
+          selected &&
+          (
+            !currentElection ||
+            selected.electionId !==
+            currentElection.electionId
+          )
+        ) {
 
-            currentElection =
-              selected;
-
-
-            updateElectionLanguage();
-
-            updateElectionDateText();
+          currentElection =
+            selected;
 
 
-            if (button) {
+          updateElectionLanguage();
 
-              button.href =
-                currentElection.page;
+          updateElectionDateText();
 
-            }
-
-
-            updateVoteButton();
-
-          }
-
-
-          /*
-           * 每秒检查投票按钮
-           */
+          updateElectionCountdown();
 
           updateVoteButton();
 
 
-          /*
-           * 如果没有可显示的选举
-           */
+          if (button) {
 
-          if (!selected) {
-
-            section.style.display =
-              "none";
-
-            return;
+            button.href =
+              currentElection.page;
 
           }
 
+        }
 
-          /*
-           * 正常显示
-           */
+
+        // -----------------------------------------------
+        // 如果没有任何未来选举
+        // -----------------------------------------------
+
+        if (!selected) {
 
           section.style.display =
-            "block";
+            "none";
+
+          return;
+
+        }
 
 
-          updateElectionCountdown();
+        // -----------------------------------------------
+        // 正常更新
+        // -----------------------------------------------
 
-        },
-        1000
-      );
+        section.style.display =
+          "block";
+
+
+        updateElectionCountdown();
+
+        updateVoteButton();
+
+      }, 1000);
 
   }
 
@@ -2897,20 +2753,123 @@ async function loadElectionStatus() {
     );
 
 
+    /*
+     * 不再默默隐藏。
+     *
+     * 这样如果 JSON 路径或者 GitHub Pages
+     * 出了问题，首页会直接告诉你。
+     */
+
     section.style.display =
-      "none";
+      "block";
 
 
-    if (
-      electionCountdownTimer
-    ) {
-
-      clearInterval(
-        electionCountdownTimer
+    const title =
+      document.getElementById(
+        "election-title"
       );
 
-      electionCountdownTimer =
-        null;
+    const description =
+      document.getElementById(
+        "election-description"
+      );
+
+    const badge =
+      document.getElementById(
+        "election-badge"
+      );
+
+    const countdown =
+      document.getElementById(
+        "election-countdown"
+      );
+
+    const date =
+      document.getElementById(
+        "election-date"
+      );
+
+    const button =
+      document.getElementById(
+        "election-button"
+      );
+
+    const voteButton =
+      document.getElementById(
+        "vote-button"
+      );
+
+
+    if (badge) {
+
+      badge.textContent =
+        "⚠️ 数据加载失败";
+
+    }
+
+
+    if (title) {
+
+      title.textContent =
+        "🗳️ 选举信息";
+
+    }
+
+
+    if (description) {
+
+      description.textContent =
+        "无法读取 elections.json，请检查 data/elections.json 是否存在以及网站路径是否正确。";
+
+    }
+
+
+    if (countdown) {
+
+      countdown.textContent =
+        "Election data unavailable";
+
+    }
+
+
+    if (date) {
+
+      date.textContent =
+        "";
+
+    }
+
+
+    if (button) {
+
+      button.href =
+        "#";
+
+      button.textContent =
+        "暂不可用";
+
+    }
+
+
+    if (voteButton) {
+
+      voteButton.href =
+        "#";
+
+      voteButton.classList.add(
+        "disabled"
+      );
+
+      voteButton.style.pointerEvents =
+        "none";
+
+      voteButton.style.opacity =
+        "0.5";
+
+      voteButton.setAttribute(
+        "aria-disabled",
+        "true"
+      );
 
     }
 
