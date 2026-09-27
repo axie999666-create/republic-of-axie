@@ -13,9 +13,9 @@
       "introduction": "1",
       "campaignStatement": "1",
       "submittedAt": "2026-09-27T09:31:11.724Z",
-      "status": "pending",
-      "reviewedAt": null,
-      "reviewedBy": null,
+      "status": "approved",
+      "reviewedAt": "2026-09-27T11:40:34.194Z",
+      "reviewedBy": "AXNewsAdmin",
       "reviewNote": ""
     }
   ]
