@@ -159,7 +159,7 @@
 
 
     /* =========================================================
-       Page title
+       Page Title
     ========================================================= */
 
     .page-title {
@@ -238,7 +238,7 @@
 
 
     /* =========================================================
-       Election Card
+       Election List
     ========================================================= */
 
     .election-list {
@@ -249,6 +249,10 @@
 
     }
 
+
+    /* =========================================================
+       Election Card
+    ========================================================= */
 
     .election-card {
 
@@ -387,7 +391,7 @@
 
 
     /* =========================================================
-       English / Japanese
+       Language Names
     ========================================================= */
 
     .election-en {
@@ -930,27 +934,10 @@
 
 
   /* =========================================================
-     获取选举页面
-  ========================================================= */
-
-  function getElectionPage(
-    typeData
-  ) {
-
-    return (
-      typeData.page
-      || "#"
-    );
-
-  }
-
-
-  /* =========================================================
-     判断选举是否已经开始/结束
+     根据当前时间计算显示状态
      
      注意：
-     这里只根据当前时间进行页面显示，
-     不修改 elections.json 中的 status。
+     不修改 elections.json。
   ========================================================= */
 
   function getDisplayStatus(
@@ -1011,24 +998,6 @@
         now > end
       ) {
 
-        /*
-         * 如果数据明确写了 completed，
-         * 保留 completed。
-         *
-         * 如果仍是 scheduled，
-         * 页面可以根据日期识别为已完成。
-         */
-
-        if (
-          election.status
-          === "completed"
-        ) {
-
-          return "completed";
-
-        }
-
-
         return "completed";
 
       }
@@ -1049,6 +1018,11 @@
 
   /* =========================================================
      创建选举卡片
+     
+     重要：
+     每场具体选举都会链接到：
+     
+     election-result.html?id=具体electionId
   ========================================================= */
 
   function renderElectionCard(
@@ -1089,10 +1063,8 @@
       || "";
 
 
-    const page =
-      getElectionPage(
-        typeData
-      );
+    const electionId =
+      election.electionId;
 
 
     let nameHTML =
@@ -1101,17 +1073,23 @@
       );
 
 
-    if (
-      page &&
-      page !== "#"
-    ) {
+    /*
+     * 如果存在 electionId，
+     * 就进入具体选举结果页面。
+     */
+
+    if (electionId) {
+
+      const resultPage =
+        `election-result.html?id=${encodeURIComponent(
+          electionId
+        )}`;
+
 
       nameHTML = `
 
         <a
-          href="${escapeHTML(
-            page
-          )}"
+          href="${resultPage}"
         >
           ${escapeHTML(
             electionName
@@ -1281,7 +1259,7 @@
 
 
   /* =========================================================
-     生成选举分类
+     创建分类
   ========================================================= */
 
   function renderSection(
@@ -1338,6 +1316,10 @@
       [...elections].sort(
         (a, b) => {
 
+          /*
+           * 优先按照阿谢纪年排序。
+           */
+
           const yearA =
             Number(
               a.axieYear
@@ -1352,9 +1334,40 @@
             );
 
 
+          if (
+            yearA !== yearB
+          ) {
+
+            return (
+              yearB
+              - yearA
+            );
+
+          }
+
+
+          /*
+           * 如果阿谢纪年相同，
+           * 再按照开始时间排序。
+           */
+
+          const timeA =
+            new Date(
+              a.start
+              || 0
+            ).getTime();
+
+
+          const timeB =
+            new Date(
+              b.start
+              || 0
+            ).getTime();
+
+
           return (
-            yearB
-            - yearA
+            timeB
+            - timeA
           );
 
         }
@@ -1413,7 +1426,7 @@
 
 
   /* =========================================================
-     主页面
+     页面主体
   ========================================================= */
 
   function renderHistory(
@@ -1503,7 +1516,7 @@
 
 
   /* =========================================================
-     加载 elections.json
+     读取 elections.json
   ========================================================= */
 
   async function loadElectionHistory() {
