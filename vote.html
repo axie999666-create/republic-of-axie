@@ -936,7 +936,6 @@
 
     }
 
-
     return String(value)
 
       .replace(
@@ -982,12 +981,10 @@
 
     }
 
-
     const date =
       new Date(
         isoString
       );
-
 
     if (
       Number.isNaN(
@@ -998,7 +995,6 @@
       return "暂无资料";
 
     }
-
 
     const formatter =
       new Intl.DateTimeFormat(
@@ -1036,15 +1032,12 @@
         }
       );
 
-
     const parts =
       formatter.formatToParts(
         date
       );
 
-
     const values = {};
-
 
     for (
       const part of parts
@@ -1055,28 +1048,23 @@
 
     }
 
-
     const gregorianYear =
       Number(
         values.year
       );
-
 
     const axieYear =
       gregorianYear
       - AXIE_ERA_START_YEAR
       + 1;
 
-
     const axieYearText =
       axieYear === 1
         ? "元年"
         : `${axieYear}年`;
 
-
     let result =
       `阿谢${axieYearText}${values.month}月${values.day}日`;
-
 
     if (includeTime) {
 
@@ -1084,7 +1072,6 @@
         ` ${values.hour}:${values.minute}`;
 
     }
-
 
     return result;
 
@@ -1101,7 +1088,6 @@
       new URLSearchParams(
         window.location.search
       );
-
 
     return params.get(
       "id"
@@ -1200,7 +1186,6 @@
         electionsData
       );
 
-
     return (
       all.find(
         item =>
@@ -1222,6 +1207,8 @@
   ) {
 
     if (
+      !election
+      ||
       !election.start
       ||
       !election.end
@@ -1262,6 +1249,12 @@
 
     }
 
+
+    /*
+     * 投票区间：
+     *
+     * start <= now <= end
+     */
 
     if (
       now < start
@@ -1307,7 +1300,6 @@
 
     };
 
-
     return (
       map[status]
       || "未知状态"
@@ -1328,7 +1320,6 @@
       getAllElections(
         electionsData
       );
-
 
     const now =
       new Date();
@@ -1430,7 +1421,7 @@
 
 
   /* =========================================================
-     候选人
+     获取候选人
   ========================================================= */
 
   function getCandidates(
@@ -1468,13 +1459,11 @@
               || 9999
             );
 
-
           const noB =
             Number(
               b.candidateNo
               || 9999
             );
-
 
           return noA - noB;
 
@@ -1489,7 +1478,8 @@
   ========================================================= */
 
   function renderCandidates(
-    candidates
+    candidates,
+    disabled = false
   ) {
 
     if (
@@ -1533,6 +1523,7 @@
               value="${escapeHTML(
                 candidate.candidateId
               )}"
+              ${disabled ? "disabled" : ""}
             >
 
 
@@ -1541,6 +1532,11 @@
               for="candidate-${escapeHTML(
                 candidate.candidateId
               )}"
+              style="${
+                disabled
+                  ? "cursor:not-allowed;opacity:0.72;"
+                  : ""
+              }"
             >
 
               <div
@@ -1641,10 +1637,8 @@
     const election =
       electionInfo.election;
 
-
     const typeData =
       electionInfo.typeData;
-
 
     const status =
       getElectionStatus(
@@ -1679,7 +1673,6 @@
               选举类型
             </div>
 
-
             <div
               class="info-value"
             >
@@ -1701,7 +1694,6 @@
             >
               当前状态
             </div>
-
 
             <div
               class="info-value"
@@ -1730,7 +1722,6 @@
               候选人数
             </div>
 
-
             <div
               class="info-value"
             >
@@ -1749,7 +1740,6 @@
             >
               投票开始
             </div>
-
 
             <div
               class="info-value"
@@ -1772,7 +1762,6 @@
               投票结束
             </div>
 
-
             <div
               class="info-value"
             >
@@ -1794,7 +1783,6 @@
               Election ID
             </div>
 
-
             <div
               class="info-value"
             >
@@ -1815,7 +1803,473 @@
 
 
   /* =========================================================
-     没有正在进行的选举
+     禁用所有候选人
+  ========================================================= */
+
+  function disableAllCandidates() {
+
+    const inputs =
+      document.querySelectorAll(
+        'input[name="candidate"]'
+      );
+
+
+    inputs.forEach(
+      input => {
+
+        input.disabled = true;
+
+      }
+    );
+
+
+    const labels =
+      document.querySelectorAll(
+        ".candidate-label"
+      );
+
+
+    labels.forEach(
+      label => {
+
+        label.style.cursor =
+          "not-allowed";
+
+        label.style.opacity =
+          "0.72";
+
+      }
+    );
+
+  }
+
+
+  /* =========================================================
+     禁用投票区域
+  ========================================================= */
+
+  function lockVotingInterface(
+    message
+  ) {
+
+    disableAllCandidates();
+
+
+    const voteButton =
+      document.getElementById(
+        "voteButton"
+      );
+
+
+    if (voteButton) {
+
+      voteButton.disabled =
+        true;
+
+      voteButton.textContent =
+        "投票已结束";
+
+    }
+
+
+    const confirmation =
+      document.getElementById(
+        "confirmation"
+      );
+
+
+    if (confirmation) {
+
+      confirmation.classList.remove(
+        "show"
+      );
+
+    }
+
+
+    if (message) {
+
+      const oldNotice =
+        document.getElementById(
+          "dynamicVoteNotice"
+        );
+
+
+      if (oldNotice) {
+
+        oldNotice.remove();
+
+      }
+
+
+      const notice =
+        document.createElement(
+          "div"
+        );
+
+
+      notice.id =
+        "dynamicVoteNotice";
+
+      notice.className =
+        "notice warning";
+
+
+      notice.innerHTML = `
+
+        <strong>
+          投票状态已更新
+        </strong>
+
+        ${escapeHTML(
+          message
+        )}
+
+      `;
+
+
+      const content =
+        document.getElementById(
+          "content"
+        );
+
+
+      if (content) {
+
+        content.prepend(
+          notice
+        );
+
+      }
+
+    }
+
+  }
+
+
+  /* =========================================================
+     设置投票操作
+  ========================================================= */
+
+  function setupVoting(
+    electionInfo,
+    candidates
+  ) {
+
+    const voteButton =
+      document.getElementById(
+        "voteButton"
+      );
+
+
+    if (!voteButton) {
+
+      return;
+
+    }
+
+
+    const confirmation =
+      document.getElementById(
+        "confirmation"
+      );
+
+
+    const confirmationName =
+      document.getElementById(
+        "confirmationName"
+      );
+
+
+    const confirmationParty =
+      document.getElementById(
+        "confirmationParty"
+      );
+
+
+    const submitButton =
+      document.getElementById(
+        "submitButton"
+      );
+
+
+    const cancelButton =
+      document.getElementById(
+        "cancelButton"
+      );
+
+
+    /*
+     * ========================================================
+     * 确认选择
+     * ========================================================
+     */
+
+    voteButton.addEventListener(
+      "click",
+      () => {
+
+        /*
+         * 第一次检查：
+         * 用户点击「确认选择」时检查时间。
+         */
+
+        const currentStatus =
+          getElectionStatus(
+            electionInfo.election
+          );
+
+
+        if (
+          currentStatus !== "active"
+        ) {
+
+          lockVotingInterface(
+
+            currentStatus === "before"
+
+              ? "本次选举尚未开始，当前不能进行投票。"
+
+              : "本次选举的投票时间已经结束，当前不能提交新的选票。"
+
+          );
+
+          return;
+
+        }
+
+
+        const selected =
+          document.querySelector(
+            'input[name="candidate"]:checked'
+          );
+
+
+        if (!selected) {
+
+          alert(
+            "请先选择一名候选人。"
+          );
+
+          return;
+
+        }
+
+
+        const candidate =
+          candidates.find(
+            item =>
+              item.candidateId
+              === selected.value
+          );
+
+
+        if (!candidate) {
+
+          alert(
+            "无法找到所选候选人的资料。"
+          );
+
+          return;
+
+        }
+
+
+        confirmationName.textContent =
+          `候选人 ${
+            candidate.candidateNo
+            || "-"
+          }：${
+            candidate.names?.zh
+            || "未命名候选人"
+          }`;
+
+
+        confirmationParty.textContent =
+          candidate.partyName
+          || "独立候选人";
+
+
+        confirmation.classList.add(
+          "show"
+        );
+
+
+        confirmation.scrollIntoView({
+
+          behavior:
+            "smooth",
+
+          block:
+            "center"
+
+        });
+
+      }
+    );
+
+
+    /* ========================================================
+       返回修改
+    ======================================================== */
+
+    cancelButton.addEventListener(
+      "click",
+      () => {
+
+        confirmation.classList.remove(
+          "show"
+        );
+
+      }
+    );
+
+
+    /* ========================================================
+       最终提交
+    ======================================================== */
+
+    submitButton.addEventListener(
+      "click",
+      () => {
+
+        /*
+         * =====================================================
+         * 第二次、也是关键的一次时间检查。
+         *
+         * 防止：
+         *
+         * 23:59 打开页面
+         * ↓
+         * 23:59 选择候选人
+         * ↓
+         * 00:00 选举结束
+         * ↓
+         * 点击提交
+         *
+         * 这种情况下仍然必须拒绝提交。
+         * =====================================================
+         */
+
+        const currentStatus =
+          getElectionStatus(
+            electionInfo.election
+          );
+
+
+        if (
+          currentStatus !== "active"
+        ) {
+
+          lockVotingInterface(
+
+            currentStatus === "before"
+
+              ? "本次选举尚未开始，当前不能提交选票。"
+
+              : "本次选举已经结束，本次操作不能提交选票。"
+
+          );
+
+          return;
+
+        }
+
+
+        /*
+         * 再次确认候选人仍然存在。
+         */
+
+        const selected =
+          document.querySelector(
+            'input[name="candidate"]:checked'
+          );
+
+
+        if (!selected) {
+
+          confirmation.classList.remove(
+            "show"
+          );
+
+          alert(
+            "未检测到有效的候选人选择。"
+          );
+
+          return;
+
+        }
+
+
+        const candidate =
+          candidates.find(
+            item =>
+              item.candidateId
+              === selected.value
+          );
+
+
+        if (!candidate) {
+
+          confirmation.classList.remove(
+            "show"
+          );
+
+          alert(
+            "无法确认所选候选人的资料。"
+          );
+
+          return;
+
+        }
+
+
+        /*
+         * =====================================================
+         * 当前版本：
+         *
+         * 仅测试前端投票流程。
+         *
+         * 不发送网络请求。
+         * 不修改 JSON。
+         * 不写入数据库。
+         * =====================================================
+         */
+
+        confirmation.classList.remove(
+          "show"
+        );
+
+
+        const successResult =
+          document.getElementById(
+            "successResult"
+          );
+
+
+        successResult.classList.add(
+          "show"
+        );
+
+
+        successResult.scrollIntoView({
+
+          behavior:
+            "smooth",
+
+          block:
+            "center"
+
+        });
+
+      }
+    );
+
+  }
+
+
+  /* =========================================================
+     渲染无正在进行的选举
   ========================================================= */
 
   function renderNoActiveElection(
@@ -1986,7 +2440,9 @@
 
           <div
             class="notice"
-            style="margin-bottom:0;"
+            style="
+              margin-bottom:0;
+            "
           >
 
             <strong>
@@ -2045,7 +2501,7 @@
 
 
   /* =========================================================
-     投票页面
+     渲染具体投票页面
   ========================================================= */
 
   function renderVotingPage(
@@ -2060,12 +2516,6 @@
     const status =
       getElectionStatus(
         election
-      );
-
-
-    const statusText =
-      getStatusText(
-        status
       );
 
 
@@ -2203,7 +2653,8 @@
         >
 
           ${renderCandidates(
-            candidates
+            candidates,
+            disabled
           )}
 
         </div>
@@ -2218,7 +2669,11 @@
             class="vote-button"
             ${disabled ? "disabled" : ""}
           >
-            确认选择
+            ${
+              status === "active"
+                ? "确认选择"
+                : "当前不可投票"
+            }
           </button>
 
         </div>
@@ -2314,189 +2769,7 @@
 
 
   /* =========================================================
-     设置投票操作
-  ========================================================= */
-
-  function setupVoting(
-    candidates
-  ) {
-
-    const voteButton =
-      document.getElementById(
-        "voteButton"
-      );
-
-
-    if (!voteButton) {
-
-      return;
-
-    }
-
-
-    const confirmation =
-      document.getElementById(
-        "confirmation"
-      );
-
-
-    const confirmationName =
-      document.getElementById(
-        "confirmationName"
-      );
-
-
-    const confirmationParty =
-      document.getElementById(
-        "confirmationParty"
-      );
-
-
-    const submitButton =
-      document.getElementById(
-        "submitButton"
-      );
-
-
-    const cancelButton =
-      document.getElementById(
-        "cancelButton"
-      );
-
-
-    voteButton.addEventListener(
-      "click",
-      () => {
-
-        const selected =
-          document.querySelector(
-            'input[name="candidate"]:checked'
-          );
-
-
-        if (!selected) {
-
-          alert(
-            "请先选择一名候选人。"
-          );
-
-          return;
-
-        }
-
-
-        const candidate =
-          candidates.find(
-            item =>
-              item.candidateId
-              === selected.value
-          );
-
-
-        if (!candidate) {
-
-          alert(
-            "无法找到所选候选人的资料。"
-          );
-
-          return;
-
-        }
-
-
-        confirmationName.textContent =
-          `候选人 ${
-            candidate.candidateNo
-            || "-"
-          }：${
-            candidate.names?.zh
-            || "未命名候选人"
-          }`;
-
-
-        confirmationParty.textContent =
-          candidate.partyName
-          || "独立候选人";
-
-
-        confirmation.classList.add(
-          "show"
-        );
-
-
-        confirmation.scrollIntoView({
-
-          behavior:
-            "smooth",
-
-          block:
-            "center"
-
-        });
-
-      }
-    );
-
-
-    cancelButton.addEventListener(
-      "click",
-      () => {
-
-        confirmation.classList.remove(
-          "show"
-        );
-
-      }
-    );
-
-
-    submitButton.addEventListener(
-      "click",
-      () => {
-
-        /*
-         * =====================================================
-         * 当前版本：
-         * 不发送网络请求。
-         *
-         * 正式版本将在这里调用后端 API。
-         * =====================================================
-         */
-
-        confirmation.classList.remove(
-          "show"
-        );
-
-
-        const successResult =
-          document.getElementById(
-            "successResult"
-          );
-
-
-        successResult.classList.add(
-          "show"
-        );
-
-
-        successResult.scrollIntoView({
-
-          behavior:
-            "smooth",
-
-          block:
-            "center"
-
-        });
-
-      }
-    );
-
-  }
-
-
-  /* =========================================================
-     错误
+     错误页面
   ========================================================= */
 
   function showError(
@@ -2538,7 +2811,7 @@
     try {
 
       /*
-       * 读取选举和候选人。
+       * 读取选举与候选人资料。
        */
 
       const [
@@ -2547,11 +2820,17 @@
       ] = await Promise.all([
 
         fetch(
-          "./data/elections.json"
+          "./data/elections.json",
+          {
+            cache: "no-store"
+          }
         ),
 
         fetch(
-          "./data/candidates.json"
+          "./data/candidates.json",
+          {
+            cache: "no-store"
+          }
         )
 
       ]);
@@ -2591,13 +2870,10 @@
       ]);
 
 
-      /*
-       * =====================================================
-       * 模式一：
-       *
-       * URL 有 ?id=
-       * =====================================================
-       */
+      /* =====================================================
+         模式一：
+         URL 存在 ?id=
+         ===================================================== */
 
       const requestedId =
         getRequestedElectionId();
@@ -2638,6 +2914,7 @@
 
 
         setupVoting(
+          electionInfo,
           candidates
         );
 
@@ -2647,15 +2924,11 @@
       }
 
 
-      /*
-       * =====================================================
-       * 模式二：
-       *
-       * 没有 ?id=
-       *
-       * 自动寻找当前正在进行的选举
-       * =====================================================
-       */
+      /* =====================================================
+         模式二：
+         没有 ?id=
+         自动寻找当前正在进行的选举
+         ===================================================== */
 
       const activeElection =
         findActiveElection(
@@ -2682,6 +2955,7 @@
 
 
         setupVoting(
+          activeElection,
           candidates
         );
 
@@ -2691,13 +2965,9 @@
       }
 
 
-      /*
-       * =====================================================
-       * 没有正在进行的选举
-       *
-       * 显示下一场选举
-       * =====================================================
-       */
+      /* =====================================================
+         没有正在进行的选举
+         ===================================================== */
 
       document.getElementById(
         "content"
@@ -2718,7 +2988,8 @@
 
       showError(
         error.message
-        || "读取选举资料时发生未知错误。"
+        ||
+        "读取选举资料时发生未知错误。"
       );
 
     }
