@@ -1,4 +1,20 @@
 {
-  "president": [],
-  "vicePresident": []
+  "results": [
+    {
+      "electionId": "president-axie4",
+      "status": "not_started",
+      "publishedAt": null,
+      "totalVotes": null,
+      "candidateResults": [],
+      "winnerCandidateId": null
+    },
+    {
+      "electionId": "vice-president-axie3",
+      "status": "not_started",
+      "publishedAt": null,
+      "totalVotes": null,
+      "candidateResults": [],
+      "winnerCandidateId": null
+    }
+  ]
 }
