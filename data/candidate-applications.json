@@ -1,3 +1,22 @@
 {
-  "applications": []
+  "applications": [
+    {
+      "applicationId": "APP-2026-13A968E9",
+      "electionId": "president-axie4",
+      "position": "president",
+      "name": "（测试）",
+      "englishName": "（test）",
+      "japaneseName": "",
+      "partyId": "independent",
+      "partyName": "独立候选人",
+      "photo": "candidate-images/51a3595265974a109e2d33a3.jpg",
+      "introduction": "（测试）",
+      "campaignStatement": "（测试）",
+      "submittedAt": "2026-09-27T12:14:03.941Z",
+      "status": "pending",
+      "reviewedAt": null,
+      "reviewedBy": null,
+      "reviewNote": ""
+    }
+  ]
 }
