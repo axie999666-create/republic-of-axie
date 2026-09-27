@@ -13,7 +13,7 @@
 
   <meta
     name="description"
-    content="阿谢国领导人资料"
+    content="阿谢国领导人资料与历任领导人档案"
   >
 
   <link rel="icon" href="/ROA_flag.png">
@@ -26,6 +26,7 @@
 
     body {
       margin: 0;
+
       font-family:
         -apple-system,
         BlinkMacSystemFont,
@@ -37,96 +38,337 @@
 
       background: #f4f7fb;
       color: #172033;
+
       line-height: 1.7;
     }
 
-    /* =========================
+
+    /* =========================================================
        Header
-    ========================= */
+    ========================================================= */
 
     header {
       background: #0b1f3a;
+
       color: white;
+
       padding: 22px 20px;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+
+      box-shadow:
+        0 2px 12px rgba(0, 0, 0, 0.12);
     }
+
 
     .header-inner {
       max-width: 1100px;
+
       margin: auto;
 
       display: flex;
+
       align-items: center;
+
       gap: 15px;
     }
+
 
     .flag {
       width: 52px;
       height: 35px;
+
       object-fit: cover;
+
       border-radius: 4px;
-      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+
+      box-shadow:
+        0 1px 5px rgba(0, 0, 0, 0.25);
     }
+
 
     .site-title {
       margin: 0;
+
       font-size: 22px;
+
       font-weight: 700;
     }
 
+
     .site-subtitle {
       margin: 2px 0 0;
+
       font-size: 13px;
+
       opacity: 0.75;
     }
 
-    /* =========================
+
+    /* =========================================================
        Main
-    ========================= */
+    ========================================================= */
 
     main {
       max-width: 1100px;
+
       margin: 45px auto;
+
       padding: 0 20px;
     }
 
+
     .back-link {
       display: inline-block;
+
       margin-bottom: 22px;
 
       color: #1557a6;
+
       text-decoration: none;
+
       font-size: 14px;
     }
+
 
     .back-link:hover {
       text-decoration: underline;
     }
 
-    /* =========================
+
+    /* =========================================================
+       Page title
+    ========================================================= */
+
+    .page-title {
+      margin-bottom: 30px;
+    }
+
+
+    .page-title h1 {
+      margin: 0 0 5px;
+
+      font-size: 32px;
+
+      color: #102a4c;
+    }
+
+
+    .page-title p {
+      margin: 0;
+
+      color: #6b7789;
+
+      font-size: 14px;
+    }
+
+
+    /* =========================================================
+       Leader Directory
+    ========================================================= */
+
+    .leader-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+      gap: 24px;
+    }
+
+
+    .leader-directory-card {
+      background: white;
+
+      border-radius: 16px;
+
+      padding: 25px;
+
+      box-shadow:
+        0 8px 30px rgba(20, 45, 80, 0.07);
+
+      display: grid;
+
+      grid-template-columns: 125px 1fr;
+
+      gap: 22px;
+
+      transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+    }
+
+
+    .leader-directory-card:hover {
+      transform: translateY(-2px);
+
+      box-shadow:
+        0 12px 35px rgba(20, 45, 80, 0.11);
+    }
+
+
+    .directory-photo {
+      width: 125px;
+      height: 155px;
+
+      object-fit: cover;
+
+      border-radius: 10px;
+
+      background: #e9eef5;
+    }
+
+
+    .directory-no-photo {
+      width: 125px;
+      height: 155px;
+
+      border-radius: 10px;
+
+      background: #e9eef5;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      text-align: center;
+
+      color: #7b8798;
+
+      font-size: 13px;
+    }
+
+
+    .directory-position {
+      display: inline-block;
+
+      padding: 4px 10px;
+
+      border-radius: 999px;
+
+      background: #e9f1fb;
+
+      color: #1557a6;
+
+      font-size: 12px;
+
+      font-weight: 600;
+
+      margin-bottom: 8px;
+    }
+
+
+    .directory-status {
+      display: inline-block;
+
+      margin-left: 5px;
+
+      padding: 4px 10px;
+
+      border-radius: 999px;
+
+      background: #eef1f5;
+
+      color: #596577;
+
+      font-size: 12px;
+
+      font-weight: 600;
+    }
+
+
+    .directory-name {
+      margin: 2px 0;
+
+      font-size: 22px;
+
+      font-weight: 700;
+
+      color: #102a4c;
+    }
+
+
+    .directory-name a {
+      color: inherit;
+
+      text-decoration: none;
+    }
+
+
+    .directory-name a:hover {
+      color: #1557a6;
+    }
+
+
+    .directory-en-name {
+      color: #687589;
+
+      font-size: 13px;
+
+      margin-bottom: 10px;
+    }
+
+
+    .directory-term {
+      color: #59687b;
+
+      font-size: 13px;
+
+      margin-bottom: 10px;
+    }
+
+
+    .directory-party {
+      color: #1557a6;
+
+      font-size: 13px;
+    }
+
+
+    .directory-party a {
+      color: #1557a6;
+
+      text-decoration: none;
+    }
+
+
+    .directory-party a:hover {
+      text-decoration: underline;
+    }
+
+
+    /* =========================================================
        Leader Hero
-    ========================= */
+    ========================================================= */
 
     .leader-card {
       background: white;
+
       border-radius: 16px;
+
       padding: 35px;
 
       box-shadow:
         0 8px 30px rgba(20, 45, 80, 0.08);
 
       display: grid;
+
       grid-template-columns: 260px 1fr;
+
       gap: 40px;
 
       margin-bottom: 28px;
     }
 
+
     .leader-photo-box {
       display: flex;
+
       justify-content: center;
+
       align-items: flex-start;
     }
+
 
     .leader-photo {
       width: 230px;
@@ -142,6 +384,7 @@
         0 5px 20px rgba(0, 0, 0, 0.12);
     }
 
+
     .no-photo {
       width: 230px;
       height: 290px;
@@ -151,34 +394,47 @@
       background: #e9eef5;
 
       display: flex;
+
       align-items: center;
+
       justify-content: center;
 
       color: #7b8798;
+
       font-size: 15px;
+
       text-align: center;
     }
+
 
     .leader-main h1 {
       margin: 0 0 5px;
 
       font-size: 34px;
+
       line-height: 1.25;
 
       color: #102a4c;
     }
 
+
     .leader-en-name {
       font-size: 17px;
+
       color: #637084;
+
       margin-bottom: 2px;
     }
 
+
     .leader-ja-name {
       font-size: 15px;
+
       color: #7d8898;
+
       margin-bottom: 22px;
     }
+
 
     .position {
       display: inline-block;
@@ -188,13 +444,16 @@
       border-radius: 999px;
 
       background: #e9f1fb;
+
       color: #1557a6;
 
       font-size: 14px;
+
       font-weight: 600;
 
       margin-bottom: 20px;
     }
+
 
     .status {
       display: inline-block;
@@ -206,18 +465,22 @@
       border-radius: 999px;
 
       background: #eef1f5;
+
       color: #596577;
 
       font-size: 14px;
+
       font-weight: 600;
     }
 
-    /* =========================
+
+    /* =========================================================
        Party
-    ========================= */
+    ========================================================= */
 
     .party-box {
       margin-top: 20px;
+
       padding: 18px 20px;
 
       border-radius: 10px;
@@ -227,38 +490,51 @@
       border-left: 4px solid #1557a6;
     }
 
+
     .party-label {
       font-size: 12px;
+
       color: #7b8798;
+
       margin-bottom: 3px;
     }
 
+
     .party-name {
       font-size: 18px;
+
       font-weight: 700;
     }
 
+
     .party-name a {
       color: #1557a6;
+
       text-decoration: none;
     }
+
 
     .party-name a:hover {
       text-decoration: underline;
     }
 
+
     .party-description {
       margin-top: 6px;
+
       color: #667386;
+
       font-size: 14px;
     }
 
-    /* =========================
-       Information
-    ========================= */
+
+    /* =========================================================
+       Section
+    ========================================================= */
 
     .section {
       background: white;
+
       border-radius: 16px;
 
       padding: 30px 35px;
@@ -268,6 +544,7 @@
       box-shadow:
         0 8px 30px rgba(20, 45, 80, 0.06);
     }
+
 
     .section h2 {
       margin: 0 0 22px;
@@ -281,6 +558,11 @@
       border-bottom: 1px solid #e6ebf2;
     }
 
+
+    /* =========================================================
+       Information grid
+    ========================================================= */
+
     .info-grid {
       display: grid;
 
@@ -290,6 +572,7 @@
       gap: 16px;
     }
 
+
     .info-item {
       background: #f7f9fc;
 
@@ -298,6 +581,7 @@
       padding: 16px 18px;
     }
 
+
     .info-label {
       font-size: 12px;
 
@@ -305,6 +589,7 @@
 
       margin-bottom: 4px;
     }
+
 
     .info-value {
       font-size: 15px;
@@ -316,18 +601,22 @@
       word-break: break-word;
     }
 
+
     .info-value a {
       color: #1557a6;
+
       text-decoration: none;
     }
+
 
     .info-value a:hover {
       text-decoration: underline;
     }
 
-    /* =========================
+
+    /* =========================================================
        Election
-    ========================= */
+    ========================================================= */
 
     .election-card {
       background: #f7f9fc;
@@ -336,6 +625,7 @@
 
       padding: 20px;
     }
+
 
     .election-name {
       font-size: 18px;
@@ -347,14 +637,18 @@
       margin-bottom: 8px;
     }
 
+
     .election-name a {
       color: inherit;
+
       text-decoration: none;
     }
+
 
     .election-name a:hover {
       text-decoration: underline;
     }
+
 
     .election-info {
       color: #657286;
@@ -362,9 +656,10 @@
       font-size: 14px;
     }
 
-    /* =========================
+
+    /* =========================================================
        Error
-    ========================= */
+    ========================================================= */
 
     .error-card {
       background: white;
@@ -379,20 +674,24 @@
         0 8px 30px rgba(20, 45, 80, 0.06);
     }
 
+
     .error-card h1 {
       margin: 0 0 10px;
 
       color: #102a4c;
     }
 
+
     .error-card p {
       color: #687589;
+
       margin: 0;
     }
 
-    /* =========================
+
+    /* =========================================================
        Footer
-    ========================= */
+    ========================================================= */
 
     footer {
       margin-top: 60px;
@@ -408,15 +707,26 @@
       font-size: 13px;
     }
 
-    /* =========================
+
+    /* =========================================================
        Responsive
-    ========================= */
+    ========================================================= */
+
+    @media (max-width: 850px) {
+
+      .leader-grid {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
 
     @media (max-width: 760px) {
 
       main {
         margin: 30px auto;
       }
+
 
       .leader-card {
         grid-template-columns: 1fr;
@@ -426,26 +736,63 @@
         padding: 25px;
       }
 
+
       .leader-photo {
         width: 190px;
         height: 240px;
       }
+
 
       .no-photo {
         width: 190px;
         height: 240px;
       }
 
+
       .leader-main h1 {
         font-size: 28px;
       }
+
 
       .info-grid {
         grid-template-columns: 1fr;
       }
 
+
       .section {
         padding: 25px 20px;
+      }
+
+
+      .leader-directory-card {
+        grid-template-columns: 100px 1fr;
+
+        padding: 20px;
+
+        gap: 15px;
+      }
+
+
+      .directory-photo,
+      .directory-no-photo {
+        width: 100px;
+        height: 130px;
+      }
+
+    }
+
+
+    @media (max-width: 500px) {
+
+      .leader-directory-card {
+        grid-template-columns: 1fr;
+      }
+
+
+      .directory-photo,
+      .directory-no-photo {
+        width: 140px;
+        height: 175px;
       }
 
     }
@@ -454,7 +801,9 @@
 
 </head>
 
+
 <body>
+
 
 <header>
 
@@ -483,11 +832,13 @@
 </header>
 
 
+
 <main>
 
   <a
     href="javascript:history.back()"
     class="back-link"
+    id="backLink"
   >
     ← 返回上一页
   </a>
@@ -497,7 +848,9 @@
 
     <div class="error-card">
 
-      <h1>正在读取领导人资料</h1>
+      <h1>
+        正在读取领导人资料
+      </h1>
 
       <p>
         请稍候……
@@ -510,11 +863,13 @@
 </main>
 
 
+
 <footer>
 
   Republic of Axie · 阿谢国
 
 </footer>
+
 
 
 <script>
@@ -532,16 +887,42 @@
 
   function escapeHTML(value) {
 
-    if (value === null || value === undefined) {
+    if (
+      value === null ||
+      value === undefined
+    ) {
+
       return "";
+
     }
 
+
     return String(value)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
+
+      .replace(
+        /&/g,
+        "&amp;"
+      )
+
+      .replace(
+        /</g,
+        "&lt;"
+      )
+
+      .replace(
+        />/g,
+        "&gt;"
+      )
+
+      .replace(
+        /"/g,
+        "&quot;"
+      )
+
+      .replace(
+        /'/g,
+        "&#039;"
+      );
 
   }
 
@@ -553,7 +934,9 @@
   function getLeaderId() {
 
     const params =
-      new URLSearchParams(window.location.search);
+      new URLSearchParams(
+        window.location.search
+      );
 
     return params.get("id");
 
@@ -565,7 +948,7 @@
      
      阿谢元年 = 2024年
      
-     2024 → 阿谢1年
+     2024 → 阿谢元年
      2025 → 阿谢2年
      2026 → 阿谢3年
      2027 → 阿谢4年
@@ -577,14 +960,26 @@
   ) {
 
     if (!isoString) {
+
       return "暂无资料";
+
     }
 
-    const date = new Date(isoString);
 
-    if (Number.isNaN(date.getTime())) {
+    const date =
+      new Date(isoString);
+
+
+    if (
+      Number.isNaN(
+        date.getTime()
+      )
+    ) {
+
       return "暂无资料";
+
     }
+
 
     const formatter =
       new Intl.DateTimeFormat(
@@ -593,38 +988,66 @@
           timeZone: "Asia/Tokyo",
 
           year: "numeric",
+
           month: "numeric",
+
           day: "numeric",
 
           ...(includeTime
             ? {
+
                 hour: "2-digit",
+
                 minute: "2-digit",
+
                 hour12: false
+
               }
+
             : {})
+
         }
       );
 
+
     const parts =
-      formatter.formatToParts(date);
+      formatter.formatToParts(
+        date
+      );
+
 
     const values = {};
 
-    for (const part of parts) {
-      values[part.type] = part.value;
+
+    for (
+      const part of parts
+    ) {
+
+      values[part.type] =
+        part.value;
+
     }
+
 
     const gregorianYear =
       Number(values.year);
+
 
     const axieYear =
       gregorianYear
       - AXIE_ERA_START_YEAR
       + 1;
 
+
+    const axieYearText =
+      axieYear === 1
+        ? "元年"
+        : `${axieYear}年`;
+
+
     let result =
-      `阿谢${axieYear}年${values.month}月${values.day}日`;
+      `阿谢${axieYearText}${values.month}月${values.day}日`;
+
 
     if (includeTime) {
 
@@ -632,6 +1055,7 @@
         ` ${values.hour}:${values.minute}`;
 
     }
+
 
     return result;
 
@@ -642,7 +1066,9 @@
      职务名称
   ========================================================= */
 
-  function getPositionName(position) {
+  function getPositionName(
+    position
+  ) {
 
     const names = {
 
@@ -651,6 +1077,7 @@
       vicePresident: "副总统"
 
     };
+
 
     return (
       names[position]
@@ -665,7 +1092,9 @@
      状态名称
   ========================================================= */
 
-  function getStatusName(status) {
+  function getStatusName(
+    status
+  ) {
 
     const names = {
 
@@ -674,6 +1103,7 @@
       former: "前任"
 
     };
+
 
     return (
       names[status]
@@ -685,7 +1115,7 @@
 
 
   /* =========================================================
-     读取选举
+     选举资料
   ========================================================= */
 
   function getElectionInfo(
@@ -693,9 +1123,16 @@
     leader
   ) {
 
-    if (!Array.isArray(elections)) {
+    if (
+      !Array.isArray(
+        elections
+      )
+    ) {
+
       return null;
+
     }
+
 
     return elections.find(
       election =>
@@ -707,7 +1144,7 @@
 
 
   /* =========================================================
-     读取政党
+     政党资料
   ========================================================= */
 
   function getPartyInfo(
@@ -715,9 +1152,16 @@
     leader
   ) {
 
-    if (!Array.isArray(parties)) {
+    if (
+      !Array.isArray(
+        parties
+      )
+    ) {
+
       return null;
+
     }
+
 
     return parties.find(
       party =>
@@ -732,15 +1176,29 @@
      选举页面
   ========================================================= */
 
-  function getElectionPage(position) {
+  function getElectionPage(
+    position
+  ) {
 
-    if (position === "president") {
+    if (
+      position
+      === "president"
+    ) {
+
       return "president-election.html";
+
     }
 
-    if (position === "vicePresident") {
+
+    if (
+      position
+      === "vicePresident"
+    ) {
+
       return "vice-president-election.html";
+
     }
+
 
     return null;
 
@@ -748,7 +1206,332 @@
 
 
   /* =========================================================
-     政党 HTML
+     领导人排序
+     
+     现任优先，然后按照任期开始时间排序
+  ========================================================= */
+
+  function sortLeaders(
+    leaders
+  ) {
+
+    return [...leaders].sort(
+      (a, b) => {
+
+        if (
+          a.status === "current"
+          &&
+          b.status !== "current"
+        ) {
+
+          return -1;
+
+        }
+
+
+        if (
+          a.status !== "current"
+          &&
+          b.status === "current"
+        ) {
+
+          return 1;
+
+        }
+
+
+        const dateA =
+          new Date(
+            a.term?.startDate
+            || 0
+          ).getTime();
+
+
+        const dateB =
+          new Date(
+            b.term?.startDate
+            || 0
+          ).getTime();
+
+
+        return dateB - dateA;
+
+      }
+    );
+
+  }
+
+
+  /* =========================================================
+     目录中的照片
+  ========================================================= */
+
+  function renderDirectoryPhoto(
+    leader
+  ) {
+
+    if (!leader.photo) {
+
+      return `
+        <div class="directory-no-photo">
+          暂无照片
+        </div>
+      `;
+
+    }
+
+
+    return `
+      <img
+        src="${escapeHTML(
+          leader.photo
+        )}"
+        alt="${escapeHTML(
+          leader.names?.zh
+          || "领导人"
+        )}"
+        class="directory-photo"
+        onerror="
+          this.style.display='none';
+          this.nextElementSibling.style.display='flex';
+        "
+      >
+
+      <div
+        class="directory-no-photo"
+        style="display:none;"
+      >
+        暂无照片
+      </div>
+    `;
+
+  }
+
+
+  /* =========================================================
+     领导人目录
+  ========================================================= */
+
+  function renderLeaderDirectory(
+    leaders
+  ) {
+
+    const sortedLeaders =
+      sortLeaders(
+        leaders
+      );
+
+
+    if (
+      sortedLeaders.length === 0
+    ) {
+
+      return `
+
+        <div class="error-card">
+
+          <h1>
+            暂无领导人资料
+          </h1>
+
+          <p>
+            当前领导人资料库中没有可显示的资料。
+          </p>
+
+        </div>
+
+      `;
+
+    }
+
+
+    let cards = "";
+
+
+    for (
+      const leader
+      of sortedLeaders
+    ) {
+
+      const name =
+        leader.names?.zh
+        || "暂无姓名";
+
+
+      const enName =
+        leader.names?.en
+        || "暂无资料";
+
+
+      const position =
+        getPositionName(
+          leader.position
+        );
+
+
+      const status =
+        getStatusName(
+          leader.status
+        );
+
+
+      const partyName =
+        leader.partyName
+        || "暂无资料";
+
+
+      let termText =
+        "任期暂无资料";
+
+
+      if (
+        leader.term?.startDate
+        &&
+        leader.term?.endDate
+      ) {
+
+        termText =
+          `${formatAxieDate(
+            leader.term.startDate,
+            false
+          )} – ${formatAxieDate(
+            leader.term.endDate,
+            false
+          )}`;
+
+      }
+
+
+      cards += `
+
+        <article
+          class="leader-directory-card"
+        >
+
+          <div>
+
+            ${renderDirectoryPhoto(
+              leader
+            )}
+
+          </div>
+
+
+          <div>
+
+            <span
+              class="directory-position"
+            >
+              ${escapeHTML(
+                position
+              )}
+            </span>
+
+            <span
+              class="directory-status"
+            >
+              ${escapeHTML(
+                status
+              )}
+            </span>
+
+
+            <div
+              class="directory-name"
+            >
+
+              <a
+                href="leader.html?id=${encodeURIComponent(
+                  leader.leaderId
+                )}"
+              >
+                ${escapeHTML(
+                  name
+                )}
+              </a>
+
+            </div>
+
+
+            <div
+              class="directory-en-name"
+            >
+              ${escapeHTML(
+                enName
+              )}
+            </div>
+
+
+            <div
+              class="directory-term"
+            >
+              ${escapeHTML(
+                termText
+              )}
+            </div>
+
+
+            <div
+              class="directory-party"
+            >
+
+              ${
+                leader.partyId
+                  ? `
+                    <a
+                      href="party.html?id=${encodeURIComponent(
+                        leader.partyId
+                      )}"
+                    >
+                      ${escapeHTML(
+                        partyName
+                      )}
+                    </a>
+                  `
+                  : escapeHTML(
+                      partyName
+                    )
+              }
+
+            </div>
+
+          </div>
+
+        </article>
+
+      `;
+
+    }
+
+
+    return `
+
+      <div class="page-title">
+
+        <h1>
+          阿谢国领导人
+        </h1>
+
+        <p>
+          阿谢国现任及历任国家领导人资料
+        </p>
+
+      </div>
+
+
+      <div class="leader-grid">
+
+        ${cards}
+
+      </div>
+
+    `;
+
+  }
+
+
+  /* =========================================================
+     政党显示
   ========================================================= */
 
   function renderParty(
@@ -761,36 +1544,54 @@
       || leader.partyName
       || "暂无资料";
 
+
     let html = "";
+
 
     if (leader.partyId) {
 
       html += `
+
         <a
           href="party.html?id=${encodeURIComponent(
             leader.partyId
           )}"
         >
-          ${escapeHTML(partyName)}
+          ${escapeHTML(
+            partyName
+          )}
         </a>
+
       `;
 
     } else {
 
-      html += escapeHTML(partyName);
+      html +=
+        escapeHTML(
+          partyName
+        );
 
     }
 
 
-    if (party?.description) {
+    if (
+      party?.description
+    ) {
 
       html += `
-        <div class="party-description">
-          ${escapeHTML(party.description)}
+
+        <div
+          class="party-description"
+        >
+          ${escapeHTML(
+            party.description
+          )}
         </div>
+
       `;
 
     }
+
 
     return html;
 
@@ -798,7 +1599,7 @@
 
 
   /* =========================================================
-     选举 HTML
+     选举显示
   ========================================================= */
 
   function renderElection(
@@ -809,20 +1610,28 @@
     if (!election) {
 
       return `
-        <div class="election-card">
 
-          <div class="election-name">
+        <div
+          class="election-card"
+        >
+
+          <div
+            class="election-name"
+          >
             ${escapeHTML(
               leader.electionId
               || "暂无选举资料"
             )}
           </div>
 
-          <div class="election-info">
+          <div
+            class="election-info"
+          >
             暂无对应选举的详细资料。
           </div>
 
         </div>
+
       `;
 
     }
@@ -843,28 +1652,37 @@
 
 
     let nameHTML =
-      escapeHTML(electionName);
+      escapeHTML(
+        electionName
+      );
 
 
     if (electionPage) {
 
       nameHTML = `
+
         <a
           href="${electionPage}"
         >
-          ${escapeHTML(electionName)}
+          ${escapeHTML(
+            electionName
+          )}
         </a>
+
       `;
 
     }
 
 
-    let periodHTML = "";
+    let periodHTML =
+      "选举日期暂无资料。";
+
 
     const startDate =
       election.startDate
       || election.start
       || null;
+
 
     const endDate =
       election.endDate
@@ -872,42 +1690,58 @@
       || null;
 
 
-    if (startDate && endDate) {
+    if (
+      startDate
+      &&
+      endDate
+    ) {
 
       periodHTML = `
+
         选举期间：
-        ${formatAxieDate(startDate, false)}
+        ${formatAxieDate(
+          startDate,
+          false
+        )}
         –
-        ${formatAxieDate(endDate, false)}
+        ${formatAxieDate(
+          endDate,
+          false
+        )}
+
       `;
-
-    } else {
-
-      periodHTML =
-        "选举日期暂无资料。";
 
     }
 
 
     return `
-      <div class="election-card">
 
-        <div class="election-name">
+      <div
+        class="election-card"
+      >
+
+        <div
+          class="election-name"
+        >
           ${nameHTML}
         </div>
 
-        <div class="election-info">
+
+        <div
+          class="election-info"
+        >
           ${periodHTML}
         </div>
 
       </div>
+
     `;
 
   }
 
 
   /* =========================================================
-     领导人 HTML
+     领导人详细资料
   ========================================================= */
 
   function renderLeader(
@@ -920,9 +1754,11 @@
       leader.names?.zh
       || "暂无姓名";
 
+
     const enName =
       leader.names?.en
       || "暂无资料";
+
 
     const jaName =
       leader.names?.ja
@@ -955,15 +1791,26 @@
       );
 
 
+    /* ---------------------------------------------------------
+       Photo
+    --------------------------------------------------------- */
+
     let photoHTML = "";
+
 
     if (leader.photo) {
 
       photoHTML = `
+
         <img
-          src="${escapeHTML(leader.photo)}"
-          alt="${escapeHTML(name)}"
+          src="${escapeHTML(
+            leader.photo
+          )}"
+          alt="${escapeHTML(
+            name
+          )}"
           class="leader-photo"
+
           onerror="
             this.style.display='none';
             this.nextElementSibling.style.display='flex';
@@ -976,14 +1823,19 @@
         >
           暂无领导人照片
         </div>
+
       `;
 
     } else {
 
       photoHTML = `
-        <div class="no-photo">
+
+        <div
+          class="no-photo"
+        >
           暂无领导人照片
         </div>
+
       `;
 
     }
@@ -991,52 +1843,86 @@
 
     return `
 
-      <section class="leader-card">
+      <section
+        class="leader-card"
+      >
 
-        <div class="leader-photo-box">
+        <div
+          class="leader-photo-box"
+        >
 
           ${photoHTML}
 
         </div>
 
 
-        <div class="leader-main">
+        <div
+          class="leader-main"
+        >
 
-          <span class="position">
-            ${escapeHTML(positionName)}
+          <span
+            class="position"
+          >
+            ${escapeHTML(
+              positionName
+            )}
           </span>
 
-          <span class="status">
-            ${escapeHTML(statusName)}
+
+          <span
+            class="status"
+          >
+            ${escapeHTML(
+              statusName
+            )}
           </span>
 
 
           <h1>
-            ${escapeHTML(name)}
+            ${escapeHTML(
+              name
+            )}
           </h1>
 
 
-          <div class="leader-en-name">
-            ${escapeHTML(enName)}
+          <div
+            class="leader-en-name"
+          >
+            ${escapeHTML(
+              enName
+            )}
           </div>
 
 
-          <div class="leader-ja-name">
-            ${escapeHTML(jaName)}
+          <div
+            class="leader-ja-name"
+          >
+            ${escapeHTML(
+              jaName
+            )}
           </div>
 
 
-          <div class="party-box">
+          <div
+            class="party-box"
+          >
 
-            <div class="party-label">
+            <div
+              class="party-label"
+            >
               所属政党
             </div>
 
-            <div class="party-name">
+
+            <div
+              class="party-name"
+            >
+
               ${renderParty(
                 party,
                 leader
               )}
+
             </div>
 
           </div>
@@ -1046,22 +1932,35 @@
       </section>
 
 
-      <section class="section">
+
+      <section
+        class="section"
+      >
 
         <h2>
           基本资料
         </h2>
 
 
-        <div class="info-grid">
+        <div
+          class="info-grid"
+        >
 
-          <div class="info-item">
 
-            <div class="info-label">
+          <div
+            class="info-item"
+          >
+
+            <div
+              class="info-label"
+            >
               领导人编号
             </div>
 
-            <div class="info-value">
+
+            <div
+              class="info-value"
+            >
               ${escapeHTML(
                 leader.leaderId
                 || "暂无资料"
@@ -1071,26 +1970,45 @@
           </div>
 
 
-          <div class="info-item">
 
-            <div class="info-label">
+          <div
+            class="info-item"
+          >
+
+            <div
+              class="info-label"
+            >
               职务
             </div>
 
-            <div class="info-value">
-              ${escapeHTML(positionName)}
+
+            <div
+              class="info-value"
+            >
+              ${escapeHTML(
+                positionName
+              )}
             </div>
 
           </div>
 
 
-          <div class="info-item">
 
-            <div class="info-label">
+          <div
+            class="info-item"
+          >
+
+            <div
+              class="info-label"
+            >
               任期届次
             </div>
 
-            <div class="info-value">
+
+            <div
+              class="info-value"
+            >
+
               ${
                 leader.term?.termNo
                   ? `第${escapeHTML(
@@ -1098,48 +2016,77 @@
                     )}任`
                   : "暂无资料"
               }
+
             </div>
 
           </div>
 
 
-          <div class="info-item">
 
-            <div class="info-label">
+          <div
+            class="info-item"
+          >
+
+            <div
+              class="info-label"
+            >
               任期开始
             </div>
 
-            <div class="info-value">
+
+            <div
+              class="info-value"
+            >
+
               ${formatAxieDate(
                 leader.term?.startDate
               )}
+
             </div>
 
           </div>
 
 
-          <div class="info-item">
 
-            <div class="info-label">
+          <div
+            class="info-item"
+          >
+
+            <div
+              class="info-label"
+            >
               任期结束
             </div>
 
-            <div class="info-value">
+
+            <div
+              class="info-value"
+            >
+
               ${formatAxieDate(
                 leader.term?.endDate
               )}
+
             </div>
 
           </div>
 
 
-          <div class="info-item">
 
-            <div class="info-label">
+          <div
+            class="info-item"
+          >
+
+            <div
+              class="info-label"
+            >
               对应选举
             </div>
 
-            <div class="info-value">
+
+            <div
+              class="info-value"
+            >
 
               ${
                 election
@@ -1159,21 +2106,29 @@
 
           </div>
 
+
         </div>
 
       </section>
 
 
-      <section class="section">
+
+      <section
+        class="section"
+      >
 
         <h2>
           任期信息
         </h2>
 
 
-        <div class="election-card">
+        <div
+          class="election-card"
+        >
 
-          <div class="election-name">
+          <div
+            class="election-name"
+          >
 
             ${
               leader.term?.termNo
@@ -1190,7 +2145,9 @@
           </div>
 
 
-          <div class="election-info">
+          <div
+            class="election-info"
+          >
 
             任期：
             ${formatAxieDate(
@@ -1210,11 +2167,15 @@
       </section>
 
 
-      <section class="section">
+
+      <section
+        class="section"
+      >
 
         <h2>
           当选信息
         </h2>
+
 
         ${renderElection(
           election,
@@ -1240,14 +2201,19 @@
       "content"
     ).innerHTML = `
 
-      <div class="error-card">
+      <div
+        class="error-card"
+      >
 
         <h1>
           无法读取领导人资料
         </h1>
 
+
         <p>
-          ${escapeHTML(message)}
+          ${escapeHTML(
+            message
+          )}
         </p>
 
       </div>
@@ -1258,25 +2224,10 @@
 
 
   /* =========================================================
-     主程序
+     加载数据
   ========================================================= */
 
-  async function loadLeader() {
-
-    const leaderId =
-      getLeaderId();
-
-
-    if (!leaderId) {
-
-      showError(
-        "未指定领导人编号。"
-      );
-
-      return;
-
-    }
-
+  async function loadData() {
 
     try {
 
@@ -1301,7 +2252,13 @@
       ]);
 
 
-      if (!leadersResponse.ok) {
+      /* -------------------------------------------------------
+         leaders.json 必须存在
+      ------------------------------------------------------- */
+
+      if (
+        !leadersResponse.ok
+      ) {
 
         throw new Error(
           "leaders.json 无法读取。"
@@ -1318,12 +2275,19 @@
         elections: []
       };
 
+
       let partiesData = {
         parties: []
       };
 
 
-      if (electionsResponse.ok) {
+      /* -------------------------------------------------------
+         elections.json
+      ------------------------------------------------------- */
+
+      if (
+        electionsResponse.ok
+      ) {
 
         electionsData =
           await electionsResponse.json();
@@ -1331,13 +2295,31 @@
       }
 
 
-      if (partiesResponse.ok) {
+      /* -------------------------------------------------------
+         parties.json
+      ------------------------------------------------------- */
+
+      if (
+        partiesResponse.ok
+      ) {
 
         partiesData =
           await partiesResponse.json();
 
       }
 
+
+      /* -------------------------------------------------------
+         兼容两种 JSON 结构
+         
+         {
+           "leaders": [...]
+         }
+         
+         或
+         
+         [...]
+      ------------------------------------------------------- */
 
       const leaders =
         Array.isArray(
@@ -1363,7 +2345,11 @@
           : partiesData.parties;
 
 
-      if (!Array.isArray(leaders)) {
+      if (
+        !Array.isArray(
+          leaders
+        )
+      ) {
 
         throw new Error(
           "leaders.json 数据格式不正确。"
@@ -1371,6 +2357,45 @@
 
       }
 
+
+      /* =======================================================
+         判断是否指定某位领导人
+      ======================================================= */
+
+      const leaderId =
+        getLeaderId();
+
+
+      /* =======================================================
+         没有 id
+         
+         → 显示领导人目录
+      ======================================================= */
+
+      if (!leaderId) {
+
+        document.title =
+          "阿谢国领导人 | Republic of Axie";
+
+
+        document.getElementById(
+          "content"
+        ).innerHTML =
+          renderLeaderDirectory(
+            leaders
+          );
+
+
+        return;
+
+      }
+
+
+      /* =======================================================
+         有 id
+         
+         → 显示领导人详细资料
+      ======================================================= */
 
       const leader =
         leaders.find(
@@ -1391,12 +2416,20 @@
       }
 
 
+      /* -------------------------------------------------------
+         修改页面标题
+      ------------------------------------------------------- */
+
       document.title =
         `${
           leader.names?.zh
           || "领导人"
         } | Republic of Axie`;
 
+
+      /* -------------------------------------------------------
+         渲染
+      ------------------------------------------------------- */
 
       document.getElementById(
         "content"
@@ -1407,12 +2440,15 @@
           parties
         );
 
+    }
 
-    } catch (error) {
+
+    catch (error) {
 
       console.error(
         error
       );
+
 
       showError(
         error.message
@@ -1428,9 +2464,10 @@
      启动
   ========================================================= */
 
-  loadLeader();
+  loadData();
 
 </script>
+
 
 </body>
 </html>
