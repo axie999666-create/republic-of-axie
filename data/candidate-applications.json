@@ -13,10 +13,10 @@
       "introduction": "（测试）",
       "campaignStatement": "（测试）",
       "submittedAt": "2026-09-27T12:14:03.941Z",
-      "status": "pending",
-      "reviewedAt": null,
-      "reviewedBy": null,
-      "reviewNote": ""
+      "status": "rejected",
+      "reviewedAt": "2026-09-27T14:33:52.218Z",
+      "reviewedBy": "AXNewsAdmin",
+      "reviewNote": "（测试驳回系统是否正常）"
     }
   ]
 }
