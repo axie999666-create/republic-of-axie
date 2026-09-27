@@ -13,7 +13,7 @@
 
   <meta
     name="description"
-    content="阿谢国选举结果及选举档案"
+    content="阿谢国选举结果及候选人资料"
   >
 
   <link
@@ -159,140 +159,74 @@
 
 
     /* =========================================================
-       Hero
+       Title
     ========================================================= */
 
-    .hero {
+    .page-title {
 
-      background: white;
-
-      border-radius: 18px;
-
-      padding: 32px;
-
-      box-shadow:
-        0 8px 30px rgba(20, 45, 80, 0.07);
-
-      margin-bottom: 25px;
+      margin-bottom: 30px;
 
     }
 
 
-    .hero-top {
+    .page-title h1 {
 
-      display: flex;
+      margin: 0 0 6px;
 
-      justify-content: space-between;
-
-      align-items: flex-start;
-
-      gap: 20px;
-
-    }
-
-
-    .hero h1 {
-
-      margin: 0 0 7px;
-
-      font-size: 31px;
+      font-size: 32px;
 
       color: #102a4c;
 
     }
 
 
-    .hero-en {
+    .page-title p {
 
-      color: #687589;
+      margin: 0;
+
+      color: #6b7789;
 
       font-size: 14px;
 
     }
 
 
-    .hero-jp {
+    /* =========================================================
+       Cards
+    ========================================================= */
 
-      color: #8993a1;
+    .card {
 
-      font-size: 13px;
+      background: white;
 
-      margin-top: 2px;
+      border-radius: 15px;
+
+      padding: 26px 28px;
+
+      margin-bottom: 22px;
+
+      box-shadow:
+        0 7px 25px rgba(20, 45, 80, 0.07);
+
+    }
+
+
+    .card-title {
+
+      margin: 0 0 18px;
+
+      font-size: 21px;
+
+      color: #102a4c;
 
     }
 
 
     /* =========================================================
-       Status
+       Election Info
     ========================================================= */
 
-    .status {
-
-      display: inline-block;
-
-      flex-shrink: 0;
-
-      padding: 6px 14px;
-
-      border-radius: 999px;
-
-      font-size: 12px;
-
-      font-weight: 600;
-
-    }
-
-
-    .status-scheduled {
-
-      background: #e9f1fb;
-
-      color: #1557a6;
-
-    }
-
-
-    .status-active {
-
-      background: #e8f6ee;
-
-      color: #18794e;
-
-    }
-
-
-    .status-completed {
-
-      background: #eef1f5;
-
-      color: #596577;
-
-    }
-
-
-    .status-cancelled {
-
-      background: #fbecec;
-
-      color: #a33b3b;
-
-    }
-
-
-    .status-unknown {
-
-      background: #eef1f5;
-
-      color: #596577;
-
-    }
-
-
-    /* =========================================================
-       Basic Information
-    ========================================================= */
-
-    .info-grid {
+    .election-info {
 
       display: grid;
 
@@ -301,8 +235,6 @@
 
       gap: 13px;
 
-      margin-top: 27px;
-
     }
 
 
@@ -310,9 +242,9 @@
 
       background: #f7f9fc;
 
-      border-radius: 10px;
+      border-radius: 9px;
 
-      padding: 13px 16px;
+      padding: 13px 15px;
 
     }
 
@@ -340,47 +272,56 @@
 
 
     /* =========================================================
-       Section
+       Status
     ========================================================= */
 
-    .section {
+    .status {
 
-      margin-bottom: 25px;
+      display: inline-block;
 
-    }
+      padding: 6px 13px;
 
+      border-radius: 999px;
 
-    .section-header {
+      font-size: 12px;
 
-      display: flex;
-
-      align-items: center;
-
-      gap: 12px;
-
-      margin-bottom: 16px;
+      font-weight: 600;
 
     }
 
 
-    .section-header h2 {
+    .status-not-started {
 
-      margin: 0;
+      background: #e9f1fb;
 
-      font-size: 22px;
-
-      color: #102a4c;
+      color: #1557a6;
 
     }
 
 
-    .section-line {
+    .status-counting {
 
-      height: 1px;
+      background: #fff4dc;
 
-      flex: 1;
+      color: #956000;
 
-      background: #dfe5ed;
+    }
+
+
+    .status-published {
+
+      background: #e8f6ee;
+
+      color: #18794e;
+
+    }
+
+
+    .status-unknown {
+
+      background: #eef1f5;
+
+      color: #596577;
 
     }
 
@@ -391,100 +332,107 @@
 
     .result-notice {
 
-      background: white;
+      padding: 22px;
 
-      border-radius: 16px;
+      border-radius: 12px;
 
-      padding: 30px;
+      background: #f7f9fc;
 
-      box-shadow:
-        0 7px 25px rgba(20, 45, 80, 0.06);
+      border: 1px solid #e2e7ef;
 
-      text-align: center;
-
-      margin-bottom: 25px;
+      color: #5f6d80;
 
     }
 
 
-    .result-icon {
+    .result-notice strong {
 
-      width: 55px;
+      display: block;
 
-      height: 55px;
+      margin-bottom: 5px;
 
-      margin: 0 auto 13px;
+      color: #26364d;
 
-      border-radius: 50%;
-
-      background: #edf3fa;
-
-      color: #1557a6;
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: center;
-
-      font-size: 25px;
-
-      font-weight: 700;
-
-    }
-
-
-    .result-notice h2 {
-
-      margin: 0 0 5px;
-
-      color: #102a4c;
-
-      font-size: 21px;
-
-    }
-
-
-    .result-notice p {
-
-      margin: 0;
-
-      color: #6d798a;
-
-      font-size: 14px;
+      font-size: 16px;
 
     }
 
 
     /* =========================================================
-       Candidate Cards
+       Winner
     ========================================================= */
 
-    .candidate-list {
+    .winner-card {
 
-      display: grid;
+      border: 1px solid #dfe7f1;
 
-      gap: 16px;
+      background:
+        linear-gradient(
+          135deg,
+          #f8fbff,
+          #ffffff
+        );
 
     }
 
 
-    .candidate-card {
+    .winner-label {
 
-      background: white;
+      color: #728096;
 
-      border-radius: 15px;
+      font-size: 12px;
 
-      padding: 20px;
+      margin-bottom: 5px;
 
-      box-shadow:
-        0 7px 25px rgba(20, 45, 80, 0.06);
+    }
 
-      display: flex;
+
+    .winner-name {
+
+      font-size: 26px;
+
+      font-weight: 700;
+
+      color: #102a4c;
+
+    }
+
+
+    .winner-party {
+
+      color: #617086;
+
+      margin-top: 4px;
+
+    }
+
+
+    /* =========================================================
+       Candidate Result
+    ========================================================= */
+
+    .candidate-result {
+
+      display: grid;
+
+      grid-template-columns:
+        60px 1fr auto;
 
       align-items: center;
 
-      gap: 18px;
+      gap: 16px;
+
+      padding: 17px 0;
+
+      border-bottom:
+        1px solid #edf0f4;
+
+    }
+
+
+    .candidate-result:last-child {
+
+      border-bottom: none;
 
     }
 
@@ -495,41 +443,57 @@
 
       height: 46px;
 
-      flex-shrink: 0;
-
-      border-radius: 50%;
-
-      background: #102a4c;
-
-      color: white;
-
       display: flex;
 
       align-items: center;
 
       justify-content: center;
 
+      border-radius: 10px;
+
+      background: #eef3f9;
+
+      color: #1557a6;
+
+      font-size: 18px;
+
       font-weight: 700;
-
-      font-size: 16px;
-
-    }
-
-
-    .candidate-info {
-
-      min-width: 0;
-
-      flex: 1;
 
     }
 
 
     .candidate-name {
 
-      margin: 0;
+      font-size: 17px;
 
-      font-size: 18px;
+      font-weight: 700;
+
+      color: #24344b;
+
+    }
+
+
+    .candidate-party {
+
+      font-size: 13px;
+
+      color: #718096;
+
+      margin-top: 2px;
+
+    }
+
+
+    .candidate-votes {
+
+      text-align: right;
+
+    }
+
+
+    .votes-number {
+
+      font-size: 19px;
 
       font-weight: 700;
 
@@ -538,25 +502,7 @@
     }
 
 
-    .candidate-name a {
-
-      color: inherit;
-
-      text-decoration: none;
-
-    }
-
-
-    .candidate-name a:hover {
-
-      color: #1557a6;
-
-    }
-
-
-    .candidate-names {
-
-      margin-top: 2px;
+    .votes-percentage {
 
       font-size: 12px;
 
@@ -565,53 +511,33 @@
     }
 
 
-    .candidate-party {
+    /* =========================================================
+       Links
+    ========================================================= */
+
+    .candidate-links {
 
       margin-top: 5px;
-
-      font-size: 13px;
-
-    }
-
-
-    .candidate-party a {
-
-      color: #1557a6;
-
-      text-decoration: none;
-
-    }
-
-
-    .candidate-party a:hover {
-
-      text-decoration: underline;
-
-    }
-
-
-    .candidate-result {
-
-      min-width: 120px;
-
-      text-align: right;
-
-      color: #7a8697;
 
       font-size: 12px;
 
     }
 
 
-    /* =========================================================
-       Future Result
-    ========================================================= */
+    .candidate-links a {
 
-    .not-published {
+      color: #1557a6;
 
-      color: #596577;
+      text-decoration: none;
 
-      font-weight: 600;
+      margin-right: 10px;
+
+    }
+
+
+    .candidate-links a:hover {
+
+      text-decoration: underline;
 
     }
 
@@ -624,9 +550,9 @@
 
       background: white;
 
-      border-radius: 18px;
+      border-radius: 16px;
 
-      padding: 60px 30px;
+      padding: 55px 30px;
 
       text-align: center;
 
@@ -650,19 +576,6 @@
       margin: 0;
 
       color: #687589;
-
-    }
-
-
-    .error-card a {
-
-      display: inline-block;
-
-      margin-top: 18px;
-
-      color: #1557a6;
-
-      text-decoration: none;
 
     }
 
@@ -702,66 +615,40 @@
       }
 
 
-      .hero {
+      .page-title h1 {
 
-        padding: 24px 20px;
-
-      }
-
-
-      .hero-top {
-
-        flex-direction: column;
+        font-size: 28px;
 
       }
 
 
-      .hero h1 {
+      .card {
 
-        font-size: 27px;
+        padding: 22px 20px;
 
       }
 
 
-      .info-grid {
+      .election-info {
 
         grid-template-columns: 1fr;
 
       }
 
 
-      .candidate-card {
-
-        align-items: flex-start;
-
-      }
-
-
       .candidate-result {
 
-        min-width: auto;
+        grid-template-columns:
+          50px 1fr;
+
+      }
+
+
+      .candidate-votes {
+
+        grid-column: 2;
 
         text-align: left;
-
-      }
-
-    }
-
-
-    @media (max-width: 480px) {
-
-      .candidate-card {
-
-        flex-wrap: wrap;
-
-      }
-
-
-      .candidate-number {
-
-        width: 40px;
-
-        height: 40px;
 
       }
 
@@ -792,7 +679,7 @@
       </h1>
 
       <p class="site-subtitle">
-        阿谢国选举档案
+        阿谢国选举结果
       </p>
 
     </div>
@@ -818,7 +705,7 @@
     <div class="error-card">
 
       <h1>
-        正在读取选举资料
+        正在读取资料
       </h1>
 
       <p>
@@ -1021,150 +908,7 @@
 
 
   /* =========================================================
-     状态
-  ========================================================= */
-
-  function getStatusName(
-    status
-  ) {
-
-    const names = {
-
-      scheduled:
-        "已安排",
-
-      active:
-        "进行中",
-
-      completed:
-        "已完成",
-
-      cancelled:
-        "已取消"
-
-    };
-
-
-    return (
-      names[status]
-      || status
-      || "未知状态"
-    );
-
-  }
-
-
-  function getStatusClass(
-    status
-  ) {
-
-    const classes = {
-
-      scheduled:
-        "status-scheduled",
-
-      active:
-        "status-active",
-
-      completed:
-        "status-completed",
-
-      cancelled:
-        "status-cancelled"
-
-    };
-
-
-    return (
-      classes[status]
-      || "status-unknown"
-    );
-
-  }
-
-
-  /* =========================================================
-     根据日期计算显示状态
-  ========================================================= */
-
-  function getDisplayStatus(
-    election
-  ) {
-
-    if (
-      election.status
-      === "cancelled"
-    ) {
-
-      return "cancelled";
-
-    }
-
-
-    const now =
-      new Date();
-
-
-    const start =
-      election.start
-        ? new Date(
-            election.start
-          )
-        : null;
-
-
-    const end =
-      election.end
-        ? new Date(
-            election.end
-          )
-        : null;
-
-
-    if (
-      start &&
-      end &&
-      !Number.isNaN(
-        start.getTime()
-      ) &&
-      !Number.isNaN(
-        end.getTime()
-      )
-    ) {
-
-      if (
-        now < start
-      ) {
-
-        return "scheduled";
-
-      }
-
-
-      if (
-        now > end
-      ) {
-
-        return "completed";
-
-      }
-
-
-      return "active";
-
-    }
-
-
-    return (
-      election.status
-      || "unknown"
-    );
-
-  }
-
-
-  /* =========================================================
-     获取 URL 参数
+     获取 URL 中的 electionId
   ========================================================= */
 
   function getElectionId() {
@@ -1183,45 +927,85 @@
 
 
   /* =========================================================
-     在 elections.json 中查找选举
+     选举状态
+  ========================================================= */
+
+  function getResultStatusName(
+    status
+  ) {
+
+    const names = {
+
+      not_started:
+        "尚未开始",
+
+      counting:
+        "计票中",
+
+      published:
+        "结果已公布"
+
+    };
+
+
+    return (
+      names[status]
+      || "暂无结果"
+    );
+
+  }
+
+
+  function getResultStatusClass(
+    status
+  ) {
+
+    const classes = {
+
+      not_started:
+        "status-not-started",
+
+      counting:
+        "status-counting",
+
+      published:
+        "status-published"
+
+    };
+
+
+    return (
+      classes[status]
+      || "status-unknown"
+    );
+
+  }
+
+
+  /* =========================================================
+     找选举
   ========================================================= */
 
   function findElection(
-    data,
+    electionsData,
     electionId
   ) {
 
     const types = [
-
-      {
-        key:
-          "president",
-
-        data:
-          data.president
-
-      },
-
-      {
-        key:
-          "vicePresident",
-
-        data:
-          data.vicePresident
-
-      }
-
+      electionsData.president,
+      electionsData.vicePresident
     ];
 
 
     for (
-      const type of types
+      const typeData of types
     ) {
 
       if (
-        !type.data ||
+        !typeData
+        ||
         !Array.isArray(
-          type.data.elections
+          typeData.elections
         )
       ) {
 
@@ -1231,7 +1015,7 @@
 
 
       const election =
-        type.data.elections.find(
+        typeData.elections.find(
           item =>
             item.electionId
             === electionId
@@ -1243,10 +1027,7 @@
         return {
 
           election,
-          type:
-            type.key,
-          typeData:
-            type.data
+          typeData
 
         };
 
@@ -1261,12 +1042,12 @@
 
 
   /* =========================================================
-     获取候选人
+     找候选人
   ========================================================= */
 
-  function getCandidates(
+  function findCandidate(
     candidatesData,
-    electionId
+    candidateId
   ) {
 
     if (
@@ -1277,45 +1058,25 @@
       )
     ) {
 
-      return [];
+      return null;
 
     }
 
 
-    return candidatesData.candidates
-      .filter(
+    return (
+      candidatesData.candidates.find(
         candidate =>
-          candidate.electionId
-          === electionId
+          candidate.candidateId
+          === candidateId
       )
-
-      .sort(
-        (a, b) => {
-
-          const noA =
-            Number(
-              a.candidateNo
-              || 999999
-            );
-
-
-          const noB =
-            Number(
-              b.candidateNo
-              || 999999
-            );
-
-
-          return noA - noB;
-
-        }
-      );
+      || null
+    );
 
   }
 
 
   /* =========================================================
-     获取政党
+     找政党
   ========================================================= */
 
   function findParty(
@@ -1349,149 +1110,37 @@
 
 
   /* =========================================================
-     候选人姓名
+     渲染候选人结果
   ========================================================= */
 
-  function getCandidateName(
-    candidate
-  ) {
-
-    if (
-      candidate.names
-      &&
-      candidate.names.zh
-    ) {
-
-      return candidate.names.zh;
-
-    }
-
-
-    if (
-      candidate.name
-    ) {
-
-      return candidate.name;
-
-    }
-
-
-    return "未命名候选人";
-
-  }
-
-
-  /* =========================================================
-     候选人其他姓名
-  ========================================================= */
-
-  function getOtherNames(
-    candidate
-  ) {
-
-    if (
-      !candidate.names
-    ) {
-
-      return "";
-
-    }
-
-
-    const names = [];
-
-
-    if (
-      candidate.names.en
-    ) {
-
-      names.push(
-        candidate.names.en
-      );
-
-    }
-
-
-    if (
-      candidate.names.ja
-    ) {
-
-      names.push(
-        candidate.names.ja
-      );
-
-    }
-
-
-    return names.join(
-      " / "
-    );
-
-  }
-
-
-  /* =========================================================
-     候选人卡片
-  ========================================================= */
-
-  function renderCandidate(
+  function renderCandidateResult(
     candidate,
-    partiesData
+    result
   ) {
 
-    const name =
-      getCandidateName(
-        candidate
+    const votes =
+      Number(
+        result.votes
+        || 0
       );
 
 
-    const otherNames =
-      getOtherNames(
-        candidate
-      );
-
-
-    const party =
-      findParty(
-        partiesData,
-        candidate.partyId
+    const percentage =
+      Number(
+        result.percentage
+        || 0
       );
 
 
     const partyName =
       candidate.partyName
-      ||
-      (
-        party
-          ? party.partyName
-          : "其他 / 未登记政党"
-      );
-
-
-    const candidateId =
-      candidate.candidateId;
-
-
-    const candidateLink =
-      candidateId
-        ? `candidate.html?id=${encodeURIComponent(
-            candidateId
-          )}`
-        : "#";
-
-
-    const partyLink =
-      candidate.partyId
-        ? `party.html?id=${encodeURIComponent(
-            candidate.partyId
-          )}`
-        : "#";
+      || "独立候选人";
 
 
     return `
 
-      <article
-        class="candidate-card"
+      <div
+        class="candidate-result"
       >
 
         <div
@@ -1504,51 +1153,53 @@
         </div>
 
 
-        <div
-          class="candidate-info"
-        >
+        <div>
 
-          <h3
+          <div
             class="candidate-name"
           >
-
-            <a
-              href="${candidateLink}"
-            >
-              ${escapeHTML(
-                name
-              )}
-            </a>
-
-          </h3>
-
-
-          ${
-            otherNames
-              ? `
-                <div
-                  class="candidate-names"
-                >
-                  ${escapeHTML(
-                    otherNames
-                  )}
-                </div>
-              `
-              : ""
-          }
+            ${escapeHTML(
+              candidate.names?.zh
+              || "未命名候选人"
+            )}
+          </div>
 
 
           <div
             class="candidate-party"
           >
+            ${escapeHTML(
+              partyName
+            )}
+          </div>
+
+
+          <div
+            class="candidate-links"
+          >
 
             <a
-              href="${partyLink}"
+              href="candidate.html?id=${encodeURIComponent(
+                candidate.candidateId
+              )}"
             >
-              ${escapeHTML(
-                partyName
-              )}
+              候选人资料
             </a>
+
+
+            ${
+              candidate.partyId
+                ? `
+                  <a
+                    href="party.html?id=${encodeURIComponent(
+                      candidate.partyId
+                    )}"
+                  >
+                    政党资料
+                  </a>
+                `
+                : ""
+            }
 
           </div>
 
@@ -1556,18 +1207,29 @@
 
 
         <div
-          class="candidate-result"
+          class="candidate-votes"
         >
 
           <div
-            class="not-published"
+            class="votes-number"
           >
-            结果尚未公布
+            ${votes.toLocaleString(
+              "zh-CN"
+            )} 票
+          </div>
+
+
+          <div
+            class="votes-percentage"
+          >
+            ${percentage.toFixed(
+              2
+            )}%
           </div>
 
         </div>
 
-      </article>
+      </div>
 
     `;
 
@@ -1575,153 +1237,385 @@
 
 
   /* =========================================================
-     选举页面
+     页面渲染
   ========================================================= */
 
-  function renderElection(
+  function renderPage(
     election,
     typeData,
+    result,
     candidatesData,
     partiesData
   ) {
 
-    const status =
-      getDisplayStatus(
-        election
-      );
+    const resultStatus =
+      result
+        ? result.status
+        : "not_started";
 
 
-    const statusName =
-      getStatusName(
-        status
-      );
+    let resultContent = "";
 
 
-    const statusClass =
-      getStatusClass(
-        status
-      );
+    /*
+     * =======================================================
+     * 尚未公布
+     * =======================================================
+     */
+
+    if (
+      resultStatus
+      === "not_started"
+    ) {
+
+      resultContent = `
+
+        <div
+          class="result-notice"
+        >
+
+          <strong>
+            选举结果尚未公布
+          </strong>
+
+          本次选举尚未开始，
+          当前没有可公开的计票结果。
+
+        </div>
+
+      `;
+
+    }
 
 
-    const candidates =
-      getCandidates(
-        candidatesData,
-        election.electionId
-      );
+    /*
+     * =======================================================
+     * 计票中
+     * =======================================================
+     */
+
+    else if (
+      resultStatus
+      === "counting"
+    ) {
+
+      resultContent = `
+
+        <div
+          class="result-notice"
+        >
+
+          <strong>
+            当前正在计票
+          </strong>
+
+          本次选举已经结束，
+          当前正在进行选票统计和结果确认。
+
+          正式结果将在完成相关程序后公布。
+
+        </div>
+
+      `;
+
+    }
 
 
-    const electionName =
-      election.name
-      || "未命名选举";
+    /*
+     * =======================================================
+     * 已公布
+     * =======================================================
+     */
 
+    else if (
+      resultStatus
+      === "published"
+    ) {
 
-    const electionNameEn =
-      election.nameEn
-      || "";
+      /*
+       * 找到当选人
+       */
 
-
-    const electionNameJp =
-      election.nameJp
-      || "";
-
-
-    const candidatesHTML =
-      candidates.length > 0
-
-        ? candidates
-            .map(
-              candidate =>
-                renderCandidate(
-                  candidate,
-                  partiesData
-                )
+      const winner =
+        result.winnerCandidateId
+          ? findCandidate(
+              candidatesData,
+              result.winnerCandidateId
             )
-            .join("")
+          : null;
 
-        : `
+
+      if (winner) {
+
+        resultContent += `
 
           <div
-            class="result-notice"
+            class="card winner-card"
           >
 
-            <h2>
-              暂无候选人资料
-            </h2>
+            <div
+              class="winner-label"
+            >
+              当选人
+            </div>
 
-            <p>
-              当前尚未录入本场选举的候选人信息。
-            </p>
+
+            <div
+              class="winner-name"
+            >
+              ${escapeHTML(
+                winner.names?.zh
+                || "未命名候选人"
+              )}
+            </div>
+
+
+            <div
+              class="winner-party"
+            >
+              ${escapeHTML(
+                winner.partyName
+                || "独立候选人"
+              )}
+            </div>
 
           </div>
 
         `;
 
+      }
 
-    return `
 
-      <section
-        class="hero"
-      >
+      /*
+       * 总票数
+       */
+
+      resultContent += `
 
         <div
-          class="hero-top"
+          class="card"
         >
 
-          <div>
-
-            <h1>
-              ${escapeHTML(
-                electionName
-              )}
-            </h1>
+          <h2
+            class="card-title"
+          >
+            选举结果
+          </h2>
 
 
-            ${
-              electionNameEn
-                ? `
-                  <div
-                    class="hero-en"
-                  >
-                    ${escapeHTML(
-                      electionNameEn
-                    )}
-                  </div>
-                `
-                : ""
-            }
+          <div
+            class="election-info"
+          >
+
+            <div
+              class="info-item"
+            >
+
+              <div
+                class="info-label"
+              >
+                总票数
+              </div>
 
 
-            ${
-              electionNameJp
-                ? `
-                  <div
-                    class="hero-jp"
-                  >
-                    ${escapeHTML(
-                      electionNameJp
-                    )}
-                  </div>
-                `
-                : ""
-            }
+              <div
+                class="info-value"
+              >
+                ${
+                  result.totalVotes !== null
+                    ? Number(
+                        result.totalVotes
+                      ).toLocaleString(
+                        "zh-CN"
+                      ) + " 票"
+                    : "暂无资料"
+                }
+              </div>
+
+            </div>
+
+
+            <div
+              class="info-item"
+            >
+
+              <div
+                class="info-label"
+              >
+                公布时间
+              </div>
+
+
+              <div
+                class="info-value"
+              >
+                ${formatAxieDate(
+                  result.publishedAt,
+                  true
+                )}
+              </div>
+
+            </div>
+
+
+            <div
+              class="info-item"
+            >
+
+              <div
+                class="info-label"
+              >
+                结果状态
+              </div>
+
+
+              <div
+                class="info-value"
+              >
+                已正式公布
+              </div>
+
+            </div>
 
           </div>
 
-
-          <span
-            class="status ${statusClass}"
-          >
-            ${escapeHTML(
-              statusName
-            )}
-          </span>
-
         </div>
 
+      `;
+
+
+      /*
+       * 候选人票数
+       */
+
+      if (
+        Array.isArray(
+          result.candidateResults
+        )
+        &&
+        result.candidateResults.length
+      ) {
+
+        resultContent += `
+
+          <div
+            class="card"
+          >
+
+            <h2
+              class="card-title"
+            >
+              候选人得票情况
+            </h2>
+
+        `;
+
+
+        for (
+          const candidateResult
+          of result.candidateResults
+        ) {
+
+          const candidate =
+            findCandidate(
+              candidatesData,
+              candidateResult.candidateId
+            );
+
+
+          if (!candidate) {
+
+            continue;
+
+          }
+
+
+          resultContent +=
+            renderCandidateResult(
+              candidate,
+              candidateResult
+            );
+
+        }
+
+
+        resultContent += `
+
+          </div>
+
+        `;
+
+      }
+
+    }
+
+
+    /*
+     * =======================================================
+     * 基本资料
+     * =======================================================
+     */
+
+    const resultStatusClass =
+      getResultStatusClass(
+        resultStatus
+      );
+
+
+    const resultStatusName =
+      getResultStatusName(
+        resultStatus
+      );
+
+
+    const candidateCount =
+      candidatesData.candidates
+        ? candidatesData.candidates.filter(
+            candidate =>
+              candidate.electionId
+              === election.electionId
+          ).length
+        : 0;
+
+
+    return `
+
+      <div
+        class="page-title"
+      >
+
+        <h1>
+          ${escapeHTML(
+            election.name
+            || "选举"
+          )}
+        </h1>
+
+
+        <p>
+          ${escapeHTML(
+            election.nameEn
+            || ""
+          )}
+        </p>
+
+      </div>
+
+
+
+      <div
+        class="card"
+      >
+
+        <h2
+          class="card-title"
+        >
+          选举基本资料
+        </h2>
 
 
         <div
-          class="info-grid"
+          class="election-info"
         >
 
           <div
@@ -1747,6 +1641,51 @@
           </div>
 
 
+          <div
+            class="info-item"
+          >
+
+            <div
+              class="info-label"
+            >
+              选举状态
+            </div>
+
+
+            <div
+              class="info-value"
+            >
+              <span
+                class="status ${resultStatusClass}"
+              >
+                ${escapeHTML(
+                  resultStatusName
+                )}
+              </span>
+            </div>
+
+          </div>
+
+
+          <div
+            class="info-item"
+          >
+
+            <div
+              class="info-label"
+            >
+              候选人数
+            </div>
+
+
+            <div
+              class="info-value"
+            >
+              ${candidateCount} 人
+            </div>
+
+          </div>
+
 
           <div
             class="info-item"
@@ -1768,7 +1707,6 @@
             </div>
 
           </div>
-
 
 
           <div
@@ -1793,7 +1731,6 @@
           </div>
 
 
-
           <div
             class="info-item"
           >
@@ -1816,7 +1753,6 @@
           </div>
 
 
-
           <div
             class="info-item"
           >
@@ -1831,17 +1767,13 @@
             <div
               class="info-value"
             >
-              ${
+              ${escapeHTML(
                 typeData.termYears
-                  ? `${escapeHTML(
-                      typeData.termYears
-                    )}年`
-                  : "暂无资料"
-              }
+                || "-"
+              )} 年
             </div>
 
           </div>
-
 
 
           <div
@@ -1851,7 +1783,7 @@
             <div
               class="info-label"
             >
-              选举编号
+              Election ID
             </div>
 
 
@@ -1860,7 +1792,6 @@
             >
               ${escapeHTML(
                 election.electionId
-                || "暂无资料"
               )}
             </div>
 
@@ -1868,67 +1799,11 @@
 
         </div>
 
-      </section>
+      </div>
 
 
 
-      <section
-        class="result-notice"
-      >
-
-        <div
-          class="result-icon"
-        >
-          ✓
-        </div>
-
-
-        <h2>
-          选举结果
-        </h2>
-
-
-        <p>
-          ${
-            status === "completed"
-              ? "本页面暂未录入正式计票结果。"
-              : "本场选举尚未完成，正式结果将在选举结束并完成计票后公布。"
-          }
-        </p>
-
-      </section>
-
-
-
-      <section
-        class="section"
-      >
-
-        <div
-          class="section-header"
-        >
-
-          <h2>
-            候选人
-          </h2>
-
-
-          <div
-            class="section-line"
-          ></div>
-
-        </div>
-
-
-        <div
-          class="candidate-list"
-        >
-
-          ${candidatesHTML}
-
-        </div>
-
-      </section>
+      ${resultContent}
 
     `;
 
@@ -1936,11 +1811,10 @@
 
 
   /* =========================================================
-     错误页面
+     错误
   ========================================================= */
 
   function showError(
-    title,
     message
   ) {
 
@@ -1953,9 +1827,7 @@
       >
 
         <h1>
-          ${escapeHTML(
-            title
-          )}
+          无法读取选举资料
         </h1>
 
 
@@ -1964,13 +1836,6 @@
             message
           )}
         </p>
-
-
-        <a
-          href="election-history.html"
-        >
-          返回选举历史
-        </a>
 
       </div>
 
@@ -1983,7 +1848,7 @@
      主程序
   ========================================================= */
 
-  async function loadElectionResult() {
+  async function loadPage() {
 
     const electionId =
       getElectionId();
@@ -1992,8 +1857,7 @@
     if (!electionId) {
 
       showError(
-        "未指定选举",
-        "请通过选举历史页面选择一场具体选举。"
+        "未指定 electionId。请从选举历史页面进入具体选举。"
       );
 
       return;
@@ -2003,14 +1867,15 @@
 
     try {
 
+      /*
+       * 同时读取四个数据文件。
+       */
+
       const [
-
         electionsResponse,
-
         candidatesResponse,
-
-        partiesResponse
-
+        partiesResponse,
+        resultsResponse
       ] = await Promise.all([
 
         fetch(
@@ -2023,6 +1888,10 @@
 
         fetch(
           "./data/parties.json"
+        ),
+
+        fetch(
+          "./data/election-results.json"
         )
 
       ]);
@@ -2033,7 +1902,7 @@
       ) {
 
         throw new Error(
-          "无法读取 elections.json。"
+          "无法读取 elections.json"
         );
 
       }
@@ -2044,7 +1913,7 @@
       ) {
 
         throw new Error(
-          "无法读取 candidates.json。"
+          "无法读取 candidates.json"
         );
 
       }
@@ -2055,46 +1924,114 @@
       ) {
 
         throw new Error(
-          "无法读取 parties.json。"
+          "无法读取 parties.json"
+        );
+
+      }
+
+
+      if (
+        !resultsResponse.ok
+      ) {
+
+        throw new Error(
+          "无法读取 election-results.json"
         );
 
       }
 
 
       const [
-
         electionsData,
-
         candidatesData,
-
-        partiesData
-
+        partiesData,
+        resultsData
       ] = await Promise.all([
 
         electionsResponse.json(),
 
         candidatesResponse.json(),
 
-        partiesResponse.json()
+        partiesResponse.json(),
+
+        resultsResponse.json()
 
       ]);
 
 
-      const result =
+      /*
+       * 找到具体选举。
+       */
+
+      const electionInfo =
         findElection(
           electionsData,
           electionId
         );
 
 
-      if (!result) {
+      if (!electionInfo) {
 
-        showError(
-          "未找到该选举",
-          `没有找到编号为 ${electionId} 的选举。`
+        throw new Error(
+          `找不到 electionId：${electionId}`
         );
 
-        return;
+      }
+
+
+      /*
+       * 找到结果记录。
+       */
+
+      let result = null;
+
+
+      if (
+        resultsData
+        &&
+        Array.isArray(
+          resultsData.results
+        )
+      ) {
+
+        result =
+          resultsData.results.find(
+            item =>
+              item.electionId
+              === electionId
+          )
+          || null;
+
+      }
+
+
+      /*
+       * 如果暂时没有结果记录，
+       * 默认显示“尚未公布”。
+       */
+
+      if (!result) {
+
+        result = {
+
+          electionId,
+
+          status:
+            "not_started",
+
+          publishedAt:
+            null,
+
+          totalVotes:
+            null,
+
+          candidateResults:
+            [],
+
+          winnerCandidateId:
+            null
+
+        };
 
       }
 
@@ -2102,11 +2039,18 @@
       document.getElementById(
         "content"
       ).innerHTML =
-        renderElection(
-          result.election,
-          result.typeData,
+        renderPage(
+
+          electionInfo.election,
+
+          electionInfo.typeData,
+
+          result,
+
           candidatesData,
+
           partiesData
+
         );
 
     }
@@ -2120,9 +2064,8 @@
 
 
       showError(
-        "读取选举资料失败",
         error.message
-        || "发生未知错误。"
+        || "读取资料时发生未知错误。"
       );
 
     }
@@ -2134,7 +2077,7 @@
      启动
   ========================================================= */
 
-  loadElectionResult();
+  loadPage();
 
 </script>
 
