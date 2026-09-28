@@ -804,6 +804,67 @@
     }
 
 
+    .vote-record {
+
+      margin-top: 18px;
+
+      padding: 16px;
+
+      border-radius: 10px;
+
+      background: #f7f9fc;
+
+      border: 1px solid #e2e7ef;
+
+      font-size: 13px;
+
+      color: #536177;
+
+    }
+
+
+    .vote-record-row {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      gap: 15px;
+
+      padding: 7px 0;
+
+      border-bottom: 1px solid #e8ecf2;
+
+    }
+
+
+    .vote-record-row:last-child {
+
+      border-bottom: none;
+
+    }
+
+
+    .vote-record-label {
+
+      color: #7b8798;
+
+    }
+
+
+    .vote-record-value {
+
+      color: #26364d;
+
+      font-weight: 600;
+
+      text-align: right;
+
+      word-break: break-word;
+
+    }
+
+
     /* =========================================================
        Error
     ========================================================= */
@@ -887,6 +948,22 @@
       .confirm-buttons {
 
         flex-direction: column;
+
+      }
+
+
+      .vote-record-row {
+
+        flex-direction: column;
+
+        gap: 2px;
+
+      }
+
+
+      .vote-record-value {
+
+        text-align: left;
 
       }
 
@@ -975,21 +1052,72 @@
     "https://axnews-admin-api.axie999666.workers.dev";
 
 
+  /*
+   * 浏览器匿名投票识别码。
+
+   * 该 ID 只用于服务器端的重复投票检测。
+   *
+   * Worker 实际保存的是经过 HMAC 处理后的 voterKey，
+   * 不会直接把这里的 voterId 写入 votes.json。
+   */
+
+  const VOTER_ID_STORAGE_KEY =
+    "axie-election-voter-id";
+
+
   /* =========================================================
      获取浏览器 voterId
-     ========================================================= */
+  ========================================================= */
+
+  function createFallbackVoterId() {
+
+    return (
+      "VOTER-" +
+      Date.now() +
+      "-" +
+      Math.random()
+        .toString(36)
+        .slice(2, 14) +
+      "-" +
+      Math.random()
+        .toString(36)
+        .slice(2, 14)
+    );
+
+  }
+
 
   function getVoterId() {
 
-    const STORAGE_KEY =
-      "axie-election-voter-id";
+    let voterId = null;
 
 
-    let voterId =
-      localStorage.getItem(
-        STORAGE_KEY
+    /*
+     * 尝试从 localStorage 读取。
+     */
+
+    try {
+
+      voterId =
+        localStorage.getItem(
+          VOTER_ID_STORAGE_KEY
+        );
+
+    }
+
+    catch (error) {
+
+      console.warn(
+        "无法读取 localStorage，将使用临时 voterId。",
+        error
       );
 
+    }
+
+
+    /*
+     * 没有 voterId 时生成新的。
+     */
 
     if (!voterId) {
 
@@ -1007,20 +1135,32 @@
       else {
 
         voterId =
-          "VOTER-" +
-          Date.now() +
-          "-" +
-          Math.random()
-            .toString(36)
-            .slice(2, 12);
+          createFallbackVoterId();
 
       }
 
 
-      localStorage.setItem(
-        STORAGE_KEY,
-        voterId
-      );
+      /*
+       * 尝试保存。
+       */
+
+      try {
+
+        localStorage.setItem(
+          VOTER_ID_STORAGE_KEY,
+          voterId
+        );
+
+      }
+
+      catch (error) {
+
+        console.warn(
+          "无法保存 voterId。",
+          error
+        );
+
+      }
 
     }
 
@@ -1576,6 +1716,10 @@
           candidate.electionId
           === electionId
       )
+
+      /*
+       * 只显示已经正式确认的候选人。
+       */
 
       .filter(
         candidate =>
@@ -2135,6 +2279,72 @@
 
 
   /* =========================================================
+     显示提交错误
+  ========================================================= */
+
+  function showVoteError(
+    message
+  ) {
+
+    const oldNotice =
+      document.getElementById(
+        "voteSubmitError"
+      );
+
+
+    if (oldNotice) {
+
+      oldNotice.remove();
+
+    }
+
+
+    const notice =
+      document.createElement(
+        "div"
+      );
+
+
+    notice.id =
+      "voteSubmitError";
+
+
+    notice.className =
+      "notice error";
+
+
+    notice.innerHTML = `
+
+      <strong>
+        投票提交失败
+      </strong>
+
+      ${escapeHTML(
+        message
+        || "服务器未能完成本次投票。"
+      )}
+
+    `;
+
+
+    const confirmation =
+      document.getElementById(
+        "confirmation"
+      );
+
+
+    if (confirmation) {
+
+      confirmation.before(
+        notice
+      );
+
+    }
+
+  }
+
+
+  /* =========================================================
      设置投票操作
   ========================================================= */
 
@@ -2297,11 +2507,32 @@
           || "独立候选人";
 
 
+        /*
+         * 清除之前的错误提示。
+         */
+
+        const oldError =
+          document.getElementById(
+            "voteSubmitError"
+          );
+
+
+        if (oldError) {
+
+          oldError.remove();
+
+        }
+
+
         submitButton.disabled =
           false;
 
         cancelButton.disabled =
           false;
+
+
+        submitButton.textContent =
+          "提交选票";
 
 
         confirmation.classList.add(
@@ -2357,9 +2588,7 @@
       async () => {
 
         /*
-         * =====================================================
          * 提交前再次检查选举状态。
-         * =====================================================
          */
 
         const currentStatus =
@@ -2461,6 +2690,9 @@
         cancelButton.disabled =
           true;
 
+        voteButton.disabled =
+          true;
+
 
         const originalButtonText =
           submitButton.textContent;
@@ -2470,10 +2702,27 @@
           "正在提交选票……";
 
 
+        /*
+         * 清除旧错误。
+         */
+
+        const oldError =
+          document.getElementById(
+            "voteSubmitError"
+          );
+
+
+        if (oldError) {
+
+          oldError.remove();
+
+        }
+
+
         try {
 
           /*
-           * 获取当前浏览器的 voterId。
+           * 获取当前浏览器的匿名 voterId。
            */
 
           const voterId =
@@ -2481,7 +2730,9 @@
 
 
           /*
+           * ===================================================
            * 向 Cloudflare Worker 提交真实选票。
+           * ===================================================
            */
 
           const response =
@@ -2549,7 +2800,9 @@
             throw new Error(
               result?.error
               ||
-              `服务器返回错误（${response.status}）`
+              result?.message
+              ||
+              `服务器返回错误（HTTP ${response.status}）`
             );
 
           }
@@ -2566,7 +2819,9 @@
             throw new Error(
               result?.error
               ||
-              "投票提交失败。"
+              result?.message
+              ||
+              "服务器没有接受本次选票。"
             );
 
           }
@@ -2611,23 +2866,125 @@
                 class="success-text"
               >
 
-                你的选票已经成功提交。
+                你的选票已经成功提交至
+                阿谢国选举投票系统。
 
                 <br><br>
 
-                投票编号：
-
-                <strong>
-                  ${escapeHTML(
-                    result.voteId
-                    || "暂无"
-                  )}
-                </strong>
-
-                <br><br>
-
-                本次选票已经记录，
+                系统已经记录本次选票，
                 请勿重复提交。
+
+              </div>
+
+
+              <div
+                class="vote-record"
+              >
+
+                <div
+                  class="vote-record-row"
+                >
+
+                  <span
+                    class="vote-record-label"
+                  >
+                    投票编号
+                  </span>
+
+                  <span
+                    class="vote-record-value"
+                  >
+                    ${escapeHTML(
+                      result.voteId
+                      || "暂无"
+                    )}
+                  </span>
+
+                </div>
+
+
+                <div
+                  class="vote-record-row"
+                >
+
+                  <span
+                    class="vote-record-label"
+                  >
+                    Election ID
+                  </span>
+
+                  <span
+                    class="vote-record-value"
+                  >
+                    ${escapeHTML(
+                      result.electionId
+                      ||
+                      election.electionId
+                    )}
+                  </span>
+
+                </div>
+
+
+                <div
+                  class="vote-record-row"
+                >
+
+                  <span
+                    class="vote-record-label"
+                  >
+                    候选人
+                  </span>
+
+                  <span
+                    class="vote-record-value"
+                  >
+                    ${escapeHTML(
+                      candidate.candidateNo
+                      || "-"
+                    )}
+                    ·
+                    ${escapeHTML(
+                      candidate.names?.zh
+                      || "未命名候选人"
+                    )}
+                  </span>
+
+                </div>
+
+
+                <div
+                  class="vote-record-row"
+                >
+
+                  <span
+                    class="vote-record-label"
+                  >
+                    提交状态
+                  </span>
+
+                  <span
+                    class="vote-record-value"
+                  >
+                    已记录
+                  </span>
+
+                </div>
+
+              </div>
+
+
+              <div
+                class="notice"
+                style="
+                  margin-top:18px;
+                  margin-bottom:0;
+                  font-size:12px;
+                "
+              >
+
+                本系统使用浏览器生成的匿名识别码进行重复投票检测。
+                该识别码并非现实身份认证。
 
               </div>
 
@@ -2653,7 +3010,9 @@
 
 
           /*
-           * 投票成功后锁定页面。
+           * ===================================================
+           * 投票成功后永久锁定当前页面。
+           * ===================================================
            */
 
           disableAllCandidates();
@@ -2697,18 +3056,23 @@
             false;
 
 
+          voteButton.disabled =
+            false;
+
+
           submitButton.textContent =
-            originalButtonText;
+            originalButtonText
+            || "提交选票";
 
 
           /*
            * 显示服务器错误。
            */
 
-          alert(
-            error.message
+          showVoteError(
+            error?.message
             ||
-            "投票提交失败，请稍后重试。"
+            "投票提交失败，请检查网络连接后再操作。"
           );
 
         }
