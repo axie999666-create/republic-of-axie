@@ -279,6 +279,17 @@
     }
 
 
+    .notice.error {
+
+      background: #fff0f0;
+
+      border-color: #efcaca;
+
+      color: #8a3030;
+
+    }
+
+
     /* =========================================================
        Status
     ========================================================= */
@@ -956,6 +967,69 @@
   const AXIE_ERA_START_YEAR = 2024;
 
 
+  /*
+   * Cloudflare Worker 投票 API
+   */
+
+  const VOTE_API_BASE =
+    "https://axnews-admin-api.axie999666.workers.dev";
+
+
+  /* =========================================================
+     获取浏览器 voterId
+     ========================================================= */
+
+  function getVoterId() {
+
+    const STORAGE_KEY =
+      "axie-election-voter-id";
+
+
+    let voterId =
+      localStorage.getItem(
+        STORAGE_KEY
+      );
+
+
+    if (!voterId) {
+
+      if (
+        window.crypto &&
+        typeof window.crypto.randomUUID ===
+          "function"
+      ) {
+
+        voterId =
+          window.crypto.randomUUID();
+
+      }
+
+      else {
+
+        voterId =
+          "VOTER-" +
+          Date.now() +
+          "-" +
+          Math.random()
+            .toString(36)
+            .slice(2, 12);
+
+      }
+
+
+      localStorage.setItem(
+        STORAGE_KEY,
+        voterId
+      );
+
+    }
+
+
+    return voterId;
+
+  }
+
+
   /* =========================================================
      HTML 转义
   ========================================================= */
@@ -970,6 +1044,7 @@
       return "";
 
     }
+
 
     return String(value)
 
@@ -1500,6 +1575,11 @@
         candidate =>
           candidate.electionId
           === electionId
+      )
+
+      .filter(
+        candidate =>
+          candidate.status === "confirmed"
       )
 
       .sort(
@@ -2063,6 +2143,10 @@
     candidates
   ) {
 
+    const election =
+      electionInfo.election;
+
+
     const voteButton =
       document.getElementById(
         "voteButton"
@@ -2127,13 +2211,9 @@
       "click",
       () => {
 
-        /*
-         * 点击「确认选择」时再次检查选举状态。
-         */
-
         const currentStatus =
           getElectionStatus(
-            electionInfo.election
+            election
           );
 
 
@@ -2217,11 +2297,6 @@
           || "独立候选人";
 
 
-        /*
-         * 每次打开确认窗口时，
-         * 确保按钮处于可用状态。
-         */
-
         submitButton.disabled =
           false;
 
@@ -2279,29 +2354,17 @@
 
     submitButton.addEventListener(
       "click",
-      () => {
+      async () => {
 
         /*
          * =====================================================
-         * 最终提交前再次检查选举状态。
-         *
-         * 防止：
-         *
-         * 23:59 打开页面
-         * ↓
-         * 23:59 选择候选人
-         * ↓
-         * 00:00 选举结束
-         * ↓
-         * 点击提交
-         *
-         * 必须拒绝。
+         * 提交前再次检查选举状态。
          * =====================================================
          */
 
         const currentStatus =
           getElectionStatus(
-            electionInfo.election
+            election
           );
 
 
@@ -2388,43 +2451,265 @@
 
         /*
          * =====================================================
-         * 当前版本：
-         *
-         * 仅测试前端投票流程。
-         *
-         * 不发送网络请求。
-         * 不修改 JSON。
-         * 不写入数据库。
+         * 防止重复点击。
          * =====================================================
          */
 
-        confirmation.classList.remove(
-          "show"
-        );
+        submitButton.disabled =
+          true;
+
+        cancelButton.disabled =
+          true;
 
 
-        const successResult =
-          document.getElementById(
-            "successResult"
-          );
+        const originalButtonText =
+          submitButton.textContent;
 
 
-        if (successResult) {
+        submitButton.textContent =
+          "正在提交选票……";
 
-          successResult.classList.add(
+
+        try {
+
+          /*
+           * 获取当前浏览器的 voterId。
+           */
+
+          const voterId =
+            getVoterId();
+
+
+          /*
+           * 向 Cloudflare Worker 提交真实选票。
+           */
+
+          const response =
+            await fetch(
+              `${VOTE_API_BASE}/vote`,
+              {
+
+                method:
+                  "POST",
+
+                headers: {
+
+                  "Content-Type":
+                    "application/json"
+
+                },
+
+                body:
+                  JSON.stringify({
+
+                    electionId:
+                      election.electionId,
+
+                    candidateId:
+                      candidate.candidateId,
+
+                    voterId:
+                      voterId
+
+                  })
+
+              }
+            );
+
+
+          /*
+           * 尝试读取服务器 JSON。
+           */
+
+          let result = null;
+
+
+          try {
+
+            result =
+              await response.json();
+
+          }
+
+          catch {
+
+            result = null;
+
+          }
+
+
+          /*
+           * HTTP 错误。
+           */
+
+          if (
+            !response.ok
+          ) {
+
+            throw new Error(
+              result?.error
+              ||
+              `服务器返回错误（${response.status}）`
+            );
+
+          }
+
+
+          /*
+           * Worker 返回 success=false。
+           */
+
+          if (
+            !result?.success
+          ) {
+
+            throw new Error(
+              result?.error
+              ||
+              "投票提交失败。"
+            );
+
+          }
+
+
+          /*
+           * ===================================================
+           * 投票成功
+           * ===================================================
+           */
+
+          confirmation.classList.remove(
             "show"
           );
 
 
-          successResult.scrollIntoView({
+          const successResult =
+            document.getElementById(
+              "successResult"
+            );
 
-            behavior:
-              "smooth",
 
-            block:
-              "center"
+          if (successResult) {
 
-          });
+            successResult.innerHTML = `
+
+              <div
+                class="success-icon"
+              >
+                ✓
+              </div>
+
+
+              <div
+                class="success-title"
+              >
+                投票成功
+              </div>
+
+
+              <div
+                class="success-text"
+              >
+
+                你的选票已经成功提交。
+
+                <br><br>
+
+                投票编号：
+
+                <strong>
+                  ${escapeHTML(
+                    result.voteId
+                    || "暂无"
+                  )}
+                </strong>
+
+                <br><br>
+
+                本次选票已经记录，
+                请勿重复提交。
+
+              </div>
+
+            `;
+
+
+            successResult.classList.add(
+              "show"
+            );
+
+
+            successResult.scrollIntoView({
+
+              behavior:
+                "smooth",
+
+              block:
+                "center"
+
+            });
+
+          }
+
+
+          /*
+           * 投票成功后锁定页面。
+           */
+
+          disableAllCandidates();
+
+
+          voteButton.disabled =
+            true;
+
+
+          voteButton.textContent =
+            "已完成投票";
+
+
+          submitButton.disabled =
+            true;
+
+
+          cancelButton.disabled =
+            true;
+
+        }
+
+
+        catch (error) {
+
+          console.error(
+            "投票提交失败：",
+            error
+          );
+
+
+          /*
+           * 恢复按钮。
+           */
+
+          submitButton.disabled =
+            false;
+
+
+          cancelButton.disabled =
+            false;
+
+
+          submitButton.textContent =
+            originalButtonText;
+
+
+          /*
+           * 显示服务器错误。
+           */
+
+          alert(
+            error.message
+            ||
+            "投票提交失败，请稍后重试。"
+          );
 
         }
 
@@ -2907,7 +3192,7 @@
         <div
           class="success-title"
         >
-          投票流程测试完成
+          投票成功
         </div>
 
 
@@ -2915,19 +3200,8 @@
           class="success-text"
         >
 
-          当前版本为前端投票流程测试。
-
-          <br><br>
-
-          本次操作没有向服务器提交真实选票，
-          不会修改数据库，
-          也不会影响正式选举结果。
-
-          <br><br>
-
-          正式投票系统上线后，
-          此处将连接服务器端选票提交、身份验证、
-          防重复投票及计票系统。
+          选票提交后，
+          系统会显示本次投票编号。
 
         </div>
 
