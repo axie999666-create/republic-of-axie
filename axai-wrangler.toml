@@ -1,0 +1,17 @@
+name = "axai-api"
+main = "axai-worker.mjs"
+compatibility_date = "2026-10-01"
+[vars]
+ALLOWED_ORIGIN = "https://republic-of-axie.org"
+# AI_API_URL = "https://your-provider.example/v1/chat/completions"
+# AI_MODEL = "your-model"
+[ai]
+binding = "AI"
+
+[[ratelimits]]
+name = "RATE_LIMITER"
+namespace_id = "20261001"
+simple = { limit = 10, period = 60 }
+
+[browser]
+binding = "BROWSER"

@@ -203,7 +203,6 @@ header p{
 
 }
 
-.language-switch{display:flex;justify-content:center;gap:8px;margin-top:18px}.language-switch button{border:1px solid #52779a;border-radius:18px;background:#2b567f;color:white;padding:8px 16px;cursor:pointer}.language-switch button[aria-pressed="true"]{background:#3478db;border-color:#87b5f8}.translation-note{font-size:13px;color:#bcdcff}
 </style>
 
 </head>
@@ -214,12 +213,7 @@ header p{
 
     <h1>📰 AXNews 新闻中心</h1>
 
-    <p id="newsSubtitle">Republic of Axie Official News</p>
-    <nav class="language-switch" aria-label="Language">
-      <button type="button" data-lang="zh" aria-pressed="true">中文</button>
-      <button type="button" data-lang="en" aria-pressed="false">English</button>
-      <button type="button" data-lang="ja" aria-pressed="false">日本語</button>
-    </nav>
+    <p>Republic of Axie Official News</p>
 
 </header>
 
@@ -279,53 +273,6 @@ header p{
 
 <script>
 
-const TEXT = {
- zh: {heading:"📰 AXNews 新闻中心", subtitle:"阿谢国官方新闻",search:"🔍 搜索新闻标题或正文...",all:"全部公告",other:"其他机构",ordinary:"普通新闻",unknown:"未知机构",count:n=>`共 ${n} 条新闻`,found:n=>`找到 ${n} 条相关新闻`,empty:"🔍 没有找到相关新闻",tryAgain:"请尝试其他关键词。",home:"← 返回首页",untitled:"无标题",loading:"正在加载新闻……",error:"新闻加载失败",errorBody:"AXNews 暂时无法读取新闻数据。",missing:"译文尚未生成，显示中文原文。",machine:"AI 自动翻译",footer:"阿谢国为架空世界观创作项目"},
- en: {heading:"📰 AXNews News Center",subtitle:"republic of axie Official News",search:"🔍 Search news titles or articles...",all:"All announcements",other:"Other agencies",ordinary:"General news",unknown:"Unknown agency",count:n=>`${n} news articles`,found:n=>`${n} matching articles`,empty:"🔍 No matching news",tryAgain:"Try another keyword.",home:"← Home",untitled:"Untitled",loading:"Loading news…",error:"Unable to load news",errorBody:"AXNews cannot load news data at the moment.",missing:"Translation unavailable. Chinese original shown.",machine:"AI translation",footer:"republic of axie is a fictional nation project"},
- ja: {heading:"📰 AXNews ニュースセンター",subtitle:"阿謝国公式ニュース",search:"🔍 ニュースの見出し・本文を検索...",all:"すべてのお知らせ",other:"その他の機関",ordinary:"一般ニュース",unknown:"不明な機関",count:n=>`ニュース ${n} 件`,found:n=>`検索結果 ${n} 件`,empty:"🔍 関連ニュースが見つかりません",tryAgain:"別のキーワードをお試しください。",home:"← ホームに戻る",untitled:"無題",loading:"ニュースを読み込み中…",error:"ニュースを読み込めません",errorBody:"現在、AXNews のニュースデータを読み込めません。",missing:"翻訳はまだありません。中国語の原文を表示しています。",machine:"AI 自動翻訳",footer:"阿謝国は架空の国家創作プロジェクトです"}
-};
-const AGENCY_TEXT = {
- "president":{en:"Presidential Affairs Department",ja:"大統領業務部"},
- "vice-president":{en:"Vice President’s Office",ja:"副大統領室"},
- "government":{en:"Government of the republic of axie",ja:"阿謝国政府"},
- "congress":{en:"Congress of the republic of axie",ja:"阿謝国国会議事堂"},
- "constitutional-court":{en:"Constitutional Court of the republic of axie",ja:"阿謝国立憲院"}
-};
-let savedLanguage = "zh";
-try { savedLanguage = localStorage.getItem("axnews-language") || "zh"; } catch {}
-let language = new URLSearchParams(location.search).get("lang") || savedLanguage;
-if (!TEXT[language]) language = "zh";
-let loaded = false;
-let loadError = null;
-function countryName(text) {
- return language === "zh" ? String(text || "") : String(text || "").replace(/阿[谢謝]国|republic of axie/gi, language === "en" ? "republic of axie" : "阿謝国");
-}
-function articleText(news) {
- const translated = language !== "zh" && news.translations?.[language];
- const ready = translated && typeof translated.title === "string" && translated.title.trim() && typeof translated.content === "string" && translated.content.trim();
- return ready ? {title:countryName(translated.title),content:countryName(translated.content),translated:true} : {title:news.title || TEXT[language].untitled,content:news.content || "",translated:false};
-}
-function applyLanguage() {
- const t = TEXT[language];
- document.documentElement.lang = language;
- document.title = t.heading.replace("📰 ", "") + " | " + (language === "ja" ? "阿謝国" : "republic of axie");
- document.querySelector("header h1").textContent = t.heading;
- document.getElementById("newsSubtitle").textContent = t.subtitle;
- document.getElementById("searchBox").placeholder = t.search;
- document.getElementById("searchBox").setAttribute("aria-label",t.search);
- document.querySelector(".actions a").textContent = t.home;
- const footer = document.querySelector(".footer-note");
- if (footer) footer.textContent = t.footer;
- document.querySelectorAll("[data-lang]").forEach(button => button.setAttribute("aria-pressed",String(button.dataset.lang === language)));
- if (loadError) renderError(loadError);
- else if (loaded) renderNews();
- else { document.getElementById("newsInfo").textContent=t.loading; document.querySelector("#newsList .message").textContent=t.loading; }
-}
-function renderError(err) {
- const t = TEXT[language];
- document.getElementById("newsInfo").textContent = t.error;
- document.getElementById("newsList").innerHTML = `<div class="message error"><h2>${t.error}</h2><p>${t.errorBody}</p><pre>${escapeHTML(err.message)}</pre></div>`;
-}
 let allNews = [];
 let agencies = [];
 const API_BASE = "https://axnews-admin-api.axie999666.workers.dev";
@@ -345,21 +292,19 @@ async function loadAgencies(){
 
 function agencyName(id){
     const agency = agencies.find(item => item.id === id);
-    return agency ? (AGENCY_TEXT[id]?.[language] || countryName(agency.name)) : (id ? TEXT[language].other : TEXT[language].ordinary);
+    return agency ? agency.name : (id ? "其他机构" : "普通新闻");
 }
 
 function renderAgencyFilters(){
     const nav = document.getElementById("agencyFilters");
     if(!nav) return;
     nav.innerHTML = "";
-    const links = [{id:"", name:TEXT[language].all, href:"AXNews.html"}, ...agencies.map(item => ({
-        id:item.id, name:agencyName(item.id), href:"AXNews.html?agency=" + encodeURIComponent(item.id)
+    const links = [{id:"", name:"全部公告", href:"AXNews.html"}, ...agencies.map(item => ({
+        id:item.id, name:item.name, href:"AXNews.html?agency=" + encodeURIComponent(item.id)
     }))];
     links.forEach(item => {
         const link = document.createElement("a");
-        const url = new URL(item.href, location.href);
-        url.searchParams.set("lang", language);
-        link.href = url.href;
+        link.href = item.href;
         link.textContent = item.name;
         if(item.id === selectedAgencyId) link.classList.add("active");
         nav.appendChild(link);
@@ -402,7 +347,6 @@ async function loadNews(){
         }
 
         allNews = data;
-        loaded = true;
         await loadAgencies();
         renderNews();
 
@@ -411,8 +355,26 @@ async function loadNews(){
 
         console.error(err);
 
-        loadError = err;
-        renderError(err);
+        newsInfo.textContent =
+            "新闻加载失败";
+
+        newsList.innerHTML = `
+
+            <div class="message error">
+
+                <h2>❌ 新闻加载失败</h2>
+
+                <p>
+                    AXNews 暂时无法读取新闻数据。
+                </p>
+
+                <pre>${escapeHTML(
+                    err.stack || err.message
+                )}</pre>
+
+            </div>
+
+        `;
 
     }
 
@@ -458,10 +420,10 @@ function renderNews(){
     const filteredNews = selectedNews.filter(news => {
 
         const title =
-            String(articleText(news).title || "") + " " + String(news.title || "");
+            String(news.title || "");
 
         const content =
-            String(articleText(news).content || "") + " " + String(news.content || "");
+            String(news.content || "");
 
         if(!keyword){
             return true;
@@ -478,10 +440,10 @@ function renderNews(){
     /* 新闻数量 */
 
     const selectedAgency = agencies.find(item => item.id === selectedAgencyId);
-    const scopeLabel = selectedAgency ? agencyName(selectedAgencyId) + " · " : (selectedAgencyId ? TEXT[language].unknown + " · " : "");
+    const scopeLabel = selectedAgency ? selectedAgency.name + " · " : (selectedAgencyId ? "未知机构 · " : "");
     newsInfo.textContent = scopeLabel + (keyword
-        ? TEXT[language].found(filteredNews.length)
-        : TEXT[language].count(filteredNews.length));
+        ? "找到 " + filteredNews.length + " 条相关新闻"
+        : "共 " + filteredNews.length + " 条新闻");
 
 
     /* 没有结果 */
@@ -492,10 +454,10 @@ function renderNews(){
 
             <div class="message">
 
-                <h2>${TEXT[language].empty}</h2>
+                <h2>🔍 没有找到相关新闻</h2>
 
                 <p>
-                    ${TEXT[language].tryAgain}
+                    请尝试其他关键词。
                 </p>
 
             </div>
@@ -515,7 +477,6 @@ function renderNews(){
     /* 创建新闻 */
 
     filteredNews.forEach(news => {
-        const display = articleText(news);
 
         const card =
             document.createElement("article");
@@ -529,7 +490,7 @@ function renderNews(){
             document.createElement("h2");
 
         title.textContent =
-            String(display.title);
+            String(news.title || "无标题");
 
         card.appendChild(title);
 
@@ -566,7 +527,7 @@ function renderNews(){
                     "./" + news[key];
 
                 img.alt =
-                    display.title;
+                    news.title || "AXNews 新闻图片";
 
                 img.loading = "lazy";
 
@@ -586,16 +547,9 @@ function renderNews(){
             document.createElement("p");
 
         content.textContent =
-            String(display.content);
+            String(news.content || "");
 
         card.appendChild(content);
-        if(language !== "zh") {
-            const note = document.createElement("p");
-            note.className = "translation-note";
-            note.textContent = display.translated ? TEXT[language].machine : TEXT[language].missing;
-            if(!display.translated) { title.lang = "zh"; content.lang = "zh"; }
-            card.appendChild(note);
-        }
 
 
         newsList.appendChild(card);
@@ -642,23 +596,17 @@ document
    页面加载
 ========================= */
 
-document.querySelectorAll("[data-lang]").forEach(button => button.addEventListener("click", () => {
-    language = button.dataset.lang;
-    try { localStorage.setItem("axnews-language", language); } catch {}
-    const url = new URL(location.href);
-    url.searchParams.set("lang", language);
-    history.replaceState(null, "", url);
-    applyLanguage();
-}));
-applyLanguage();
-document.addEventListener("DOMContentLoaded", () => { applyLanguage(); loadNews(); });
+document.addEventListener(
+    "DOMContentLoaded",
+    loadNews
+);
 
 </script>
 
 
 <aside class="axie-fiction-notice footer-note" aria-label="世界观创作说明" style="font-size:12px;opacity:0.5;margin-top:20px;text-align:center;padding:0 20px 30px;line-height:1.7;overflow-wrap:anywhere">阿谢国为架空世界观创作项目 · Republic of Axie is a fictional nation project</aside>
 <script src="axai-config.js"></script>
-<script src="axai-widget.js?v=20261001-laws-general" defer></script>
+<script src="axai-widget.js?v=20261001-web-reader" defer></script>
 </body>
 </html>
 
