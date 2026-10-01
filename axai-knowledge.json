@@ -67,7 +67,9 @@
       "国家性质"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一条"
   },
   {
     "title": "宪法 · 第二条（主权归属）",
@@ -79,7 +81,9 @@
       "主权归属"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第二条"
   },
   {
     "title": "宪法 · 第三条（宪法最高性）",
@@ -91,7 +95,9 @@
       "宪法最高性"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第三条"
   },
   {
     "title": "宪法 · 第四条（国家象征）",
@@ -103,7 +109,9 @@
       "国家象征"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第四条"
   },
   {
     "title": "宪法 · 第五条（国家语言）",
@@ -115,7 +123,9 @@
       "国家语言"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第五条"
   },
   {
     "title": "宪法 · 第六条（国家宗旨）",
@@ -127,7 +137,9 @@
       "国家宗旨"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第六条"
   },
   {
     "title": "宪法 · 第七条（民主原则）",
@@ -139,7 +151,9 @@
       "民主原则"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第七条"
   },
   {
     "title": "宪法 · 第八条（法治原则）",
@@ -151,7 +165,9 @@
       "法治原则"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第八条"
   },
   {
     "title": "宪法 · 第九条（和平原则）",
@@ -163,7 +179,9 @@
       "和平原则"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第九条"
   },
   {
     "title": "宪法 · 第十条（权力分立）",
@@ -175,7 +193,9 @@
       "权力分立"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第十条"
   },
   {
     "title": "宪法 · 第十一条（国民资格）",
@@ -187,7 +207,9 @@
       "国民资格"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第十一条"
   },
   {
     "title": "宪法 · 第十二条（生命权）",
@@ -199,7 +221,9 @@
       "生命权"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第十二条"
   },
   {
     "title": "宪法 · 第十三条（人身自由）",
@@ -211,7 +235,9 @@
       "人身自由"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第十三条"
   },
   {
     "title": "宪法 · 第十四条（平等权）",
@@ -223,7 +249,9 @@
       "平等权"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第十四条"
   },
   {
     "title": "宪法 · 第十五条（禁止歧视）",
@@ -235,7 +263,9 @@
       "禁止歧视"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第十五条"
   },
   {
     "title": "宪法 · 第十六条（思想自由）",
@@ -247,7 +277,9 @@
       "思想自由"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第十六条"
   },
   {
     "title": "宪法 · 第十七条（言论自由）",
@@ -259,7 +291,9 @@
       "言论自由"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第十七条"
   },
   {
     "title": "宪法 · 第十八条（宗教自由）",
@@ -271,7 +305,9 @@
       "宗教自由"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第十八条"
   },
   {
     "title": "宪法 · 第十九条（通信与隐私）",
@@ -283,7 +319,9 @@
       "通信与隐私"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第十九条"
   },
   {
     "title": "宪法 · 第二十条（集会与结社）",
@@ -295,7 +333,9 @@
       "集会与结社"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第二十条"
   },
   {
     "title": "宪法 · 第二十一条（选举权）",
@@ -307,7 +347,9 @@
       "选举权"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第二十一条"
   },
   {
     "title": "宪法 · 第二十二条（被选举权）",
@@ -319,7 +361,9 @@
       "被选举权"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第二十二条"
   },
   {
     "title": "宪法 · 第二十三条（公民投票权）",
@@ -331,7 +375,9 @@
       "公民投票权"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第二十三条"
   },
   {
     "title": "宪法 · 第二十四条（受教育权）",
@@ -343,7 +389,9 @@
       "受教育权"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第二十四条"
   },
   {
     "title": "宪法 · 第二十五条（工作权）",
@@ -355,7 +403,9 @@
       "工作权"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第二十五条"
   },
   {
     "title": "宪法 · 第二十六条（财产权）",
@@ -367,7 +417,9 @@
       "财产权"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第二十六条"
   },
   {
     "title": "宪法 · 第二十七条（迁徙自由）",
@@ -379,7 +431,9 @@
       "迁徙自由"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第二十七条"
   },
   {
     "title": "宪法 · 第二十八条（出入境自由）",
@@ -391,7 +445,9 @@
       "出入境自由"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第二十八条"
   },
   {
     "title": "宪法 · 第二十九条（文化权）",
@@ -403,7 +459,9 @@
       "文化权"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第二十九条"
   },
   {
     "title": "宪法 · 第三十条（司法救济权）",
@@ -415,7 +473,9 @@
       "司法救济权"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第三十条"
   },
   {
     "title": "宪法 · 第三十一条（公平审判）",
@@ -427,7 +487,9 @@
       "公平审判"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第三十一条"
   },
   {
     "title": "宪法 · 第三十二条（无罪推定）",
@@ -439,7 +501,9 @@
       "无罪推定"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第三十二条"
   },
   {
     "title": "宪法 · 第三十三条（国民义务）",
@@ -451,7 +515,9 @@
       "国民义务"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第三十三条"
   },
   {
     "title": "宪法 · 第三十四条（权利限制）",
@@ -463,7 +529,9 @@
       "权利限制"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第三十四条"
   },
   {
     "title": "宪法 · 第三十五条（国家权力）",
@@ -475,7 +543,9 @@
       "国家权力"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第三十五条"
   },
   {
     "title": "宪法 · 第三十六条（立法权）",
@@ -487,7 +557,9 @@
       "立法权"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第三十六条"
   },
   {
     "title": "宪法 · 第三十六条之一",
@@ -498,7 +570,9 @@
       "宪法"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第三十六条之一"
   },
   {
     "title": "宪法 · 第三十七条（行政权）",
@@ -510,7 +584,9 @@
       "行政权"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第三十七条"
   },
   {
     "title": "宪法 · 第三十八条（总统行使权）",
@@ -522,7 +598,9 @@
       "总统行使权"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第三十八条"
   },
   {
     "title": "宪法 · 第三十九条（司法权）",
@@ -534,7 +612,9 @@
       "司法权"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第三十九条"
   },
   {
     "title": "宪法 · 第四十条（公务员行使权）",
@@ -546,7 +626,9 @@
       "公务员行使权"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第四十条"
   },
   {
     "title": "宪法 · 第四十一条（权力独立）",
@@ -558,7 +640,9 @@
       "权力独立"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第四十一条"
   },
   {
     "title": "宪法 · 第四十二条（权力制衡）",
@@ -570,7 +654,9 @@
       "权力制衡"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第四十二条"
   },
   {
     "title": "宪法 · 第四十三条（国家机关合法性）",
@@ -582,7 +668,9 @@
       "国家机关合法性"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第四十三条"
   },
   {
     "title": "宪法 · 第四十四条（公共权力目的）",
@@ -594,7 +682,9 @@
       "公共权力目的"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第四十四条"
   },
   {
     "title": "宪法 · 第四十五条（国会地位）",
@@ -606,7 +696,9 @@
       "国会地位"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第四十五条"
   },
   {
     "title": "宪法 · 第四十六条（国会议员）",
@@ -618,7 +710,9 @@
       "国会议员"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第四十六条"
   },
   {
     "title": "宪法 · 第四十七条（议员任期）",
@@ -630,7 +724,9 @@
       "议员任期"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第四十七条"
   },
   {
     "title": "宪法 · 第四十八条（国会职权）",
@@ -642,7 +738,9 @@
       "国会职权"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第四十八条"
   },
   {
     "title": "宪法 · 第四十八条之一",
@@ -653,7 +751,9 @@
       "宪法"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第四十八条之一"
   },
   {
     "title": "宪法 · 第四十九条（法律提案）",
@@ -665,7 +765,9 @@
       "法律提案"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第四十九条"
   },
   {
     "title": "宪法 · 第五十条（法律通过）",
@@ -677,7 +779,9 @@
       "法律通过"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第五十条"
   },
   {
     "title": "宪法 · 第五十一条（预算权）",
@@ -689,7 +793,9 @@
       "预算权"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第五十一条"
   },
   {
     "title": "宪法 · 第五十二条（监督权）",
@@ -701,7 +807,9 @@
       "监督权"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第五十二条"
   },
   {
     "title": "宪法 · 第五十三条（调查权）",
@@ -713,7 +821,9 @@
       "调查权"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第五十三条"
   },
   {
     "title": "宪法 · 第五十四条（弹劾）",
@@ -725,7 +835,9 @@
       "弹劾"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第五十四条"
   },
   {
     "title": "宪法 · 第五十五条（国会自主）",
@@ -737,7 +849,9 @@
       "国会自主"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第五十五条"
   },
   {
     "title": "宪法 · 第五十六条（总统地位）",
@@ -749,7 +863,9 @@
       "总统地位"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第五十六条"
   },
   {
     "title": "宪法 · 第五十七条（总统任期）",
@@ -761,7 +877,9 @@
       "总统任期"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第五十七条"
   },
   {
     "title": "宪法 · 第五十八条（总统选举）",
@@ -773,7 +891,9 @@
       "总统选举"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第五十八条"
   },
   {
     "title": "宪法 · 第五十九条（副总统）",
@@ -785,7 +905,9 @@
       "副总统"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第五十九条"
   },
   {
     "title": "宪法 · 第六十条（总统工作部）",
@@ -797,7 +919,9 @@
       "总统工作部"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第六十条"
   },
   {
     "title": "宪法 · 第六十一条（总统职权）",
@@ -809,7 +933,9 @@
       "总统职权"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第六十一条"
   },
   {
     "title": "宪法 · 第六十二条（行政权与总统行使权）",
@@ -821,7 +947,9 @@
       "行政权与总统行使权"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第六十二条"
   },
   {
     "title": "宪法 · 第六十三条（总统军事权）",
@@ -833,7 +961,9 @@
       "总统军事权"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第六十三条"
   },
   {
     "title": "宪法 · 第六十四条（总统继任）",
@@ -845,7 +975,9 @@
       "总统继任"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第六十四条"
   },
   {
     "title": "宪法 · 第六十五条（总统责任）",
@@ -857,7 +989,9 @@
       "总统责任"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第六十五条"
   },
   {
     "title": "宪法 · 第六十六条（总统命令）",
@@ -869,7 +1003,9 @@
       "总统命令"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第六十六条"
   },
   {
     "title": "宪法 · 第六十七条（总统紧急权）",
@@ -881,7 +1017,9 @@
       "总统紧急权"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第六十七条"
   },
   {
     "title": "宪法 · 第六十八条（行政厅）",
@@ -893,7 +1031,9 @@
       "行政厅"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第六十八条"
   },
   {
     "title": "宪法 · 第六十九条（行政厅职能）",
@@ -905,7 +1045,9 @@
       "行政厅职能"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第六十九条"
   },
   {
     "title": "宪法 · 第七十条（行政首长）",
@@ -917,7 +1059,9 @@
       "行政首长"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第七十条"
   },
   {
     "title": "宪法 · 第七十一条（行政机构）",
@@ -929,7 +1073,9 @@
       "行政机构"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第七十一条"
   },
   {
     "title": "宪法 · 第七十二条（行政权范围）",
@@ -941,7 +1087,9 @@
       "行政权范围"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第七十二条"
   },
   {
     "title": "宪法 · 第七十三条（行政监督）",
@@ -953,7 +1101,9 @@
       "行政监督"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第七十三条"
   },
   {
     "title": "宪法 · 第七十四条（行政命令）",
@@ -965,7 +1115,9 @@
       "行政命令"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第七十四条"
   },
   {
     "title": "宪法 · 第七十五条（公共服务）",
@@ -977,7 +1129,9 @@
       "公共服务"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第七十五条"
   },
   {
     "title": "宪法 · 第七十六条（行政公开）",
@@ -989,7 +1143,9 @@
       "行政公开"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第七十六条"
   },
   {
     "title": "宪法 · 第七十七条（公务员制度）",
@@ -1001,7 +1157,9 @@
       "公务员制度"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第七十七条"
   },
   {
     "title": "宪法 · 第七十七条之一",
@@ -1012,7 +1170,9 @@
       "宪法"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第七十七条之一"
   },
   {
     "title": "宪法 · 第七十八条（公务员机关）",
@@ -1024,7 +1184,9 @@
       "公务员机关"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第七十八条"
   },
   {
     "title": "宪法 · 第七十九条（公务员依法行政）",
@@ -1036,7 +1198,9 @@
       "公务员依法行政"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第七十九条"
   },
   {
     "title": "宪法 · 第八十条（公务员独立性）",
@@ -1048,7 +1212,9 @@
       "公务员独立性"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第八十条"
   },
   {
     "title": "宪法 · 第八十一条（公务员公平）",
@@ -1060,7 +1226,9 @@
       "公务员公平"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第八十一条"
   },
   {
     "title": "宪法 · 第八十二条（公务员责任）",
@@ -1072,7 +1240,9 @@
       "公务员责任"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第八十二条"
   },
   {
     "title": "宪法 · 第八十三条（公务员监督）",
@@ -1084,7 +1254,9 @@
       "公务员监督"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第八十三条"
   },
   {
     "title": "宪法 · 第八十四条（公务员公共服务）",
@@ -1096,7 +1268,9 @@
       "公务员公共服务"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第八十四条"
   },
   {
     "title": "宪法 · 第八十五条（司法独立）",
@@ -1108,7 +1282,9 @@
       "司法独立"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第八十五条"
   },
   {
     "title": "宪法 · 第八十六条（法院体系）",
@@ -1120,7 +1296,9 @@
       "法院体系"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第八十六条"
   },
   {
     "title": "宪法 · 第八十七条（最高法院）",
@@ -1132,7 +1310,9 @@
       "最高法院"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第八十七条"
   },
   {
     "title": "宪法 · 第八十八条（司法审查）",
@@ -1144,7 +1324,9 @@
       "司法审查"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第八十八条"
   },
   {
     "title": "宪法 · 第八十九条（宪法审查）",
@@ -1156,7 +1338,9 @@
       "宪法审查"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第八十九条"
   },
   {
     "title": "宪法 · 第九十条（法官任命）",
@@ -1168,7 +1352,9 @@
       "法官任命"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第九十条"
   },
   {
     "title": "宪法 · 第九十一条（司法公开）",
@@ -1180,7 +1366,9 @@
       "司法公开"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第九十一条"
   },
   {
     "title": "宪法 · 第九十二条（司法公正）",
@@ -1192,7 +1380,9 @@
       "司法公正"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第九十二条"
   },
   {
     "title": "宪法 · 第九十三条（判决效力）",
@@ -1204,7 +1394,9 @@
       "判决效力"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第九十三条"
   },
   {
     "title": "宪法 · 第九十四条（司法责任）",
@@ -1216,7 +1408,9 @@
       "司法责任"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第九十四条"
   },
   {
     "title": "宪法 · 第九十五条（地方自治）",
@@ -1228,7 +1422,9 @@
       "地方自治"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第九十五条"
   },
   {
     "title": "宪法 · 第九十六条（地方政府）",
@@ -1240,7 +1436,9 @@
       "地方政府"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第九十六条"
   },
   {
     "title": "宪法 · 第九十七条（地方议会）",
@@ -1252,7 +1450,9 @@
       "地方议会"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第九十七条"
   },
   {
     "title": "宪法 · 第九十八条（地方首长）",
@@ -1264,7 +1464,9 @@
       "地方首长"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第九十八条"
   },
   {
     "title": "宪法 · 第九十九条（地方财政）",
@@ -1276,7 +1478,9 @@
       "地方财政"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第九十九条"
   },
   {
     "title": "宪法 · 第一百条（地方规范）",
@@ -1288,7 +1492,9 @@
       "地方规范"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百条"
   },
   {
     "title": "宪法 · 第一百零一条（国防原则）",
@@ -1300,7 +1506,9 @@
       "国防原则"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百零一条"
   },
   {
     "title": "宪法 · 第一百零二条（阿谢国防军）",
@@ -1312,7 +1520,9 @@
       "阿谢国防军"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百零二条"
   },
   {
     "title": "宪法 · 第一百零三条（国防军统帅）",
@@ -1324,7 +1534,9 @@
       "国防军统帅"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百零三条"
   },
   {
     "title": "宪法 · 第一百零四条（军事力量使用）",
@@ -1336,7 +1548,9 @@
       "军事力量使用"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百零四条"
   },
   {
     "title": "宪法 · 第一百零五条（国防监督）",
@@ -1348,7 +1562,9 @@
       "国防监督"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百零五条"
   },
   {
     "title": "宪法 · 第一百零六条（军事人员）",
@@ -1360,7 +1576,9 @@
       "军事人员"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百零六条"
   },
   {
     "title": "宪法 · 第一百零七条（国家安全）",
@@ -1372,7 +1590,9 @@
       "国家安全"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百零七条"
   },
   {
     "title": "宪法 · 第一百零八条（外交原则）",
@@ -1384,7 +1604,9 @@
       "外交原则"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百零八条"
   },
   {
     "title": "宪法 · 第一百零九条（国际法）",
@@ -1396,7 +1618,9 @@
       "国际法"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百零九条"
   },
   {
     "title": "宪法 · 第一百一十条（国际争端）",
@@ -1408,7 +1632,9 @@
       "国际争端"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百一十条"
   },
   {
     "title": "宪法 · 第一百一十一条（国际合作）",
@@ -1420,7 +1646,9 @@
       "国际合作"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百一十一条"
   },
   {
     "title": "宪法 · 第一百一十二条（国际条约）",
@@ -1432,7 +1660,9 @@
       "国际条约"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百一十二条"
   },
   {
     "title": "宪法 · 第一百一十三条（经济制度）",
@@ -1444,7 +1674,9 @@
       "经济制度"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百一十三条"
   },
   {
     "title": "宪法 · 第一百一十四条（合法财产）",
@@ -1456,7 +1688,9 @@
       "合法财产"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百一十四条"
   },
   {
     "title": "宪法 · 第一百一十五条（市场秩序）",
@@ -1468,7 +1702,9 @@
       "市场秩序"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百一十五条"
   },
   {
     "title": "宪法 · 第一百一十六条（消费者权益）",
@@ -1480,7 +1716,9 @@
       "消费者权益"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百一十六条"
   },
   {
     "title": "宪法 · 第一百一十七条（税收原则）",
@@ -1492,7 +1730,9 @@
       "税收原则"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百一十七条"
   },
   {
     "title": "宪法 · 第一百一十八条（国家预算）",
@@ -1504,7 +1744,9 @@
       "国家预算"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百一十八条"
   },
   {
     "title": "宪法 · 第一百一十九条（国家财产）",
@@ -1516,7 +1758,9 @@
       "国家财产"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百一十九条"
   },
   {
     "title": "宪法 · 第一百二十条（审计制度）",
@@ -1528,7 +1772,9 @@
       "审计制度"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百二十条"
   },
   {
     "title": "宪法 · 第一百二十一条（科技发展）",
@@ -1540,7 +1786,9 @@
       "科技发展"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百二十一条"
   },
   {
     "title": "宪法 · 第一百二十二条（教育科技）",
@@ -1552,7 +1800,9 @@
       "教育科技"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百二十二条"
   },
   {
     "title": "宪法 · 第一百二十三条（数字发展）",
@@ -1564,7 +1814,9 @@
       "数字发展"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百二十三条"
   },
   {
     "title": "宪法 · 第一百二十四条（环境保护）",
@@ -1576,7 +1828,9 @@
       "环境保护"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百二十四条"
   },
   {
     "title": "宪法 · 第一百二十五条（永续发展）",
@@ -1588,7 +1842,9 @@
       "永续发展"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百二十五条"
   },
   {
     "title": "宪法 · 第一百二十六条（紧急状态）",
@@ -1600,7 +1856,9 @@
       "紧急状态"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百二十六条"
   },
   {
     "title": "宪法 · 第一百二十七条（紧急权限制）",
@@ -1612,7 +1870,9 @@
       "紧急权限制"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百二十七条"
   },
   {
     "title": "宪法 · 第一百二十八条（基本权利保障）",
@@ -1624,7 +1884,9 @@
       "基本权利保障"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百二十八条"
   },
   {
     "title": "宪法 · 第一百二十九条（国会监督）",
@@ -1636,7 +1898,9 @@
       "国会监督"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百二十九条"
   },
   {
     "title": "宪法 · 第一百三十条（紧急状态终止）",
@@ -1648,7 +1912,9 @@
       "紧急状态终止"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百三十条"
   },
   {
     "title": "宪法 · 第一百三十一条（宪法解释）",
@@ -1660,7 +1926,9 @@
       "宪法解释"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百三十一条"
   },
   {
     "title": "宪法 · 第一百三十二条（宪法修正）",
@@ -1672,7 +1940,9 @@
       "宪法修正"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百三十二条"
   },
   {
     "title": "宪法 · 第一百三十三条（全民公投）",
@@ -1684,7 +1954,9 @@
       "全民公投"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百三十三条"
   },
   {
     "title": "宪法 · 第一百三十四条（修宪限制）",
@@ -1696,7 +1968,9 @@
       "修宪限制"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百三十四条"
   },
   {
     "title": "宪法 · 第一百三十五条（宪法连续性）",
@@ -1708,7 +1982,9 @@
       "宪法连续性"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百三十五条"
   },
   {
     "title": "宪法 · 第一百三十六条（法律体系）",
@@ -1720,7 +1996,9 @@
       "法律体系"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百三十六条"
   },
   {
     "title": "宪法 · 第一百三十七条（法律效力）",
@@ -1732,7 +2010,9 @@
       "法律效力"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百三十七条"
   },
   {
     "title": "宪法 · 第一百三十八条（国家机关衔接）",
@@ -1744,7 +2024,9 @@
       "国家机关衔接"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百三十八条"
   },
   {
     "title": "宪法 · 第一百三十九条（宪法宣誓）",
@@ -1756,7 +2038,9 @@
       "宪法宣誓"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百三十九条"
   },
   {
     "title": "宪法 · 第一百四十条（宪法遵守）",
@@ -1768,7 +2052,9 @@
       "宪法遵守"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百四十条"
   },
   {
     "title": "宪法 · 第一百四十一条（宪法公布）",
@@ -1780,7 +2066,9 @@
       "宪法公布"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百四十一条"
   },
   {
     "title": "宪法 · 第一百四十二条（最终条款）",
@@ -1792,7 +2080,9 @@
       "最终条款"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百四十二条"
   },
   {
     "title": "宪法 · 第一百四十三条（生效及修正史）",
@@ -1804,20 +2094,9 @@
       "生效及修正史"
     ],
     "status": "official",
-    "verifiedAt": "2026-10-01"
-  },
-  {
-    "title": "法律原文查询",
-    "text": "当前已接入阿谢国宪法。其他法律原文尚未收录；请通过官方网站目录查找正式法律网站，不能据此确认总统法或刑法的条文。",
-    "url": "https://directory.republic-of-axie.org/",
-    "keywords": [
-      "法律",
-      "刑法",
-      "总统法",
-      "法律修改"
-    ],
-    "status": "official",
-    "verifiedAt": "2026-10-01"
+    "verifiedAt": "2026-10-01",
+    "law": "宪法",
+    "article": "第一百四十三条"
   },
   {
     "title": "AXNews",
@@ -1860,5 +2139,4712 @@
     ],
     "status": "official",
     "verifiedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 文本与版本说明（用户提供）",
+    "text": "阿谢国刑法\n\nRepublic of Axie Criminal Code\n\n**制定机关：**阿谢国国会议事堂\n**公布机关：**阿谢国总统\n**法律性质：**阿谢国基本刑事法律\n**法律编号：**刑法第001号\n**最新修正：**再次修正案\n**施行日期：**阿谢二年十一月十九日",
+    "law": "刑法",
+    "keywords": [
+      "刑法",
+      "版本",
+      "施行日期",
+      "制定机关"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一条【立法目的】（用户提供）",
+    "text": "第一条【立法目的】\n\n本法为保护阿谢国国家安全、社会秩序、公共利益、国民生命、身体、自由、人格、财产、环境及其他合法权益，明确犯罪及刑罚，预防犯罪，维护社会正义与法治而制定。",
+    "law": "刑法",
+    "article": "第一条",
+    "articleNumber": 1,
+    "keywords": [
+      "立法目的"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第二条【罪刑法定原则】（用户提供）",
+    "text": "第二条【罪刑法定原则】\n\n任何行为，非行为发生时法律明文规定为犯罪者，不得定罪处罚。\n\n任何刑罚，非法律明文规定者，不得适用。",
+    "law": "刑法",
+    "article": "第二条",
+    "articleNumber": 2,
+    "keywords": [
+      "罪刑法定原则"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第三条【刑罚明确原则】（用户提供）",
+    "text": "第三条【刑罚明确原则】\n\n犯罪构成及刑罚应当由法律明确规定。\n\n不得以类推解释方式扩大犯罪范围或者加重刑罚。",
+    "law": "刑法",
+    "article": "第三条",
+    "articleNumber": 3,
+    "keywords": [
+      "刑罚明确原则"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第四条【法律面前人人平等】（用户提供）",
+    "text": "第四条【法律面前人人平等】\n\n任何人无论其国籍、身份、职业、财富、职务或者社会地位为何，均受本法平等保护，并依法承担刑事责任。",
+    "law": "刑法",
+    "article": "第四条",
+    "articleNumber": 4,
+    "keywords": [
+      "法律面前人人平等"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第五条【责任原则】（用户提供）",
+    "text": "第五条【责任原则】\n\n行为人仅对其本人实施并依法应当承担责任之行为负责。\n\n刑罚应当与犯罪行为的性质、危害程度及行为人的责任程度相适应。",
+    "law": "刑法",
+    "article": "第五条",
+    "articleNumber": 5,
+    "keywords": [
+      "责任原则"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第六条【人权保障原则】（用户提供）",
+    "text": "第六条【人权保障原则】\n\n刑事司法及刑罚执行不得实施酷刑、虐待或者其他严重违反人格尊严之行为。",
+    "law": "刑法",
+    "article": "第六条",
+    "articleNumber": 6,
+    "keywords": [
+      "人权保障原则"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第七条【属地原则】（用户提供）",
+    "text": "第七条【属地原则】\n\n凡在阿谢国领土、领海、领空以及依法属于阿谢国管辖范围内实施之犯罪，适用本法。",
+    "law": "刑法",
+    "article": "第七条",
+    "articleNumber": 7,
+    "keywords": [
+      "属地原则"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第八条【属人原则】（用户提供）",
+    "text": "第八条【属人原则】\n\n阿谢国国民在阿谢国领域外实施犯罪，依本法应当追究刑事责任者，适用本法。",
+    "law": "刑法",
+    "article": "第八条",
+    "articleNumber": 8,
+    "keywords": [
+      "属人原则"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第九条【保护原则】（用户提供）",
+    "text": "第九条【保护原则】\n\n外国人在阿谢国领域外实施严重危害阿谢国国家安全、公共利益或者阿谢国国民重大合法权益之犯罪，依国际法及本法可以追究刑事责任。",
+    "law": "刑法",
+    "article": "第九条",
+    "articleNumber": 9,
+    "keywords": [
+      "保护原则"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第十条【国际司法合作】（用户提供）",
+    "text": "第十条【国际司法合作】\n\n阿谢国司法机关得依国际条约、协定及国际法，与其他国家及国际组织开展刑事司法合作。\n\n合作范围包括：\n\n（一）犯罪调查；\n（二）证据交换；\n（三）犯罪嫌疑人移交；\n（四）引渡；\n（五）刑事判决执行；\n（六）其他司法协助。",
+    "law": "刑法",
+    "article": "第十条",
+    "articleNumber": 10,
+    "keywords": [
+      "国际司法合作"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第十一条【禁止重复处罚】（用户提供）",
+    "text": "第十一条【禁止重复处罚】\n\n任何人不得因同一犯罪事实受到两次刑事处罚。",
+    "law": "刑法",
+    "article": "第十一条",
+    "articleNumber": 11,
+    "keywords": [
+      "禁止重复处罚"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第十二条【法律时间效力】（用户提供）",
+    "text": "第十二条【法律时间效力】\n\n犯罪行为适用行为发生时有效之法律。\n\n犯罪行为发生后法律发生变化者：\n\n（一）新法较轻的，适用新法；\n（二）新法取消犯罪性质的，不再追究刑事责任；\n（三）新法加重刑罚的，不得溯及既往。",
+    "law": "刑法",
+    "article": "第十二条",
+    "articleNumber": 12,
+    "keywords": [
+      "法律时间效力"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第十三条【犯罪】（用户提供）",
+    "text": "第十三条【犯罪】\n\n违反刑事法律规定，具有违法性，并达到刑事责任条件之行为，为犯罪。",
+    "law": "刑法",
+    "article": "第十三条",
+    "articleNumber": 13,
+    "keywords": [
+      "犯罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第十四条【作为与不作为】（用户提供）",
+    "text": "第十四条【作为与不作为】\n\n犯罪可以由作为构成。\n\n法律规定负有特定义务之人未履行该义务，造成法律规定之严重结果者，可以不作为构成犯罪。",
+    "law": "刑法",
+    "article": "第十四条",
+    "articleNumber": 14,
+    "keywords": [
+      "作为与不作为"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第十五条【故意】（用户提供）",
+    "text": "第十五条【故意】\n\n明知自己的行为可能造成法律禁止之结果，并希望或者放任该结果发生者，为故意。",
+    "law": "刑法",
+    "article": "第十五条",
+    "articleNumber": 15,
+    "keywords": [
+      "故意"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第十六条【过失】（用户提供）",
+    "text": "第十六条【过失】\n\n因违反法律、职业规范或者合理注意义务，导致法律规定之犯罪结果发生者，为过失。",
+    "law": "刑法",
+    "article": "第十六条",
+    "articleNumber": 16,
+    "keywords": [
+      "过失"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第十七条【过失犯罪】（用户提供）",
+    "text": "第十七条【过失犯罪】\n\n法律未特别规定者，过失行为不负刑事责任。",
+    "law": "刑法",
+    "article": "第十七条",
+    "articleNumber": 17,
+    "keywords": [
+      "过失犯罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第十八条【因果关系】（用户提供）",
+    "text": "第十八条【因果关系】\n\n法律规定犯罪必须产生特定结果者，行为与结果之间应具有法律上的因果关系。",
+    "law": "刑法",
+    "article": "第十八条",
+    "articleNumber": 18,
+    "keywords": [
+      "因果关系"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第十九条【责任年龄】（用户提供）",
+    "text": "第十九条【责任年龄】\n\n未满十四周岁者实施行为，不负刑事责任。\n\n已满十四周岁未满十六周岁者，仅对法律规定之重大犯罪承担刑事责任。\n\n已满十六周岁者，依法承担刑事责任。",
+    "law": "刑法",
+    "article": "第十九条",
+    "articleNumber": 19,
+    "keywords": [
+      "责任年龄"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第二十条【未成年人】（用户提供）",
+    "text": "第二十条【未成年人】\n\n犯罪时未满十八周岁者，适用未成年人特别保护规定。\n\n对未成年人量刑时，应当优先考虑教育、矫治及社会复归。",
+    "law": "刑法",
+    "article": "第二十条",
+    "articleNumber": 20,
+    "keywords": [
+      "未成年人"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第二十一条【二十周岁以下犯罪者】（用户提供）",
+    "text": "第二十一条【二十周岁以下犯罪者】\n\n犯罪时未满二十周岁者，除法律另有规定外，可以作为从轻处罚情节。",
+    "law": "刑法",
+    "article": "第二十一条",
+    "articleNumber": 21,
+    "keywords": [
+      "二十周岁以下犯罪者"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第二十二条【精神障碍】（用户提供）",
+    "text": "第二十二条【精神障碍】\n\n行为人在实施犯罪时因严重精神障碍完全丧失辨认或者控制行为能力者，不负刑事责任。\n\n辨认或者控制能力显著降低者，可以减轻刑事责任。",
+    "law": "刑法",
+    "article": "第二十二条",
+    "articleNumber": 22,
+    "keywords": [
+      "精神障碍"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第二十三条【自陷状态】（用户提供）",
+    "text": "第二十三条【自陷状态】\n\n行为人因自行饮酒、使用药物或者其他原因导致行为能力降低者，不得当然免除刑事责任。",
+    "law": "刑法",
+    "article": "第二十三条",
+    "articleNumber": 23,
+    "keywords": [
+      "自陷状态"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第二十四条【犯罪预备】（用户提供）",
+    "text": "第二十四条【犯罪预备】\n\n为实施重大犯罪而准备工具、制造条件或者进行其他准备行为者，为犯罪预备。\n\n除法律特别规定外，犯罪预备不处罚。",
+    "law": "刑法",
+    "article": "第二十四条",
+    "articleNumber": 24,
+    "keywords": [
+      "犯罪预备"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第二十五条【犯罪未遂】（用户提供）",
+    "text": "第二十五条【犯罪未遂】\n\n已经开始实施犯罪，但因行为人意志以外原因未完成犯罪者，为犯罪未遂。\n\n未遂犯可以比照既遂犯减轻处罚。",
+    "law": "刑法",
+    "article": "第二十五条",
+    "articleNumber": 25,
+    "keywords": [
+      "犯罪未遂"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第二十六条【犯罪中止】（用户提供）",
+    "text": "第二十六条【犯罪中止】\n\n犯罪尚未完成时，行为人自动放弃犯罪，或者采取积极措施防止犯罪结果发生者，为犯罪中止。\n\n犯罪中止者，可以免除或者减轻处罚。",
+    "law": "刑法",
+    "article": "第二十六条",
+    "articleNumber": 26,
+    "keywords": [
+      "犯罪中止"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第二十七条【正当防卫】（用户提供）",
+    "text": "第二十七条【正当防卫】\n\n为了保护本人或者他人之生命、身体、自由、财产及其他重大合法权益，制止正在进行之不法侵害而采取必要行为者，不负刑事责任。",
+    "law": "刑法",
+    "article": "第二十七条",
+    "articleNumber": 27,
+    "keywords": [
+      "正当防卫"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第二十八条【防卫过当】（用户提供）",
+    "text": "第二十八条【防卫过当】\n\n防卫行为明显超过必要限度并造成重大损害者，可以减轻或者免除处罚。",
+    "law": "刑法",
+    "article": "第二十八条",
+    "articleNumber": 28,
+    "keywords": [
+      "防卫过当"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第二十九条【紧急避难】（用户提供）",
+    "text": "第二十九条【紧急避难】\n\n为了避免正在发生之重大危险，在不得已情况下损害较小法益者，不负刑事责任。",
+    "law": "刑法",
+    "article": "第二十九条",
+    "articleNumber": 29,
+    "keywords": [
+      "紧急避难"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第三十条【紧急避难过当】（用户提供）",
+    "text": "第三十条【紧急避难过当】\n\n避险行为明显超过必要限度者，可以减轻或者免除处罚。",
+    "law": "刑法",
+    "article": "第三十条",
+    "articleNumber": 30,
+    "keywords": [
+      "紧急避难过当"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第三十一条【依法执行职务】（用户提供）",
+    "text": "第三十一条【依法执行职务】\n\n依法执行公务、司法裁判、紧急救援、医疗行为或者其他法律授权行为，不构成犯罪。",
+    "law": "刑法",
+    "article": "第三十一条",
+    "articleNumber": 31,
+    "keywords": [
+      "依法执行职务"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第三十二条【正当业务行为】（用户提供）",
+    "text": "第三十二条【正当业务行为】\n\n在法律允许范围内从事医疗、科学研究、体育、新闻报道、艺术创作等正当活动，不因合理风险本身构成犯罪。",
+    "law": "刑法",
+    "article": "第三十二条",
+    "articleNumber": 32,
+    "keywords": [
+      "正当业务行为"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第三十三条【刑罚种类】（用户提供）",
+    "text": "第三十三条【刑罚种类】\n\n阿谢国刑罚分为：\n\n（一）死刑；\n（二）无期徒刑；\n（三）有期徒刑；\n（四）拘役；\n（五）罚金。",
+    "law": "刑法",
+    "article": "第三十三条",
+    "articleNumber": 33,
+    "keywords": [
+      "刑罚种类"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第三十四条【附加刑】（用户提供）",
+    "text": "第三十四条【附加刑】\n\n可以依法适用：\n\n（一）剥夺或者限制特定公权；\n（二）没收犯罪所得；\n（三）没收犯罪工具；\n（四）职业禁止；\n（五）驱逐出境。",
+    "law": "刑法",
+    "article": "第三十四条",
+    "articleNumber": 34,
+    "keywords": [
+      "附加刑"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第三十五条【死刑】（用户提供）",
+    "text": "第三十五条【死刑】\n\n死刑仅适用于法律明确规定且犯罪情节特别严重之犯罪。",
+    "law": "刑法",
+    "article": "第三十五条",
+    "articleNumber": 35,
+    "keywords": [
+      "死刑"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第三十六条【死刑限制】（用户提供）",
+    "text": "第三十六条【死刑限制】\n\n死刑不得适用于犯罪时未满二十周岁者。",
+    "law": "刑法",
+    "article": "第三十六条",
+    "articleNumber": 36,
+    "keywords": [
+      "死刑限制"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第三十七条【死刑执行】（用户提供）",
+    "text": "第三十七条【死刑执行】\n\n死刑判决必须经过法律规定之司法程序确认后方可执行。",
+    "law": "刑法",
+    "article": "第三十七条",
+    "articleNumber": 37,
+    "keywords": [
+      "死刑执行"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第三十八条【无期徒刑】（用户提供）",
+    "text": "第三十八条【无期徒刑】\n\n无期徒刑为长期剥夺犯罪者人身自由之刑罚。\n\n符合法律规定条件者，可以申请假释。",
+    "law": "刑法",
+    "article": "第三十八条",
+    "articleNumber": 38,
+    "keywords": [
+      "无期徒刑"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第三十九条【有期徒刑】（用户提供）",
+    "text": "第三十九条【有期徒刑】\n\n有期徒刑为在法律规定期限内剥夺人身自由之刑罚。",
+    "law": "刑法",
+    "article": "第三十九条",
+    "articleNumber": 39,
+    "keywords": [
+      "有期徒刑"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第四十条【拘役】（用户提供）",
+    "text": "第四十条【拘役】\n\n拘役为短期剥夺人身自由之刑罚。",
+    "law": "刑法",
+    "article": "第四十条",
+    "articleNumber": 40,
+    "keywords": [
+      "拘役"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第四十一条【罚金】（用户提供）",
+    "text": "第四十一条【罚金】\n\n罚金为判处犯罪者向国家缴纳一定金额之刑罚。",
+    "law": "刑法",
+    "article": "第四十一条",
+    "articleNumber": 41,
+    "keywords": [
+      "罚金"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第四十二条【没收】（用户提供）",
+    "text": "第四十二条【没收】\n\n犯罪所得、犯罪工具以及依法规定应当没收之物，可以依法没收。",
+    "law": "刑法",
+    "article": "第四十二条",
+    "articleNumber": 42,
+    "keywords": [
+      "没收"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第四十三条【驱逐出境】（用户提供）",
+    "text": "第四十三条【驱逐出境】\n\n外国人犯罪被判处刑罚后，可以依法适用驱逐出境。\n\n不得违反国际法及基本人权原则。",
+    "law": "刑法",
+    "article": "第四十三条",
+    "articleNumber": 43,
+    "keywords": [
+      "驱逐出境"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第四十四条【量刑原则】（用户提供）",
+    "text": "第四十四条【量刑原则】\n\n法院应根据犯罪性质、犯罪动机、犯罪手段、犯罪结果、社会危害程度、行为人责任程度以及其他情节确定刑罚。",
+    "law": "刑法",
+    "article": "第四十四条",
+    "articleNumber": 44,
+    "keywords": [
+      "量刑原则"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第四十五条【从轻处罚】（用户提供）",
+    "text": "第四十五条【从轻处罚】\n\n具有以下情节之一者，可以从轻处罚：\n\n（一）自首；\n（二）主动赔偿损害；\n（三）积极防止犯罪结果扩大；\n（四）协助司法机关调查其他犯罪；\n（五）其他依法规定之情节。",
+    "law": "刑法",
+    "article": "第四十五条",
+    "articleNumber": 45,
+    "keywords": [
+      "从轻处罚"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第四十六条【自首】（用户提供）",
+    "text": "第四十六条【自首】\n\n犯罪后主动向司法机关投案，并如实供述主要犯罪事实者，可以减轻处罚。",
+    "law": "刑法",
+    "article": "第四十六条",
+    "articleNumber": 46,
+    "keywords": [
+      "自首"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第四十七条【立功】（用户提供）",
+    "text": "第四十七条【立功】\n\n犯罪者协助司法机关侦破其他重大犯罪或者防止重大危害发生者，可以减轻处罚。",
+    "law": "刑法",
+    "article": "第四十七条",
+    "articleNumber": 47,
+    "keywords": [
+      "立功"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第四十八条【从重处罚】（用户提供）",
+    "text": "第四十八条【从重处罚】\n\n有下列情形之一者，可以从重处罚：\n\n（一）累犯；\n（二）组织、领导犯罪；\n（三）利用职务犯罪；\n（四）针对儿童等特别保护对象犯罪；\n（五）造成重大社会危害；\n（六）其他法定从重情节。",
+    "law": "刑法",
+    "article": "第四十八条",
+    "articleNumber": 48,
+    "keywords": [
+      "从重处罚"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第四十九条【累犯】（用户提供）",
+    "text": "第四十九条【累犯】\n\n五年内因故意犯罪受到刑罚处罚后再次实施故意犯罪者，为累犯。\n\n累犯依法从重处罚。",
+    "law": "刑法",
+    "article": "第四十九条",
+    "articleNumber": 49,
+    "keywords": [
+      "累犯"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第五十条【数罪并罚】（用户提供）",
+    "text": "第五十条【数罪并罚】\n\n行为人实施数个犯罪行为，并分别构成犯罪者，依法实行数罪并罚。",
+    "law": "刑法",
+    "article": "第五十条",
+    "articleNumber": 50,
+    "keywords": [
+      "数罪并罚"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第五十一条【共同犯罪】（用户提供）",
+    "text": "第五十一条【共同犯罪】\n\n二人以上共同实施犯罪并具有共同犯罪故意者，为共同犯罪。",
+    "law": "刑法",
+    "article": "第五十一条",
+    "articleNumber": 51,
+    "keywords": [
+      "共同犯罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第五十二条【共同正犯】（用户提供）",
+    "text": "第五十二条【共同正犯】\n\n共同犯罪者共同实施犯罪行为并发挥主要作用者，以共同正犯论处。",
+    "law": "刑法",
+    "article": "第五十二条",
+    "articleNumber": 52,
+    "keywords": [
+      "共同正犯"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第五十三条【教唆犯】（用户提供）",
+    "text": "第五十三条【教唆犯】\n\n教唆他人实施犯罪者，按照其教唆所导致之犯罪承担相应刑事责任。",
+    "law": "刑法",
+    "article": "第五十三条",
+    "articleNumber": 53,
+    "keywords": [
+      "教唆犯"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第五十四条【帮助犯】（用户提供）",
+    "text": "第五十四条【帮助犯】\n\n明知他人实施犯罪而提供重要帮助者，为帮助犯。\n\n帮助犯可以依法减轻处罚。",
+    "law": "刑法",
+    "article": "第五十四条",
+    "articleNumber": 54,
+    "keywords": [
+      "帮助犯"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第五十五条【单位犯罪】（用户提供）",
+    "text": "第五十五条【单位犯罪】\n\n法人、企业、组织或者其他单位通过负责人、管理人员或者授权人员实施法律规定之单位犯罪者，依法追究单位及相关责任人员责任。",
+    "law": "刑法",
+    "article": "第五十五条",
+    "articleNumber": 55,
+    "keywords": [
+      "单位犯罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第五十六条【叛国罪】（用户提供）",
+    "text": "第五十六条【叛国罪】\n\n以暴力、武力或者其他重大非法方式破坏阿谢国独立、主权、领土完整或者宪法秩序，或者向敌对势力提供重大协助者，处无期徒刑。\n\n造成特别重大危害者，处死刑。",
+    "law": "刑法",
+    "article": "第五十六条",
+    "articleNumber": 56,
+    "keywords": [
+      "叛国罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第五十七条【分裂国家罪】（用户提供）",
+    "text": "第五十七条【分裂国家罪】\n\n组织、策划或者实施严重破坏阿谢国国家统一及领土完整之行为者，处十年以上有期徒刑或者无期徒刑。",
+    "law": "刑法",
+    "article": "第五十七条",
+    "articleNumber": 57,
+    "keywords": [
+      "分裂国家罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第五十八条【间谍罪】（用户提供）",
+    "text": "第五十八条【间谍罪】\n\n非法刺探、窃取、收集或者传递阿谢国国家秘密及重要情报，供外国政府、组织或者敌对势力使用者，处五年以上有期徒刑。\n\n情节特别严重者，处无期徒刑。",
+    "law": "刑法",
+    "article": "第五十八条",
+    "articleNumber": 58,
+    "keywords": [
+      "间谍罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第五十九条【泄露国家秘密罪】（用户提供）",
+    "text": "第五十九条【泄露国家秘密罪】\n\n依法负有保密义务之人故意泄露国家秘密者，处三年以上十年以下有期徒刑。",
+    "law": "刑法",
+    "article": "第五十九条",
+    "articleNumber": 59,
+    "keywords": [
+      "泄露国家秘密罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第六十条【非法获取国家秘密罪】（用户提供）",
+    "text": "第六十条【非法获取国家秘密罪】\n\n通过盗窃、欺骗、非法侵入资讯系统或者其他方式非法获取国家秘密者，处三年以上十年以下有期徒刑。",
+    "law": "刑法",
+    "article": "第六十条",
+    "articleNumber": 60,
+    "keywords": [
+      "非法获取国家秘密罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第六十一条【资敌罪】（用户提供）",
+    "text": "第六十一条【资敌罪】\n\n战争、武装冲突或者国家紧急状态期间，为敌对势力提供军事情报、重要物资或者其他重大协助者，处十年以上有期徒刑或者无期徒刑。",
+    "law": "刑法",
+    "article": "第六十一条",
+    "articleNumber": 61,
+    "keywords": [
+      "资敌罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第六十二条【恐怖活动罪】（用户提供）",
+    "text": "第六十二条【恐怖活动罪】\n\n以制造社会恐慌、胁迫政府或者严重破坏社会秩序为目的，实施严重暴力犯罪者，处十年以上有期徒刑或者无期徒刑。\n\n造成重大人员死亡者，可以处死刑。",
+    "law": "刑法",
+    "article": "第六十二条",
+    "articleNumber": 62,
+    "keywords": [
+      "恐怖活动罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第六十三条【恐怖组织罪】（用户提供）",
+    "text": "第六十三条【恐怖组织罪】\n\n组织、领导恐怖组织者，处十年以上有期徒刑或者无期徒刑。\n\n积极参加者，处五年以上有期徒刑。",
+    "law": "刑法",
+    "article": "第六十三条",
+    "articleNumber": 63,
+    "keywords": [
+      "恐怖组织罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第六十四条【资助恐怖活动罪】（用户提供）",
+    "text": "第六十四条【资助恐怖活动罪】\n\n明知他人实施恐怖活动而提供资金、场所、交通工具或者其他重要协助者，处五年以上有期徒刑。",
+    "law": "刑法",
+    "article": "第六十四条",
+    "articleNumber": 64,
+    "keywords": [
+      "资助恐怖活动罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第六十五条【放火罪】（用户提供）",
+    "text": "第六十五条【放火罪】\n\n故意放火并足以危害公共安全者，处三年以上有期徒刑。\n\n造成重大人员伤亡者，处十年以上有期徒刑、无期徒刑或者死刑。",
+    "law": "刑法",
+    "article": "第六十五条",
+    "articleNumber": 65,
+    "keywords": [
+      "放火罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第六十六条【爆炸罪】（用户提供）",
+    "text": "第六十六条【爆炸罪】\n\n故意实施爆炸行为并危害公共安全者，处五年以上有期徒刑。\n\n造成重大伤亡者，处无期徒刑或者死刑。",
+    "law": "刑法",
+    "article": "第六十六条",
+    "articleNumber": 66,
+    "keywords": [
+      "爆炸罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第六十七条【交通设施破坏罪】（用户提供）",
+    "text": "第六十七条【交通设施破坏罪】\n\n故意破坏铁路、道路、桥梁、机场、港口或者其他交通设施，危害公共安全者，处三年以上十年以下有期徒刑。",
+    "law": "刑法",
+    "article": "第六十七条",
+    "articleNumber": 67,
+    "keywords": [
+      "交通设施破坏罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第六十八条【交通重大危害罪】（用户提供）",
+    "text": "第六十八条【交通重大危害罪】\n\n故意实施足以严重危害航空、铁路、海运等公共交通安全之行为者，处五年以上有期徒刑。",
+    "law": "刑法",
+    "article": "第六十八条",
+    "articleNumber": 68,
+    "keywords": [
+      "交通重大危害罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第六十九条【劫持交通工具罪】（用户提供）",
+    "text": "第六十九条【劫持交通工具罪】\n\n以暴力、威胁或者其他非法手段控制航空器、列车、船舶或者其他公共交通工具者，处十年以上有期徒刑或者无期徒刑。\n\n造成重大伤亡者，可以处死刑。",
+    "law": "刑法",
+    "article": "第六十九条",
+    "articleNumber": 69,
+    "keywords": [
+      "劫持交通工具罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第七十条【危险物质犯罪】（用户提供）",
+    "text": "第七十条【危险物质犯罪】\n\n非法制造、储存、运输或者使用足以严重危害公共安全之危险物质者，处三年以上十年以下有期徒刑。",
+    "law": "刑法",
+    "article": "第七十条",
+    "articleNumber": 70,
+    "keywords": [
+      "危险物质犯罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第七十一条【非法持有武器】（用户提供）",
+    "text": "第七十一条【非法持有武器】\n\n未经法律许可持有枪械、爆炸物或者其他依法禁止私人持有之武器者，处一年以上七年以下有期徒刑。",
+    "law": "刑法",
+    "article": "第七十一条",
+    "articleNumber": 71,
+    "keywords": [
+      "非法持有武器"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第七十二条【非法制造武器】（用户提供）",
+    "text": "第七十二条【非法制造武器】\n\n非法制造、改造或者大量交易枪械、爆炸物者，处五年以上有期徒刑。",
+    "law": "刑法",
+    "article": "第七十二条",
+    "articleNumber": 72,
+    "keywords": [
+      "非法制造武器"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第七十三条【破坏公共设施】（用户提供）",
+    "text": "第七十三条【破坏公共设施】\n\n故意破坏供水、供电、通信、医疗、消防等重要公共设施，严重影响社会运行者，处三年以上十年以下有期徒刑。",
+    "law": "刑法",
+    "article": "第七十三条",
+    "articleNumber": 73,
+    "keywords": [
+      "破坏公共设施"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第七十四条【妨害公务罪】（用户提供）",
+    "text": "第七十四条【妨害公务罪】\n\n以暴力、威胁或者其他严重方式妨害公务人员依法执行职务者，处三年以下有期徒刑、拘役或者罚金。",
+    "law": "刑法",
+    "article": "第七十四条",
+    "articleNumber": 74,
+    "keywords": [
+      "妨害公务罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第七十五条【袭击公务人员】（用户提供）",
+    "text": "第七十五条【袭击公务人员】\n\n公务人员依法执行职务期间，对其实施严重暴力行为者，处一年以上七年以下有期徒刑。",
+    "law": "刑法",
+    "article": "第七十五条",
+    "articleNumber": 75,
+    "keywords": [
+      "袭击公务人员"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第七十六条【冒充公务人员】（用户提供）",
+    "text": "第七十六条【冒充公务人员】\n\n冒充警察、司法人员、政府工作人员或者其他依法具有特殊身份之人员，并以此实施非法行为者，处三年以下有期徒刑或者罚金。",
+    "law": "刑法",
+    "article": "第七十六条",
+    "articleNumber": 76,
+    "keywords": [
+      "冒充公务人员"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第七十七条【伪造公文】（用户提供）",
+    "text": "第七十七条【伪造公文】\n\n伪造、变造国家机关公文、证件、印章者，处一年以上七年以下有期徒刑。",
+    "law": "刑法",
+    "article": "第七十七条",
+    "articleNumber": 77,
+    "keywords": [
+      "伪造公文"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第七十八条【使用伪造公文】（用户提供）",
+    "text": "第七十八条【使用伪造公文】\n\n明知文件为伪造、变造仍故意使用者，处一年以上五年以下有期徒刑。",
+    "law": "刑法",
+    "article": "第七十八条",
+    "articleNumber": 78,
+    "keywords": [
+      "使用伪造公文"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第七十九条【妨害司法】（用户提供）",
+    "text": "第七十九条【妨害司法】\n\n以暴力、威胁、贿赂、欺骗等方式严重干扰司法程序者，处三年以下有期徒刑。",
+    "law": "刑法",
+    "article": "第七十九条",
+    "articleNumber": 79,
+    "keywords": [
+      "妨害司法"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第八十条【伪证罪】（用户提供）",
+    "text": "第八十条【伪证罪】\n\n在司法程序中故意作虚假证言或者提供虚假证据者，处三年以下有期徒刑。",
+    "law": "刑法",
+    "article": "第八十条",
+    "articleNumber": 80,
+    "keywords": [
+      "伪证罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第八十一条【毁灭证据罪】（用户提供）",
+    "text": "第八十一条【毁灭证据罪】\n\n故意毁灭、隐藏或者伪造重要犯罪证据，严重妨害司法机关调查者，处三年以下有期徒刑。",
+    "law": "刑法",
+    "article": "第八十一条",
+    "articleNumber": 81,
+    "keywords": [
+      "毁灭证据罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第八十二条【逃避司法执行】（用户提供）",
+    "text": "第八十二条【逃避司法执行】\n\n故意逃避依法执行之刑罚或者帮助犯罪者逃避司法执行者，依法追究刑事责任。",
+    "law": "刑法",
+    "article": "第八十二条",
+    "articleNumber": 82,
+    "keywords": [
+      "逃避司法执行"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第八十三条【贪污罪】（用户提供）",
+    "text": "第八十三条【贪污罪】\n\n公务人员利用职务侵吞、窃取或者非法占有公共财产者，处五年以上有期徒刑。\n\n数额特别巨大或者造成重大公共利益损失者，处无期徒刑。",
+    "law": "刑法",
+    "article": "第八十三条",
+    "articleNumber": 83,
+    "keywords": [
+      "贪污罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第八十四条【受贿罪】（用户提供）",
+    "text": "第八十四条【受贿罪】\n\n公务人员利用职务收受不正当利益者，处三年以上十年以下有期徒刑。\n\n情节特别严重者，处无期徒刑。",
+    "law": "刑法",
+    "article": "第八十四条",
+    "articleNumber": 84,
+    "keywords": [
+      "受贿罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第八十五条【行贿罪】（用户提供）",
+    "text": "第八十五条【行贿罪】\n\n为谋取不正当利益向公务人员提供财物或者其他利益者，处三年以下有期徒刑或者罚金。",
+    "law": "刑法",
+    "article": "第八十五条",
+    "articleNumber": 85,
+    "keywords": [
+      "行贿罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第八十六条【滥用职权罪】（用户提供）",
+    "text": "第八十六条【滥用职权罪】\n\n公务人员故意滥用职权，严重损害国家或者国民合法权益者，处三年以下有期徒刑。",
+    "law": "刑法",
+    "article": "第八十六条",
+    "articleNumber": 86,
+    "keywords": [
+      "滥用职权罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第八十七条【玩忽职守罪】（用户提供）",
+    "text": "第八十七条【玩忽职守罪】\n\n公务人员严重违反职责，造成重大公共利益损害者，处三年以下有期徒刑。",
+    "law": "刑法",
+    "article": "第八十七条",
+    "articleNumber": 87,
+    "keywords": [
+      "玩忽职守罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第八十八条【利益冲突犯罪】（用户提供）",
+    "text": "第八十八条【利益冲突犯罪】\n\n公务人员利用职务为本人、亲属或者关联组织谋取重大非法利益者，处三年以下有期徒刑或者罚金。",
+    "law": "刑法",
+    "article": "第八十八条",
+    "articleNumber": 88,
+    "keywords": [
+      "利益冲突犯罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第八十九条【违法所得没收】（用户提供）",
+    "text": "第八十九条【违法所得没收】\n\n贪污、贿赂及其他公职犯罪所得应当依法没收。",
+    "law": "刑法",
+    "article": "第八十九条",
+    "articleNumber": 89,
+    "keywords": [
+      "违法所得没收"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第九十条【故意杀人罪】（用户提供）",
+    "text": "第九十条【故意杀人罪】\n\n故意非法剥夺他人生命者，处十年以上有期徒刑、无期徒刑或者死刑。\n\n犯罪情节特别严重者，可以判处死刑。",
+    "law": "刑法",
+    "article": "第九十条",
+    "articleNumber": 90,
+    "keywords": [
+      "故意杀人罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第九十一条【过失致人死亡罪】（用户提供）",
+    "text": "第九十一条【过失致人死亡罪】\n\n因重大过失造成他人死亡者，处三年以下有期徒刑。",
+    "law": "刑法",
+    "article": "第九十一条",
+    "articleNumber": 91,
+    "keywords": [
+      "过失致人死亡罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第九十二条【故意伤害罪】（用户提供）",
+    "text": "第九十二条【故意伤害罪】\n\n故意伤害他人身体者，处六个月以上五年以下有期徒刑。\n\n造成重伤者，处三年以上十年以下有期徒刑。",
+    "law": "刑法",
+    "article": "第九十二条",
+    "articleNumber": 92,
+    "keywords": [
+      "故意伤害罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第九十三条【过失伤害罪】（用户提供）",
+    "text": "第九十三条【过失伤害罪】\n\n因重大过失造成他人重伤者，处三年以下有期徒刑或者罚金。",
+    "law": "刑法",
+    "article": "第九十三条",
+    "articleNumber": 93,
+    "keywords": [
+      "过失伤害罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第九十四条【遗弃罪】（用户提供）",
+    "text": "第九十四条【遗弃罪】\n\n对依法负有照护义务且无自救能力之人故意遗弃，造成生命或者身体重大危险者，处一年以上五年以下有期徒刑。",
+    "law": "刑法",
+    "article": "第九十四条",
+    "articleNumber": 94,
+    "keywords": [
+      "遗弃罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第九十五条【非法人体器官交易】（用户提供）",
+    "text": "第九十五条【非法人体器官交易】\n\n非法买卖、交易或者组织人体器官移植者，处五年以上有期徒刑。",
+    "law": "刑法",
+    "article": "第九十五条",
+    "articleNumber": 95,
+    "keywords": [
+      "非法人体器官交易"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第九十六条【非法拘禁罪】（用户提供）",
+    "text": "第九十六条【非法拘禁罪】\n\n非法限制、剥夺他人人身自由者，处一年以上七年以下有期徒刑。",
+    "law": "刑法",
+    "article": "第九十六条",
+    "articleNumber": 96,
+    "keywords": [
+      "非法拘禁罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第九十七条【绑架罪】（用户提供）",
+    "text": "第九十七条【绑架罪】\n\n以暴力、威胁、欺骗或者其他方式非法控制他人者，处五年以上有期徒刑。\n\n造成严重后果者，处无期徒刑。",
+    "law": "刑法",
+    "article": "第九十七条",
+    "articleNumber": 97,
+    "keywords": [
+      "绑架罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第九十八条【威胁恐吓罪】（用户提供）",
+    "text": "第九十八条【威胁恐吓罪】\n\n以暴力、伤害、毁坏财产或者其他重大危害相威胁，使他人产生合理恐惧者，处三年以下有期徒刑或者罚金。",
+    "law": "刑法",
+    "article": "第九十八条",
+    "articleNumber": 98,
+    "keywords": [
+      "威胁恐吓罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第九十九条【跟踪骚扰罪】（用户提供）",
+    "text": "第九十九条【跟踪骚扰罪】\n\n持续跟踪、监视或者骚扰他人，严重影响其正常生活者，处一年以下有期徒刑或者罚金。",
+    "law": "刑法",
+    "article": "第九十九条",
+    "articleNumber": 99,
+    "keywords": [
+      "跟踪骚扰罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百条【侵犯住宅罪】（用户提供）",
+    "text": "第一百条【侵犯住宅罪】\n\n未经许可非法进入他人住宅或者拒绝离开者，处三年以下有期徒刑或者罚金。",
+    "law": "刑法",
+    "article": "第一百条",
+    "articleNumber": 100,
+    "keywords": [
+      "侵犯住宅罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百零一条【性侵害罪】（用户提供）",
+    "text": "第一百零一条【性侵害罪】\n\n违背他人真实意愿实施性行为者，处三年以上十年以下有期徒刑。",
+    "law": "刑法",
+    "article": "第一百零一条",
+    "articleNumber": 101,
+    "keywords": [
+      "性侵害罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百零二条【未成年人性侵害】（用户提供）",
+    "text": "第一百零二条【未成年人性侵害】\n\n对未成年人实施性侵害者，处十年以上有期徒刑或者无期徒刑。",
+    "law": "刑法",
+    "article": "第一百零二条",
+    "articleNumber": 102,
+    "keywords": [
+      "未成年人性侵害"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百零三条【性骚扰罪】（用户提供）",
+    "text": "第一百零三条【性骚扰罪】\n\n以言语、文字、图像或者行为实施严重强迫性、侮辱性骚扰者，处一年以下有期徒刑或者罚金。",
+    "law": "刑法",
+    "article": "第一百零三条",
+    "articleNumber": 103,
+    "keywords": [
+      "性骚扰罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百零四条【侮辱罪】（用户提供）",
+    "text": "第一百零四条【侮辱罪】\n\n公然严重侮辱他人人格，造成重大社会影响者，处一年以下有期徒刑或者罚金。",
+    "law": "刑法",
+    "article": "第一百零四条",
+    "articleNumber": 104,
+    "keywords": [
+      "侮辱罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百零五条【诽谤罪】（用户提供）",
+    "text": "第一百零五条【诽谤罪】\n\n故意散布虚假事实，严重损害他人名誉者，处一年以下有期徒刑或者罚金。\n\n基于公共利益、合理事实依据或者善意评论之表达，不构成犯罪。",
+    "law": "刑法",
+    "article": "第一百零五条",
+    "articleNumber": 105,
+    "keywords": [
+      "诽谤罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百零六条【盗窃罪】（用户提供）",
+    "text": "第一百零六条【盗窃罪】\n\n以非法占有为目的窃取他人财物者，处六个月以上五年以下有期徒刑或者罚金。",
+    "law": "刑法",
+    "article": "第一百零六条",
+    "articleNumber": 106,
+    "keywords": [
+      "盗窃罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百零七条【重大盗窃罪】（用户提供）",
+    "text": "第一百零七条【重大盗窃罪】\n\n盗窃数额特别巨大，或者盗窃重要公共设施、文化财产者，依法从重处罚。",
+    "law": "刑法",
+    "article": "第一百零七条",
+    "articleNumber": 107,
+    "keywords": [
+      "重大盗窃罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百零八条【抢劫罪】（用户提供）",
+    "text": "第一百零八条【抢劫罪】\n\n以暴力、胁迫或者其他严重方式夺取他人财物者，处三年以上十年以下有期徒刑。\n\n造成重大伤亡者，处十年以上有期徒刑或者无期徒刑。",
+    "law": "刑法",
+    "article": "第一百零八条",
+    "articleNumber": 108,
+    "keywords": [
+      "抢劫罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百零九条【诈骗罪】（用户提供）",
+    "text": "第一百零九条【诈骗罪】\n\n以虚构事实、隐瞒真相或者其他欺骗手段非法取得他人财物者，处一年以上七年以下有期徒刑。",
+    "law": "刑法",
+    "article": "第一百零九条",
+    "articleNumber": 109,
+    "keywords": [
+      "诈骗罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百一十条【重大诈骗罪】（用户提供）",
+    "text": "第一百一十条【重大诈骗罪】\n\n利用网络、大规模组织或者其他方式实施重大诈骗，造成多人重大财产损失者，从重处罚。",
+    "law": "刑法",
+    "article": "第一百一十条",
+    "articleNumber": 110,
+    "keywords": [
+      "重大诈骗罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百一十一条【侵占罪】（用户提供）",
+    "text": "第一百一十一条【侵占罪】\n\n合法持有他人财物后故意非法占有并拒不返还者，处一年以上五年以下有期徒刑或者罚金。",
+    "law": "刑法",
+    "article": "第一百一十一条",
+    "articleNumber": 111,
+    "keywords": [
+      "侵占罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百一十二条【毁损财物罪】（用户提供）",
+    "text": "第一百一十二条【毁损财物罪】\n\n故意毁损他人财物，造成重大损失者，处五年以下有期徒刑或者罚金。",
+    "law": "刑法",
+    "article": "第一百一十二条",
+    "articleNumber": 112,
+    "keywords": [
+      "毁损财物罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百一十三条【敲诈勒索罪】（用户提供）",
+    "text": "第一百一十三条【敲诈勒索罪】\n\n以威胁、恐吓或者其他非法方式强迫他人交付财物者，处三年以上十年以下有期徒刑。",
+    "law": "刑法",
+    "article": "第一百一十三条",
+    "articleNumber": 113,
+    "keywords": [
+      "敲诈勒索罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百一十四条【文化财产犯罪】（用户提供）",
+    "text": "第一百一十四条【文化财产犯罪】\n\n盗窃、非法转让或者严重毁损具有重大历史、文化价值之文物者，依法从重处罚。",
+    "law": "刑法",
+    "article": "第一百一十四条",
+    "articleNumber": 114,
+    "keywords": [
+      "文化财产犯罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百一十五条【金融诈骗罪】（用户提供）",
+    "text": "第一百一十五条【金融诈骗罪】\n\n利用虚假信息、伪造文件或者其他欺诈手段骗取金融机构或者投资者财产者，处三年以上十年以下有期徒刑。",
+    "law": "刑法",
+    "article": "第一百一十五条",
+    "articleNumber": 115,
+    "keywords": [
+      "金融诈骗罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百一十六条【非法集资罪】（用户提供）",
+    "text": "第一百一十六条【非法集资罪】\n\n未经法律许可，以承诺收益等方式向公众非法募集资金，数额巨大或者造成重大损失者，处三年以上十年以下有期徒刑。",
+    "law": "刑法",
+    "article": "第一百一十六条",
+    "articleNumber": 116,
+    "keywords": [
+      "非法集资罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百一十七条【洗钱罪】（用户提供）",
+    "text": "第一百一十七条【洗钱罪】\n\n明知财产来源于犯罪所得，而通过转移、隐匿、转换等方式掩饰其来源者，处三年以上十年以下有期徒刑。",
+    "law": "刑法",
+    "article": "第一百一十七条",
+    "articleNumber": 117,
+    "keywords": [
+      "洗钱罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百一十八条【伪造货币罪】（用户提供）",
+    "text": "第一百一十八条【伪造货币罪】\n\n伪造、变造或者非法制造阿谢国法定货币者，处十年以上有期徒刑或者无期徒刑。",
+    "law": "刑法",
+    "article": "第一百一十八条",
+    "articleNumber": 118,
+    "keywords": [
+      "伪造货币罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百一十九条【使用伪造货币罪】（用户提供）",
+    "text": "第一百一十九条【使用伪造货币罪】\n\n明知货币为伪造仍故意使用者，处三年以上十年以下有期徒刑。",
+    "law": "刑法",
+    "article": "第一百一十九条",
+    "articleNumber": 119,
+    "keywords": [
+      "使用伪造货币罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百二十条【重大逃税罪】（用户提供）",
+    "text": "第一百二十条【重大逃税罪】\n\n以欺骗、隐瞒或者其他非法方式逃避依法应缴税款，达到重大数额者，处三年以下有期徒刑或者罚金。",
+    "law": "刑法",
+    "article": "第一百二十条",
+    "articleNumber": 120,
+    "keywords": [
+      "重大逃税罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百二十一条【非法侵入资讯系统罪】（用户提供）",
+    "text": "第一百二十一条【非法侵入资讯系统罪】\n\n未经授权侵入国家、企业、组织或者个人资讯系统者，处一年以上七年以下有期徒刑。",
+    "law": "刑法",
+    "article": "第一百二十一条",
+    "articleNumber": 121,
+    "keywords": [
+      "非法侵入资讯系统罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百二十二条【破坏资讯系统罪】（用户提供）",
+    "text": "第一百二十二条【破坏资讯系统罪】\n\n故意删除、破坏或者篡改计算机系统及重要数据，造成重大损害者，处三年以上十年以下有期徒刑。",
+    "law": "刑法",
+    "article": "第一百二十二条",
+    "articleNumber": 122,
+    "keywords": [
+      "破坏资讯系统罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百二十三条【资料泄漏罪】（用户提供）",
+    "text": "第一百二十三条【资料泄漏罪】\n\n非法取得、出售、传播国民个人资料，达到严重程度者，处三年以上七年以下有期徒刑。",
+    "law": "刑法",
+    "article": "第一百二十三条",
+    "articleNumber": 123,
+    "keywords": [
+      "资料泄漏罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百二十四条【非法交易个人资料罪】（用户提供）",
+    "text": "第一百二十四条【非法交易个人资料罪】\n\n以商业或者其他非法目的大规模买卖个人资料者，依法从重处罚。",
+    "law": "刑法",
+    "article": "第一百二十四条",
+    "articleNumber": 124,
+    "keywords": [
+      "非法交易个人资料罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百二十五条【网络诈骗罪】（用户提供）",
+    "text": "第一百二十五条【网络诈骗罪】\n\n利用网络平台实施诈骗，造成重大社会危害者，依诈骗罪从重处罚。",
+    "law": "刑法",
+    "article": "第一百二十五条",
+    "articleNumber": 125,
+    "keywords": [
+      "网络诈骗罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百二十六条【网络身份冒用罪】（用户提供）",
+    "text": "第一百二十六条【网络身份冒用罪】\n\n非法盗用、冒用他人网络身份、账号或者数字身份，造成重大损害者，处三年以下有期徒刑或者罚金。",
+    "law": "刑法",
+    "article": "第一百二十六条",
+    "articleNumber": 126,
+    "keywords": [
+      "网络身份冒用罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百二十七条【人工智能滥用罪】（用户提供）",
+    "text": "第一百二十七条【人工智能滥用罪】\n\n利用人工智能技术实施诈骗、伪造重要身份信息、严重制造虚假信息或者辅助实施重大犯罪者，依法追究刑事责任。\n\n合法的人工智能创作、学习、研究及娱乐活动，不因使用人工智能本身构成犯罪。",
+    "law": "刑法",
+    "article": "第一百二十七条",
+    "articleNumber": 127,
+    "keywords": [
+      "人工智能滥用罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百二十八条【攻击国家数字基础设施罪】（用户提供）",
+    "text": "第一百二十八条【攻击国家数字基础设施罪】\n\n非法攻击国家重要数字基础设施，严重影响公共服务或者国家安全者，处十年以上有期徒刑或者无期徒刑。",
+    "law": "刑法",
+    "article": "第一百二十八条",
+    "articleNumber": 128,
+    "keywords": [
+      "攻击国家数字基础设施罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百二十九条【毒品定义】（用户提供）",
+    "text": "第一百二十九条【毒品定义】\n\n本法所称毒品，是指依法列入阿谢国毒品管制目录，并具有严重成瘾性、精神作用或者重大健康危害之物质。",
+    "law": "刑法",
+    "article": "第一百二十九条",
+    "articleNumber": 129,
+    "keywords": [
+      "毒品定义"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百三十条【制造、贩运毒品罪】（用户提供）",
+    "text": "第一百三十条【制造、贩运毒品罪】\n\n非法制造、加工、贩卖或者大规模运输毒品者，处五年以上有期徒刑。\n\n情节特别严重者，处无期徒刑。",
+    "law": "刑法",
+    "article": "第一百三十条",
+    "articleNumber": 130,
+    "keywords": [
+      "制造、贩运毒品罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百三十一条【毒品走私罪】（用户提供）",
+    "text": "第一百三十一条【毒品走私罪】\n\n组织或者实施跨境毒品走私者，依法从重处罚。",
+    "law": "刑法",
+    "article": "第一百三十一条",
+    "articleNumber": 131,
+    "keywords": [
+      "毒品走私罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百三十二条【非法持有毒品罪】（用户提供）",
+    "text": "第一百三十二条【非法持有毒品罪】\n\n非法持有法律规定之毒品者，处二年以下有期徒刑或者其他依法规定之刑罚。",
+    "law": "刑法",
+    "article": "第一百三十二条",
+    "articleNumber": 132,
+    "keywords": [
+      "非法持有毒品罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百三十三条【毒品组织犯罪】（用户提供）",
+    "text": "第一百三十三条【毒品组织犯罪】\n\n组织、领导或者经营大规模毒品犯罪网络者，处十年以上有期徒刑或者无期徒刑。",
+    "law": "刑法",
+    "article": "第一百三十三条",
+    "articleNumber": 133,
+    "keywords": [
+      "毒品组织犯罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百三十四条【烟草法律地位】（用户提供）",
+    "text": "第一百三十四条【烟草法律地位】\n\n烟草及烟草制品不属于本法所称毒品。\n\n但阿谢国以建立完全无烟草国家为长期公共卫生政策目标，并依《健康增进法》及相关法律禁止烟草生产、进口、销售及使用。",
+    "law": "刑法",
+    "article": "第一百三十四条",
+    "articleNumber": 134,
+    "keywords": [
+      "烟草法律地位"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百三十五条【非法生产烟草】（用户提供）",
+    "text": "第一百三十五条【非法生产烟草】\n\n违反法律规定生产、加工烟草及烟草制品，情节严重者，处三年以上七年以下有期徒刑。",
+    "law": "刑法",
+    "article": "第一百三十五条",
+    "articleNumber": 135,
+    "keywords": [
+      "非法生产烟草"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百三十六条【烟草走私】（用户提供）",
+    "text": "第一百三十六条【烟草走私】\n\n违反法律规定跨境大量运输、进口或者组织走私烟草及烟草制品者，处三年以上十年以下有期徒刑。",
+    "law": "刑法",
+    "article": "第一百三十六条",
+    "articleNumber": 136,
+    "keywords": [
+      "烟草走私"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百三十七条【非法销售烟草】（用户提供）",
+    "text": "第一百三十七条【非法销售烟草】\n\n明知阿谢国法律禁止烟草销售，仍以营利为目的大量销售、交易烟草及烟草制品者，处三年以下有期徒刑或者罚金。\n\n情节特别严重者，处三年以上七年以下有期徒刑。",
+    "law": "刑法",
+    "article": "第一百三十七条",
+    "articleNumber": 137,
+    "keywords": [
+      "非法销售烟草"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百三十八条【烟草广告及推广】（用户提供）",
+    "text": "第一百三十八条【烟草广告及推广】\n\n以商业目的违法宣传、推广或者变相推广烟草及烟草制品，情节严重者，依法追究刑事责任。",
+    "law": "刑法",
+    "article": "第一百三十八条",
+    "articleNumber": 138,
+    "keywords": [
+      "烟草广告及推广"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百三十九条【个人持有及使用】（用户提供）",
+    "text": "第一百三十九条【个人持有及使用】\n\n个人违反烟草禁令而持有或者使用烟草及烟草制品，原则上依《健康增进法》承担行政责任。\n\n情节严重或者涉及大规模违法活动者，依相关法律追究刑事责任。",
+    "law": "刑法",
+    "article": "第一百三十九条",
+    "articleNumber": 139,
+    "keywords": [
+      "个人持有及使用"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百四十条【烟草犯罪所得】（用户提供）",
+    "text": "第一百四十条【烟草犯罪所得】\n\n因非法生产、走私、运输或者销售烟草取得之违法所得，以及专门用于实施相关犯罪之工具，依法没收。",
+    "law": "刑法",
+    "article": "第一百四十条",
+    "articleNumber": 140,
+    "keywords": [
+      "烟草犯罪所得"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百四十一条【烟草供应链犯罪】（用户提供）",
+    "text": "第一百四十一条【烟草供应链犯罪】\n\n组织、领导或者经营跨区域烟草非法生产、运输、销售网络者，依法从重处罚。",
+    "law": "刑法",
+    "article": "第一百四十一条",
+    "articleNumber": 141,
+    "keywords": [
+      "烟草供应链犯罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百四十二条【无烟草国家政策】（用户提供）",
+    "text": "第一百四十二条【无烟草国家政策】\n\n国家机关应当依法采取公共卫生教育、市场监管、海关监管、戒烟支持及其他措施，逐步消除阿谢国境内烟草生产、流通及消费。",
+    "law": "刑法",
+    "article": "第一百四十二条",
+    "articleNumber": 142,
+    "keywords": [
+      "无烟草国家政策"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百四十三条【家庭暴力罪】（用户提供）",
+    "text": "第一百四十三条【家庭暴力罪】\n\n对家庭成员实施严重暴力行为，造成身体或者精神重大损害者，处一年以上五年以下有期徒刑。",
+    "law": "刑法",
+    "article": "第一百四十三条",
+    "articleNumber": 143,
+    "keywords": [
+      "家庭暴力罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百四十四条【遗弃家庭义务罪】（用户提供）",
+    "text": "第一百四十四条【遗弃家庭义务罪】\n\n依法负有抚养、扶养或者照护义务之人，无正当理由长期拒绝履行义务，造成重大危害者，处三年以下有期徒刑或者罚金。",
+    "law": "刑法",
+    "article": "第一百四十四条",
+    "articleNumber": 144,
+    "keywords": [
+      "遗弃家庭义务罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百四十五条【虐待弱势人员罪】（用户提供）",
+    "text": "第一百四十五条【虐待弱势人员罪】\n\n对儿童、老人、残疾人或者依法需要特别保护之人实施严重虐待者，依法从重处罚。",
+    "law": "刑法",
+    "article": "第一百四十五条",
+    "articleNumber": 145,
+    "keywords": [
+      "虐待弱势人员罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百四十六条【强迫家庭关系罪】（用户提供）",
+    "text": "第一百四十六条【强迫家庭关系罪】\n\n以暴力、威胁或者其他非法手段强迫他人建立或者维持家庭关系者，处三年以下有期徒刑或者罚金。",
+    "law": "刑法",
+    "article": "第一百四十六条",
+    "articleNumber": 146,
+    "keywords": [
+      "强迫家庭关系罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百四十七条【污染环境罪】（用户提供）",
+    "text": "第一百四十七条【污染环境罪】\n\n违反法律排放、倾倒或者处理有害物质，严重污染环境者，处一年以上十年以下有期徒刑。",
+    "law": "刑法",
+    "article": "第一百四十七条",
+    "articleNumber": 147,
+    "keywords": [
+      "污染环境罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百四十八条【重大环境污染罪】（用户提供）",
+    "text": "第一百四十八条【重大环境污染罪】\n\n造成大范围环境损害、重大公共健康风险或者生态系统严重破坏者，处五年以上有期徒刑。",
+    "law": "刑法",
+    "article": "第一百四十八条",
+    "articleNumber": 148,
+    "keywords": [
+      "重大环境污染罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百四十九条【非法处理危险废物】（用户提供）",
+    "text": "第一百四十九条【非法处理危险废物】\n\n非法运输、储存或者处理危险废物，造成重大环境风险者，处三年以上七年以下有期徒刑。",
+    "law": "刑法",
+    "article": "第一百四十九条",
+    "articleNumber": 149,
+    "keywords": [
+      "非法处理危险废物"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百五十条【破坏重要生态环境罪】（用户提供）",
+    "text": "第一百五十条【破坏重要生态环境罪】\n\n非法严重破坏受法律保护之森林、湿地、水域、野生动物栖息地等生态环境，造成重大生态损害者，处三年以上七年以下有期徒刑。",
+    "law": "刑法",
+    "article": "第一百五十条",
+    "articleNumber": 150,
+    "keywords": [
+      "破坏重要生态环境罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百五十一条【危害食品安全罪】（用户提供）",
+    "text": "第一百五十一条【危害食品安全罪】\n\n生产、销售明知存在严重安全风险之食品，足以危害公众健康者，处三年以上十年以下有期徒刑。\n\n造成重大伤亡者，从重处罚。",
+    "law": "刑法",
+    "article": "第一百五十一条",
+    "articleNumber": 151,
+    "keywords": [
+      "危害食品安全罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百五十二条【危害饮用水安全罪】（用户提供）",
+    "text": "第一百五十二条【危害饮用水安全罪】\n\n故意污染公共饮用水源，造成重大公共健康危险者，处五年以上有期徒刑。",
+    "law": "刑法",
+    "article": "第一百五十二条",
+    "articleNumber": 152,
+    "keywords": [
+      "危害饮用水安全罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百五十三条【危险医疗行为】（用户提供）",
+    "text": "第一百五十三条【危险医疗行为】\n\n无合法资格从事法律规定必须具有专业资格之医疗活动，造成重大健康损害者，依法追究刑事责任。",
+    "law": "刑法",
+    "article": "第一百五十三条",
+    "articleNumber": 153,
+    "keywords": [
+      "危险医疗行为"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百五十四条【重大公共卫生违法】（用户提供）",
+    "text": "第一百五十四条【重大公共卫生违法】\n\n在依法宣布之重大公共卫生紧急状态期间，故意实施严重妨害防疫、防灾措施并造成重大公共危害者，依法追究刑事责任。",
+    "law": "刑法",
+    "article": "第一百五十四条",
+    "articleNumber": 154,
+    "keywords": [
+      "重大公共卫生违法"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百五十五条【聚众扰乱公共秩序】（用户提供）",
+    "text": "第一百五十五条【聚众扰乱公共秩序】\n\n组织、策划或者实施严重扰乱公共交通、医疗、教育、政府机关或者其他重要公共秩序之行为者，处三年以下有期徒刑。",
+    "law": "刑法",
+    "article": "第一百五十五条",
+    "articleNumber": 155,
+    "keywords": [
+      "聚众扰乱公共秩序"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百五十六条【虚假报警】（用户提供）",
+    "text": "第一百五十六条【虚假报警】\n\n故意向警察、消防、医疗或者紧急救援机关提供重大虚假警报，造成严重资源浪费者，处一年以下有期徒刑或者罚金。",
+    "law": "刑法",
+    "article": "第一百五十六条",
+    "articleNumber": 156,
+    "keywords": [
+      "虚假报警"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百五十七条【伪造身份】（用户提供）",
+    "text": "第一百五十七条【伪造身份】\n\n以非法目的伪造、买卖或者使用他人身份证明文件者，处三年以下有期徒刑。",
+    "law": "刑法",
+    "article": "第一百五十七条",
+    "articleNumber": 157,
+    "keywords": [
+      "伪造身份"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百五十八条【破坏选举】（用户提供）",
+    "text": "第一百五十八条【破坏选举】\n\n以暴力、威胁、贿赂、欺骗或者其他非法手段干扰选举、公投或者其他民主程序者，处三年以上十年以下有期徒刑。",
+    "law": "刑法",
+    "article": "第一百五十八条",
+    "articleNumber": 158,
+    "keywords": [
+      "破坏选举"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百五十九条【选举舞弊】（用户提供）",
+    "text": "第一百五十九条【选举舞弊】\n\n伪造选票、篡改投票结果或者非法干预选举结果者，处五年以上有期徒刑。",
+    "law": "刑法",
+    "article": "第一百五十九条",
+    "articleNumber": 159,
+    "keywords": [
+      "选举舞弊"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百六十条【非法政治资金】（用户提供）",
+    "text": "第一百六十条【非法政治资金】\n\n违反法律规定收受、提供或者转移重大非法政治资金，严重影响选举、公投或者政治活动者，依法追究刑事责任。",
+    "law": "刑法",
+    "article": "第一百六十条",
+    "articleNumber": 160,
+    "keywords": [
+      "非法政治资金"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百六十一条【国家象征保护】（用户提供）",
+    "text": "第一百六十一条【国家象征保护】\n\n故意毁损、盗窃或者以其他严重方式破坏依法规定之国家重要象征，造成重大公共影响者，可以依法追究责任。\n\n合法政治批评、学术研究、艺术创作、历史研究及新闻报道不适用本条。",
+    "law": "刑法",
+    "article": "第一百六十一条",
+    "articleNumber": 161,
+    "keywords": [
+      "国家象征保护"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百六十二条【妨害国家机关正常运行】（用户提供）",
+    "text": "第一百六十二条【妨害国家机关正常运行】\n\n以暴力、威胁或者其他重大非法方式严重阻碍国家机关正常运行者，依法追究刑事责任。",
+    "law": "刑法",
+    "article": "第一百六十二条",
+    "articleNumber": 162,
+    "keywords": [
+      "妨害国家机关正常运行"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百六十三条【总统及公职人员职务保护】（用户提供）",
+    "text": "第一百六十三条【总统及公职人员职务保护】\n\n总统及其他国家机关工作人员因依法履行职务而受到暴力、严重威胁或者其他犯罪侵害者，依法从重处罚。\n\n对总统、政府或者其他公共机关进行合法批评、监督、新闻报道及政治表达，不构成犯罪。",
+    "law": "刑法",
+    "article": "第一百六十三条",
+    "articleNumber": 163,
+    "keywords": [
+      "总统及公职人员职务保护"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百六十四条【侵害未成年人犯罪加重】（用户提供）",
+    "text": "第一百六十四条【侵害未成年人犯罪加重】\n\n以未成年人为主要犯罪对象或者利用未成年人实施犯罪者，可以依法从重处罚。",
+    "law": "刑法",
+    "article": "第一百六十四条",
+    "articleNumber": 164,
+    "keywords": [
+      "侵害未成年人犯罪加重"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百六十五条【利用未成年人犯罪】（用户提供）",
+    "text": "第一百六十五条【利用未成年人犯罪】\n\n教唆、胁迫或者利用未成年人实施犯罪者，按照其犯罪从重处罚。",
+    "law": "刑法",
+    "article": "第一百六十五条",
+    "articleNumber": 165,
+    "keywords": [
+      "利用未成年人犯罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百六十六条【被害人隐私保护】（用户提供）",
+    "text": "第一百六十六条【被害人隐私保护】\n\n涉及未成年人、性侵害、家庭暴力及其他重大人格权益犯罪时，司法机关应当依法保护被害人隐私。",
+    "law": "刑法",
+    "article": "第一百六十六条",
+    "articleNumber": 166,
+    "keywords": [
+      "被害人隐私保护"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百六十七条【禁止报复】（用户提供）",
+    "text": "第一百六十七条【禁止报复】\n\n对举报犯罪、提供证言、协助调查或者协助司法机关之人员实施报复者，依法从重处罚。",
+    "law": "刑法",
+    "article": "第一百六十七条",
+    "articleNumber": 167,
+    "keywords": [
+      "禁止报复"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百六十八条【犯罪组织】（用户提供）",
+    "text": "第一百六十八条【犯罪组织】\n\n以持续实施犯罪为主要目的成立稳定组织者，依法追究刑事责任。",
+    "law": "刑法",
+    "article": "第一百六十八条",
+    "articleNumber": 168,
+    "keywords": [
+      "犯罪组织"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百六十九条【组织领导犯罪】（用户提供）",
+    "text": "第一百六十九条【组织领导犯罪】\n\n组织、领导重大犯罪组织者，依法从重处罚。",
+    "law": "刑法",
+    "article": "第一百六十九条",
+    "articleNumber": 169,
+    "keywords": [
+      "组织领导犯罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百七十条【犯罪所得分配】（用户提供）",
+    "text": "第一百七十条【犯罪所得分配】\n\n共同犯罪者共同分配犯罪所得者，相关犯罪所得依法没收。",
+    "law": "刑法",
+    "article": "第一百七十条",
+    "articleNumber": 170,
+    "keywords": [
+      "犯罪所得分配"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百七十一条【刑罚执行机关】（用户提供）",
+    "text": "第一百七十一条【刑罚执行机关】\n\n刑罚由依法设立之司法及刑罚执行机关执行。",
+    "law": "刑法",
+    "article": "第一百七十一条",
+    "articleNumber": 171,
+    "keywords": [
+      "刑罚执行机关"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百七十二条【禁止非法增加刑罚】（用户提供）",
+    "text": "第一百七十二条【禁止非法增加刑罚】\n\n任何机关及个人不得非法增加、改变或者延长法院依法确定之刑罚。",
+    "law": "刑法",
+    "article": "第一百七十二条",
+    "articleNumber": 172,
+    "keywords": [
+      "禁止非法增加刑罚"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百七十三条【人道执行】（用户提供）",
+    "text": "第一百七十三条【人道执行】\n\n刑罚执行过程中不得实施酷刑、虐待或者其他违反基本人格尊严之行为。",
+    "law": "刑法",
+    "article": "第一百七十三条",
+    "articleNumber": 173,
+    "keywords": [
+      "人道执行"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百七十四条【假释】（用户提供）",
+    "text": "第一百七十四条【假释】\n\n被判处有期徒刑或者符合条件之无期徒刑者，在执行法律规定期限并符合悔罪、社会危险性评估等条件后，可以依法申请假释。",
+    "law": "刑法",
+    "article": "第一百七十四条",
+    "articleNumber": 174,
+    "keywords": [
+      "假释"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百七十五条【犯罪记录】（用户提供）",
+    "text": "第一百七十五条【犯罪记录】\n\n犯罪记录应依法保存。\n\n符合法律规定条件者，可以依法封存或者限制查询。",
+    "law": "刑法",
+    "article": "第一百七十五条",
+    "articleNumber": 175,
+    "keywords": [
+      "犯罪记录"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百七十六条【未成年人犯罪记录】（用户提供）",
+    "text": "第一百七十六条【未成年人犯罪记录】\n\n未成年人犯罪记录原则上限制公开，并依法保护其重新融入社会之权利。",
+    "law": "刑法",
+    "article": "第一百七十六条",
+    "articleNumber": 176,
+    "keywords": [
+      "未成年人犯罪记录"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百七十七条【无罪推定】（用户提供）",
+    "text": "第一百七十七条【无罪推定】\n\n任何人在依法确定有罪以前，视为无罪。",
+    "law": "刑法",
+    "article": "第一百七十七条",
+    "articleNumber": 177,
+    "keywords": [
+      "无罪推定"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百七十八条【公平审判】（用户提供）",
+    "text": "第一百七十八条【公平审判】\n\n任何犯罪嫌疑人、被告人均依法享有获得公平、公正审判之权利。",
+    "law": "刑法",
+    "article": "第一百七十八条",
+    "articleNumber": 178,
+    "keywords": [
+      "公平审判"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百七十九条【辩护权】（用户提供）",
+    "text": "第一百七十九条【辩护权】\n\n犯罪嫌疑人及被告人依法享有辩护权。",
+    "law": "刑法",
+    "article": "第一百七十九条",
+    "articleNumber": 179,
+    "keywords": [
+      "辩护权"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百八十条【不得强迫自证其罪】（用户提供）",
+    "text": "第一百八十条【不得强迫自证其罪】\n\n任何人不得被强迫承认自己实施犯罪。",
+    "law": "刑法",
+    "article": "第一百八十条",
+    "articleNumber": 180,
+    "keywords": [
+      "不得强迫自证其罪"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百八十一条【非法证据】（用户提供）",
+    "text": "第一百八十一条【非法证据】\n\n以酷刑、严重胁迫或者其他严重违法方式取得之证据，不得作为定罪之主要依据。",
+    "law": "刑法",
+    "article": "第一百八十一条",
+    "articleNumber": 181,
+    "keywords": [
+      "非法证据"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百八十二条【司法独立】（用户提供）",
+    "text": "第一百八十二条【司法独立】\n\n刑事案件之调查、起诉、审判及刑罚执行，应当依宪法及法律进行。\n\n任何组织及个人不得非法干预司法机关依法办理刑事案件。",
+    "law": "刑法",
+    "article": "第一百八十二条",
+    "articleNumber": 182,
+    "keywords": [
+      "司法独立"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百八十三条【法律援助】（用户提供）",
+    "text": "第一百八十三条【法律援助】\n\n经济困难或者依法属于特别保护对象之被告人，可以依法获得法律援助。",
+    "law": "刑法",
+    "article": "第一百八十三条",
+    "articleNumber": 183,
+    "keywords": [
+      "法律援助"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百八十四条【特别法优先】（用户提供）",
+    "text": "第一百八十四条【特别法优先】\n\n其他法律对特定犯罪另有特别规定者，适用特别法。",
+    "law": "刑法",
+    "article": "第一百八十四条",
+    "articleNumber": 184,
+    "keywords": [
+      "特别法优先"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百八十五条【刑事与行政责任】（用户提供）",
+    "text": "第一百八十五条【刑事与行政责任】\n\n同一行为同时构成犯罪及行政违法者，构成犯罪的，应依法追究刑事责任。\n\n行政处罚不得取代依法应承担之刑事责任。",
+    "law": "刑法",
+    "article": "第一百八十五条",
+    "articleNumber": 185,
+    "keywords": [
+      "刑事与行政责任"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百八十六条【刑事与民事责任】（用户提供）",
+    "text": "第一百八十六条【刑事与民事责任】\n\n犯罪行为造成他人损害者，犯罪者除承担刑事责任外，还应依法承担民事赔偿责任。",
+    "law": "刑法",
+    "article": "第一百八十六条",
+    "articleNumber": 186,
+    "keywords": [
+      "刑事与民事责任"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百八十七条【被害人权益】（用户提供）",
+    "text": "第一百八十七条【被害人权益】\n\n犯罪被害人依法享有司法保护、损害赔偿、隐私保护及其他法定权益。",
+    "law": "刑法",
+    "article": "第一百八十七条",
+    "articleNumber": 187,
+    "keywords": [
+      "被害人权益"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百八十八条【犯罪所得返还】（用户提供）",
+    "text": "第一百八十八条【犯罪所得返还】\n\n追缴之犯罪所得确认属于被害人或者其他合法权利人者，应依法返还。",
+    "law": "刑法",
+    "article": "第一百八十八条",
+    "articleNumber": 188,
+    "keywords": [
+      "犯罪所得返还"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百八十九条【宪法优位】（用户提供）",
+    "text": "第一百八十九条【宪法优位】\n\n本法不得与《阿谢国宪法》相抵触。\n\n本法之解释及适用，应遵循宪法、罪刑法定、比例原则及基本人权保障原则。",
+    "law": "刑法",
+    "article": "第一百八十九条",
+    "articleNumber": 189,
+    "keywords": [
+      "宪法优位"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百九十条【法律解释】（用户提供）",
+    "text": "第一百九十条【法律解释】\n\n本法之正式法律解释，由阿谢国宪法及法律规定之机关依法作出。",
+    "law": "刑法",
+    "article": "第一百九十条",
+    "articleNumber": 190,
+    "keywords": [
+      "法律解释"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百九十一条【法律修正】（用户提供）",
+    "text": "第一百九十一条【法律修正】\n\n本法之制定、修改及废止，由阿谢国国会议事堂依法审议通过，并依宪法规定公布。",
+    "law": "刑法",
+    "article": "第一百九十一条",
+    "articleNumber": 191,
+    "keywords": [
+      "法律修正"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百九十二条【既有法律】（用户提供）",
+    "text": "第一百九十二条【既有法律】\n\n本法施行前已经制定之刑事特别法律，与本法不相抵触者继续有效。\n\n与本法冲突者，应依法修正。",
+    "law": "刑法",
+    "article": "第一百九十二条",
+    "articleNumber": 192,
+    "keywords": [
+      "既有法律"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百九十三条【过渡规定】（用户提供）",
+    "text": "第一百九十三条【过渡规定】\n\n本法施行前已经发生之犯罪行为，原则上依行为发生时有效之法律处理。\n\n行为后法律对行为人更有利者，从其有利规定。",
+    "law": "刑法",
+    "article": "第一百九十三条",
+    "articleNumber": 193,
+    "keywords": [
+      "过渡规定"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "刑法 · 第一百九十四条【施行日期】（用户提供）",
+    "text": "第一百九十四条【施行日期】\n\n本法自阿谢二年十一月十九日公布并施行。",
+    "law": "刑法",
+    "article": "第一百九十四条",
+    "articleNumber": 194,
+    "keywords": [
+      "施行日期"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 文本与版本说明（用户提供）",
+    "text": "阿谢国总统法\n\nRepublic of Axie Presidential Act\n\n制定机关：阿谢国国会议事堂\n依据：《阿谢国宪法》制定",
+    "law": "总统法",
+    "keywords": [
+      "总统法",
+      "版本",
+      "施行日期",
+      "制定机关"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一条　立法目的（用户提供）",
+    "text": "第一条　立法目的\n\n本法依据《阿谢国宪法》制定，旨在规范阿谢国总统及副总统之选举、任期、职权、责任、离职、继任及相关制度，确保国家元首及副元首制度依法、公开、透明、民主运行。",
+    "law": "总统法",
+    "article": "第一条",
+    "articleNumber": 1,
+    "keywords": [
+      "立法目的"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第二条　适用范围（用户提供）",
+    "text": "第二条　适用范围\n\n本法适用于阿谢国总统、副总统之选举、就任、任期、职权行使、离职、继任以及与总统、副总统制度有关之其他事项。",
+    "law": "总统法",
+    "article": "第二条",
+    "articleNumber": 2,
+    "keywords": [
+      "适用范围"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第三条　总统与副总统之地位（用户提供）",
+    "text": "第三条　总统与副总统之地位\n\n总统为阿谢国国家元首及政府首脑，代表阿谢国处理国家事务。\n\n副总统为阿谢国副元首，协助总统处理国家事务，并依法履行代理及继任职责。",
+    "law": "总统法",
+    "article": "第三条",
+    "articleNumber": 3,
+    "keywords": [
+      "总统与副总统之地位"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第四条　分别选举原则（用户提供）",
+    "text": "第四条　分别选举原则\n\n总统与副总统分别由具有选举权之国民以普选方式选举产生。\n\n总统选举与副总统选举分别举行，互不合并。\n\n总统候选人与副总统候选人不得以联名竞选方式参选。\n\n选民得分别投票选择总统候选人与副总统候选人。",
+    "law": "总统法",
+    "article": "第四条",
+    "articleNumber": 4,
+    "keywords": [
+      "分别选举原则"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第五条　民主原则（用户提供）",
+    "text": "第五条　民主原则\n\n总统及副总统选举应遵循公开、公平、平等、自由、直接及民主原则。\n\n任何个人、政党或组织不得以非法方式干涉选举。",
+    "law": "总统法",
+    "article": "第五条",
+    "articleNumber": 5,
+    "keywords": [
+      "民主原则"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第六条　选举公开原则（用户提供）",
+    "text": "第六条　选举公开原则\n\n选举相关之候选人资料、选举时间、候选人政党、候选人自我介绍、投票结果及正式选举结果，应依本法向国民公开。",
+    "law": "总统法",
+    "article": "第六条",
+    "articleNumber": 6,
+    "keywords": [
+      "选举公开原则"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第七条　总统任期（用户提供）",
+    "text": "第七条　总统任期\n\n总统任期为三年。\n\n总统任期自正式宣誓就任之日起计算。",
+    "law": "总统法",
+    "article": "第七条",
+    "articleNumber": 7,
+    "keywords": [
+      "总统任期"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第八条　副总统任期（用户提供）",
+    "text": "第八条　副总统任期\n\n副总统任期为一年。\n\n副总统任期自正式宣誓就任之日起计算。",
+    "law": "总统法",
+    "article": "第八条",
+    "articleNumber": 8,
+    "keywords": [
+      "副总统任期"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第九条　总统就任日期（用户提供）",
+    "text": "第九条　总统就任日期\n\n总统原则上于每三年之阿谢纪年二月四日举行就任及宣誓仪式。",
+    "law": "总统法",
+    "article": "第九条",
+    "articleNumber": 9,
+    "keywords": [
+      "总统就任日期"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第十条　副总统就任日期（用户提供）",
+    "text": "第十条　副总统就任日期\n\n副总统原则上于每年之阿谢纪年十一月二日举行就任及宣誓仪式。",
+    "law": "总统法",
+    "article": "第十条",
+    "articleNumber": 10,
+    "keywords": [
+      "副总统就任日期"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第十一条　任期届满（用户提供）",
+    "text": "第十一条　任期届满\n\n总统或副总统任期届满时，应依本法完成换届选举。\n\n新任总统或副总统完成宣誓后，原任职务自然终止。",
+    "law": "总统法",
+    "article": "第十一条",
+    "articleNumber": 11,
+    "keywords": [
+      "任期届满"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第十二条　任期连续性（用户提供）",
+    "text": "第十二条　任期连续性\n\n总统及副总统任期届满前，不得因换届选举正在进行而停止履行法定职务。",
+    "law": "总统法",
+    "article": "第十二条",
+    "articleNumber": 12,
+    "keywords": [
+      "任期连续性"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第十三条　总统选举（用户提供）",
+    "text": "第十三条　总统选举\n\n总统选举每三年举行一次。\n\n总统选举之选举期原则上为总统就任日前一个月。\n\n总统选举原则上于每三年阿谢纪年一月四日开始，并于二月四日新任总统就任前完成。",
+    "law": "总统法",
+    "article": "第十三条",
+    "articleNumber": 13,
+    "keywords": [
+      "总统选举"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第十四条　副总统选举（用户提供）",
+    "text": "第十四条　副总统选举\n\n副总统选举每年举行一次。\n\n副总统选举之选举期原则上为副总统就任日前一个月。\n\n副总统选举原则上于每年阿谢纪年十月二日开始，并于十一月二日新任副总统就任前完成。",
+    "law": "总统法",
+    "article": "第十四条",
+    "articleNumber": 14,
+    "keywords": [
+      "副总统选举"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第十五条　选举独立（用户提供）",
+    "text": "第十五条　选举独立\n\n总统选举与副总统选举分别进行。\n\n总统选举之结果不得直接决定副总统选举结果。\n\n副总统选举之结果亦不得直接决定总统选举结果。",
+    "law": "总统法",
+    "article": "第十五条",
+    "articleNumber": 15,
+    "keywords": [
+      "选举独立"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第十六条　候选人独立参选（用户提供）",
+    "text": "第十六条　候选人独立参选\n\n总统候选人及副总统候选人得独立参选。\n\n候选人是否属于同一政党，不影响其参选资格。\n\n总统与副总统得属于不同政党。",
+    "law": "总统法",
+    "article": "第十六条",
+    "articleNumber": 16,
+    "keywords": [
+      "候选人独立参选"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第十七条　选举权（用户提供）",
+    "text": "第十七条　选举权\n\n凡依《阿谢国宪法》及相关法律具有选举权之国民，均得参加总统及副总统选举。",
+    "law": "总统法",
+    "article": "第十七条",
+    "articleNumber": 17,
+    "keywords": [
+      "选举权"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第十八条　投票平等（用户提供）",
+    "text": "第十八条　投票平等\n\n每一具有选举权之国民，在同一项总统选举或副总统选举中原则上仅得投票一次。\n\n任何人不得代替他人投票或重复投票。",
+    "law": "总统法",
+    "article": "第十八条",
+    "articleNumber": 18,
+    "keywords": [
+      "投票平等"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第十九条　多数决定（用户提供）",
+    "text": "第十九条　多数决定\n\n总统选举及副总统选举均以获得有效选票数最多之候选人为当选人。\n\n如出现最高票数相同之情形，应依本法关于同票处理之规定办理。",
+    "law": "总统法",
+    "article": "第十九条",
+    "articleNumber": 19,
+    "keywords": [
+      "多数决定"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第二十条　基本资格（用户提供）",
+    "text": "第二十条　基本资格\n\n总统候选人及副总统候选人应符合《阿谢国宪法》及本法规定之资格。",
+    "law": "总统法",
+    "article": "第二十条",
+    "articleNumber": 20,
+    "keywords": [
+      "基本资格"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第二十一条　政治责任能力（用户提供）",
+    "text": "第二十一条　政治责任能力\n\n候选人应具有履行总统或副总统职务所必要之政治责任能力，并能够遵守《阿谢国宪法》及阿谢国法律。",
+    "law": "总统法",
+    "article": "第二十一条",
+    "articleNumber": 21,
+    "keywords": [
+      "政治责任能力"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第二十二条　资格审查（用户提供）",
+    "text": "第二十二条　资格审查\n\n总统及副总统候选人登记后，由依法负责选举事务之机关进行资格审查。",
+    "law": "总统法",
+    "article": "第二十二条",
+    "articleNumber": 22,
+    "keywords": [
+      "资格审查"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第二十三条　资格不符（用户提供）",
+    "text": "第二十三条　资格不符\n\n候选人如不符合宪法或法律规定之参选资格，其候选人登记得被驳回。",
+    "law": "总统法",
+    "article": "第二十三条",
+    "articleNumber": 23,
+    "keywords": [
+      "资格不符"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第二十四条　资格争议（用户提供）",
+    "text": "第二十四条　资格争议\n\n候选人对资格审查结果有异议者，得依法提出申诉。",
+    "law": "总统法",
+    "article": "第二十四条",
+    "articleNumber": 24,
+    "keywords": [
+      "资格争议"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第二十五条　登记制度（用户提供）",
+    "text": "第二十五条　登记制度\n\n总统及副总统选举实行候选人登记制度。\n\n符合资格之国民得在规定期限内申请成为候选人。",
+    "law": "总统法",
+    "article": "第二十五条",
+    "articleNumber": 25,
+    "keywords": [
+      "登记制度"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第二十六条　登记资料（用户提供）",
+    "text": "第二十六条　登记资料\n\n候选人登记时原则上应提交：\n\n一、姓名或法定参选名称；\n二、参选职务；\n三、所属政党；\n四、候选人自我介绍；\n五、竞选声明；\n六、依法要求之其他资料。",
+    "law": "总统法",
+    "article": "第二十六条",
+    "articleNumber": 26,
+    "keywords": [
+      "登记资料"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第二十七条　政党选择（用户提供）",
+    "text": "第二十七条　政党选择\n\n候选人得选择其所属政党。\n\n现有主要政党包括：\n\n一、阿谢和平党；\n二、阿谢国民进步党；\n三、阿谢民族党；\n四、阿谢人民党；\n五、阿谢共产人民党。",
+    "law": "总统法",
+    "article": "第二十七条",
+    "articleNumber": 27,
+    "keywords": [
+      "政党选择"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第二十八条　其他政党（用户提供）",
+    "text": "第二十八条　其他政党\n\n候选人所属政党不属于主要政党列表时，可以“其他”身份登记，并填写其政党名称。",
+    "law": "总统法",
+    "article": "第二十八条",
+    "articleNumber": 28,
+    "keywords": [
+      "其他政党"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第二十九条　无党派候选人（用户提供）",
+    "text": "第二十九条　无党派候选人\n\n候选人得以独立候选人身份参选。\n\n独立候选人不得被强制要求加入任何政党。",
+    "law": "总统法",
+    "article": "第二十九条",
+    "articleNumber": 29,
+    "keywords": [
+      "无党派候选人"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第三十条　资料真实性（用户提供）",
+    "text": "第三十条　资料真实性\n\n候选人提交之登记资料应真实、准确。\n\n不得故意提交虚假身份、虚假政党或其他重大虚假资料。",
+    "law": "总统法",
+    "article": "第三十条",
+    "articleNumber": 30,
+    "keywords": [
+      "资料真实性"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第三十一条　候选人名单（用户提供）",
+    "text": "第三十一条　候选人名单\n\n选举机关完成资格审查后，应公布正式候选人名单。",
+    "law": "总统法",
+    "article": "第三十一条",
+    "articleNumber": 31,
+    "keywords": [
+      "候选人名单"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第三十二条　自我介绍制度（用户提供）",
+    "text": "第三十二条　自我介绍制度\n\n每一正式候选人均得提交一份候选人自我介绍。",
+    "law": "总统法",
+    "article": "第三十二条",
+    "articleNumber": 32,
+    "keywords": [
+      "自我介绍制度"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第三十三条　公开内容（用户提供）",
+    "text": "第三十三条　公开内容\n\n候选人自我介绍得包括：\n\n一、个人基本介绍；\n二、参选原因；\n三、施政方向；\n四、对阿谢国未来之规划；\n五、其他依法允许公开之内容。",
+    "law": "总统法",
+    "article": "第三十三条",
+    "articleNumber": 33,
+    "keywords": [
+      "公开内容"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第三十四条　候选人资料公开（用户提供）",
+    "text": "第三十四条　候选人资料公开\n\n选举期间，国民得通过阿谢国官方网站查看候选人资料及自我介绍。",
+    "law": "总统法",
+    "article": "第三十四条",
+    "articleNumber": 34,
+    "keywords": [
+      "候选人资料公开"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第三十五条　资料锁定（用户提供）",
+    "text": "第三十五条　资料锁定\n\n正式候选人名单及候选人自我介绍于规定之最终确认时间后原则上不得任意修改。\n\n如存在明显错误，应依规定申请更正。",
+    "law": "总统法",
+    "article": "第三十五条",
+    "articleNumber": 35,
+    "keywords": [
+      "资料锁定"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第三十六条　历史保存（用户提供）",
+    "text": "第三十六条　历史保存\n\n选举结束后，候选人资料应作为历届选举资料保存。\n\n候选人即使未当选，其自我介绍及参选记录原则上仍可在历届选举档案中查询。",
+    "law": "总统法",
+    "article": "第三十六条",
+    "articleNumber": 36,
+    "keywords": [
+      "历史保存"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第三十七条　竞选自由（用户提供）",
+    "text": "第三十七条　竞选自由\n\n候选人依法享有开展竞选活动之权利。",
+    "law": "总统法",
+    "article": "第三十七条",
+    "articleNumber": 37,
+    "keywords": [
+      "竞选自由"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第三十八条　公平竞选（用户提供）",
+    "text": "第三十八条　公平竞选\n\n候选人应以公平方式参与竞选，不得通过非法手段排斥其他候选人。",
+    "law": "总统法",
+    "article": "第三十八条",
+    "articleNumber": 38,
+    "keywords": [
+      "公平竞选"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第三十九条　禁止暴力（用户提供）",
+    "text": "第三十九条　禁止暴力\n\n任何候选人、政党或支持者不得以暴力、威胁或强迫方式影响选民。",
+    "law": "总统法",
+    "article": "第三十九条",
+    "articleNumber": 39,
+    "keywords": [
+      "禁止暴力"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第四十条　禁止欺诈（用户提供）",
+    "text": "第四十条　禁止欺诈\n\n不得通过伪造投票、虚假选举结果、冒充候选人或其他欺诈方式影响选举。",
+    "law": "总统法",
+    "article": "第四十条",
+    "articleNumber": 40,
+    "keywords": [
+      "禁止欺诈"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第四十一条　尊重选民（用户提供）",
+    "text": "第四十一条　尊重选民\n\n候选人不得强迫选民公开其投票选择。",
+    "law": "总统法",
+    "article": "第四十一条",
+    "articleNumber": 41,
+    "keywords": [
+      "尊重选民"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第四十二条　竞选结束（用户提供）",
+    "text": "第四十二条　竞选结束\n\n选举机关得规定竞选活动截止时间。\n\n投票开始后，候选人原则上不得通过官方网站修改正式竞选资料。",
+    "law": "总统法",
+    "article": "第四十二条",
+    "articleNumber": 42,
+    "keywords": [
+      "竞选结束"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第四十三条　官方选举页面（用户提供）",
+    "text": "第四十三条　官方选举页面\n\n阿谢国官方网站应设置总统选举及副总统选举相关页面。",
+    "law": "总统法",
+    "article": "第四十三条",
+    "articleNumber": 43,
+    "keywords": [
+      "官方选举页面"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第四十四条　选举自动显示（用户提供）",
+    "text": "第四十四条　选举自动显示\n\n当总统或副总统进入法定选举期间时，官方网站首页得自动显示正在进行之相应选举。",
+    "law": "总统法",
+    "article": "第四十四条",
+    "articleNumber": 44,
+    "keywords": [
+      "选举自动显示"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第四十五条　选举页面（用户提供）",
+    "text": "第四十五条　选举页面\n\n总统选举与副总统选举应分别设置选举页面。",
+    "law": "总统法",
+    "article": "第四十五条",
+    "articleNumber": 45,
+    "keywords": [
+      "选举页面"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第四十六条　候选人页面（用户提供）",
+    "text": "第四十六条　候选人页面\n\n每名候选人应拥有独立候选人资料页面。\n\n页面原则上应显示：\n\n一、候选人姓名；\n二、参选职务；\n三、所属政党或独立候选人身份；\n四、自我介绍；\n五、竞选声明；\n六、选举结果及历史记录。",
+    "law": "总统法",
+    "article": "第四十六条",
+    "articleNumber": 46,
+    "keywords": [
+      "候选人页面"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第四十七条　历届选举（用户提供）",
+    "text": "第四十七条　历届选举\n\n官方网站应根据实际条件保存历届总统及副总统选举资料。",
+    "law": "总统法",
+    "article": "第四十七条",
+    "articleNumber": 47,
+    "keywords": [
+      "历届选举"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第四十八条　现任领导人页面（用户提供）",
+    "text": "第四十八条　现任领导人页面\n\n当候选人正式当选并完成就任程序后，其候选人资料得转入现任总统或现任副总统页面。\n\n其原有自我介绍及竞选资料得继续保留。",
+    "law": "总统法",
+    "article": "第四十八条",
+    "articleNumber": 48,
+    "keywords": [
+      "现任领导人页面"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第四十九条　投票方式（用户提供）",
+    "text": "第四十九条　投票方式\n\n总统选举与副总统选举分别设置投票程序。",
+    "law": "总统法",
+    "article": "第四十九条",
+    "articleNumber": 49,
+    "keywords": [
+      "投票方式"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第五十条　总统选票（用户提供）",
+    "text": "第五十条　总统选票\n\n总统选举期间，选民应从正式总统候选人中选择一名候选人。",
+    "law": "总统法",
+    "article": "第五十条",
+    "articleNumber": 50,
+    "keywords": [
+      "总统选票"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第五十一条　副总统选票（用户提供）",
+    "text": "第五十一条　副总统选票\n\n副总统选举期间，选民应从正式副总统候选人中选择一名候选人。",
+    "law": "总统法",
+    "article": "第五十一条",
+    "articleNumber": 51,
+    "keywords": [
+      "副总统选票"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第五十二条　分别投票（用户提供）",
+    "text": "第五十二条　分别投票\n\n总统选举与副总统选举不得以同一张联名选票决定两个职位。",
+    "law": "总统法",
+    "article": "第五十二条",
+    "articleNumber": 52,
+    "keywords": [
+      "分别投票"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第五十三条　技术性重复投票限制（用户提供）",
+    "text": "第五十三条　技术性重复投票限制\n\n官方网站得通过设备、浏览器、会话、账户或其他技术手段限制同一设备或同一访问主体重复提交选票。",
+    "law": "总统法",
+    "article": "第五十三条",
+    "articleNumber": 53,
+    "keywords": [
+      "技术性重复投票限制"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第五十四条　技术限制之性质（用户提供）",
+    "text": "第五十四条　技术限制之性质\n\n前条所述技术措施属于防止重复提交之技术手段，不应被解释为绝对证明一个现实自然人仅拥有一次投票资格。",
+    "law": "总统法",
+    "article": "第五十四条",
+    "articleNumber": 54,
+    "keywords": [
+      "技术限制之性质"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第五十五条　异常投票（用户提供）",
+    "text": "第五十五条　异常投票\n\n系统发现明显重复、异常或非法投票行为时，选举机关得依法进行核查。",
+    "law": "总统法",
+    "article": "第五十五条",
+    "articleNumber": 55,
+    "keywords": [
+      "异常投票"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第五十六条　投票保密（用户提供）",
+    "text": "第五十六条　投票保密\n\n除法律另有规定外，任何人不得要求选民公开其具体投票对象。",
+    "law": "总统法",
+    "article": "第五十六条",
+    "articleNumber": 56,
+    "keywords": [
+      "投票保密"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第五十七条　计票（用户提供）",
+    "text": "第五十七条　计票\n\n投票结束后，系统或选举机关应进行计票。",
+    "law": "总统法",
+    "article": "第五十七条",
+    "articleNumber": 57,
+    "keywords": [
+      "计票"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第五十八条　有效票（用户提供）",
+    "text": "第五十八条　有效票\n\n符合投票规则且能够明确识别所选择候选人之选票，计为有效票。",
+    "law": "总统法",
+    "article": "第五十八条",
+    "articleNumber": 58,
+    "keywords": [
+      "有效票"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第五十九条　无效票（用户提供）",
+    "text": "第五十九条　无效票\n\n存在重复提交、无法识别选择对象、明显违反投票规则等情况之选票，得认定为无效票。",
+    "law": "总统法",
+    "article": "第五十九条",
+    "articleNumber": 59,
+    "keywords": [
+      "无效票"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第六十条　结果确认（用户提供）",
+    "text": "第六十条　结果确认\n\n计票完成后，应对选举结果进行确认。",
+    "law": "总统法",
+    "article": "第六十条",
+    "articleNumber": 60,
+    "keywords": [
+      "结果确认"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第六十一条　当选总统（用户提供）",
+    "text": "第六十一条　当选总统\n\n总统候选人中获得最多有效选票者，为总统当选人。",
+    "law": "总统法",
+    "article": "第六十一条",
+    "articleNumber": 61,
+    "keywords": [
+      "当选总统"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第六十二条　当选副总统（用户提供）",
+    "text": "第六十二条　当选副总统\n\n副总统候选人中获得最多有效选票者，为副总统当选人。",
+    "law": "总统法",
+    "article": "第六十二条",
+    "articleNumber": 62,
+    "keywords": [
+      "当选副总统"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第六十三条　结果公布（用户提供）",
+    "text": "第六十三条　结果公布\n\n正式选举结果应通过阿谢国官方网站或其他官方渠道向国民公布。",
+    "law": "总统法",
+    "article": "第六十三条",
+    "articleNumber": 63,
+    "keywords": [
+      "结果公布"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第六十四条　结果内容（用户提供）",
+    "text": "第六十四条　结果内容\n\n选举结果原则上应包括：\n\n一、候选人姓名；\n二、所属政党；\n三、获得票数；\n四、有效票总数；\n五、当选结果；\n六、选举日期。",
+    "law": "总统法",
+    "article": "第六十四条",
+    "articleNumber": 64,
+    "keywords": [
+      "结果内容"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第六十五条　总统选举同票（用户提供）",
+    "text": "第六十五条　总统选举同票\n\n总统选举最高票数出现两名或以上候选人相同者，应依法进行重新投票或其他法定决定程序。",
+    "law": "总统法",
+    "article": "第六十五条",
+    "articleNumber": 65,
+    "keywords": [
+      "总统选举同票"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第六十六条　副总统选举同票（用户提供）",
+    "text": "第六十六条　副总统选举同票\n\n副总统选举最高票数出现两名或以上候选人相同者，应依法进行重新投票或其他法定决定程序。",
+    "law": "总统法",
+    "article": "第六十六条",
+    "articleNumber": 66,
+    "keywords": [
+      "副总统选举同票"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第六十七条　重新投票（用户提供）",
+    "text": "第六十七条　重新投票\n\n重新投票原则上仅由最高票数相同之候选人参加。",
+    "law": "总统法",
+    "article": "第六十七条",
+    "articleNumber": 67,
+    "keywords": [
+      "重新投票"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第六十八条　重新选举（用户提供）",
+    "text": "第六十八条　重新选举\n\n因重大技术故障、严重违法或其他原因导致选举无法确认结果时，得宣布重新选举。",
+    "law": "总统法",
+    "article": "第六十八条",
+    "articleNumber": 68,
+    "keywords": [
+      "重新选举"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第六十九条　临时任期（用户提供）",
+    "text": "第六十九条　临时任期\n\n重新选举无法在原定就任日前完成时，应依继任及代理制度维持国家权力正常运行。",
+    "law": "总统法",
+    "article": "第六十九条",
+    "articleNumber": 69,
+    "keywords": [
+      "临时任期"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第七十条　国家元首（用户提供）",
+    "text": "第七十条　国家元首\n\n总统为阿谢国国家元首，代表阿谢国。",
+    "law": "总统法",
+    "article": "第七十条",
+    "articleNumber": 70,
+    "keywords": [
+      "国家元首"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第七十一条　政府首脑（用户提供）",
+    "text": "第七十一条　政府首脑\n\n总统为政府首脑，依法总揽行政事务。",
+    "law": "总统法",
+    "article": "第七十一条",
+    "articleNumber": 71,
+    "keywords": [
+      "政府首脑"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第七十二条　行政权（用户提供）",
+    "text": "第七十二条　行政权\n\n总统依法执行行政权，包括：\n\n一、领导行政机关；\n二、制定国家施政方针；\n三、发布行政命令；\n四、签署法律；\n五、处理其他依法属于总统之行政事务。",
+    "law": "总统法",
+    "article": "第七十二条",
+    "articleNumber": 72,
+    "keywords": [
+      "行政权"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第七十三条　国家发展（用户提供）",
+    "text": "第七十三条　国家发展\n\n总统得依法提出国家发展计划及施政方案。",
+    "law": "总统法",
+    "article": "第七十三条",
+    "articleNumber": 73,
+    "keywords": [
+      "国家发展"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第七十四条　法律签署（用户提供）",
+    "text": "第七十四条　法律签署\n\n经国会依法通过之法律，由总统依法签署并公布。",
+    "law": "总统法",
+    "article": "第七十四条",
+    "articleNumber": 74,
+    "keywords": [
+      "法律签署"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第七十五条　行政命令（用户提供）",
+    "text": "第七十五条　行政命令\n\n总统得在宪法及法律授权范围内发布行政命令。\n\n行政命令不得违反宪法或法律。",
+    "law": "总统法",
+    "article": "第七十五条",
+    "articleNumber": 75,
+    "keywords": [
+      "行政命令"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第七十六条　外交代表（用户提供）",
+    "text": "第七十六条　外交代表\n\n总统代表阿谢国处理国家外交事务。",
+    "law": "总统法",
+    "article": "第七十六条",
+    "articleNumber": 76,
+    "keywords": [
+      "外交代表"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第七十七条　国际条约（用户提供）",
+    "text": "第七十七条　国际条约\n\n总统得代表阿谢国进行条约谈判及签署。\n\n依法需要国会批准之条约，应提交国会批准。",
+    "law": "总统法",
+    "article": "第七十七条",
+    "articleNumber": 77,
+    "keywords": [
+      "国际条约"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第七十八条　外交政策（用户提供）",
+    "text": "第七十八条　外交政策\n\n总统依法制定及执行国家外交政策。",
+    "law": "总统法",
+    "article": "第七十八条",
+    "articleNumber": 78,
+    "keywords": [
+      "外交政策"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第七十九条　外交使节（用户提供）",
+    "text": "第七十九条　外交使节\n\n总统得依法任命或解任外交代表及大使。",
+    "law": "总统法",
+    "article": "第七十九条",
+    "articleNumber": 79,
+    "keywords": [
+      "外交使节"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第八十条　最高统帅（用户提供）",
+    "text": "第八十条　最高统帅\n\n总统为阿谢国武装力量最高统帅。",
+    "law": "总统法",
+    "article": "第八十条",
+    "articleNumber": 80,
+    "keywords": [
+      "最高统帅"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第八十一条　军事行动（用户提供）",
+    "text": "第八十一条　军事行动\n\n总统得依法指挥武装力量执行国防任务。\n\n重大军事行动应依法接受国会监督。",
+    "law": "总统法",
+    "article": "第八十一条",
+    "articleNumber": 81,
+    "keywords": [
+      "军事行动"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第八十二条　和平原则（用户提供）",
+    "text": "第八十二条　和平原则\n\n阿谢国武装力量之使用应以维护国家安全、国民安全及和平为原则。",
+    "law": "总统法",
+    "article": "第八十二条",
+    "articleNumber": 82,
+    "keywords": [
+      "和平原则"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第八十三条　禁止滥用军事力量（用户提供）",
+    "text": "第八十三条　禁止滥用军事力量\n\n总统不得利用武装力量从事违反宪法或法律之活动。",
+    "law": "总统法",
+    "article": "第八十三条",
+    "articleNumber": 83,
+    "keywords": [
+      "禁止滥用军事力量"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第八十四条　紧急权（用户提供）",
+    "text": "第八十四条　紧急权\n\n国家发生严重危机并符合宪法及法律规定时，总统得依法宣布紧急状态。",
+    "law": "总统法",
+    "article": "第八十四条",
+    "articleNumber": 84,
+    "keywords": [
+      "紧急权"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第八十五条　国会报告（用户提供）",
+    "text": "第八十五条　国会报告\n\n总统宣布紧急状态后，应于七十二小时内向国会报告。",
+    "law": "总统法",
+    "article": "第八十五条",
+    "articleNumber": 85,
+    "keywords": [
+      "国会报告"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第八十六条　紧急措施限制（用户提供）",
+    "text": "第八十六条　紧急措施限制\n\n紧急状态下采取之措施应具有必要性及合理期限。\n\n不得以紧急状态为理由永久剥夺国民基本权利。",
+    "law": "总统法",
+    "article": "第八十六条",
+    "articleNumber": 86,
+    "keywords": [
+      "紧急措施限制"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第八十七条　紧急状态终止（用户提供）",
+    "text": "第八十七条　紧急状态终止\n\n紧急状态之原因消失后，应依法终止紧急状态。",
+    "law": "总统法",
+    "article": "第八十七条",
+    "articleNumber": 87,
+    "keywords": [
+      "紧急状态终止"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第八十八条　副总统地位（用户提供）",
+    "text": "第八十八条　副总统地位\n\n副总统为阿谢国副元首。",
+    "law": "总统法",
+    "article": "第八十八条",
+    "articleNumber": 88,
+    "keywords": [
+      "副总统地位"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第八十九条　协助总统（用户提供）",
+    "text": "第八十九条　协助总统\n\n副总统协助总统处理国家事务。",
+    "law": "总统法",
+    "article": "第八十九条",
+    "articleNumber": 89,
+    "keywords": [
+      "协助总统"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第九十条　总统授权（用户提供）",
+    "text": "第九十条　总统授权\n\n总统得依法授权副总统处理特定行政事务。",
+    "law": "总统法",
+    "article": "第九十条",
+    "articleNumber": 90,
+    "keywords": [
+      "总统授权"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第九十一条　独立职务（用户提供）",
+    "text": "第九十一条　独立职务\n\n副总统之选举结果独立于总统选举结果。\n\n副总统不得因总统与其属于不同政党而当然失去职务。",
+    "law": "总统法",
+    "article": "第九十一条",
+    "articleNumber": 91,
+    "keywords": [
+      "独立职务"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第九十二条　代理总统（用户提供）",
+    "text": "第九十二条　代理总统\n\n总统因暂时无法履行职务时，由副总统依法代理总统行使职权。",
+    "law": "总统法",
+    "article": "第九十二条",
+    "articleNumber": 92,
+    "keywords": [
+      "代理总统"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第九十三条　总统职位空缺（用户提供）",
+    "text": "第九十三条　总统职位空缺\n\n总统辞职、死亡、被罢免或永久无法履职时，由副总统依法继任总统。",
+    "law": "总统法",
+    "article": "第九十三条",
+    "articleNumber": 93,
+    "keywords": [
+      "总统职位空缺"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第九十四条　继任后之副总统职位（用户提供）",
+    "text": "第九十四条　继任后之副总统职位\n\n副总统继任总统后，副总统职位同时产生空缺。\n\n该职位应依本法规定举行副总统补选或其他法定程序。",
+    "law": "总统法",
+    "article": "第九十四条",
+    "articleNumber": 94,
+    "keywords": [
+      "继任后之副总统职位"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第九十五条　独立授权（用户提供）",
+    "text": "第九十五条　独立授权\n\n总统与副总统分别获得国民选举授权。",
+    "law": "总统法",
+    "article": "第九十五条",
+    "articleNumber": 95,
+    "keywords": [
+      "独立授权"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第九十六条　协作原则（用户提供）",
+    "text": "第九十六条　协作原则\n\n总统与副总统应在宪法及法律框架内合作履行国家职责。",
+    "law": "总统法",
+    "article": "第九十六条",
+    "articleNumber": 96,
+    "keywords": [
+      "协作原则"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第九十七条　政党不同（用户提供）",
+    "text": "第九十七条　政党不同\n\n总统与副总统属于不同政党时，不影响其依法履行职务。",
+    "law": "总统法",
+    "article": "第九十七条",
+    "articleNumber": 97,
+    "keywords": [
+      "政党不同"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第九十八条　意见不同（用户提供）",
+    "text": "第九十八条　意见不同\n\n总统与副总统在政策问题上存在意见差异时，应通过宪法及法律规定之制度解决。",
+    "law": "总统法",
+    "article": "第九十八条",
+    "articleNumber": 98,
+    "keywords": [
+      "意见不同"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第九十九条　不得擅自解除（用户提供）",
+    "text": "第九十九条　不得擅自解除\n\n总统不得仅因副总统属于其他政党或与总统存在政策意见不同而擅自解除副总统职务。\n\n副总统亦不得以其政治地位干涉总统依法行使职权。",
+    "law": "总统法",
+    "article": "第九十九条",
+    "articleNumber": 99,
+    "keywords": [
+      "不得擅自解除"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百条　总统连任（用户提供）",
+    "text": "第一百条　总统连任\n\n总统得连任一次。",
+    "law": "总统法",
+    "article": "第一百条",
+    "articleNumber": 100,
+    "keywords": [
+      "总统连任"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百零一条　副总统连任（用户提供）",
+    "text": "第一百零一条　副总统连任\n\n副总统得连任一次。",
+    "law": "总统法",
+    "article": "第一百零一条",
+    "articleNumber": 101,
+    "keywords": [
+      "副总统连任"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百零二条　两期限制（用户提供）",
+    "text": "第一百零二条　两期限制\n\n同一职位连续担任两期后，应至少间隔一期方得再次竞选该职位。",
+    "law": "总统法",
+    "article": "第一百零二条",
+    "articleNumber": 102,
+    "keywords": [
+      "两期限制"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百零三条　间隔期间（用户提供）",
+    "text": "第一百零三条　间隔期间\n\n前条所称间隔期内，该人员不得以同一职位候选人身份参加选举。",
+    "law": "总统法",
+    "article": "第一百零三条",
+    "articleNumber": 103,
+    "keywords": [
+      "间隔期间"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百零四条　其他职位参选（用户提供）",
+    "text": "第一百零四条　其他职位参选\n\n前述连任限制不当然限制该人员依法竞选其他公职，但宪法另有规定者，从其规定。",
+    "law": "总统法",
+    "article": "第一百零四条",
+    "articleNumber": 104,
+    "keywords": [
+      "其他职位参选"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百零五条　宣誓（用户提供）",
+    "text": "第一百零五条　宣誓\n\n总统及副总统正式就任前，应依法进行公开宣誓。",
+    "law": "总统法",
+    "article": "第一百零五条",
+    "articleNumber": 105,
+    "keywords": [
+      "宣誓"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百零六条　总统宣誓词（用户提供）",
+    "text": "第一百零六条　总统宣誓词\n\n总统宣誓如下：\n\n“总统执政，并非霸权。\n热爱国家，热爱国民。\n遵守宪法，履行义务。\n保护祖国，维持和平。\n增强福祉，造福社会。\n如有违宪，愿受制裁！”",
+    "law": "总统法",
+    "article": "第一百零六条",
+    "articleNumber": 106,
+    "keywords": [
+      "总统宣誓词"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百零七条　副总统宣誓（用户提供）",
+    "text": "第一百零七条　副总统宣誓\n\n副总统宣誓内容原则上与总统宣誓内容相同，亦得依法制定副总统专用宣誓词。",
+    "law": "总统法",
+    "article": "第一百零七条",
+    "articleNumber": 107,
+    "keywords": [
+      "副总统宣誓"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百零八条　宣誓完成（用户提供）",
+    "text": "第一百零八条　宣誓完成\n\n总统或副总统完成法定宣誓后，方正式取得相应职务。",
+    "law": "总统法",
+    "article": "第一百零八条",
+    "articleNumber": 108,
+    "keywords": [
+      "宣誓完成"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百零九条　拒绝宣誓（用户提供）",
+    "text": "第一百零九条　拒绝宣誓\n\n当选人无正当理由拒绝宣誓者，应依法律规定处理。",
+    "law": "总统法",
+    "article": "第一百零九条",
+    "articleNumber": 109,
+    "keywords": [
+      "拒绝宣誓"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百一十条　遵守宪法（用户提供）",
+    "text": "第一百一十条　遵守宪法\n\n总统及副总统必须遵守《阿谢国宪法》及法律。",
+    "law": "总统法",
+    "article": "第一百一十条",
+    "articleNumber": 110,
+    "keywords": [
+      "遵守宪法"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百一十一条　不得滥权（用户提供）",
+    "text": "第一百一十一条　不得滥权\n\n总统及副总统不得利用职权谋取个人或特定团体非法利益。",
+    "law": "总统法",
+    "article": "第一百一十一条",
+    "articleNumber": 111,
+    "keywords": [
+      "不得滥权"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百一十二条　不得干涉司法（用户提供）",
+    "text": "第一百一十二条　不得干涉司法\n\n总统及副总统不得非法干涉司法机关依法独立行使职权。",
+    "law": "总统法",
+    "article": "第一百一十二条",
+    "articleNumber": 112,
+    "keywords": [
+      "不得干涉司法"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百一十三条　基本权利（用户提供）",
+    "text": "第一百一十三条　基本权利\n\n总统及副总统应尊重并保障国民依法享有之基本权利。",
+    "law": "总统法",
+    "article": "第一百一十三条",
+    "articleNumber": 113,
+    "keywords": [
+      "基本权利"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百一十四条　政治责任（用户提供）",
+    "text": "第一百一十四条　政治责任\n\n总统及副总统对其依法行使职权之行为承担相应政治及法律责任。",
+    "law": "总统法",
+    "article": "第一百一十四条",
+    "articleNumber": 114,
+    "keywords": [
+      "政治责任"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百一十五条　弹劾事由（用户提供）",
+    "text": "第一百一十五条　弹劾事由\n\n总统或副总统具有下列重大情形之一者，得依法启动弹劾程序：\n\n一、严重违反宪法；\n二、重大违法犯罪；\n三、贪污腐败；\n四、叛国行为；\n五、严重滥用职权；\n六、其他严重损害国家利益之行为。",
+    "law": "总统法",
+    "article": "第一百一十五条",
+    "articleNumber": 115,
+    "keywords": [
+      "弹劾事由"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百一十六条　弹劾提案（用户提供）",
+    "text": "第一百一十六条　弹劾提案\n\n国会三分之一以上议员得提出弹劾案。",
+    "law": "总统法",
+    "article": "第一百一十六条",
+    "articleNumber": 116,
+    "keywords": [
+      "弹劾提案"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百一十七条　弹劾通过（用户提供）",
+    "text": "第一百一十七条　弹劾通过\n\n弹劾案经国会三分之二以上议员通过后，依宪法及法律生效。",
+    "law": "总统法",
+    "article": "第一百一十七条",
+    "articleNumber": 117,
+    "keywords": [
+      "弹劾通过"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百一十八条　职务终止（用户提供）",
+    "text": "第一百一十八条　职务终止\n\n弹劾成立后，被弹劾之总统或副总统立即终止职务。",
+    "law": "总统法",
+    "article": "第一百一十八条",
+    "articleNumber": 118,
+    "keywords": [
+      "职务终止"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百一十九条　司法责任（用户提供）",
+    "text": "第一百一十九条　司法责任\n\n弹劾不排除相关人员依法承担其他法律责任。",
+    "law": "总统法",
+    "article": "第一百一十九条",
+    "articleNumber": 119,
+    "keywords": [
+      "司法责任"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百二十条　辞职（用户提供）",
+    "text": "第一百二十条　辞职\n\n总统或副总统得依法提出辞职。",
+    "law": "总统法",
+    "article": "第一百二十条",
+    "articleNumber": 120,
+    "keywords": [
+      "辞职"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百二十一条　辞职生效（用户提供）",
+    "text": "第一百二十一条　辞职生效\n\n辞职经依法确认后生效。",
+    "law": "总统法",
+    "article": "第一百二十一条",
+    "articleNumber": 121,
+    "keywords": [
+      "辞职生效"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百二十二条　死亡（用户提供）",
+    "text": "第一百二十二条　死亡\n\n总统或副总统死亡时，其职务自死亡之日起终止。",
+    "law": "总统法",
+    "article": "第一百二十二条",
+    "articleNumber": 122,
+    "keywords": [
+      "死亡"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百二十三条　永久失能（用户提供）",
+    "text": "第一百二十三条　永久失能\n\n总统或副总统因永久性原因无法履行职务，经依法确认后，其职务得终止。",
+    "law": "总统法",
+    "article": "第一百二十三条",
+    "articleNumber": 123,
+    "keywords": [
+      "永久失能"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百二十四条　任期届满（用户提供）",
+    "text": "第一百二十四条　任期届满\n\n任期届满且新任者完成就任程序后，原任总统或副总统职务终止。",
+    "law": "总统法",
+    "article": "第一百二十四条",
+    "articleNumber": 124,
+    "keywords": [
+      "任期届满"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百二十五条　总统离职（用户提供）",
+    "text": "第一百二十五条　总统离职\n\n总统职位出现空缺时，由副总统依法继任总统。",
+    "law": "总统法",
+    "article": "第一百二十五条",
+    "articleNumber": 125,
+    "keywords": [
+      "总统离职"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百二十六条　总统与副总统同时空缺（用户提供）",
+    "text": "第一百二十六条　总统与副总统同时空缺\n\n总统与副总统职位同时出现空缺时，由国会议长依法代理总统职务。",
+    "law": "总统法",
+    "article": "第一百二十六条",
+    "articleNumber": 126,
+    "keywords": [
+      "总统与副总统同时空缺"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百二十七条　补选总统（用户提供）",
+    "text": "第一百二十七条　补选总统\n\n总统与副总统同时空缺后，应于三个月内举行总统选举。",
+    "law": "总统法",
+    "article": "第一百二十七条",
+    "articleNumber": 127,
+    "keywords": [
+      "补选总统"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百二十八条　副总统空缺（用户提供）",
+    "text": "第一百二十八条　副总统空缺\n\n副总统职位单独出现空缺时，应依法举行副总统补选。",
+    "law": "总统法",
+    "article": "第一百二十八条",
+    "articleNumber": 128,
+    "keywords": [
+      "副总统空缺"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百二十九条　代理期间（用户提供）",
+    "text": "第一百二十九条　代理期间\n\n代理总统之人员不得利用代理职务改变宪法基本制度或实施与维持国家正常运行无关之重大制度性行为，宪法另有规定者除外。",
+    "law": "总统法",
+    "article": "第一百二十九条",
+    "articleNumber": 129,
+    "keywords": [
+      "代理期间"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百三十条　薪酬（用户提供）",
+    "text": "第一百三十条　薪酬\n\n总统及副总统之薪酬由相关法律规定。",
+    "law": "总统法",
+    "article": "第一百三十条",
+    "articleNumber": 130,
+    "keywords": [
+      "薪酬"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百三十一条　薪酬稳定（用户提供）",
+    "text": "第一百三十一条　薪酬稳定\n\n任期内不得因政治原因任意调整总统或副总统薪酬。",
+    "law": "总统法",
+    "article": "第一百三十一条",
+    "articleNumber": 131,
+    "keywords": [
+      "薪酬稳定"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百三十二条　公务待遇（用户提供）",
+    "text": "第一百三十二条　公务待遇\n\n总统及副总统依法享有履行职务所必要之公务设施及保障。",
+    "law": "总统法",
+    "article": "第一百三十二条",
+    "articleNumber": 132,
+    "keywords": [
+      "公务待遇"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百三十三条　卸任待遇（用户提供）",
+    "text": "第一百三十三条　卸任待遇\n\n总统及副总统卸任后，得依法享有基本卸任礼遇。",
+    "law": "总统法",
+    "article": "第一百三十三条",
+    "articleNumber": 133,
+    "keywords": [
+      "卸任待遇"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百三十四条　卸任限制（用户提供）",
+    "text": "第一百三十四条　卸任限制\n\n卸任总统及副总统不得继续干涉现任政府依法行使行政权。",
+    "law": "总统法",
+    "article": "第一百三十四条",
+    "articleNumber": 134,
+    "keywords": [
+      "卸任限制"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百三十五条　选举机关（用户提供）",
+    "text": "第一百三十五条　选举机关\n\n阿谢国应设立或依法指定负责总统及副总统选举事务之机构。",
+    "law": "总统法",
+    "article": "第一百三十五条",
+    "articleNumber": 135,
+    "keywords": [
+      "选举机关"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百三十六条　选举监督（用户提供）",
+    "text": "第一百三十六条　选举监督\n\n选举机关负责：\n\n一、候选人登记；\n二、资格审查；\n三、选举公告；\n四、投票系统管理；\n五、计票；\n六、结果确认；\n七、选举资料保存；\n八、其他依法规定之选举事务。",
+    "law": "总统法",
+    "article": "第一百三十六条",
+    "articleNumber": 136,
+    "keywords": [
+      "选举监督"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百三十七条　技术系统（用户提供）",
+    "text": "第一百三十七条　技术系统\n\n选举机关得使用官方网站、电子投票系统及其他技术系统完成选举工作。",
+    "law": "总统法",
+    "article": "第一百三十七条",
+    "articleNumber": 137,
+    "keywords": [
+      "技术系统"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百三十八条　系统安全（用户提供）",
+    "text": "第一百三十八条　系统安全\n\n选举系统应采取合理技术措施防止非法访问、数据篡改、重复投票及其他影响选举公平之行为。",
+    "law": "总统法",
+    "article": "第一百三十八条",
+    "articleNumber": 138,
+    "keywords": [
+      "系统安全"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百三十九条　系统故障（用户提供）",
+    "text": "第一百三十九条　系统故障\n\n选举系统发生严重技术故障时，应及时公告，并根据实际情况延长投票时间、恢复系统或重新进行相关投票。",
+    "law": "总统法",
+    "article": "第一百三十九条",
+    "articleNumber": 139,
+    "keywords": [
+      "系统故障"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百四十条　申诉权（用户提供）",
+    "text": "第一百四十条　申诉权\n\n候选人及依法具有相关权利之人员，对选举过程或结果有异议者，得依法提出申诉。",
+    "law": "总统法",
+    "article": "第一百四十条",
+    "articleNumber": 140,
+    "keywords": [
+      "申诉权"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百四十一条　申诉期限（用户提供）",
+    "text": "第一百四十一条　申诉期限\n\n选举争议应在规定期限内提出。",
+    "law": "总统法",
+    "article": "第一百四十一条",
+    "articleNumber": 141,
+    "keywords": [
+      "申诉期限"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百四十二条　重新计票（用户提供）",
+    "text": "第一百四十二条　重新计票\n\n存在足以影响选举结果之计票错误时，选举机关得依法重新计票。",
+    "law": "总统法",
+    "article": "第一百四十二条",
+    "articleNumber": 142,
+    "keywords": [
+      "重新计票"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百四十三条　结果纠正（用户提供）",
+    "text": "第一百四十三条　结果纠正\n\n确认选举结果存在重大错误时，应依法纠正。",
+    "law": "总统法",
+    "article": "第一百四十三条",
+    "articleNumber": 143,
+    "keywords": [
+      "结果纠正"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百四十四条　司法救济（用户提供）",
+    "text": "第一百四十四条　司法救济\n\n涉及重大法律争议者，得依法寻求司法救济。",
+    "law": "总统法",
+    "article": "第一百四十四条",
+    "articleNumber": 144,
+    "keywords": [
+      "司法救济"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百四十五条　资料保存（用户提供）",
+    "text": "第一百四十五条　资料保存\n\n总统及副总统选举之候选人资料、投票结果及正式结果应依法保存。",
+    "law": "总统法",
+    "article": "第一百四十五条",
+    "articleNumber": 145,
+    "keywords": [
+      "资料保存"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百四十六条　历届记录（用户提供）",
+    "text": "第一百四十六条　历届记录\n\n官方网站得建立“历届总统选举”及“历届副总统选举”档案。",
+    "law": "总统法",
+    "article": "第一百四十六条",
+    "articleNumber": 146,
+    "keywords": [
+      "历届记录"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百四十七条　候选人历史（用户提供）",
+    "text": "第一百四十七条　候选人历史\n\n曾参加总统或副总统选举之候选人，其参选记录原则上应予保存。",
+    "law": "总统法",
+    "article": "第一百四十七条",
+    "articleNumber": 147,
+    "keywords": [
+      "候选人历史"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百四十八条　当选人记录（用户提供）",
+    "text": "第一百四十八条　当选人记录\n\n正式当选并完成就任程序者，应记录其任期及职务。",
+    "law": "总统法",
+    "article": "第一百四十八条",
+    "articleNumber": 148,
+    "keywords": [
+      "当选人记录"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百四十九条　资料真实性（用户提供）",
+    "text": "第一百四十九条　资料真实性\n\n选举档案不得擅自篡改。",
+    "law": "总统法",
+    "article": "第一百四十九条",
+    "articleNumber": 149,
+    "keywords": [
+      "资料真实性"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百五十条　政党平等（用户提供）",
+    "text": "第一百五十条　政党平等\n\n依法登记之政党在总统及副总统选举中享有平等参选权。",
+    "law": "总统法",
+    "article": "第一百五十条",
+    "articleNumber": 150,
+    "keywords": [
+      "政党平等"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百五十一条　政党不决定选举结果（用户提供）",
+    "text": "第一百五十一条　政党不决定选举结果\n\n总统及副总统职务之归属，应由选民投票决定。",
+    "law": "总统法",
+    "article": "第一百五十一条",
+    "articleNumber": 151,
+    "keywords": [
+      "政党不决定选举结果"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百五十二条　独立候选人（用户提供）",
+    "text": "第一百五十二条　独立候选人\n\n独立候选人与政党候选人在法律允许范围内享有平等参选地位。",
+    "law": "总统法",
+    "article": "第一百五十二条",
+    "articleNumber": 152,
+    "keywords": [
+      "独立候选人"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百五十三条　政党变更（用户提供）",
+    "text": "第一百五十三条　政党变更\n\n候选人完成正式登记后，政党资料之变更应遵循选举机关规定。",
+    "law": "总统法",
+    "article": "第一百五十三条",
+    "articleNumber": 153,
+    "keywords": [
+      "政党变更"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百五十四条　禁止伪造（用户提供）",
+    "text": "第一百五十四条　禁止伪造\n\n任何人不得伪造选票、选举数据或官方选举结果。",
+    "law": "总统法",
+    "article": "第一百五十四条",
+    "articleNumber": 154,
+    "keywords": [
+      "禁止伪造"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百五十五条　禁止冒名投票（用户提供）",
+    "text": "第一百五十五条　禁止冒名投票\n\n任何人不得冒充他人进行投票。",
+    "law": "总统法",
+    "article": "第一百五十五条",
+    "articleNumber": 155,
+    "keywords": [
+      "禁止冒名投票"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百五十六条　禁止非法干预（用户提供）",
+    "text": "第一百五十六条　禁止非法干预\n\n任何人不得非法干预投票系统或计票系统。",
+    "law": "总统法",
+    "article": "第一百五十六条",
+    "articleNumber": 156,
+    "keywords": [
+      "禁止非法干预"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百五十七条　数据保护（用户提供）",
+    "text": "第一百五十七条　数据保护\n\n选举机关应合理保护选民及候选人数据。",
+    "law": "总统法",
+    "article": "第一百五十七条",
+    "articleNumber": 157,
+    "keywords": [
+      "数据保护"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百五十八条　个人隐私（用户提供）",
+    "text": "第一百五十八条　个人隐私\n\n除依法必须公开之选举资料外，不得擅自公开选民个人隐私资料。",
+    "law": "总统法",
+    "article": "第一百五十八条",
+    "articleNumber": 158,
+    "keywords": [
+      "个人隐私"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百五十九条　重大灾害（用户提供）",
+    "text": "第一百五十九条　重大灾害\n\n因战争、重大自然灾害、重大技术事故或其他不可抗力导致选举无法正常进行时，得依法调整选举安排。",
+    "law": "总统法",
+    "article": "第一百五十九条",
+    "articleNumber": 159,
+    "keywords": [
+      "重大灾害"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百六十条　延期选举（用户提供）",
+    "text": "第一百六十条　延期选举\n\n选举机关得在法律授权范围内宣布选举延期。",
+    "law": "总统法",
+    "article": "第一百六十条",
+    "articleNumber": 160,
+    "keywords": [
+      "延期选举"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百六十一条　延期限制（用户提供）",
+    "text": "第一百六十一条　延期限制\n\n选举延期应以维持民主选举制度为目的，不得无正当理由无限期延期。",
+    "law": "总统法",
+    "article": "第一百六十一条",
+    "articleNumber": 161,
+    "keywords": [
+      "延期限制"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百六十二条　国家连续性（用户提供）",
+    "text": "第一百六十二条　国家连续性\n\n选举延期期间，应确保国家机关正常运行。",
+    "law": "总统法",
+    "article": "第一百六十二条",
+    "articleNumber": 162,
+    "keywords": [
+      "国家连续性"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百六十三条　交接原则（用户提供）",
+    "text": "第一百六十三条　交接原则\n\n新任总统或副总统就任前，应依法完成职务交接。",
+    "law": "总统法",
+    "article": "第一百六十三条",
+    "articleNumber": 163,
+    "keywords": [
+      "交接原则"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百六十四条　资料交接（用户提供）",
+    "text": "第一百六十四条　资料交接\n\n原任总统或副总统应依法移交与国家职务有关之文件、资料及公共资产。",
+    "law": "总统法",
+    "article": "第一百六十四条",
+    "articleNumber": 164,
+    "keywords": [
+      "资料交接"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百六十五条　公共资产（用户提供）",
+    "text": "第一百六十五条　公共资产\n\n总统及副总统不得将国家公务资产据为己有。",
+    "law": "总统法",
+    "article": "第一百六十五条",
+    "articleNumber": 165,
+    "keywords": [
+      "公共资产"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百六十六条　官方网站交接（用户提供）",
+    "text": "第一百六十六条　官方网站交接\n\n新任总统或副总统正式就任后，官方网站应更新现任领导人资料。",
+    "law": "总统法",
+    "article": "第一百六十六条",
+    "articleNumber": 166,
+    "keywords": [
+      "官方网站交接"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百六十七条　历史资料保留（用户提供）",
+    "text": "第一百六十七条　历史资料保留\n\n原任总统或副总统资料应转入历届领导人档案，不得因换届而删除。",
+    "law": "总统法",
+    "article": "第一百六十七条",
+    "articleNumber": 167,
+    "keywords": [
+      "历史资料保留"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百六十八条　电子投票（用户提供）",
+    "text": "第一百六十八条　电子投票\n\n阿谢国得通过官方网站实施电子投票。",
+    "law": "总统法",
+    "article": "第一百六十八条",
+    "articleNumber": 168,
+    "keywords": [
+      "电子投票"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百六十九条　投票确认（用户提供）",
+    "text": "第一百六十九条　投票确认\n\n电子投票系统应向选民提供投票提交成功之确认信息。",
+    "law": "总统法",
+    "article": "第一百六十九条",
+    "articleNumber": 169,
+    "keywords": [
+      "投票确认"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百七十条　重复提交（用户提供）",
+    "text": "第一百七十条　重复提交\n\n系统应尽可能阻止同一设备、账户或访问主体重复提交选票。",
+    "law": "总统法",
+    "article": "第一百七十条",
+    "articleNumber": 170,
+    "keywords": [
+      "重复提交"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百七十一条　异常检测（用户提供）",
+    "text": "第一百七十一条　异常检测\n\n系统发现异常投票行为时，得暂时标记相关数据并交由选举机关审核。",
+    "law": "总统法",
+    "article": "第一百七十一条",
+    "articleNumber": 171,
+    "keywords": [
+      "异常检测"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百七十二条　数据备份（用户提供）",
+    "text": "第一百七十二条　数据备份\n\n选举期间应建立必要的数据备份机制。",
+    "law": "总统法",
+    "article": "第一百七十二条",
+    "articleNumber": 172,
+    "keywords": [
+      "数据备份"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百七十三条　结果保护（用户提供）",
+    "text": "第一百七十三条　结果保护\n\n选举结果确认后，原则上不得直接修改。\n\n任何结果修改均应留下合法记录。",
+    "law": "总统法",
+    "article": "第一百七十三条",
+    "articleNumber": 173,
+    "keywords": [
+      "结果保护"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百七十四条　候选人资料（用户提供）",
+    "text": "第一百七十四条　候选人资料\n\n选举期间，官方网站应优先展示当前选举候选人资料。",
+    "law": "总统法",
+    "article": "第一百七十四条",
+    "articleNumber": 174,
+    "keywords": [
+      "候选人资料"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百七十五条　候选人自我介绍延续（用户提供）",
+    "text": "第一百七十五条　候选人自我介绍延续\n\n当选人正式就任后，其候选人自我介绍得自动转移至总统或副总统个人资料页面。",
+    "law": "总统法",
+    "article": "第一百七十五条",
+    "articleNumber": 175,
+    "keywords": [
+      "候选人自我介绍延续"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百七十六条　落选候选人（用户提供）",
+    "text": "第一百七十六条　落选候选人\n\n未当选候选人之资料得保留于历届选举页面。",
+    "law": "总统法",
+    "article": "第一百七十六条",
+    "articleNumber": 176,
+    "keywords": [
+      "落选候选人"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百七十七条　选举状态（用户提供）",
+    "text": "第一百七十七条　选举状态\n\n官方网站应明确标记：\n\n一、选举尚未开始；\n二、候选人登记中；\n三、选举进行中；\n四、投票结束；\n五、计票中；\n六、结果已公布；\n七、已完成换届。",
+    "law": "总统法",
+    "article": "第一百七十七条",
+    "articleNumber": 177,
+    "keywords": [
+      "选举状态"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百七十八条　自动切换（用户提供）",
+    "text": "第一百七十八条　自动切换\n\n当某一职位进入新的选举周期时，官方网站应自动切换至相应选举状态。",
+    "law": "总统法",
+    "article": "第一百七十八条",
+    "articleNumber": 178,
+    "keywords": [
+      "自动切换"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百七十九条　总统选举周期（用户提供）",
+    "text": "第一百七十九条　总统选举周期\n\n总统选举原则上按照以下周期运行：\n\n阿谢纪年一月四日：总统选举开始\n\n↓\n\n阿谢纪年二月四日：总统当选人就任\n\n↓\n\n三年后重新进入下一总统选举周期。",
+    "law": "总统法",
+    "article": "第一百七十九条",
+    "articleNumber": 179,
+    "keywords": [
+      "总统选举周期"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百八十条　副总统选举周期（用户提供）",
+    "text": "第一百八十条　副总统选举周期\n\n副总统选举原则上按照以下周期运行：\n\n阿谢纪年十月二日：副总统选举开始\n\n↓\n\n阿谢纪年十一月二日：副总统当选人就任\n\n↓\n\n次年重新进入下一副总统选举周期。",
+    "law": "总统法",
+    "article": "第一百八十条",
+    "articleNumber": 180,
+    "keywords": [
+      "副总统选举周期"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百八十一条　总统与副总统周期独立（用户提供）",
+    "text": "第一百八十一条　总统与副总统周期独立\n\n总统选举周期与副总统选举周期分别运行。\n\n任何一项选举之开始、结束、延期或重新选举，不当然改变另一项选举之正常周期。",
+    "law": "总统法",
+    "article": "第一百八十一条",
+    "articleNumber": 181,
+    "keywords": [
+      "总统与副总统周期独立"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百八十二条　违法责任（用户提供）",
+    "text": "第一百八十二条　违法责任\n\n违反本法之行为，依《阿谢国刑法》及其他相关法律处理。",
+    "law": "总统法",
+    "article": "第一百八十二条",
+    "articleNumber": 182,
+    "keywords": [
+      "违法责任"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百八十三条　选举违法（用户提供）",
+    "text": "第一百八十三条　选举违法\n\n涉及伪造选票、操纵选举、非法干涉选举系统等行为者，应依法承担相应责任。",
+    "law": "总统法",
+    "article": "第一百八十三条",
+    "articleNumber": 183,
+    "keywords": [
+      "选举违法"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百八十四条　候选人违法（用户提供）",
+    "text": "第一百八十四条　候选人违法\n\n候选人在竞选期间严重违反法律者，依法处理。",
+    "law": "总统法",
+    "article": "第一百八十四条",
+    "articleNumber": 184,
+    "keywords": [
+      "候选人违法"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百八十五条　公职人员违法（用户提供）",
+    "text": "第一百八十五条　公职人员违法\n\n选举机关工作人员违反法律或滥用职权者，应依法承担责任。",
+    "law": "总统法",
+    "article": "第一百八十五条",
+    "articleNumber": 185,
+    "keywords": [
+      "公职人员违法"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百八十六条　解释原则（用户提供）",
+    "text": "第一百八十六条　解释原则\n\n本法解释应以《阿谢国宪法》为最高依据。",
+    "law": "总统法",
+    "article": "第一百八十六条",
+    "articleNumber": 186,
+    "keywords": [
+      "解释原则"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百八十七条　冲突处理（用户提供）",
+    "text": "第一百八十七条　冲突处理\n\n本法与《阿谢国宪法》发生冲突时，以宪法为准。",
+    "law": "总统法",
+    "article": "第一百八十七条",
+    "articleNumber": 187,
+    "keywords": [
+      "冲突处理"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百八十八条　制度解释（用户提供）",
+    "text": "第一百八十八条　制度解释\n\n涉及总统与副总统分别选举之规定，应优先解释为保障两项选举之独立性及民主性。",
+    "law": "总统法",
+    "article": "第一百八十八条",
+    "articleNumber": 188,
+    "keywords": [
+      "制度解释"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百八十九条　施行（用户提供）",
+    "text": "第一百八十九条　施行\n\n本法经国会通过、总统公布后施行。",
+    "law": "总统法",
+    "article": "第一百八十九条",
+    "articleNumber": 189,
+    "keywords": [
+      "施行"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百九十条　旧制度废止（用户提供）",
+    "text": "第一百九十条　旧制度废止\n\n本法施行后，原有与本法相冲突之总统、副总统选举制度停止适用。\n\n其中，总统与副总统之联名竞选制度自本法施行之日起废止。",
+    "law": "总统法",
+    "article": "第一百九十条",
+    "articleNumber": 190,
+    "keywords": [
+      "旧制度废止"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百九十一条　制度过渡（用户提供）",
+    "text": "第一百九十一条　制度过渡\n\n本法施行前已经产生之总统、副总统任期及合法职务，原则上继续有效至其法定任期届满。",
+    "law": "总统法",
+    "article": "第一百九十一条",
+    "articleNumber": 191,
+    "keywords": [
+      "制度过渡"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百九十二条　首次分别选举（用户提供）",
+    "text": "第一百九十二条　首次分别选举\n\n本法施行后，应分别依本法举行总统选举及副总统选举。",
+    "law": "总统法",
+    "article": "第一百九十二条",
+    "articleNumber": 192,
+    "keywords": [
+      "首次分别选举"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百九十三条　官方网站实施（用户提供）",
+    "text": "第一百九十三条　官方网站实施\n\n阿谢国官方网站应根据本法逐步建立总统选举、副总统选举、候选人资料、投票、结果公布及历届选举档案等功能。",
+    "law": "总统法",
+    "article": "第一百九十三条",
+    "articleNumber": 193,
+    "keywords": [
+      "官方网站实施"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法 · 第一百九十四条　最终解释（用户提供）",
+    "text": "第一百九十四条　最终解释\n\n本法之最终法律解释权依《阿谢国宪法》及阿谢国相关法律规定执行。",
+    "law": "总统法",
+    "article": "第一百九十四条",
+    "articleNumber": 194,
+    "keywords": [
+      "最终解释"
+    ],
+    "status": "user-provided",
+    "providedAt": "2026-10-01"
+  },
+  {
+    "title": "总统法与宪法的行政权表述差异（资料核对说明）",
+    "text": "用户提供的总统法第三条、第七十一条及第七十二条将总统称为政府首脑并规定总统执行行政权；官网宪法第三十七条规定行政权由行政厅依法行使，第六十二条规定总统行使权与行政权相互独立，总统不得未经宪法或法律授权直接取代行政厅行使一般行政职能。两份文本存在差异。总统法第一百八十七条规定与宪法冲突时以宪法为准。应说明差异，以宪法为准，不能将两份表述混为一谈，也不能推断用户提供文本的公布或修正状态。",
+    "url": "https://republic-of-axie.org/constitution.html",
+    "keywords": [
+      "行政权",
+      "政府首脑",
+      "宪法冲突",
+      "总统职权"
+    ],
+    "status": "editorial-note",
+    "providedAt": "2026-10-01",
+    "conflictNote": true
+  },
+  {
+    "title": "法律资料范围",
+    "text": "已收录官网宪法，以及用户于2026-10-01提供的刑法全文和总统法全文（各194条）。后两部法律尚无已核验的公开网页来源，回答时应注明用户提供文本，不宣称已核实其最新修正或公布状态。其他法律尚未收录。",
+    "url": "https://directory.republic-of-axie.org/",
+    "keywords": [
+      "查询法律",
+      "法律原文",
+      "已收录法律"
+    ],
+    "status": "editorial-note"
   }
 ]
