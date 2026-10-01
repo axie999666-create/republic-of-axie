@@ -314,7 +314,8 @@ function applyLanguage() {
  document.getElementById("searchBox").placeholder = t.search;
  document.getElementById("searchBox").setAttribute("aria-label",t.search);
  document.querySelector(".actions a").textContent = t.home;
- document.querySelector(".footer-note").textContent = t.footer;
+ const footer = document.querySelector(".footer-note");
+ if (footer) footer.textContent = t.footer;
  document.querySelectorAll("[data-lang]").forEach(button => button.setAttribute("aria-pressed",String(button.dataset.lang === language)));
  if (loadError) renderError(loadError);
  else if (loaded) renderNews();
@@ -650,7 +651,7 @@ document.querySelectorAll("[data-lang]").forEach(button => button.addEventListen
     applyLanguage();
 }));
 applyLanguage();
-document.addEventListener("DOMContentLoaded", loadNews);
+document.addEventListener("DOMContentLoaded", () => { applyLanguage(); loadNews(); });
 
 </script>
 
