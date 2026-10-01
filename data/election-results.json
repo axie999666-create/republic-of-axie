@@ -4,12 +4,12 @@
       "electionId": "vice-president-axie3",
       "status": "active",
       "publishedAt": null,
-      "totalVotes": 1,
+      "totalVotes": 2,
       "candidateResults": [
         {
           "candidateId": "AX-VP-2026-002",
           "candidateNo": "2",
-          "votes": 1,
+          "votes": 2,
           "percentage": 100
         }
       ],
