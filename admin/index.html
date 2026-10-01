@@ -459,6 +459,7 @@ footer {
     >
 
 
+    <p class="hint">发布或保存修改时，自动生成英语和日语译文。英语国名固定为 republic of axie，日语为阿謝国。翻译暂时失败时仍保留中文，可再次编辑保存重试。</p>
     <label for="newsContent">
         📝 新闻正文
     </label>
@@ -1872,6 +1873,12 @@ function filterNewsManagement() {
    发布新闻
 ========================================================= */
 
+function translationMessage(result, action) {
+    return result.news?.translationStatus === "complete"
+        ? `✅ 新闻${action}成功，英语和日语译文已生成！`
+        : `✅ 新闻${action}成功。部分译文暂未生成，请稍后编辑保存重试。`;
+}
+
 async function publishNews() {
 
     if (!sessionToken) {
@@ -1999,7 +2006,7 @@ async function publishNews() {
 
         showStatus(
             "publishStatus",
-            "⏳ 正在将新闻写入 AXNews 数据……",
+            "⏳ 正在生成英语、日语译文并发布，请勿重复提交……",
             "normal"
         );
 
@@ -2066,7 +2073,7 @@ async function publishNews() {
 
         showStatus(
             "publishStatus",
-            "✅ 新闻发布成功！",
+            translationMessage(result, "发布"),
             "success"
         );
 
@@ -2285,7 +2292,7 @@ async function updateNews(
 
         showStatus(
             "publishStatus",
-            "⏳ 正在保存新闻修改……",
+            "⏳ 正在更新英语、日语译文并保存，请勿重复提交……",
             "normal"
         );
 
@@ -2355,7 +2362,7 @@ async function updateNews(
 
         showStatus(
             "publishStatus",
-            "✅ 新闻修改成功！",
+            translationMessage(result, "修改"),
             "success"
         );
 
