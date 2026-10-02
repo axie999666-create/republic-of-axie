@@ -13,6 +13,13 @@
       "candidateId": "AX-VP-2026-002",
       "voterId": "1f6fa8e6-9a10-4f00-abc4-2464feb4c453",
       "votedAt": "2026-10-01T06:42:31.202Z"
+    },
+    {
+      "voteId": "VOTE-4B734459CC3240EC",
+      "electionId": "vice-president-axie3",
+      "candidateId": "AX-VP-2026-002",
+      "voterId": "0dfe706e-4d4d-434c-8015-f9b933b6c3a8",
+      "votedAt": "2026-10-02T10:58:27.483Z"
     }
   ]
 }
