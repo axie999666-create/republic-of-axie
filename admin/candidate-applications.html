@@ -1090,6 +1090,7 @@
 </div>
 
 
+<script src="../api-client.js?v=20261005"></script>
 <script>
 
   /* =========================================================
@@ -1097,7 +1098,7 @@
   ========================================================= */
 
   const API_BASE =
-    "https://axnews-admin-api.axie999666.workers.dev";
+    window.AXNEWS_API_BASE;
 
 
   /* =========================================================
@@ -1276,7 +1277,7 @@
     try {
 
       const response =
-        await fetch(
+        await axieApiFetch(
           API_BASE + "/login",
           {
             method: "POST",
@@ -1616,7 +1617,7 @@
     try {
 
       const response =
-        await fetch(
+        await axieApiFetch(
           `${API_BASE}/candidate-applications`,
           {
             method: "GET",
@@ -2291,7 +2292,7 @@
     try {
 
       const response =
-        await fetch(
+        await axieApiFetch(
           `${API_BASE}/candidate-applications/${encodeURIComponent(applicationId)}/review`,
           {
             method: "POST",
@@ -2537,7 +2538,7 @@
     try {
 
       const response =
-        await fetch(
+        await axieApiFetch(
           `${API_BASE}/candidate-applications/${encodeURIComponent(rejectApplicationId)}/review`,
           {
             method: "POST",
