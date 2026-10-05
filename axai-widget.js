@@ -14,7 +14,7 @@
   launch.onclick=()=>toggle(panel.hidden);$('.close').onclick=()=>toggle(false);ui.addEventListener('keydown',e=>{if(e.key==='Escape')toggle(false)});
   function message(text,sources=[],user=false){const div=document.createElement('div');div.className='msg'+(user?' user':'');div.textContent=text;for(const s of sources){let label;if(!s.url){label=document.createElement('span');label.style.cssText='display:block;color:#9bddff;margin-top:8px';}else{try{const url=new URL(s.url);if(url.protocol!=='https:')continue;label=document.createElement('a');label.href=url.href;label.target='_blank';label.rel='noopener noreferrer';}catch{continue}}label.textContent='来源：'+s.title;div.append(label);if(s.fetchedAt){const time=new Date(s.fetchedAt);if(!Number.isNaN(time.valueOf())){const note=document.createElement('small');note.style.cssText='display:block;color:#a6d9ff';note.textContent='读取时间：'+time.toLocaleString('zh-CN',{timeZone:'Asia/Shanghai',hour12:false})+'（北京时间）';div.append(note)}}}$('.messages').append(div);div.scrollIntoView({block:'nearest'});}
   message('你好，我是 AXAI，阿谢国公共信息助手。我可以帮助你查询宪法、刑法、总统法、国家资料和官方网站入口，也能简短回答其他问题。阿谢国资料不足时会明确说明。也可以读取相关官网，或你贴来的 HTTPS 公开网页。请勿输入个人敏感信息。');
-  const knowledge=fetch(new URL('axai-knowledge.json',base),{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error();return r.json()});knowledge.catch(()=>{});
+  const knowledge=fetch(new URL('axai-knowledge.json',base),{cache:'no-cache',signal:AbortSignal.timeout(10000)}).then(r=>{if(!r.ok)throw Error();return r.json()});knowledge.catch(()=>{});
 function retrieve(q, knowledge) {
   const lawNames = ['总统法', '刑法', '宪法'];
   const laws = lawNames.filter(law => q.includes(law));
@@ -52,7 +52,60 @@ function retrieve(q, knowledge) {
   return docs;
 }
 
-  let busy=false;
-  async function ask(q){q=q.trim();if(!q||busy)return;busy=true;form.querySelector('button').disabled=true;$('.status').textContent='正在回答；涉及网页时会先读取内容…';message(q,[],true);input.value='';try{if(endpoint){const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),60000);let r;try{r=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:q}),signal:controller.signal})}finally{clearTimeout(timer)}const data=await r.json();if(!r.ok)throw Error(data.error||'服务暂时不可用');if(typeof data.answer!=='string')throw Error();message(data.answer+(data.warnings?.length?'\n\n未能读取的网页：\n'+data.warnings.map(w=>w.url+'：'+w.message).join('\n'):''),data.sources||[])}else{const hits=retrieve(q,await knowledge);message(hits.length?'以下是相关官方资料摘录（收录于 2026-10-01）：\n\n'+hits.map(d=>d.text).join('\n\n'):'目前已接入的官方资料中没有找到这一信息，因此我无法确认。可到官方网站目录查找。',hits.length?hits:[{title:'官方网站目录',url:'https://directory.republic-of-axie.org/'}])}}catch(e){message(e.name==='AbortError'?'本次读取或回答超时，请稍后重试。':e.message&&e.message!=='Failed to fetch'?e.message:'服务暂时不可用，请稍后重试，或直接查看官方网站。',[{title:'阿谢国官方网站',url:'https://republic-of-axie.org/'}])}finally{busy=false;$('.status').textContent='';form.querySelector('button').disabled=false;}}
-  for(const q of ['国家基本资料','查询法律','政府机构','最新新闻','查询投票','网站导航']){const b=document.createElement('button');b.type='button';b.textContent=q;b.onclick=()=>ask(q);$('.quick').append(b)}const readButton=document.createElement('button');readButton.type='button';readButton.textContent='读取网页';readButton.onclick=()=>{input.value='请读取并总结 ';input.focus()};$('.quick').append(readButton);form.onsubmit=e=>{e.preventDefault();ask(input.value)};
+  let busy=false, localMode=!endpoint, activeController=null;
+  const modeButton=document.createElement('button');
+  modeButton.type='button';
+  function updateMode(){
+    $('header small').textContent=localMode?'官方资料检索模式':'AI 问答 · 网页读取';
+    modeButton.textContent=localMode?'再试在线 AI':'本地资料检索';
+    modeButton.hidden=!endpoint;
+  }
+  modeButton.onclick=()=>{
+    localMode=!localMode;
+    if(localMode)activeController?.abort();
+    updateMode();
+  };
+  updateMode();
+  async function localAnswer(q,notice=''){
+    const docs=await knowledge;
+    if(!Array.isArray(docs))throw Error('资料格式无效');
+    // A local lookup cannot read a supplied webpage or confirm live news/votes.
+    const liveRequest=/https?:\/\/|最新|实时|即時|当前|目前|今天|现在|投票结果/.test(q);
+    const hits=liveRequest?[]:retrieve(q,docs);
+    const dates=[...new Set(hits.map(d=>d.verifiedAt).filter(Boolean))].sort();
+    const dated=dates.length?'资料收录日期：'+dates.join('、')+'。':'资料未标注收录日期。';
+    const answer=liveRequest
+      ?'本地资料检索无法读取网页或确认最新新闻、投票状态，请直接查看对应官方网站。'
+      :hits.length?'以下是已收录的官方资料摘录。'+dated+'\n\n'+hits.map(d=>d.text).join('\n\n')
+      :'已收录的官方资料中没有找到相关信息，无法确认。请查看官方网站目录。';
+    message((notice?notice+'\n\n':'')+answer,hits.length?hits:[{title:'官方网站目录',url:'https://directory.republic-of-axie.org/'}]);
+  }
+  async function ask(q){
+    q=q.trim();if(!q||busy)return;
+    busy=true;form.querySelector('button').disabled=true;
+    $('.status').textContent=localMode?'正在检索已收录资料…':'正在回答；连接不畅时可点击“本地资料检索”…';
+    message(q,[],true);input.value='';
+    try{
+      if(localMode){await localAnswer(q);return;}
+      const controller=new AbortController();activeController=controller;
+      const timer=setTimeout(()=>controller.abort(),60000);
+      try{
+        const r=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:q}),signal:controller.signal});
+        const data=await r.json();
+        if(!r.ok)throw Error(data.error||'在线服务暂时不可用');
+        if(typeof data.answer!=='string')throw Error('在线服务返回了无效回答');
+        message(data.answer+(data.warnings?.length?'\n\n未能读取的网页：\n'+data.warnings.map(w=>w.url+'：'+w.message).join('\n'):''),data.sources||[]);
+      }finally{clearTimeout(timer);activeController=null;}
+    }catch(error){
+      localMode=true;updateMode();
+      try{
+        await localAnswer(q,'已切换到本地官方资料检索，当前无法提供在线 AI 问答或实时网页读取。');
+      }catch{
+        message('在线服务和本地资料暂时不可用，请稍后重试或直接查看官方网站。',[{title:'阿谢国官方网站',url:'https://republic-of-axie.org/'}]);
+      }
+    }finally{
+      busy=false;$('.status').textContent='';form.querySelector('button').disabled=false;
+    }
+  }
+  for(const q of ['国家基本资料','查询法律','政府机构','最新新闻','查询投票','网站导航']){const b=document.createElement('button');b.type='button';b.textContent=q;b.onclick=()=>ask(q);$('.quick').append(b)}const readButton=document.createElement('button');readButton.type='button';readButton.textContent='读取网页';readButton.onclick=()=>{input.value='请读取并总结 ';input.focus()};$('.quick').append(readButton,modeButton);form.onsubmit=e=>{e.preventDefault();ask(input.value)};
 })();

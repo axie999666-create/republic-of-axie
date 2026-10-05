@@ -271,22 +271,24 @@ header p{
 </div>
 
 
+<script src="api-client.js?v=20261005"></script>
 <script>
 
 let allNews = [];
-let agencies = [];
-const API_BASE = "https://axnews-admin-api.axie999666.workers.dev";
+const fallbackAgencies = window.AXNEWS_FALLBACK_AGENCIES;
+let agencies = fallbackAgencies.slice();
+const API_BASE = window.AXNEWS_API_BASE;
 const selectedAgencyId = new URLSearchParams(location.search).get("agency") || "";
 
 async function loadAgencies(){
     try{
-        const response = await fetch(API_BASE + "/agencies");
+        const response = await axieApiFetch(API_BASE + "/agencies");
         if(!response.ok) throw new Error("分类列表加载失败");
         const result = await response.json();
         agencies = Array.isArray(result.agencies) ? result.agencies : [];
     }catch(error){
         console.warn("AXNews 机构分类暂不可用", error);
-        agencies = [];
+        agencies = fallbackAgencies.slice();
     }
 }
 
@@ -347,8 +349,8 @@ async function loadNews(){
         }
 
         allNews = data;
-        await loadAgencies();
         renderNews();
+        loadAgencies().then(renderNews);
 
     }
     catch(err){
@@ -606,7 +608,7 @@ document.addEventListener(
 
 <aside class="axie-fiction-notice footer-note" aria-label="世界观创作说明" style="font-size:12px;opacity:0.5;margin-top:20px;text-align:center;padding:0 20px 30px;line-height:1.7;overflow-wrap:anywhere">阿谢国为架空世界观创作项目 · Republic of Axie is a fictional nation project</aside>
 <script src="axai-config.js"></script>
-<script src="axai-widget.js?v=20261001-web-reader" defer></script>
+<script src="axai-widget.js?v=20261005-network-fallback" defer></script>
 </body>
 </html>
 

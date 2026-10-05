@@ -1140,6 +1140,7 @@
 </main>
 
 
+<script src="api-client.js?v=20261005"></script>
 <script>
 
   /* =========================================================
@@ -1147,7 +1148,7 @@
   ========================================================= */
 
   const API_BASE =
-    "https://axnews-admin-api.axie999666.workers.dev";
+    window.AXNEWS_API_BASE;
 
 
   /* =========================================================
@@ -2236,7 +2237,7 @@
      */
 
     const response =
-      await fetch(
+      await axieApiFetch(
         `${API_BASE}/upload-candidate-image`,
         {
           method: "POST",
@@ -2695,7 +2696,7 @@
        */
 
       const response =
-        await fetch(
+        await axieApiFetch(
           `${API_BASE}/candidate-applications`,
           {
             method: "POST",
@@ -2857,6 +2858,6 @@
 
 <aside class="axie-fiction-notice footer-note" aria-label="世界观创作说明" style="font-size:12px;opacity:0.5;margin-top:20px;text-align:center;padding:0 20px 30px;line-height:1.7;overflow-wrap:anywhere">阿谢国为架空世界观创作项目 · Republic of Axie is a fictional nation project</aside>
 <script src="axai-config.js"></script>
-<script src="axai-widget.js?v=20261001-web-reader" defer></script>
+<script src="axai-widget.js?v=20261005-network-fallback" defer></script>
 </body>
 </html>
