@@ -668,6 +668,52 @@ footer {
 
 }
 
+
+/* Mobile navigation and reading rhythm, preserving the original navy palette. */
+html { scroll-padding-top: 20px; }
+body { line-height: 1.75; }
+a, button { -webkit-tap-highlight-color: transparent; }
+a:focus-visible, button:focus-visible { outline: 3px solid #82d2ff; outline-offset: 4px; }
+nav { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); align-items: stretch; gap: 8px; max-width: 1000px; margin: 24px auto 0; width: calc(100% - 40px); box-sizing: border-box; padding: 14px; border: 1px solid #244461; border-radius: 16px; }
+.nav-links { display: contents; }
+nav a, nav .button { display: flex; justify-content: center; align-items: center; min-height: 48px; box-sizing: border-box; margin: 0; padding: 10px 12px; border: 1px solid #294762; border-radius: 10px; line-height: 1.5; background: #102a44; }
+nav .button { font-size: 13px; }
+.nav-links a:first-child { background: #1a456d; border-color: #527da2; color: #e8f1ff; }
+nav a:hover, nav .button:hover { background: #163b5c; text-decoration: none; }
+.menu-toggle { display: none; }
+.card { border: 1px solid rgba(126,203,255,.12); }
+.card h2 { line-height: 1.4; }
+.card p, .news-item, .city { overflow-wrap: anywhere; }
+.timer { font-variant-numeric: tabular-nums; }
+@media (max-width: 600px) {
+  header { padding: 30px 20px 26px; }
+  header h1 { font-size: clamp(24px, 6.8vw, 28px); letter-spacing: 1px; line-height: 1.4; }
+  header p { font-size: 13px; margin: 10px 0 0; }
+  nav { display: flex; flex-wrap: wrap; width: 100%; max-width: none; margin: 0; padding: 10px 16px; justify-content: space-between; gap: 8px; border: 0; border-bottom: 1px solid #244461; border-radius: 0; }
+  nav.enhanced .menu-toggle { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 14px; border: 1px solid #426585; border-radius: 10px; background: #12304c; color: #e8f1ff; font: inherit; cursor: pointer; }
+  .nav-links { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 6px; order: 3; width: 100%; padding-top: 6px; }
+  nav.enhanced[data-collapsed="true"] .nav-links { display: none; }
+  nav a { display: flex; align-items: center; min-height: 44px; box-sizing: border-box; padding: 10px 12px; background: #102a44; text-align: left; justify-content: flex-start; }
+  nav .button { min-height: 44px; font-size: 13px; padding: 8px 10px; }
+  .container { margin: 24px auto; padding: 0 16px; }
+  .card { padding: 20px; margin-bottom: 22px; border-radius: 16px; }
+  .card h2 { font-size: 22px; margin-bottom: 14px; }
+  .countdown { padding: 24px 16px; }
+  .countdown h2 { font-size: 21px; }
+  .timer { font-size: clamp(20px,5.6vw,24px); letter-spacing: 1px; }
+  .card > .button { display: block; text-align: center; margin: 12px 0 0; padding: 12px 16px; }
+  .news-item { padding: 16px; margin-bottom: 16px; }
+  .news-item h3 { font-size: 18px; line-height: 1.55; }
+  .news-item small { display: block; font-size: 13px; line-height: 1.7; }
+  footer { margin-top: 32px; padding: 24px 16px; }
+  .footer-note { padding: 0 20px 96px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body { animation: none; }
+  .button { transition: none; }
+  .button:hover { transform: none; }
+}
+
 </style>
 
 </head>
@@ -718,7 +764,11 @@ footer {
      导航栏
 ======================================================= -->
 
-<nav>
+<nav aria-label="主导航">
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-menu">
+    <span aria-hidden="true">☰</span><span data-zh="菜单" data-en="Menu" data-jp="メニュー">菜单</span>
+  </button>
+  <div class="nav-links" id="main-menu">
 
   <a
     href="https://directory.republic-of-axie.org/"
@@ -809,6 +859,8 @@ footer {
   </a>
 
 
+  </div>
+
   <button
     id="langToggle"
     class="button"
@@ -819,6 +871,29 @@ footer {
   </button>
 
 </nav>
+<script>
+(() => {
+  const nav = document.querySelector('nav');
+  const toggle = nav.querySelector('.menu-toggle');
+  const links = nav.querySelector('.nav-links');
+  function setOpen(open) {
+    nav.dataset.collapsed = String(!open);
+    toggle.setAttribute('aria-expanded', String(open));
+  }
+  nav.classList.add('enhanced');
+  setOpen(false);
+  toggle.addEventListener('click', () => setOpen(nav.dataset.collapsed === 'true'));
+  links.addEventListener('click', event => {
+    if (event.target.closest('a')) setOpen(false);
+  });
+  nav.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && nav.dataset.collapsed === 'false') {
+      setOpen(false);
+      toggle.focus();
+    }
+  });
+})();
+</script>
 
 
 
@@ -3341,6 +3416,6 @@ document.addEventListener(
 
 
 <script src="axai-config.js"></script>
-<script src="axai-widget.js?v=20261005-network-fallback" defer></script>
+<script src="axai-widget.js?v=20261010-mobile" defer></script>
 </body>
 </html>

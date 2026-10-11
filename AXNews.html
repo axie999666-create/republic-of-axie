@@ -203,6 +203,26 @@ header p{
 
 }
 
+
+a:focus-visible, button:focus-visible, #searchBox:focus-visible { outline: 3px solid #82d2ff; outline-offset: 4px; }
+.card h2, .card small { overflow-wrap: anywhere; }
+.agency-filters a { min-height: 44px; display: inline-flex; align-items: center; }
+@media (max-width:600px) {
+    header { padding: 28px 16px; }
+    header h1 { font-size: 25px; line-height: 1.45; }
+    header p { font-size: 13px; }
+    .container { padding: 24px 16px 40px; }
+    .card { padding: 20px 18px; margin-bottom: 18px; }
+    .card h2 { line-height: 1.55; }
+    .card p { line-height: 1.85; }
+    .agency-filters { flex-wrap: nowrap; overflow-x: auto; padding: 4px 3px 10px; overscroll-behavior-x: contain; }
+    .agency-filters a { flex-shrink: 0; white-space: nowrap; }
+    .card:hover { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .card, .button { transition: none; }
+    .card:hover, .button:hover { transform: none; }
+}
 </style>
 
 </head>
@@ -227,6 +247,7 @@ header p{
         <input
             type="text"
             id="searchBox"
+            aria-label="搜索新闻标题或正文"
             placeholder="🔍 搜索新闻标题或正文..."
             autocomplete="off"
         >
@@ -608,7 +629,7 @@ document.addEventListener(
 
 <aside class="axie-fiction-notice footer-note" aria-label="世界观创作说明" style="font-size:12px;opacity:0.5;margin-top:20px;text-align:center;padding:0 20px 30px;line-height:1.7;overflow-wrap:anywhere">阿谢国为架空世界观创作项目 · Republic of Axie is a fictional nation project</aside>
 <script src="axai-config.js"></script>
-<script src="axai-widget.js?v=20261005-network-fallback" defer></script>
+<script src="axai-widget.js?v=20261010-mobile" defer></script>
 </body>
 </html>
 
