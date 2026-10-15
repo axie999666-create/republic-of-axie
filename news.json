@@ -2,6 +2,30 @@
   {
     "translations": {
       "en": {
+        "title": "New Axie City Hall Plans to Relocate to Hushan District Around Next Year",
+        "content": "New Axie City recently announced that New Axie City Hall is planning to relocate to Hushan District around the fourth year of Axie, in order to accommodate the city’s future development plans.\\n\\nThe relocation aims to further enhance Hushan District’s urban functions and promote its development into a major growth center of New Axie City. The specific relocation date and related arrangements have yet to be determined.\\n\\nAXNews will continue to follow the latest developments on this matter."
+      },
+      "ja": {
+        "title": "ニュー阿謝市役所は来年頃に戸山区へ移転する予定です。",
+        "content": "ニュー阿謝市は最近、ニュー阿謝市役所が阿謝4年後に戸山区に移転する予定であることを明らかにしました。これは、ニュー阿謝市の今後の発展計画に合わせたものです。\\n\\n今回の移転は、戸山区の都市機能をさらに整え、ニュー阿謝市の重要な発展の中心地としての地位を強化することを目的としています。具体的な移転時期や関連する手配については、さらに検討される予定です。\\n\\nAXNewsはこの件の最新の進展を引き続き注目していきます。"
+      }
+    },
+    "translationStatus": "complete",
+    "translationReviewed": true,
+    "title": "新阿谢市政厅计划于明年左右迁至户山区",
+    "date": "阿谢3年10月15日",
+    "author": "AXNews",
+    "agencyId": "",
+    "content": "新阿谢市近日透露，新阿谢市政厅计划于阿谢四年左右搬迁至户山区，以适应新阿谢市未来的发展规划。\n\n此次搬迁旨在进一步完善户山区的城市功能，推动其成为新阿谢市的重要发展核心。具体搬迁时间及相关安排仍有待进一步确定。\n\nAXNews将持续关注此事的最新进展。",
+    "image1": "",
+    "image2": "",
+    "image3": "",
+    "timestamp": 1792072550751,
+    "id": "854941b2"
+  },
+  {
+    "translations": {
+      "en": {
         "title": "The republic of axie is planning to develop an automated AI construction tool, exploring intelligent construction.",
         "content": "The authorities of the republic of axie are planning an automated AI construction tool, aimed at utilizing artificial intelligence technology to achieve automatic terrain recognition, architectural planning, and automated construction.\n\nAccording to the preliminary plan, the tool will be able to automatically analyze the terrain of a designated area and develop corresponding architectural plans based on the construction requirements proposed by users, attempting to automatically complete construction tasks such as roads and residential buildings.\n\nIn the future, the system is also planned to gradually expand to areas such as urban planning and new district development.\n\nTo ensure the safety and controllability of the construction process, ordinary construction tasks can be automatically executed by AI after obtaining authorization, while major projects such as new district planning and airport construction must undergo manual review and approval.\n\nAt present, the project is still in the planning stage, and specific functions and development progress are yet to be further determined."
       },
