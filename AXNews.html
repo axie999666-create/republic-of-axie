@@ -358,7 +358,8 @@ const selectedAgencyId = new URLSearchParams(location.search).get("agency") || "
 
 function countryName(value) {
   if (language === "zh") return String(value || "");
-  return String(value || "").replace(/阿[谢謝]国|republic of axie/gi, language === "en" ? "republic of axie" : "阿謝国");
+  const names = /阿[谢謝]国|republic of axie|アシーカ国|アーシー国/gi;
+  return String(value || "").replace(names, language === "en" ? "republic of axie" : "阿謝国");
 }
 function articleText(news) {
   const translated = language === "zh" ? null : news.translations?.[language];
