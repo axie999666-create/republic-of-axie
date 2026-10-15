@@ -143,6 +143,18 @@ input[type="file"] {
     background: #40536c;
 }
 
+.translation-editor {
+    margin: 20px 0;
+    padding: 16px;
+    border: 1px solid #d7e0ed;
+    border-radius: 12px;
+    background: #f7faff;
+}
+
+.translation-editor textarea {
+    min-height: 150px;
+}
+
 .button-danger {
     background: #b83c4a;
 }
@@ -331,23 +343,6 @@ footer {
         margin-top: 12px;
     }
 }
-
-input, textarea, select { font-size: 16px; }
-.button { min-height: 44px; }
-a:focus-visible, button:focus-visible { outline: 3px solid #82d2ff; outline-offset: 3px; }
-.status, .small-note, .news-item-meta { overflow-wrap: anywhere; }
-@media (max-width:700px) {
-    .container { width: auto; margin: 0 16px; padding-top: 26px; }
-    header h1 { font-size: 24px; line-height: 1.5; }
-    header p { font-size: 13px; line-height: 1.7; }
-    .card { border-radius: 16px; padding: 20px 16px; }
-    .card h2 { font-size: 21px; line-height: 1.5; }
-    .card > .button, .search-row > .button { display: block; width: 100%; margin-right: 0; text-align: center; }
-    .news-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-    .news-actions .button { flex: 1 1 110px; margin: 0; }
-    input[type="file"] { max-width: 100%; }
-}
-@media (prefers-reduced-motion: reduce) { .button { transition: none; } .button:hover { transform: none; } }
 </style>
 </head>
 
@@ -476,7 +471,6 @@ a:focus-visible, button:focus-visible { outline: 3px solid #82d2ff; outline-offs
     >
 
 
-    <p class="hint">发布或保存修改时，自动生成英语和日语译文。英语国名固定为 republic of axie，日语为阿謝国。翻译暂时失败时仍保留中文，可再次编辑保存重试。</p>
     <label for="newsContent">
         📝 新闻正文
     </label>
@@ -485,6 +479,20 @@ a:focus-visible, button:focus-visible { outline: 3px solid #82d2ff; outline-offs
         id="newsContent"
         placeholder="请输入新闻正文……"
     ></textarea>
+
+    <div class="translation-editor">
+        <p class="hint">先生成英语和日语译文，可在下方修改后再发布。英语国名固定为 republic of axie，日语为阿謝国。</p>
+        <button class="button button-secondary" id="translateButton" type="button" onclick="generateNewsTranslations()">🌐 生成英语和日语译文</button>
+        <label for="newsTitleEn">English 标题</label>
+        <input id="newsTitleEn" type="text" maxlength="240" placeholder="English headline">
+        <label for="newsContentEn">English 正文</label>
+        <textarea id="newsContentEn" placeholder="English article"></textarea>
+        <label for="newsTitleJa">日本語タイトル</label>
+        <input id="newsTitleJa" type="text" maxlength="240" placeholder="ニュースの見出し">
+        <label for="newsContentJa">日本語本文</label>
+        <textarea id="newsContentJa" placeholder="ニュース本文"></textarea>
+        <div class="small-note">原文标题或正文修改后，译文会清空，请重新生成或手动填写。</div>
+    </div>
 
 
     <!-- ==================== 新闻图片 ==================== -->
@@ -766,7 +774,6 @@ a:focus-visible, button:focus-visible { outline: 3px solid #82d2ff; outline-offs
 </div>
 
 
-<script src="../api-client.js?v=20261005"></script>
 <script>
 
 /* =========================================================
@@ -774,24 +781,16 @@ a:focus-visible, button:focus-visible { outline: 3px solid #82d2ff; outline-offs
 ========================================================= */
 
 const API_BASE =
-    window.AXNEWS_API_BASE;
+    "https://axnews-admin-api.axie999666.workers.dev";
 
 let agencies = [];
 
 async function loadAgencies(){
-    let usingSnapshot = false;
-    try {
-        const response = await axieApiFetch(API_BASE + "/agencies");
-        const result = await response.json();
-        if(!response.ok || !result.success || !Array.isArray(result.agencies)) throw new Error("机构分类加载失败");
-        agencies = result.agencies;
-    } catch (error) {
-        console.warn("机构分类接口暂不可用，使用备用分类", error);
-        agencies = window.AXNEWS_FALLBACK_AGENCIES.slice();
-        usingSnapshot = true;
-    }
+    const response = await fetch(API_BASE + "/agencies");
+    const result = await response.json();
+    if(!response.ok || !result.success || !Array.isArray(result.agencies)) throw new Error("机构分类加载失败");
+    agencies = result.agencies;
     const select = document.getElementById("newsAgency");
-    select.title = usingSnapshot ? "当前使用 2026-10-05 的备用机构分类" : "";
     select.innerHTML = "<option value=\"\">普通新闻（不选机构）</option>";
     agencies.forEach(item => {
         const option = document.createElement("option");
@@ -826,6 +825,7 @@ let sessionToken = "";
 let allNews = [];
 
 let editingNewsId = null;
+let translationSourceSnapshot = "";
 
 
 /*
@@ -858,6 +858,7 @@ document.addEventListener(
         updatePublishTime();
 
         setupImageInputs();
+        setupTranslationSourceListeners();
 
     }
 );
@@ -890,6 +891,76 @@ function setupImageInputs() {
 
         }
     );
+}
+
+function currentTranslationSource() {
+    return JSON.stringify({
+        title: document.getElementById("newsTitle").value.trim(),
+        content: document.getElementById("newsContent").value.trim()
+    });
+}
+
+function clearTranslationFields() {
+    ["newsTitleEn", "newsContentEn", "newsTitleJa", "newsContentJa"].forEach(id => {
+        document.getElementById(id).value = "";
+    });
+}
+
+function setupTranslationSourceListeners() {
+    ["newsTitle", "newsContent"].forEach(id => {
+        document.getElementById(id).addEventListener("input", () => {
+            if (translationSourceSnapshot && currentTranslationSource() !== translationSourceSnapshot) {
+                clearTranslationFields();
+                translationSourceSnapshot = "";
+                showStatus("publishStatus", "原文已修改，请重新生成或填写英日译文。", "normal");
+            }
+        });
+    });
+}
+
+async function generateNewsTranslations() {
+    if (!sessionToken) {
+        alert("登录状态已经失效，请重新登录。");
+        return;
+    }
+    const title = document.getElementById("newsTitle").value.trim();
+    const content = document.getElementById("newsContent").value.trim();
+    const sourceSnapshot = JSON.stringify({title, content});
+    if (!title || !content) {
+        showStatus("publishStatus", "请先填写中文标题和正文，再生成译文。", "error");
+        return;
+    }
+    const button = document.getElementById("translateButton");
+    button.disabled = true;
+    button.textContent = "⏳ 正在生成英日译文……";
+    showStatus("publishStatus", "正在生成译文。完成后可在下方修改，确认后再发布。", "normal");
+    try {
+        const response = await fetch(API_BASE + "/translate", {
+            method: "POST",
+            headers: {"Content-Type": "application/json", "Authorization": "Bearer " + sessionToken},
+            body: JSON.stringify({title, content})
+        });
+        const result = await response.json();
+        if (!response.ok || !result.success) throw new Error(result.error || "译文生成失败");
+        if (currentTranslationSource() !== sourceSnapshot) throw new Error("原文在生成期间发生变化，请重新生成译文。");
+        const translations = result.translations || {};
+        document.getElementById("newsTitleEn").value = translations.en?.title || "";
+        document.getElementById("newsContentEn").value = translations.en?.content || "";
+        document.getElementById("newsTitleJa").value = translations.ja?.title || "";
+        document.getElementById("newsContentJa").value = translations.ja?.content || "";
+        translationSourceSnapshot = currentTranslationSource();
+        if (result.translationStatus === "complete") {
+            showStatus("publishStatus", "英日译文已生成。请检查并修改后，再点击发布新闻。", "success");
+        } else {
+            showStatus("publishStatus", "部分译文未生成，请手动补全空白译文后再发布。", "error");
+        }
+    } catch (error) {
+        console.error(error);
+        showStatus("publishStatus", "❌ " + error.message, "error");
+    } finally {
+        button.disabled = false;
+        button.textContent = "🌐 重新生成英语和日语译文";
+    }
 }
 
 
@@ -1324,7 +1395,7 @@ async function uploadImage(
 
 
     const response =
-        await axieApiFetch(
+        await fetch(
             API_BASE + "/upload-image",
             {
                 method: "POST",
@@ -1498,7 +1569,7 @@ async function login() {
     try {
 
         const response =
-            await axieApiFetch(
+            await fetch(
                 API_BASE + "/login",
                 {
                     method: "POST",
@@ -1607,7 +1678,7 @@ async function loadNewsManagement() {
     try {
 
         const response =
-            await axieApiFetch(
+            await fetch(
                 API_BASE + "/news"
             );
 
@@ -1901,7 +1972,7 @@ function filterNewsManagement() {
 
 function translationMessage(result, action) {
     return result.news?.translationStatus === "complete"
-        ? `✅ 新闻${action}成功，英语和日语译文已生成！`
+        ? `✅ 新闻${action}成功，已保存英语和日语译文。`
         : `✅ 新闻${action}成功。部分译文暂未生成，请稍后编辑保存重试。`;
 }
 
@@ -1940,6 +2011,11 @@ async function publishNews() {
 
     const agencyId = document.getElementById("newsAgency").value;
 
+    const translations = {
+        en: {title: document.getElementById("newsTitleEn").value.trim(), content: document.getElementById("newsContentEn").value.trim()},
+        ja: {title: document.getElementById("newsTitleJa").value.trim(), content: document.getElementById("newsContentJa").value.trim()}
+    };
+
 
     if (!title) {
 
@@ -1964,6 +2040,11 @@ async function publishNews() {
         return;
     }
 
+    if (!translations.en.title || !translations.en.content || !translations.ja.title || !translations.ja.content) {
+        showStatus("publishStatus", "请先生成并检查英语、日语译文；译文生成失败时也可以手动填写。", "error");
+        return;
+    }
+
 
     /*
      * 如果正在编辑
@@ -1976,7 +2057,8 @@ async function publishNews() {
             title,
             author,
             content,
-            agencyId
+            agencyId,
+            translations
         );
 
         return;
@@ -1992,7 +2074,7 @@ async function publishNews() {
     button.disabled = true;
 
     button.textContent =
-        "⏳ 正在发布……";
+            "⏳ 正在发布……";
 
 
     showStatus(
@@ -2032,13 +2114,13 @@ async function publishNews() {
 
         showStatus(
             "publishStatus",
-            "⏳ 正在生成英语、日语译文并发布，请勿重复提交……",
+        "⏳ 正在保存已确认的英日译文并发布，请勿重复提交……",
             "normal"
         );
 
 
         const response =
-            await axieApiFetch(
+            await fetch(
                 API_BASE + "/publish",
                 {
                     method: "POST",
@@ -2064,6 +2146,9 @@ async function publishNews() {
 
                         content:
                             content,
+
+                        translations:
+                            translations,
 
                         agencyId:
                             agencyId,
@@ -2192,6 +2277,13 @@ function editNews(id) {
     ).value =
         news.content || "";
 
+    const savedTranslations = news.translations || {};
+    document.getElementById("newsTitleEn").value = savedTranslations.en?.title || "";
+    document.getElementById("newsContentEn").value = savedTranslations.en?.content || "";
+    document.getElementById("newsTitleJa").value = savedTranslations.ja?.title || "";
+    document.getElementById("newsContentJa").value = savedTranslations.ja?.content || "";
+    translationSourceSnapshot = currentTranslationSource();
+
 
     /*
      * 清空新的文件选择
@@ -2279,7 +2371,8 @@ async function updateNews(
     title,
     author,
     content,
-    agencyId
+    agencyId,
+    translations
 ) {
 
     const button =
@@ -2318,13 +2411,13 @@ async function updateNews(
 
         showStatus(
             "publishStatus",
-            "⏳ 正在更新英语、日语译文并保存，请勿重复提交……",
+        "⏳ 正在保存已确认的英日译文，请勿重复提交……",
             "normal"
         );
 
 
         const response =
-            await axieApiFetch(
+            await fetch(
                 API_BASE + "/update",
                 {
                     method: "POST",
@@ -2353,6 +2446,9 @@ async function updateNews(
 
                         content:
                             content,
+
+                        translations:
+                            translations,
 
                         agencyId:
                             agencyId,
@@ -2473,7 +2569,7 @@ async function deleteNews(id) {
     try {
 
         const response =
-            await axieApiFetch(
+            await fetch(
                 API_BASE + "/delete",
                 {
                     method: "POST",
@@ -2561,6 +2657,9 @@ function clearForm() {
     document.getElementById(
         "newsContent"
     ).value = "";
+
+    clearTranslationFields();
+    translationSourceSnapshot = "";
 
 
     /*
