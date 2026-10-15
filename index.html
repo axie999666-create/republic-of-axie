@@ -1,3421 +1,2894 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta
-  name="google-site-verification"
-  content="XECdWLqwJEmQT8tvbFPfcaOVh3DSHPjrzecBjzEXnuw"
-/>
-
-<title>阿谢国官方网站 | Republic of Axie</title>
-
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
-
-<meta
-  name="description"
-  content="阿谢国（Republic of Axie）官方网站。提供国家介绍、宪法、国旗、城市、总统与副总统选举及AXNews新闻等信息。"
->
-
-<!-- Google 网站名称 -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "阿谢国",
-  "alternateName": "Republic of Axie",
-  "url": "https://republic-of-axie.org/"
-}
-</script>
-
-<!-- Social / Open Graph -->
-<meta property="og:site_name" content="阿谢国">
-<meta property="og:title" content="阿谢国官方网站 | Republic of Axie">
-<meta
-  property="og:description"
-  content="阿谢国（Republic of Axie）——虚拟世界项目，国家宪法、国旗、城市、选举及AXNews新闻展示平台。"
->
-<meta property="og:image" content="/flag.jpg">
-<meta property="og:type" content="website">
-
-<meta name="twitter:card" content="summary_large_image">
-
-<link
-  rel="icon"
-  type="image/png"
-  href="/ROA_flag.png"
->
-
+<title>AXNews 新闻管理后台 | Republic of Axie</title>
 
 <style>
-
-/* =========================================================
-   基础样式
-========================================================= */
+* {
+    box-sizing: border-box;
+}
 
 body {
-  margin: 0;
+    margin: 0;
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Microsoft YaHei",
+        sans-serif;
 
-  font-family:
-    "Segoe UI",
-    "PingFang SC",
-    "Microsoft YaHei",
-    sans-serif;
+    background:
+        linear-gradient(
+            135deg,
+            #071426 0%,
+            #0b1f3a 50%,
+            #102b4c 100%
+        );
 
-  background:
-    linear-gradient(
-      180deg,
-      #0b1c2d,
-      #102a44
-    );
-
-  color: #e8f1ff;
-
-  animation:
-    fadeIn 0.6s ease-in;
+    color: #eef5ff;
+    min-height: 100vh;
 }
-
-
-@keyframes fadeIn {
-
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-}
-
-
-/* =========================================================
-   无障碍跳转
-========================================================= */
-
-.skip-link {
-
-  position: absolute;
-
-  left: -999px;
-  top: auto;
-
-  overflow: hidden;
-
-  background: #fff;
-  color: #000;
-
-  padding: 8px 12px;
-
-  border-radius: 4px;
-
-  z-index: 1000;
-}
-
-
-.skip-link:focus {
-
-  left: 8px;
-  top: 8px;
-
-}
-
-
-/* =========================================================
-   Header
-========================================================= */
-
-header {
-
-  text-align: center;
-
-  padding: 40px 20px;
-
-  background:
-    rgba(0,0,0,0.5);
-
-}
-
-
-header h1 {
-
-  margin: 0;
-
-  font-size: 40px;
-
-  letter-spacing: 3px;
-
-}
-
-
-header p {
-
-  opacity: 0.8;
-
-  margin-top: 10px;
-
-}
-
-
-/* =========================================================
-   导航栏
-========================================================= */
-
-nav {
-
-  background: #081522;
-
-  text-align: center;
-
-  padding: 12px;
-
-}
-
-
-nav a,
-nav .button {
-
-  color: #9fd3ff;
-
-  margin: 0 15px;
-
-  text-decoration: none;
-
-  font-weight: bold;
-
-  font-size: 16px;
-
-}
-
-
-nav .button {
-
-  background: none;
-
-  border: none;
-
-  cursor: pointer;
-
-  padding: 6px 12px;
-
-}
-
-
-nav a:hover,
-nav .button:hover {
-
-  text-decoration: underline;
-
-}
-
-
-/* =========================================================
-   页面容器
-========================================================= */
 
 .container {
-
-  max-width: 1000px;
-
-  margin: 40px auto;
-
-  padding: 0 20px;
-
+    width: min(1100px, 94%);
+    margin: 0 auto;
+    padding: 35px 0 60px;
 }
 
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
 
-/* =========================================================
-   通用卡片
-========================================================= */
+header h1 {
+    margin: 0 0 8px;
+    font-size: 32px;
+}
+
+header p {
+    margin: 0;
+    color: #aebfd6;
+}
 
 .card {
-
-  background:
-    rgba(255,255,255,0.05);
-
-  border-radius: 15px;
-
-  padding: 30px;
-
-  margin-bottom: 40px;
-
-  box-shadow:
-    0 0 20px rgba(0,0,0,0.4);
-
+    background: rgba(14, 35, 62, 0.92);
+    border: 1px solid rgba(150, 190, 230, 0.15);
+    border-radius: 18px;
+    padding: 25px;
+    margin-bottom: 22px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
 }
 
-
-h2 {
-
-  color: #7ecbff;
-
-  margin-top: 0;
-
+.card h2 {
+    margin-top: 0;
 }
 
-
-/* =========================================================
-   城市
-========================================================= */
-
-.city {
-
-  background:
-    rgba(0,0,0,0.3);
-
-  padding: 15px;
-
-  border-radius: 10px;
-
-  margin-top: 10px;
-
+label {
+    display: block;
+    margin-top: 18px;
+    margin-bottom: 7px;
+    font-weight: 600;
 }
 
-
-/* =========================================================
-   国旗
-========================================================= */
-
-.flag-box {
-
-  text-align: center;
-
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(170, 200, 230, 0.25);
+    background: rgba(5, 18, 34, 0.75);
+    color: #fff;
+    font-size: 15px;
+    outline: none;
 }
 
-
-.flag-box img {
-
-  max-width: 300px;
-
-  width: 100%;
-
-  height: auto;
-
-  border-radius: 10px;
-
-  box-shadow:
-    0 0 20px rgba(0,0,0,0.6);
-
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #69a8ff;
+    box-shadow: 0 0 0 3px rgba(105, 168, 255, 0.12);
 }
 
-
-/* =========================================================
-   国庆倒计时
-========================================================= */
-
-.countdown {
-
-  text-align: center;
-
-  background:
-    linear-gradient(
-      90deg,
-      #1e3c5a,
-      #2c5a87
-    );
-
-  border-radius: 15px;
-
-  padding: 30px;
-
-  box-shadow:
-    0 0 20px rgba(0,0,0,0.5);
-
+input[readonly] {
+    opacity: 0.75;
+    cursor: not-allowed;
 }
 
-
-.countdown h2 {
-
-  color: #ffd36a;
-
+textarea {
+    min-height: 220px;
+    resize: vertical;
+    line-height: 1.7;
 }
 
-
-.timer {
-
-  font-size: 32px;
-
-  letter-spacing: 3px;
-
-  margin-top: 15px;
-
-  font-weight: bold;
-
-  color: #ffffff;
-
+input[type="file"] {
+    padding: 10px;
 }
-
-
-.axie-date {
-
-  margin-top: 10px;
-
-  font-size: 16px;
-
-  opacity: 0.9;
-
-}
-
-
-/* =========================================================
-   通用按钮
-========================================================= */
 
 .button {
+    display: inline-block;
+    border: none;
+    border-radius: 10px;
+    padding: 11px 18px;
+    margin-top: 20px;
+    margin-right: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
 
-  display: inline-block;
+    background: #3478db;
+    color: white;
 
-  margin-top: 20px;
-
-  padding: 12px 25px;
-
-  border-radius: 25px;
-
-  background:
-    linear-gradient(
-      90deg,
-      #2b567f,
-      #3a75b3
-    );
-
-  color: white;
-
-  text-decoration: none;
-
-  font-weight: bold;
-
-  transition:
-    transform 0.2s,
-    box-shadow 0.2s;
-
+    transition:
+        transform 0.15s,
+        opacity 0.15s,
+        background 0.15s;
 }
-
 
 .button:hover {
-
-  transform: scale(1.05);
-
-  box-shadow:
-    0 0 15px rgba(100,180,255,0.7);
-
+    transform: translateY(-1px);
+    opacity: 0.92;
 }
 
-
-/* =========================================================
-   🗳️ 选举状态
-========================================================= */
-
-.election-card {
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(30,70,110,0.95),
-      rgba(20,50,85,0.95)
-    );
-
-  border:
-    1px solid rgba(126,203,255,0.25);
-
-  box-shadow:
-    0 0 25px rgba(0,0,0,0.45);
-
+.button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
 }
 
-
-.election-header {
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  gap: 15px;
-
-  flex-wrap: wrap;
-
+.button-secondary {
+    background: #40536c;
 }
 
-
-.election-badge {
-
-  display: inline-block;
-
-  padding: 6px 12px;
-
-  border-radius: 20px;
-
-  background:
-    rgba(80,200,120,0.18);
-
-  border:
-    1px solid rgba(80,200,120,0.35);
-
-  color: #9ff0b5;
-
-  font-size: 14px;
-
-  font-weight: bold;
-
+.translation-editor {
+    margin: 22px 0;
+    padding: 20px;
+    border: 1px solid rgba(105, 168, 255, 0.28);
+    border-radius: 14px;
+    background: rgba(5, 18, 34, 0.58);
 }
 
-
-.election-description {
-
-  line-height: 1.8;
-
-  opacity: 0.9;
-
-
+.translation-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 14px;
 }
 
-
-.election-countdown {
-
-  font-size: 24px;
-
-  font-weight: bold;
-
-  margin: 20px 0;
-
-  color: #ffffff;
-
-  letter-spacing: 1px;
-
+.translation-heading h3 {
+    margin: 0 0 4px;
+    font-size: 18px;
 }
 
-
-.election-date {
-
-  font-size: 14px;
-
-  opacity: 0.8;
-
-  line-height: 1.8;
-
+.translation-heading p {
+    margin: 0;
+    color: #aebfd6;
+    font-size: 13px;
+    line-height: 1.6;
 }
 
-
-.election-button {
-
-  margin-top: 15px;
-
+.translation-heading .button {
+    flex: 0 0 auto;
+    margin-top: 0;
 }
 
-
-/* =========================================================
-   投票按钮
-========================================================= */
-
-.vote-button {
-
-  margin-left: 10px;
-
+.translation-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
 }
 
-
-.vote-button.disabled {
-
-  opacity: 0.5;
-
-  pointer-events: none;
-
-  cursor: not-allowed;
-
+.translation-language {
+    min-width: 0;
+    padding: 15px;
+    border: 1px solid rgba(150, 190, 230, 0.16);
+    border-radius: 11px;
+    background: rgba(255, 255, 255, 0.035);
 }
 
+.translation-language h4 {
+    margin: 0 0 10px;
+    color: #dceaff;
+    font-size: 15px;
+}
 
-/* =========================================================
-   新闻
-========================================================= */
+.translation-language label {
+    margin-top: 12px;
+}
+
+.translation-language input,
+.translation-language textarea {
+    background: rgba(3, 13, 26, 0.88);
+}
+
+.translation-language textarea {
+    min-height: 190px;
+}
+
+@media (max-width: 700px) {
+    .translation-editor {
+        padding: 15px;
+    }
+
+    .translation-heading {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .translation-heading .button {
+        width: 100%;
+    }
+
+    .translation-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.button-danger {
+    background: #b83c4a;
+}
+
+.button-success {
+    background: #268b60;
+}
+
+.status {
+    display: none;
+    margin-top: 18px;
+    padding: 13px 15px;
+    border-radius: 10px;
+    line-height: 1.6;
+}
 
 .news-item {
-
-  background:
-    rgba(0,0,0,0.25);
-
-  border-radius: 12px;
-
-  padding: 20px;
-
-  margin-bottom: 20px;
-
+    background: rgba(4, 17, 32, 0.65);
+    border: 1px solid rgba(160, 190, 220, 0.12);
+    border-radius: 14px;
+    padding: 18px;
+    margin-top: 14px;
 }
 
-
-.news-item h3 {
-
-  margin-top: 0;
-
+.news-item-title {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.5;
+    word-break: break-word;
 }
 
-
-.news-item small {
-
-  opacity: 0.65;
-
+.news-item-meta {
+    color: #9eb0c8;
+    font-size: 13px;
+    margin-top: 7px;
 }
 
-
-.news-item img {
-
-  width: 100%;
-
-  max-width: 700px;
-
-  border-radius: 10px;
-
-  margin:
-    15px 0;
-
-  display: block;
-
+.news-item-preview {
+    color: #d5dfec;
+    margin-top: 12px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    max-height: 100px;
+    overflow: hidden;
 }
 
+.news-actions {
+    margin-top: 8px;
+}
 
-/* =========================================================
-   Footer
-========================================================= */
+.news-actions .button {
+    margin-top: 12px;
+}
+
+.editing-banner {
+    display: none;
+    background: rgba(255, 190, 70, 0.12);
+    border: 1px solid rgba(255, 190, 70, 0.3);
+    color: #ffd98b;
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 15px;
+}
+
+.count {
+    color: #9eb0c8;
+    font-size: 14px;
+}
+
+.search-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.search-row input {
+    flex: 1;
+}
+
+.small-note {
+    color: #91a4bc;
+    font-size: 13px;
+    line-height: 1.6;
+    margin-top: 8px;
+}
+
+.hidden {
+    display: none !important;
+}
 
 footer {
-
-  text-align: center;
-
-  padding: 30px;
-
-  background: #081522;
-
-  opacity: 0.7;
-
-  margin-top: 60px;
-
-}
-
-
-.footer-note {
-
-  font-size: 12px;
-
-  opacity: 0.5;
-
-  margin-top: 20px;
-
-  text-align: center;
-
-  padding-bottom: 30px;
-
+    text-align: center;
+    color: #71869f;
+    font-size: 13px;
+    margin-top: 35px;
 }
 
 
 /* =========================================================
-   移动端
+   图片预览
 ========================================================= */
 
-@media (max-width: 600px) {
+.image-preview {
+    display: none;
+    margin-top: 10px;
+}
 
-  header h1 {
+.image-preview img {
+    display: block;
+    width: 100%;
+    max-width: 420px;
+    max-height: 260px;
+    object-fit: contain;
+    border-radius: 12px;
+    border: 1px solid rgba(150, 190, 230, 0.18);
+    background: rgba(0, 0, 0, 0.25);
+}
 
-    font-size: 28px;
+.image-current {
+    display: none;
+    margin-top: 10px;
+}
 
-  }
+.image-current img {
+    display: block;
+    width: 100%;
+    max-width: 420px;
+    max-height: 260px;
+    object-fit: contain;
+    border-radius: 12px;
+    border: 1px solid rgba(150, 190, 230, 0.18);
+    background: rgba(0, 0, 0, 0.25);
+}
 
+.image-box {
+    margin-top: 14px;
+    padding: 14px;
+    border-radius: 12px;
+    background: rgba(5, 18, 34, 0.35);
+    border: 1px solid rgba(150, 190, 230, 0.10);
+}
 
-  .timer {
+.image-box:first-of-type {
+    margin-top: 12px;
+}
 
-    font-size: 24px;
-
-  }
-
-
-  .election-countdown {
-
-    font-size: 20px;
-
-  }
-
-
-  nav a,
-  nav .button {
-
-    display: inline-block;
-
-    margin: 6px 8px;
-
+.image-label {
+    margin: 0 0 8px;
     font-size: 14px;
+    font-weight: 600;
+}
 
-  }
-
-
-  .card {
-
-    padding: 22px;
-
-  }
-
-
-  .vote-button {
-
-    margin-left: 0;
-
-  }
-
+.image-path {
+    color: #91a4bc;
+    font-size: 12px;
+    line-height: 1.5;
+    word-break: break-all;
+    margin-top: 8px;
 }
 
 
-/* Mobile navigation and reading rhythm, preserving the original navy palette. */
-html { scroll-padding-top: 20px; }
-body { line-height: 1.75; }
-a, button { -webkit-tap-highlight-color: transparent; }
-a:focus-visible, button:focus-visible { outline: 3px solid #82d2ff; outline-offset: 4px; }
-nav { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); align-items: stretch; gap: 8px; max-width: 1000px; margin: 24px auto 0; width: calc(100% - 40px); box-sizing: border-box; padding: 14px; border: 1px solid #244461; border-radius: 16px; }
-.nav-links { display: contents; }
-nav a, nav .button { display: flex; justify-content: center; align-items: center; min-height: 48px; box-sizing: border-box; margin: 0; padding: 10px 12px; border: 1px solid #294762; border-radius: 10px; line-height: 1.5; background: #102a44; }
-nav .button { font-size: 13px; }
-.nav-links a:first-child { background: #1a456d; border-color: #527da2; color: #e8f1ff; }
-nav a:hover, nav .button:hover { background: #163b5c; text-decoration: none; }
-.menu-toggle { display: none; }
-.card { border: 1px solid rgba(126,203,255,.12); }
-.card h2 { line-height: 1.4; }
-.card p, .news-item, .city { overflow-wrap: anywhere; }
-.timer { font-variant-numeric: tabular-nums; }
-@media (max-width: 600px) {
-  header { padding: 30px 20px 26px; }
-  header h1 { font-size: clamp(24px, 6.8vw, 28px); letter-spacing: 1px; line-height: 1.4; }
-  header p { font-size: 13px; margin: 10px 0 0; }
-  nav { display: flex; flex-wrap: wrap; width: 100%; max-width: none; margin: 0; padding: 10px 16px; justify-content: space-between; gap: 8px; border: 0; border-bottom: 1px solid #244461; border-radius: 0; }
-  nav.enhanced .menu-toggle { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 14px; border: 1px solid #426585; border-radius: 10px; background: #12304c; color: #e8f1ff; font: inherit; cursor: pointer; }
-  .nav-links { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 6px; order: 3; width: 100%; padding-top: 6px; }
-  nav.enhanced[data-collapsed="true"] .nav-links { display: none; }
-  nav a { display: flex; align-items: center; min-height: 44px; box-sizing: border-box; padding: 10px 12px; background: #102a44; text-align: left; justify-content: flex-start; }
-  nav .button { min-height: 44px; font-size: 13px; padding: 8px 10px; }
-  .container { margin: 24px auto; padding: 0 16px; }
-  .card { padding: 20px; margin-bottom: 22px; border-radius: 16px; }
-  .card h2 { font-size: 22px; margin-bottom: 14px; }
-  .countdown { padding: 24px 16px; }
-  .countdown h2 { font-size: 21px; }
-  .timer { font-size: clamp(20px,5.6vw,24px); letter-spacing: 1px; }
-  .card > .button { display: block; text-align: center; margin: 12px 0 0; padding: 12px 16px; }
-  .news-item { padding: 16px; margin-bottom: 16px; }
-  .news-item h3 { font-size: 18px; line-height: 1.55; }
-  .news-item small { display: block; font-size: 13px; line-height: 1.7; }
-  footer { margin-top: 32px; padding: 24px 16px; }
-  .footer-note { padding: 0 20px 96px; }
-}
-@media (prefers-reduced-motion: reduce) {
-  body { animation: none; }
-  .button { transition: none; }
-  .button:hover { transform: none; }
-}
+/* =========================================================
+   手机端
+========================================================= */
 
+@media (max-width: 700px) {
+    .container {
+        width: 92%;
+        padding-top: 22px;
+    }
+
+    header h1 {
+        font-size: 25px;
+    }
+
+    .card {
+        padding: 18px;
+    }
+
+    .search-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .button {
+        margin-top: 12px;
+    }
+}
 </style>
-
 </head>
-
 
 <body>
 
-
-<!-- =======================================================
-     无障碍跳转
-======================================================= -->
-
-<a
-  href="#main-content"
-  class="skip-link"
->
-  跳过到主要内容
-</a>
-
-
-<!-- =======================================================
-     网站头部
-======================================================= -->
+<div class="container">
 
 <header>
-
-  <h1
-    data-zh="阿谢国官方网站"
-    data-en="Republic of Axie - Official Website"
-    data-jp="阿謝国 公式サイト"
-  >
-    阿谢国官方网站
-  </h1>
-
-
-  <p
-    data-zh="Republic of Axie · 国家门户网站"
-    data-en="Republic of Axie · National Portal"
-    data-jp="阿謝国 · 国家ポータルサイト"
-  >
-    Republic of Axie · 国家门户网站
-  </p>
-
+    <h1>📰 AXNews 新闻管理后台</h1>
+    <p>Republic of Axie · AXNews Management System</p>
 </header>
 
 
-<!-- =======================================================
-     导航栏
-======================================================= -->
+<!-- ==================== 登录 ==================== -->
 
-<nav aria-label="主导航">
-  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-menu">
-    <span aria-hidden="true">☰</span><span data-zh="菜单" data-en="Menu" data-jp="メニュー">菜单</span>
-  </button>
-  <div class="nav-links" id="main-menu">
+<section class="card" id="loginSection">
 
-  <a
-    href="https://directory.republic-of-axie.org/"
-    data-zh="网站查询"
-    data-en="Site Directory"
-    data-jp="サイト検索"
-  >
-    网站查询
-  </a>
+    <h2>🔐 管理员登录</h2>
 
+    <p class="small-note">
+        本系统采用服务器端管理员密码验证。
+        管理员密码不会写入网页代码。
+    </p>
 
-  <a
-    href="#about"
-    data-zh="国家介绍"
-    data-en="About"
-    data-jp="国家紹介"
-  >
-    国家介绍
-  </a>
+    <label for="adminPassword">
+        🔐 管理员密码
+    </label>
 
-
-  <a
-    href="#history"
-    data-zh="建国历史"
-    data-en="History"
-    data-jp="建国の歴史"
-  >
-    建国历史
-  </a>
-
-
-  <a
-    href="#cities"
-    data-zh="城市"
-    data-en="Cities"
-    data-jp="都市"
-  >
-    城市体系
-  </a>
-
-
-  <a
-    href="AXNews.html"
-    data-zh="AXNews新闻"
-    data-en="AXNews"
-    data-jp="AXNewsニュース"
-  >
-    AXNews新闻
-  </a>
-
-
-  <a
-    href="constitution.html"
-    data-zh="国家宪法"
-    data-en="Constitution"
-    data-jp="国家憲法"
-  >
-    国家宪法
-  </a>
-
-
-  <a
-    href="#flag"
-    data-zh="国家象征"
-    data-en="National Symbols"
-    data-jp="国家の象徴"
-  >
-    国家象征
-  </a>
-
-
-  <a
-    href="#contact"
-    data-zh="联系我们"
-    data-en="Contact"
-    data-jp="お問い合わせ"
-  >
-    联系我们
-  </a>
-
-  <a
-    href="leader.html"
-    data-zh="领导人"
-    data-en="Leaders"
-    data-jp="リーダー"
-  >
-    领导人
-  </a>
-
-
-  </div>
-
-  <button
-    id="langToggle"
-    class="button"
-    aria-label="切换语言"
-    type="button"
-  >
-    🌐 中文 / EN / 日本語
-  </button>
-
-</nav>
-<script>
-(() => {
-  const nav = document.querySelector('nav');
-  const toggle = nav.querySelector('.menu-toggle');
-  const links = nav.querySelector('.nav-links');
-  function setOpen(open) {
-    nav.dataset.collapsed = String(!open);
-    toggle.setAttribute('aria-expanded', String(open));
-  }
-  nav.classList.add('enhanced');
-  setOpen(false);
-  toggle.addEventListener('click', () => setOpen(nav.dataset.collapsed === 'true'));
-  links.addEventListener('click', event => {
-    if (event.target.closest('a')) setOpen(false);
-  });
-  nav.addEventListener('keydown', event => {
-    if (event.key === 'Escape' && nav.dataset.collapsed === 'false') {
-      setOpen(false);
-      toggle.focus();
-    }
-  });
-})();
-</script>
-
-
-
-<!-- =======================================================
-     主体
-======================================================= -->
-
-<main id="main-content">
-
-<div class="container">
-
-
-<!-- =====================================================
-     国家介绍
-===================================================== -->
-
-<section
-  id="about"
-  class="card"
->
-
-  <h2
-    data-zh="国家介绍"
-    data-en="About the Republic of Axie"
-    data-jp="阿謝国の紹介"
-  >
-    国家介绍
-  </h2>
-
-
-  <p
-    data-zh="阿谢国（Republic of Axie）是建立于游戏 Mini World 虚拟世界中的架空国家。国家以和平、科技、民主、多元与可持续发展为核心理念，致力于构建一个自由、开放与包容的社区。"
-    data-en="The Republic of Axie is a fictional nation created within the Mini World virtual world. It is founded on the principles of peace, technology, democracy, diversity, and sustainable development, aiming to build a free, open, and inclusive community."
-    data-jp="阿謝国（Republic of Axie）は、ゲーム『Mini World』の仮想世界に構築された架空の国家です。平和、技術、民主、多様性、持続可能な発展を基本理念とし、自由で開かれた包摂的なコミュニティを目指します。"
-  >
-    阿谢国（Republic of Axie）是建立于游戏 Mini World 虚拟世界中的架空国家。国家以和平、科技、民主、多元与可持续发展为核心理念，致力于构建一个自由、开放与包容的社区。
-  </p>
-
-
-  <a
-    class="button"
-    href="constitution.html"
-    data-zh="📜 查看国家宪法"
-    data-en="📜 View the Constitution"
-    data-jp="📜 国家憲法を見る"
-  >
-    📜 查看国家宪法
-  </a>
-
-</section>
-
-
-
-<!-- =====================================================
-     建国历史
-===================================================== -->
-
-<section
-  id="history"
-  class="card"
->
-
-  <h2
-    data-zh="建国历史"
-    data-en="Founding History"
-    data-jp="建国の歴史"
-  >
-    建国历史
-  </h2>
-
-
-  <p
-    data-zh="阿谢元年（2024年）2月3日，阿谢国在新阿谢市正式宣告成立。国家以彩虹白地蓝天星旗为象征，确立民主制度、科技发展与和平外交为基本路线。"
-    data-en="On February 3, 2024, the Republic of Axie was officially founded in New Axie City. The nation adopted the Rainbow White-Blue Sky Star Flag as its symbol and established democracy, technological development, and peaceful diplomacy as its guiding principles."
-    data-jp="2024年2月3日に阿謝国はニュー阿謝市で正式に建国されました。国家の象徴として彩虹白地蓝天星旗を採用し、民主制度、技術発展、平和外交を基本方針としました。"
-  >
-    阿谢元年（2024年）2月3日，阿谢国在新阿谢市正式宣告成立。国家以彩虹白地蓝天星旗为象征，确立民主制度、科技发展与和平外交为基本路线。
-  </p>
-
-</section>
-
-
-
-<!-- =====================================================
-     国庆倒计时
-===================================================== -->
-
-<section
-  class="card countdown"
->
-
-  <h2
-    id="countdown-title"
-    data-zh="阿谢国国庆日倒计时"
-    data-en="National Day Countdown"
-    data-jp="阿謝国 建国記念日カウントダウン"
-  >
-    阿谢国国庆日倒计时
-  </h2>
-
-
-  <div
-    id="axieDate"
-    class="axie-date"
-  >
-    加载中...
-  </div>
-
-
-  <div
-    id="timer"
-    class="timer"
-  >
-    加载中...
-  </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     🗳️ 自动选举状态
-===================================================== -->
-
-<section
-  id="election-status"
-  class="card election-card"
-  style="display:none;"
->
-
-  <div class="election-header">
-
-    <h2
-      id="election-title"
-      data-zh="🗳️ 选举动态"
-      data-en="🗳️ Election Update"
-      data-jp="🗳️ 選挙情報"
+    <input
+        id="adminPassword"
+        type="password"
+        placeholder="请输入管理员密码"
+        autocomplete="current-password"
     >
-      🗳️ 选举动态
+
+    <button
+        class="button"
+        id="loginButton"
+        type="button"
+        onclick="login()"
+    >
+        🔓 登录
+    </button>
+
+    <div
+        class="status"
+        id="loginStatus"
+    ></div>
+
+</section>
+
+
+<!-- ==================== 后台主体 ==================== -->
+
+<div id="adminPanel" class="hidden">
+
+
+<!-- ==================== 发布 / 编辑 ==================== -->
+
+<section class="card">
+
+    <div id="editingBanner" class="editing-banner">
+        ✏️ 当前正在编辑已有新闻。
+        保存后会直接修改原新闻。
+    </div>
+
+    <h2 id="editorTitle">
+        ✏️ 发布新新闻
     </h2>
 
+    <label for="newsTitle">
+        📰 新闻标题
+    </label>
 
-    <span
-      id="election-badge"
-      class="election-badge"
+    <input
+        id="newsTitle"
+        type="text"
+        maxlength="200"
+        placeholder="请输入新闻标题"
     >
-      ● 投票进行中
-    </span>
-
-  </div>
 
 
-  <p
-    id="election-description"
-    class="election-description"
-  >
-    正在读取选举信息……
-  </p>
+    <label for="newsAgency">🏛️ 公告机构</label>
+    <select id="newsAgency">
+        <option value="">普通新闻（不选机构）</option>
+    </select>
+    <div class="small-note">不选机构即发布普通新闻；普通新闻仅显示在“全部公告”，不会归入机构分类。</div>
+
+    <label for="newsDate">
+        📅 发布时间
+    </label>
+
+    <input
+        id="newsDate"
+        type="text"
+        readonly
+    >
 
 
-  <div
-    id="election-countdown"
-    class="election-countdown"
-  >
-  </div>
+    <label for="newsTimestamp">
+        🔢 Timestamp
+    </label>
+
+    <input
+        id="newsTimestamp"
+        type="text"
+        readonly
+    >
+
+    <div class="small-note">
+        时间由系统自动生成。
+        Timestamp 仅用于新闻排序。
+    </div>
 
 
-  <div
-    id="election-date"
-    class="election-date"
-  >
-  </div>
+    <label for="newsAuthor">
+        👤 作者
+    </label>
+
+    <input
+        id="newsAuthor"
+        type="text"
+        maxlength="100"
+        value="AXNews"
+        placeholder="请输入作者"
+    >
 
 
- <!-- 选举介绍页面 -->
+    <label for="newsContent">
+        📝 新闻正文
+    </label>
 
-<a
-  id="election-button"
-  href="#"
-  class="button election-button"
->
-  进入选举页面
-</a>
+    <textarea
+        id="newsContent"
+        placeholder="请输入新闻正文……"
+    ></textarea>
+
+    <div class="translation-editor">
+        <div class="translation-heading">
+            <div>
+                <h3>🌐 翻译草稿</h3>
+                <p>生成后先检查并修改，再发布。国名固定为 English: republic of axie · 日本語: 阿謝国。</p>
+            </div>
+            <button class="button button-secondary" id="translateButton" type="button" onclick="generateNewsTranslations()">🌐 生成英语和日语译文</button>
+        </div>
+        <div class="translation-grid">
+            <section class="translation-language" aria-labelledby="englishDraftHeading">
+                <h4 id="englishDraftHeading">English draft</h4>
+                <label for="newsTitleEn">标题</label>
+                <input id="newsTitleEn" type="text" maxlength="240" placeholder="English headline">
+                <label for="newsContentEn">正文</label>
+                <textarea id="newsContentEn" placeholder="English article"></textarea>
+            </section>
+            <section class="translation-language" aria-labelledby="japaneseDraftHeading">
+                <h4 id="japaneseDraftHeading">日本語の下書き</h4>
+                <label for="newsTitleJa">タイトル</label>
+                <input id="newsTitleJa" type="text" maxlength="240" placeholder="ニュースの見出し">
+                <label for="newsContentJa">本文</label>
+                <textarea id="newsContentJa" placeholder="ニュース本文"></textarea>
+            </section>
+        </div>
+        <div class="small-note">原文标题或正文修改后，译文会清空，请重新生成或手动填写。发布或保存后，已确认译文会作为相近新闻的翻译参考，帮助统一术语和表达。</div>
+    </div>
 
 
-<!-- 候选人申请入口 -->
+    <!-- ==================== 新闻图片 ==================== -->
 
-<a
-  href="candidate-application.html"
-  class="button election-button"
-  data-zh=" 候选人申请"
-  data-en=" Candidate Applications"
-  data-jp=" 候補者申請"
->
-  👤 候选人申请
-</a>
+    <label>
+        🖼️ 新闻图片
+    </label>
+
+    <div class="small-note">
+        最多上传 3 张图片。<br>
+        支持 JPG、PNG、GIF、WebP。<br>
+        单张图片最大 5 MB。
+    </div>
 
 
-<!-- 投票入口 -->
+    <!-- 图片 1 -->
 
-<a
-  id="vote-button"
-  href="#"
-  class="button election-button vote-button"
-  aria-disabled="true"
->
-  🗳️ 进入投票
-</a>
+    <div class="image-box">
+
+        <div class="image-label">
+            📷 图片 1
+        </div>
+
+        <input
+            id="image1"
+            type="file"
+            accept=".jpg,.jpeg,.png,.gif,.webp,image/jpeg,image/png,image/gif,image/webp"
+            onchange="previewImage(1)"
+        >
+
+        <div
+            id="imageCurrent1"
+            class="image-current"
+        >
+            <div class="small-note">
+                当前图片：
+            </div>
+
+            <img
+                id="imageCurrentPreview1"
+                alt="当前图片 1"
+            >
+
+            <div
+                id="imageCurrentPath1"
+                class="image-path"
+            ></div>
+        </div>
+
+        <div
+            id="imagePreview1"
+            class="image-preview"
+        >
+            <div class="small-note">
+                新图片预览：
+            </div>
+
+            <img
+                id="imagePreviewImg1"
+                alt="新图片 1"
+            >
+        </div>
+
+    </div>
+
+
+    <!-- 图片 2 -->
+
+    <div class="image-box">
+
+        <div class="image-label">
+            📷 图片 2
+        </div>
+
+        <input
+            id="image2"
+            type="file"
+            accept=".jpg,.jpeg,.png,.gif,.webp,image/jpeg,image/png,image/gif,image/webp"
+            onchange="previewImage(2)"
+        >
+
+        <div
+            id="imageCurrent2"
+            class="image-current"
+        >
+            <div class="small-note">
+                当前图片：
+            </div>
+
+            <img
+                id="imageCurrentPreview2"
+                alt="当前图片 2"
+            >
+
+            <div
+                id="imageCurrentPath2"
+                class="image-path"
+            ></div>
+        </div>
+
+        <div
+            id="imagePreview2"
+            class="image-preview"
+        >
+            <div class="small-note">
+                新图片预览：
+            </div>
+
+            <img
+                id="imagePreviewImg2"
+                alt="新图片 2"
+            >
+        </div>
+
+    </div>
+
+
+    <!-- 图片 3 -->
+
+    <div class="image-box">
+
+        <div class="image-label">
+            📷 图片 3
+        </div>
+
+        <input
+            id="image3"
+            type="file"
+            accept=".jpg,.jpeg,.png,.gif,.webp,image/jpeg,image/png,image/gif,image/webp"
+            onchange="previewImage(3)"
+        >
+
+        <div
+            id="imageCurrent3"
+            class="image-current"
+        >
+            <div class="small-note">
+                当前图片：
+            </div>
+
+            <img
+                id="imageCurrentPreview3"
+                alt="当前图片 3"
+            >
+
+            <div
+                id="imageCurrentPath3"
+                class="image-path"
+            ></div>
+        </div>
+
+        <div
+            id="imagePreview3"
+            class="image-preview"
+        >
+            <div class="small-note">
+                新图片预览：
+            </div>
+
+            <img
+                id="imagePreviewImg3"
+                alt="新图片 3"
+            >
+        </div>
+
+    </div>
+
+
+    <div
+        class="status"
+        id="imageUploadStatus"
+    ></div>
+
+
+    <button
+        class="button button-success"
+        id="publishButton"
+        type="button"
+        onclick="publishNews()"
+    >
+        🚀 发布新闻
+    </button>
+
+    <button
+        class="button button-secondary"
+        type="button"
+        onclick="clearForm()"
+    >
+        🗑️ 清空
+    </button>
+
+    <button
+        class="button button-secondary hidden"
+        id="cancelEditButton"
+        type="button"
+        onclick="cancelEdit()"
+    >
+        ↩️ 取消编辑
+    </button>
+
+
+    <div
+        class="status"
+        id="publishStatus"
+    ></div>
 
 </section>
 
 
+<!-- ==================== 新闻管理 ==================== -->
 
-<!-- =====================================================
-     AXNews
-===================================================== -->
+<section class="card">
 
-<section
-  id="news"
-  class="card"
->
+    <h2>📰 新闻管理</h2>
 
-  <h2
-    data-zh="📰 AXNews 国家新闻"
-    data-en="📰 AXNews National News"
-    data-jp="📰 AXNews 国家ニュース"
-  >
-    📰 AXNews 国家新闻
-  </h2>
+    <div class="search-row">
 
+        <input
+            id="manageSearch"
+            type="text"
+            placeholder="🔍 搜索标题或正文……"
+            oninput="filterNewsManagement()"
+        >
 
-  <div id="newsList">
+        <button
+            class="button button-secondary"
+            type="button"
+            onclick="loadNewsManagement()"
+        >
+            🔄 刷新
+        </button>
 
-    正在加载新闻...
+    </div>
 
-  </div>
+    <p class="count" id="newsCount">
+        正在加载……
+    </p>
 
+    <div
+        class="status"
+        id="newsManageStatus"
+    ></div>
 
-  <a
-    href="AXNews.html"
-    class="button"
-    data-zh="📰 查看全部新闻"
-    data-en="📰 View All News"
-    data-jp="📰 すべてのニュースを見る"
-  >
-    📰 查看全部新闻
-  </a>
-
-</section>
-
-
-
-<!-- =====================================================
-     城市体系
-===================================================== -->
-
-<section
-  id="cities"
-  class="card"
->
-
-  <h2
-    data-zh="国家城市体系"
-    data-en="Cities"
-    data-jp="都市"
-  >
-    国家城市体系
-  </h2>
-
-
-  <div
-    class="city"
-    data-zh="新阿谢市 — 国家首都及政治中心"
-    data-en="New Axie City — Capital and Political Center"
-    data-jp="ニュー阿謝市 — 首都および政治の中心"
-  >
-    新阿谢市 — 国家首都及政治中心
-  </div>
-
-
-  <div
-    class="city"
-    data-zh="阿浩市 — 国家工业枢纽城市"
-    data-en="Ahao City — Industry Hub"
-    data-jp="阿浩市 — 工業の中核都市"
-  >
-    阿浩市 — 国家工业枢纽城市
-  </div>
-
-
-  <div
-    class="city"
-    data-zh="明辉市 — 国防核心城市"
-    data-en="Minghui City — Defense Core City"
-    data-jp="明辉市 — 国防の中核都市"
-  >
-    明辉市 — 国防核心城市
-  </div>
-
-
-  <div
-    class="city"
-    data-zh="阿陈市 — 高度现代化港口都市"
-    data-en="Achen City — Modern Port City"
-    data-jp="阿陈市 — 近代的な港湾都市"
-  >
-    阿陈市 — 高度现代化港口都市
-  </div>
-
-
-  <div
-    class="city"
-    data-zh="立京市 — 历史文化古城"
-    data-en="Liking City — Historic Cultural City"
-    data-jp="立京市 — 歴史文化都市"
-  >
-    立京市 — 历史文化古城
-  </div>
-
-
-  <div
-    class="city"
-    data-zh="新桃市 — 低密度乡村型城市"
-    data-en="Xintao City — A Low Density, Rural Oriented City"
-    data-jp="新桃市 — 低密度の田園都市"
-  >
-    新桃市 — 低密度乡村型城市
-  </div>
+    <div id="newsManageList">
+        正在加载新闻……
+    </div>
 
 </section>
 
 
+<!-- ==================== 退出 ==================== -->
 
-<!-- =====================================================
-     国家象征 · 国旗
-===================================================== -->
+<section class="card">
 
-<section
-  id="flag"
-  class="card flag-box"
->
+    <h2>🔒 退出登录</h2>
 
-  <h2
-    data-zh="国家象征 · 国旗"
-    data-en="National Symbol · Flag"
-    data-jp="国家の象徴・国旗"
-  >
-    国家象征 · 国旗
-  </h2>
+    <p class="small-note">
+        登录凭证仅保存在当前页面内存中。
+        刷新页面后需要重新登录。
+    </p>
 
-
-  <p
-    data-zh="彩虹白地蓝天星旗 · 象征和平、包容多元、民主、科技与未来"
-    data-en="Rainbow White-Blue Sky Star Flag · Symbol of peace, diversity, democracy, technology, and the future"
-    data-jp="彩虹白地蓝天星旗 · 平和、多様性、民主、技術、そして未来の象徴"
-  >
-    彩虹白地蓝天星旗 · 象征和平、包容多元、民主、科技与未来
-  </p>
-
-
-  <img
-    src="./flag.jpg"
-    alt="阿谢国国旗"
-    loading="lazy"
-    width="300"
-    onerror="this.onerror=null;this.src='https://via.placeholder.com/300x180?text=Flag+Missing';"
-  >
+    <button
+        class="button button-danger"
+        type="button"
+        onclick="logout()"
+    >
+        🚪 退出登录
+    </button>
 
 </section>
-
-
-
-<!-- =====================================================
-     联系
-===================================================== -->
-
-<section
-  id="contact"
-  class="card"
->
-
-  <h2
-    data-zh="联系我们"
-    data-en="Contact Us"
-    data-jp="お問い合わせ"
-  >
-    联系我们
-  </h2>
-
-
-  <p
-    data-zh="如对阿谢国感兴趣或世界观交流请您联系我们："
-    data-en="If you are interested in the Republic of Axie or its world-building, please contact us:"
-    data-jp="阿謝国や世界観にご興味がある方は、こちらまでご連絡ください："
-  >
-    如对阿谢国感兴趣或世界观交流请您联系我们：
-  </p>
-
-
-  <p>
-
-    <strong>
-
-      📧
-
-      <a
-        href="mailto:axie999666@gmail.com"
-        style="color:inherit;text-decoration:none;"
-      >
-        axie999666@gmail.com
-      </a>
-
-    </strong>
-
-  </p>
-
-</section>
-
 
 </div>
 
-</main>
 
-
-
-<!-- =======================================================
-     Footer
-======================================================= -->
-
-<footer
-  data-zh="© Republic of Axie · 阿谢国官方网站"
-  data-en="© Republic of Axie · Official Website"
-  data-jp="© 阿謝国 · 公式サイト"
->
-  © Republic of Axie · 阿谢国官方网站
+<footer>
+    © Republic of Axie · AXNews Management System
 </footer>
 
-
-
-<aside class="axie-fiction-notice footer-note" aria-label="世界观创作说明" style="font-size:12px;opacity:0.5;margin-top:20px;text-align:center;padding:0 20px 30px;line-height:1.7;overflow-wrap:anywhere">阿谢国为架空世界观创作项目 · Republic of Axie is a fictional nation project</aside>
-
-
+</div>
 
 
 <script>
 
+/* =========================================================
+   基础配置
+========================================================= */
 
-// =========================================================
-// DOM 缓存
-// =========================================================
+const API_BASE =
+    "https://axnews-admin-api.axie999666.workers.dev";
 
-const axieDateEl =
-  document.getElementById("axieDate");
+let agencies = [];
 
-const timerEl =
-  document.getElementById("timer");
-
-const countdownTitle =
-  document.getElementById("countdown-title");
-
-const langBtn =
-  document.getElementById("langToggle");
-
-
-// =========================================================
-// UTC+9 时间系统
-// =========================================================
-
-function getUTC9Time() {
-
-  const now = new Date();
-
-  const utc =
-    now.getTime() +
-    now.getTimezoneOffset() * 60000;
-
-  return new Date(
-    utc +
-    9 * 60 * 60 * 1000
-  );
-
+async function loadAgencies(){
+    const response = await fetch(API_BASE + "/agencies");
+    const result = await response.json();
+    if(!response.ok || !result.success || !Array.isArray(result.agencies)) throw new Error("机构分类加载失败");
+    agencies = result.agencies;
+    const select = document.getElementById("newsAgency");
+    select.innerHTML = "<option value=\"\">普通新闻（不选机构）</option>";
+    agencies.forEach(item => {
+        const option = document.createElement("option");
+        option.value = item.id;
+        option.textContent = item.name;
+        select.appendChild(option);
+    });
 }
 
-
-// =========================================================
-// 创建 UTC+9 日期
-//
-// 例如：
-// 2029年2月4日 00:00 UTC+9
-//
-// 不受用户电脑所在国家影响
-// =========================================================
-
-function createUTC9Date(
-  year,
-  month,
-  day,
-  hour = 0,
-  minute = 0,
-  second = 0
-) {
-
-  return new Date(
-    Date.UTC(
-      year,
-      month - 1,
-      day,
-      hour - 9,
-      minute,
-      second
-    )
-  );
-
+function agencyName(id){
+    const item = agencies.find(entry => entry.id === id);
+    return item ? item.name : (id || "普通新闻");
 }
 
+const MAX_IMAGE_SIZE =
+    5 * 1024 * 1024;
 
-// =========================================================
-// 阿谢纪年
-//
-// 阿谢元年 = 2024
-// 阿谢二年 = 2025
-// 阿谢三年 = 2026
-// =========================================================
-
-function getAxieYear(year) {
-
-  return year - 2023;
-
-}
-
-
-// =========================================================
-// 将公历日期转换为阿谢纪年日期
-//
-// 阿谢元年 = 公历2024年
-//
-// 这里只负责“显示”
-// 程序内部时间仍然使用标准 Date
-// =========================================================
-
-function formatAxieDate(
-  dateString
-) {
-
-  const date =
-    new Date(dateString);
-
-
-  if (
-    Number.isNaN(
-      date.getTime()
-    )
-  ) {
-
-    return "";
-
-  }
-
-
-  const parts =
-    new Intl.DateTimeFormat(
-      "en-US",
-      {
-        timeZone: "Asia/Tokyo",
-        year: "numeric",
-        month: "numeric",
-        day: "numeric"
-      }
-    ).formatToParts(date);
-
-
-  let year = null;
-  let month = null;
-  let day = null;
-
-
-  parts.forEach(
-    part => {
-
-      if (part.type === "year") {
-        year = Number(part.value);
-      }
-
-      if (part.type === "month") {
-        month = Number(part.value);
-      }
-
-      if (part.type === "day") {
-        day = Number(part.value);
-      }
-
-    }
-  );
-
-
-  if (
-    !year ||
-    !month ||
-    !day
-  ) {
-
-    return "";
-
-  }
-
-
-  const axieYear =
-    getAxieYear(year);
-
-
-  /*
-   * 中文
-   */
-
-  if (currentLang === "zh") {
-
-    return `阿谢${axieYear}年${month}月${day}日`;
-
-  }
-
-
-  /*
-   * 日文
-   */
-
-  if (currentLang === "jp") {
-
-    return `阿謝${axieYear}年${month}月${day}日`;
-
-  }
-
-
-  /*
-   * 英文
-   */
-
-  return `Axie Year ${axieYear}, ${month}/${day}`;
-
-}
-
-
-// =========================================================
-// 多语言系统
-// =========================================================
-
-const langs = [
-  "zh",
-  "en",
-  "jp"
+const ALLOWED_IMAGE_TYPES = [
+    "image/jpeg",
+    "image/png",
+    "image/gif",
+    "image/webp"
 ];
 
-let currentIndex = 0;
 
-let currentLang = "zh";
+/* =========================================================
+   登录状态
+========================================================= */
+
+let sessionToken = "";
+
+let allNews = [];
+
+let editingNewsId = null;
+let translationSourceSnapshot = "";
 
 
-function applyLanguage() {
+/*
+ * 编辑已有新闻时保存原来的图片路径。
+ *
+ * 例如：
+ *
+ * {
+ *   image1: "news-images/abc.jpg",
+ *   image2: "",
+ *   image3: "news-images/xyz.png"
+ * }
+ */
 
-  document
-    .querySelectorAll("[data-zh]")
-    .forEach(el => {
+let editingImagePaths = {
+    image1: "",
+    image2: "",
+    image3: ""
+};
 
-      const text =
-        el.getAttribute(
-          "data-" + currentLang
+
+/* =========================================================
+   DOM 加载
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        updatePublishTime();
+
+        setupImageInputs();
+        setupTranslationSourceListeners();
+
+    }
+);
+
+
+/* =========================================================
+   图片输入监听
+========================================================= */
+
+function setupImageInputs() {
+
+    [1, 2, 3].forEach(
+        number => {
+
+            const input =
+                document.getElementById(
+                    "image" + number
+                );
+
+            if (!input) return;
+
+            input.addEventListener(
+                "change",
+                () => {
+
+                    previewImage(number);
+
+                }
+            );
+
+        }
+    );
+}
+
+function currentTranslationSource() {
+    return JSON.stringify({
+        title: document.getElementById("newsTitle").value.trim(),
+        content: document.getElementById("newsContent").value.trim()
+    });
+}
+
+function clearTranslationFields() {
+    ["newsTitleEn", "newsContentEn", "newsTitleJa", "newsContentJa"].forEach(id => {
+        document.getElementById(id).value = "";
+    });
+}
+
+function setupTranslationSourceListeners() {
+    ["newsTitle", "newsContent"].forEach(id => {
+        document.getElementById(id).addEventListener("input", () => {
+            if (translationSourceSnapshot && currentTranslationSource() !== translationSourceSnapshot) {
+                clearTranslationFields();
+                translationSourceSnapshot = "";
+                showStatus("publishStatus", "原文已修改，请重新生成或填写英日译文。", "normal");
+            }
+        });
+    });
+}
+
+async function generateNewsTranslations() {
+    if (!sessionToken) {
+        alert("登录状态已经失效，请重新登录。");
+        return;
+    }
+    const title = document.getElementById("newsTitle").value.trim();
+    const content = document.getElementById("newsContent").value.trim();
+    const sourceSnapshot = JSON.stringify({title, content});
+    if (!title || !content) {
+        showStatus("publishStatus", "请先填写中文标题和正文，再生成译文。", "error");
+        return;
+    }
+    const button = document.getElementById("translateButton");
+    button.disabled = true;
+    button.textContent = "⏳ 正在生成英日译文……";
+    showStatus("publishStatus", "正在生成译文。完成后可在下方修改，确认后再发布。", "normal");
+    try {
+        const response = await fetch(API_BASE + "/translate", {
+            method: "POST",
+            headers: {"Content-Type": "application/json", "Authorization": "Bearer " + sessionToken},
+            body: JSON.stringify({title, content, agencyId: document.getElementById("newsAgency").value})
+        });
+        const result = await response.json();
+        if (!response.ok || !result.success) throw new Error(result.error || "译文生成失败");
+        if (currentTranslationSource() !== sourceSnapshot) throw new Error("原文在生成期间发生变化，请重新生成译文。");
+        const translations = result.translations || {};
+        document.getElementById("newsTitleEn").value = translations.en?.title || "";
+        document.getElementById("newsContentEn").value = translations.en?.content || "";
+        document.getElementById("newsTitleJa").value = translations.ja?.title || "";
+        document.getElementById("newsContentJa").value = translations.ja?.content || "";
+        translationSourceSnapshot = currentTranslationSource();
+        if (result.translationStatus === "complete") {
+            showStatus("publishStatus", "英日译文已生成。请检查并修改后，再点击发布新闻。", "success");
+        } else {
+            showStatus("publishStatus", "部分译文未生成，请手动补全空白译文后再发布。", "error");
+        }
+    } catch (error) {
+        console.error(error);
+        showStatus("publishStatus", "❌ " + error.message, "error");
+    } finally {
+        button.disabled = false;
+        button.textContent = "🌐 重新生成英语和日语译文";
+    }
+}
+
+
+/* =========================================================
+   时间显示
+========================================================= */
+
+function updatePublishTime() {
+
+    const now = new Date();
+
+    /*
+     * 阿谢国新闻时间采用 UTC+9。
+     * 这里只用于后台界面显示。
+     * 真正发布时的 timestamp/date
+     * 会由 Cloudflare Worker 服务器生成。
+     */
+
+    const utc9 =
+        new Date(
+            now.getTime() +
+            9 * 60 * 60 * 1000
         );
 
-      if (!text) {
+    const year =
+        utc9.getUTCFullYear();
+
+    const month =
+        utc9.getUTCMonth() + 1;
+
+    const day =
+        utc9.getUTCDate();
+
+    const axieYear =
+        year - 2024 + 1;
+
+    document.getElementById(
+        "newsDate"
+    ).value =
+        `阿谢${axieYear}年${month}月${day}日`;
+
+    document.getElementById(
+        "newsTimestamp"
+    ).value =
+        Date.now();
+}
+
+
+/* =========================================================
+   状态显示
+========================================================= */
+
+function showStatus(
+    elementId,
+    message,
+    type = "normal"
+) {
+
+    const element =
+        document.getElementById(elementId);
+
+    if (!element) return;
+
+    element.style.display = "block";
+
+    element.textContent = message;
+
+    if (type === "success") {
+
+        element.style.background =
+            "rgba(60, 190, 120, 0.12)";
+
+        element.style.border =
+            "1px solid rgba(60, 190, 120, 0.25)";
+
+    } else if (type === "error") {
+
+        element.style.background =
+            "rgba(230, 70, 80, 0.12)";
+
+        element.style.border =
+            "1px solid rgba(230, 70, 80, 0.25)";
+
+    } else {
+
+        element.style.background =
+            "rgba(255, 190, 70, 0.10)";
+
+        element.style.border =
+            "1px solid rgba(255, 190, 70, 0.20)";
+    }
+}
+
+
+/* =========================================================
+   图片预览
+========================================================= */
+
+function previewImage(number) {
+
+    const input =
+        document.getElementById(
+            "image" + number
+        );
+
+    const previewBox =
+        document.getElementById(
+            "imagePreview" + number
+        );
+
+    const previewImg =
+        document.getElementById(
+            "imagePreviewImg" + number
+        );
+
+
+    if (!input ||
+        !previewBox ||
+        !previewImg) {
+
         return;
-      }
+    }
 
 
-      /*
-       * 如果元素没有子元素，
-       * 直接修改 textContent。
-       *
-       * 如果有子元素，
-       * 使用 innerHTML。
-       */
-
-      if (el.children.length === 0) {
-
-        el.textContent = text;
-
-      } else {
-
-        el.innerHTML = text;
-
-      }
-
-    });
+    const file =
+        input.files &&
+        input.files[0];
 
 
-  const titles = {
+    if (!file) {
 
-    zh:
-      "阿谢国官方网站 | Republic of Axie",
+        previewBox.style.display =
+            "none";
 
-    en:
-      "Republic of Axie | Official Website",
+        previewImg.removeAttribute(
+            "src"
+        );
 
-    jp:
-      "阿谢国 | 公式サイト"
-
-  };
-
-
-  document.title =
-    titles[currentLang];
+        return;
+    }
 
 
-  document.documentElement.lang = {
+    if (!ALLOWED_IMAGE_TYPES.includes(
+        file.type
+    )) {
 
-    zh: "zh-CN",
+        showStatus(
+            "imageUploadStatus",
+            `❌ 图片 ${number} 格式不支持。请使用 JPG、PNG、GIF 或 WebP。`,
+            "error"
+        );
 
-    en: "en",
+        input.value = "";
 
-    jp: "ja"
+        previewBox.style.display =
+            "none";
 
-  }[currentLang];
-
-
-  /*
-   * 更新国庆日期
-   */
-
-  updateCountdown();
-
-
-  /*
-   * 更新选举模块语言
-   */
-
-  updateElectionLanguage();
+        return;
+    }
 
 
-  /*
-   * 更新选举日期
-   */
+    if (file.size > MAX_IMAGE_SIZE) {
 
-  updateElectionDateText();
+        showStatus(
+            "imageUploadStatus",
+            `❌ 图片 ${number} 超过 5 MB。`,
+            "error"
+        );
+
+        input.value = "";
+
+        previewBox.style.display =
+            "none";
+
+        return;
+    }
 
 
-  /*
-   * 更新选举倒计时
-   */
+    const objectUrl =
+        URL.createObjectURL(file);
 
-  updateElectionCountdown();
 
+    previewImg.src =
+        objectUrl;
+
+
+    previewBox.style.display =
+        "block";
+
+
+    previewImg.onload =
+        () => {
+
+            URL.revokeObjectURL(
+                objectUrl
+            );
+
+        };
+
+
+    showStatus(
+        "imageUploadStatus",
+        `✅ 图片 ${number} 已选择：${file.name}`,
+        "success"
+    );
 }
 
 
-function toggleLang() {
+/* =========================================================
+   显示已有图片
+========================================================= */
 
-  currentIndex =
-    (currentIndex + 1) %
-    langs.length;
+function showCurrentImage(
+    number,
+    path
+) {
 
-  currentLang =
-    langs[currentIndex];
+    const box =
+        document.getElementById(
+            "imageCurrent" + number
+        );
 
-  applyLanguage();
+    const img =
+        document.getElementById(
+            "imageCurrentPreview" + number
+        );
 
+    const pathElement =
+        document.getElementById(
+            "imageCurrentPath" + number
+        );
+
+
+    if (!box || !img || !pathElement) {
+        return;
+    }
+
+
+    if (!path) {
+
+        box.style.display =
+            "none";
+
+        img.removeAttribute(
+            "src"
+        );
+
+        pathElement.textContent =
+            "";
+
+        return;
+    }
+
+
+    img.src =
+        "./../" + path;
+
+
+    /*
+     * GitHub Pages 路径通常为：
+     *
+     * admin/index.html
+     *
+     * 新闻图片：
+     *
+     * news-images/example.jpg
+     *
+     * 所以从 admin/ 页面访问需要：
+     *
+     * ../news-images/example.jpg
+     */
+
+    img.onerror =
+        () => {
+
+            box.style.display =
+                "none";
+
+        };
+
+
+    pathElement.textContent =
+        path;
+
+
+    box.style.display =
+        "block";
 }
 
 
-// =========================================================
-// 国庆倒计时
-// =========================================================
+/* =========================================================
+   清除图片选择
+========================================================= */
 
-function updateCountdown() {
+function clearImageInputs() {
 
-  const now =
-    getUTC9Time();
+    [1, 2, 3].forEach(
+        number => {
 
-  const year =
-    now.getFullYear();
+            const input =
+                document.getElementById(
+                    "image" + number
+                );
+
+            const previewBox =
+                document.getElementById(
+                    "imagePreview" + number
+                );
+
+            const previewImg =
+                document.getElementById(
+                    "imagePreviewImg" + number
+                );
 
 
-  /*
-   * 阿谢国国庆日：
-   *
-   * 每年2月3日
-   */
+            if (input) {
 
-  let nationalDay =
-    createUTC9Date(
-      year,
-      2,
-      3
+                input.value =
+                    "";
+
+            }
+
+
+            if (previewBox) {
+
+                previewBox.style.display =
+                    "none";
+
+            }
+
+
+            if (previewImg) {
+
+                previewImg.removeAttribute(
+                    "src"
+                );
+
+            }
+
+
+            showCurrentImage(
+                number,
+                ""
+            );
+
+        }
     );
 
 
-  /*
-   * 如果今年国庆已经过去，
-   * 就计算下一年的国庆。
-   */
-
-  if (now >= nationalDay) {
-
-    nationalDay =
-      createUTC9Date(
-        year + 1,
-        2,
-        3
-      );
-
-  }
+    editingImagePaths = {
+        image1: "",
+        image2: "",
+        image3: ""
+    };
 
 
-  const diff =
-    nationalDay - now;
+    const status =
+        document.getElementById(
+            "imageUploadStatus"
+        );
 
 
-  const days =
-    Math.floor(
-      diff /
-      (1000 * 60 * 60 * 24)
+    if (status) {
+
+        status.style.display =
+            "none";
+
+    }
+}
+
+
+/* =========================================================
+   上传单张图片
+========================================================= */
+
+async function uploadImage(
+    file,
+    number
+) {
+
+    if (!sessionToken) {
+
+        throw new Error(
+            "登录状态已经失效，请重新登录。"
+        );
+
+    }
+
+
+    if (!file) {
+
+        return "";
+
+    }
+
+
+    if (!ALLOWED_IMAGE_TYPES.includes(
+        file.type
+    )) {
+
+        throw new Error(
+            `图片 ${number} 格式不支持，请使用 JPG、PNG、GIF 或 WebP。`
+        );
+
+    }
+
+
+    if (file.size > MAX_IMAGE_SIZE) {
+
+        throw new Error(
+            `图片 ${number} 超过 5 MB。`
+        );
+
+    }
+
+
+    const formData =
+        new FormData();
+
+
+    formData.append(
+        "file",
+        file
     );
 
 
-  const hours =
-    Math.floor(
-      (diff /
-      (1000 * 60 * 60)) % 24
+    showStatus(
+        "imageUploadStatus",
+        `⏳ 正在上传图片 ${number}……`,
+        "normal"
     );
 
 
-  const minutes =
-    Math.floor(
-      (diff /
-      (1000 * 60)) % 60
-    );
+    const response =
+        await fetch(
+            API_BASE + "/upload-image",
+            {
+                method: "POST",
+
+                headers: {
+
+                    "Authorization":
+                        "Bearer " +
+                        sessionToken
+
+                },
+
+                body:
+                    formData
+            }
+        );
 
 
-  const seconds =
-    Math.floor(
-      (diff / 1000) % 60
-    );
+    let result;
+
+    try {
+
+        result =
+            await response.json();
+
+    } catch {
+
+        throw new Error(
+            "图片上传服务器返回了无效数据。"
+        );
+
+    }
 
 
-  const axieYear =
-    getAxieYear(
-      now.getFullYear()
-    );
+    if (!response.ok ||
+        !result.success) {
+
+        throw new Error(
+            result.error ||
+            `图片 ${number} 上传失败`
+        );
+
+    }
 
 
-  const dateText = {
+    if (!result.path) {
 
-    zh:
-      `今天是：阿谢${axieYear}年 ${now.getMonth() + 1}月 ${now.getDate()}日（UTC+9）`,
+        throw new Error(
+            `图片 ${number} 上传成功，但服务器没有返回图片路径。`
+        );
 
-    en:
-      `Today is Axie Year ${axieYear}, ${now.getMonth() + 1}/${now.getDate()} (UTC+9)`,
-
-    jp:
-      `本日は：阿謝${axieYear}年 ${now.getMonth() + 1}月 ${now.getDate()}日（UTC+9）`
-
-  };
+    }
 
 
-  if (axieDateEl) {
-
-    axieDateEl.textContent =
-      dateText[currentLang];
-
-  }
+    return result.path;
+}
 
 
-  /*
-   * 如果今天就是国庆日
-   */
+/* =========================================================
+   上传所有新选择的图片
+========================================================= */
 
-  if (
-    now.getMonth() === 1 &&
-    now.getDate() === 3
-  ) {
+async function uploadSelectedImages() {
 
-    const anniversaryText = {
+    const imagePaths = {
 
-      zh:
-        `🎉 今天是阿谢国 ${axieYear - 1} 周年国庆日！`,
+        image1:
+            editingImagePaths.image1 || "",
 
-      en:
-        `🎉 Today is the ${axieYear - 1}th Anniversary of the Republic of Axie!`,
+        image2:
+            editingImagePaths.image2 || "",
 
-      jp:
-        `🎉 本日は阿謝国 建国${axieYear - 1}周年です！`
+        image3:
+            editingImagePaths.image3 || ""
 
     };
 
 
-    if (countdownTitle) {
+    for (
+        let number = 1;
+        number <= 3;
+        number++
+    ) {
 
-      countdownTitle.textContent =
-        anniversaryText[currentLang];
+        const input =
+            document.getElementById(
+                "image" + number
+            );
 
-    }
 
+        const file =
+            input &&
+            input.files &&
+            input.files[0];
 
-    if (timerEl) {
 
-      timerEl.textContent = {
+        /*
+         * 没有选择新图片：
+         *
+         * 编辑状态 → 保留旧图片
+         * 新建状态 → 保持空
+         */
 
-        zh:
-          "彩虹白地蓝天星旗今天为国家飘扬!",
+        if (!file) {
 
-        en:
-          "The flag flies proudly for the nation!",
+            continue;
 
-        jp:
-          "国旗は誇り高く掲げられています！"
-
-      }[currentLang];
-
-    }
-
-  }
-
-
-  /*
-   * 普通日期
-   */
-
-  else {
-
-    if (countdownTitle) {
-
-      countdownTitle.textContent = {
-
-        zh:
-          "阿谢国国庆日倒计时",
-
-        en:
-          "National Day Countdown",
-
-        jp:
-          "阿謝国 建国記念日カウントダウン"
-
-      }[currentLang];
-
-    }
-
-
-    if (timerEl) {
-
-      timerEl.textContent =
-        `${days}d ${hours}h ${minutes}m ${seconds}s`;
-
-    }
-
-  }
-
-}
-
-
-// =========================================================
-// 🗳️ 选举系统
-//
-// 数据来源：./data/elections.json
-// =========================================================
-
-let electionData = null;
-let currentElection = null;
-let electionCountdownTimer = null;
-
-
-// =========================================================
-// 将 elections.json 整理成统一数组
-// =========================================================
-
-function getElectionRecords() {
-
-  if (!electionData) {
-    return [];
-  }
-
-  const records = [];
-
-  // 总统选举
-  if (
-    electionData.president &&
-    Array.isArray(electionData.president.elections)
-  ) {
-
-    electionData.president.elections.forEach(election => {
-
-      records.push({
-        ...election,
-
-        type: "president",
-
-        typeName:
-          electionData.president.name,
-
-        page:
-          electionData.president.page
-
-      });
-
-    });
-
-  }
-
-
-  // 副总统选举
-  if (
-    electionData.vicePresident &&
-    Array.isArray(electionData.vicePresident.elections)
-  ) {
-
-    electionData.vicePresident.elections.forEach(election => {
-
-      records.push({
-        ...election,
-
-        type: "vicePresident",
-
-        typeName:
-          electionData.vicePresident.name,
-
-        page:
-          electionData.vicePresident.page
-
-      });
-
-    });
-
-  }
-
-
-  return records;
-
-}
-
-
-// =========================================================
-// 根据时间选择首页应该显示的选举
-//
-// 优先级：
-//
-// 1. 正在进行的选举
-// 2. 最近即将开始的选举
-//
-// 这样即使当前没有投票，首页也不会消失。
-// =========================================================
-
-function selectCurrentElection() {
-
-  const records =
-    getElectionRecords();
-
-
-  if (records.length === 0) {
-    return null;
-  }
-
-
-  const now =
-    new Date();
-
-
-  const processed =
-    records
-      .map(election => {
-
-        const startTime =
-          new Date(election.start);
-
-        const endTime =
-          new Date(election.end);
-
-
-        return {
-          ...election,
-
-          startTime,
-          endTime
-
-        };
-
-      })
-      .filter(election => {
-
-        return (
-          !Number.isNaN(
-            election.startTime.getTime()
-          ) &&
-          !Number.isNaN(
-            election.endTime.getTime()
-          )
-        );
-
-      });
-
-
-  // =======================================================
-  // ① 正在进行的选举
-  // =======================================================
-
-  const ongoing =
-    processed
-      .filter(election => {
-
-        return (
-          now >= election.startTime &&
-          now <= election.endTime
-        );
-
-      })
-      .sort((a, b) => {
-
-        return (
-          a.endTime -
-          b.endTime
-        );
-
-      });
-
-
-  if (ongoing.length > 0) {
-
-    ongoing[0].status =
-      "ongoing";
-
-    return ongoing[0];
-
-  }
-
-
-  // =======================================================
-  // ② 最近即将开始的选举
-  // =======================================================
-
-  const upcoming =
-    processed
-      .filter(election => {
-
-        return (
-          now <
-          election.startTime
-        );
-
-      })
-      .sort((a, b) => {
-
-        return (
-          a.startTime -
-          b.startTime
-        );
-
-      });
-
-
-  if (upcoming.length > 0) {
-
-    upcoming[0].status =
-      "scheduled";
-
-    return upcoming[0];
-
-  }
-
-
-  // =======================================================
-  // ③ 所有已结束
-  // =======================================================
-
-  return null;
-
-}
-
-
-// =========================================================
-// 选举模块语言
-// =========================================================
-
-function updateElectionLanguage() {
-
-  if (!currentElection) {
-    return;
-  }
-
-
-  const title =
-    document.getElementById(
-      "election-title"
-    );
-
-  const description =
-    document.getElementById(
-      "election-description"
-    );
-
-  const badge =
-    document.getElementById(
-      "election-badge"
-    );
-
-  const button =
-    document.getElementById(
-      "election-button"
-    );
-
-  const voteButton =
-    document.getElementById(
-      "vote-button"
-    );
-
-
-  if (
-    !title ||
-    !description ||
-    !badge ||
-    !button ||
-    !voteButton
-  ) {
-
-    return;
-
-  }
-
-
-  const isPresident =
-    currentElection.type ===
-    "president";
-
-
-  const isOngoing =
-    currentElection.status ===
-    "ongoing";
-
-
-  const texts = {
-
-    zh: {
-
-      presidentTitle:
-        "🗳️ 阿谢国总统选举",
-
-      vicePresidentTitle:
-        "🗳️ 阿谢国副总统选举",
-
-      presidentOngoing:
-        "阿谢国总统选举正在进行中。",
-
-      vicePresidentOngoing:
-        "阿谢国副总统选举正在进行中。",
-
-      presidentUpcoming:
-        "下一次阿谢国总统选举即将举行。",
-
-      vicePresidentUpcoming:
-        "下一次阿谢国副总统选举即将举行。",
-
-      ongoingBadge:
-        "● 投票进行中",
-
-      upcomingBadge:
-        "● 即将开始",
-
-      button:
-        "进入选举页面",
-
-      voteButton:
-        "🗳️ 进入投票"
-
-    },
-
-
-    en: {
-
-      presidentTitle:
-        "🗳️ Axie Presidential Election",
-
-      vicePresidentTitle:
-        "🗳️ Axie Vice Presidential Election",
-
-      presidentOngoing:
-        "The Presidential Election of the Republic of Axie is currently underway.",
-
-      vicePresidentOngoing:
-        "The Vice Presidential Election of the Republic of Axie is currently underway.",
-
-      presidentUpcoming:
-        "The next Presidential Election of the Republic of Axie is upcoming.",
-
-      vicePresidentUpcoming:
-        "The next Vice Presidential Election of the Republic of Axie is upcoming.",
-
-      ongoingBadge:
-        "● Voting Open",
-
-      upcomingBadge:
-        "● Upcoming",
-
-      button:
-        "Enter Election",
-
-      voteButton:
-        "🗳️ Vote"
-
-    },
-
-
-    jp: {
-
-      presidentTitle:
-        "🗳️ 阿謝国 大統領選挙",
-
-      vicePresidentTitle:
-        "🗳️ 阿謝国 副大統領選挙",
-
-      presidentOngoing:
-        "阿謝国大統領選挙が現在行われています。",
-
-      vicePresidentOngoing:
-        "阿謝国副大統領選挙が現在行われています。",
-
-      presidentUpcoming:
-        "次回の阿謝国大統領選挙が予定されています。",
-
-      vicePresidentUpcoming:
-        "次回の阿謝国副大統領選挙が予定されています。",
-
-      ongoingBadge:
-        "● 投票受付中",
-
-      upcomingBadge:
-        "● 開催予定",
-
-      button:
-        "選挙ページへ",
-
-      voteButton:
-        "🗳️ 投票する"
-
-    }
-
-  };
-
-
-  const lang =
-    texts[currentLang];
-
-
-  title.textContent =
-    isPresident
-      ? lang.presidentTitle
-      : lang.vicePresidentTitle;
-
-
-  description.textContent =
-    isOngoing
-      ? (
-          isPresident
-            ? lang.presidentOngoing
-            : lang.vicePresidentOngoing
-        )
-      : (
-          isPresident
-            ? lang.presidentUpcoming
-            : lang.vicePresidentUpcoming
-        );
-
-
-  badge.textContent =
-    isOngoing
-      ? lang.ongoingBadge
-      : lang.upcomingBadge;
-
-
-  button.textContent =
-    lang.button;
-
-
-  voteButton.textContent =
-    lang.voteButton;
-
-}
-
-
-// =========================================================
-// 更新投票按钮
-// =========================================================
-
-function updateVoteButton() {
-
-  const voteButton =
-    document.getElementById(
-      "vote-button"
-    );
-
-
-  if (
-    !voteButton ||
-    !currentElection
-  ) {
-
-    return;
-
-  }
-
-
-  const now =
-    new Date();
-
-
-  const start =
-    new Date(
-      currentElection.start
-    );
-
-
-  const end =
-    new Date(
-      currentElection.end
-    );
-
-
-  const votingOpen =
-    now >= start &&
-    now <= end;
-
-
-  if (votingOpen) {
-
-    voteButton.href =
-      "vote.html";
-
-    voteButton.classList.remove(
-      "disabled"
-    );
-
-    voteButton.style.pointerEvents =
-      "auto";
-
-    voteButton.style.opacity =
-      "1";
-
-    voteButton.setAttribute(
-      "aria-disabled",
-      "false"
-    );
-
-  }
-
-  else {
-
-    voteButton.href =
-      "#";
-
-    voteButton.classList.add(
-      "disabled"
-    );
-
-    voteButton.style.pointerEvents =
-      "none";
-
-    voteButton.style.opacity =
-      "0.5";
-
-    voteButton.setAttribute(
-      "aria-disabled",
-      "true"
-    );
-
-  }
-
-}
-
-
-// =========================================================
-// 格式化选举日期
-// =========================================================
-
-function formatElectionDate(
-  dateString
-) {
-
-  const axieDate =
-    formatAxieDate(
-      dateString
-    );
-
-
-  const date =
-    new Date(dateString);
-
-
-  if (
-    !axieDate ||
-    Number.isNaN(
-      date.getTime()
-    )
-  ) {
-
-    return "";
-
-  }
-
-
-  const gregorianDate =
-    new Intl.DateTimeFormat(
-      currentLang === "jp"
-        ? "ja-JP"
-        : currentLang === "en"
-          ? "en-US"
-          : "zh-CN",
-      {
-        timeZone: "Asia/Tokyo",
-        year: "numeric",
-        month: "numeric",
-        day: "numeric"
-      }
-    ).format(date);
-
-
-  if (currentLang === "zh") {
-
-    return `${axieDate}（公历${gregorianDate}）`;
-
-  }
-
-
-  if (currentLang === "jp") {
-
-    return `${axieDate}（西暦${gregorianDate}）`;
-
-  }
-
-
-  return `${axieDate} (Gregorian ${gregorianDate})`;
-
-}
-
-
-// =========================================================
-// 更新选举日期
-// =========================================================
-
-function updateElectionDateText() {
-
-  if (!currentElection) {
-    return;
-  }
-
-
-  const dateElement =
-    document.getElementById(
-      "election-date"
-    );
-
-
-  if (!dateElement) {
-    return;
-  }
-
-
-  const start =
-    formatElectionDate(
-      currentElection.start
-    );
-
-
-  const end =
-    formatElectionDate(
-      currentElection.end
-    );
-
-
-  const texts = {
-
-    zh:
-      `投票时间：${start} — ${end}（UTC+9）`,
-
-    en:
-      `Voting period: ${start} — ${end} (UTC+9)`,
-
-    jp:
-      `投票期間：${start} — ${end}（UTC+9）`
-
-  };
-
-
-  dateElement.textContent =
-    texts[currentLang];
-
-}
-
-
-// =========================================================
-// 倒计时格式化
-// =========================================================
-
-function formatRemaining(
-  milliseconds
-) {
-
-  const totalSeconds =
-    Math.max(
-      0,
-      Math.floor(
-        milliseconds / 1000
-      )
-    );
-
-
-  const days =
-    Math.floor(
-      totalSeconds /
-      86400
-    );
-
-
-  const hours =
-    Math.floor(
-      (totalSeconds % 86400) /
-      3600
-    );
-
-
-  const minutes =
-    Math.floor(
-      (totalSeconds % 3600) /
-      60
-    );
-
-
-  const seconds =
-    totalSeconds %
-    60;
-
-
-  return {
-    days,
-    hours,
-    minutes,
-    seconds
-  };
-
-}
-
-
-// =========================================================
-// 更新选举倒计时
-// =========================================================
-
-function updateElectionCountdown() {
-
-  if (!currentElection) {
-    return;
-  }
-
-
-  const countdown =
-    document.getElementById(
-      "election-countdown"
-    );
-
-
-  if (!countdown) {
-    return;
-
-  }
-
-
-  const now =
-    new Date();
-
-
-  const start =
-    new Date(
-      currentElection.start
-    );
-
-
-  const end =
-    new Date(
-      currentElection.end
-    );
-
-
-  // 尚未开始
-  if (now < start) {
-
-    const remaining =
-      formatRemaining(
-        start - now
-      );
-
-
-    countdown.textContent = {
-
-      zh:
-        `距离投票开始：${remaining.days}天 ${remaining.hours}小时 ${remaining.minutes}分 ${remaining.seconds}秒`,
-
-      en:
-        `Time until voting begins: ${remaining.days}d ${remaining.hours}h ${remaining.minutes}m ${remaining.seconds}s`,
-
-      jp:
-        `投票開始まで：${remaining.days}日 ${remaining.hours}時間 ${remaining.minutes}分 ${remaining.seconds}秒`
-
-    }[currentLang];
-
-
-    return;
-
-  }
-
-
-  // 正在进行
-  if (
-    now >= start &&
-    now <= end
-  ) {
-
-    const remaining =
-      formatRemaining(
-        end - now
-      );
-
-
-    countdown.textContent = {
-
-      zh:
-        `距离投票结束：${remaining.days}天 ${remaining.hours}小时 ${remaining.minutes}分 ${remaining.seconds}秒`,
-
-      en:
-        `Time remaining: ${remaining.days}d ${remaining.hours}h ${remaining.minutes}m ${remaining.seconds}s`,
-
-      jp:
-        `投票終了まで：${remaining.days}日 ${remaining.hours}時間 ${remaining.minutes}分 ${remaining.seconds}秒`
-
-    }[currentLang];
-
-
-    return;
-
-  }
-
-
-  // 已结束
-  countdown.textContent = {
-
-    zh:
-      "投票已经结束",
-
-    en:
-      "Voting has ended",
-
-    jp:
-      "投票は終了しました"
-
-  }[currentLang];
-
-}
-
-
-// =========================================================
-// 加载选举状态
-// =========================================================
-
-async function loadElectionStatus() {
-
-  const section =
-    document.getElementById("election-status");
-
-  if (!section) {
-    return;
-  }
-
-  try {
-
-    // =====================================================
-    // 读取 elections.json
-    // =====================================================
-
-    const response =
-      await fetch(
-        "./data/elections.json?version=1",
-        {
-          cache: "no-store"
         }
-      );
-
-    console.log(
-      "elections.json HTTP状态：",
-      response.status
-    );
-
-    console.log(
-      "elections.json 实际地址：",
-      response.url
-    );
 
 
-    // =====================================================
-    // HTTP错误
-    // =====================================================
+        const path =
+            await uploadImage(
+                file,
+                number
+            );
 
-    if (!response.ok) {
 
-      throw new Error(
-        "HTTP " +
-        response.status +
-        "：无法读取 elections.json"
-      );
+        imagePaths[
+            "image" + number
+        ] =
+            path;
+
+
+        showStatus(
+            "imageUploadStatus",
+            `✅ 图片 ${number} 上传成功。`,
+            "success"
+        );
 
     }
 
 
-    // =====================================================
-    // 先读取纯文本
-    //
-    // 不直接使用 response.json()
-    // 这样可以准确判断到底返回了什么。
-    // =====================================================
-
-    const rawText =
-      await response.text();
+    return imagePaths;
+}
 
 
-    console.log(
-      "elections.json 原始内容：",
-      rawText
-    );
+/* =========================================================
+   登录
+========================================================= */
 
+async function login() {
 
-    if (!rawText.trim()) {
+    const password =
+        document
+            .getElementById("adminPassword")
+            .value;
 
-      throw new Error(
-        "elections.json 是空文件"
-      );
+    if (!password) {
 
+        showStatus(
+            "loginStatus",
+            "❌ 请输入管理员密码。",
+            "error"
+        );
+
+        return;
     }
 
 
-    // =====================================================
-    // 手动解析 JSON
-    // =====================================================
+    const button =
+        document.getElementById(
+            "loginButton"
+        );
+
+    button.disabled = true;
+
+    button.textContent =
+        "⏳ 登录中……";
+
 
     try {
 
-      electionData =
-        JSON.parse(rawText);
+        const response =
+            await fetch(
+                API_BASE + "/login",
+                {
+                    method: "POST",
 
-    }
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
 
-    catch (jsonError) {
-
-      console.error(
-        "elections.json JSON解析失败：",
-        jsonError
-      );
-
-      throw new Error(
-        "elections.json JSON格式错误：" +
-        jsonError.message
-      );
-
-    }
+                    body: JSON.stringify({
+                        password: password
+                    })
+                }
+            );
 
 
-    // =====================================================
-    // 检查基本数据结构
-    // =====================================================
-
-    if (
-      !electionData ||
-      typeof electionData !== "object"
-    ) {
-
-      throw new Error(
-        "elections.json 不是有效的数据对象"
-      );
-
-    }
+        const result =
+            await response.json();
 
 
-    if (
-      !electionData.president &&
-      !electionData.vicePresident
-    ) {
+        if (!response.ok ||
+            !result.success) {
 
-      throw new Error(
-        "elections.json 中没有 president 或 vicePresident 数据"
-      );
-
-    }
-
-
-    // =====================================================
-    // 第一次选择选举
-    // =====================================================
-
-    currentElection =
-      selectCurrentElection();
-
-
-    if (!currentElection) {
-
-      section.style.display =
-        "none";
-
-      console.warn(
-        "当前没有可显示的选举。"
-      );
-
-      return;
-
-    }
-
-
-    // =====================================================
-    // 显示选举模块
-    // =====================================================
-
-    section.style.display =
-      "block";
-
-
-    // =====================================================
-    // 更新内容
-    // =====================================================
-
-    updateElectionLanguage();
-
-    updateElectionDateText();
-
-    updateElectionCountdown();
-
-    updateVoteButton();
-
-
-    const button =
-      document.getElementById(
-        "election-button"
-      );
-
-
-    if (button) {
-
-      button.href =
-        currentElection.page;
-
-    }
-
-
-    // =====================================================
-    // 每秒更新
-    // =====================================================
-
-    if (electionCountdownTimer) {
-
-      clearInterval(
-        electionCountdownTimer
-      );
-
-    }
-
-
-    electionCountdownTimer =
-      setInterval(() => {
-
-        const selected =
-          selectCurrentElection();
-
-
-        // -----------------------------------------------
-        // 如果当前选举发生变化
-        // -----------------------------------------------
-
-        if (
-          selected &&
-          (
-            !currentElection ||
-            selected.electionId !==
-            currentElection.electionId
-          )
-        ) {
-
-          currentElection =
-            selected;
-
-
-          updateElectionLanguage();
-
-          updateElectionDateText();
-
-          updateElectionCountdown();
-
-          updateVoteButton();
-
-
-          if (button) {
-
-            button.href =
-              currentElection.page;
-
-          }
-
+            throw new Error(
+                result.error ||
+                "登录失败"
+            );
         }
 
 
-        // -----------------------------------------------
-        // 没有未来选举
-        // -----------------------------------------------
+        if (!result.token) {
 
-        if (!selected) {
-
-          section.style.display =
-            "none";
-
-          return;
-
+            throw new Error(
+                "服务器没有返回登录凭证，请检查 Worker 的 /login 接口。"
+            );
         }
 
 
-        // -----------------------------------------------
-        // 正常更新
-        // -----------------------------------------------
-
-        section.style.display =
-          "block";
-
-        updateElectionCountdown();
-
-        updateVoteButton();
-
-      }, 1000);
-
-  }
+        sessionToken =
+            result.token;
 
 
-  catch (error) {
+        document.getElementById(
+            "loginSection"
+        ).classList.add("hidden");
 
-    console.error(
-      "================================"
+
+        document.getElementById(
+            "adminPanel"
+        ).classList.remove("hidden");
+
+
+        document.getElementById(
+            "adminPassword"
+        ).value = "";
+
+
+        showStatus(
+            "loginStatus",
+            "",
+            "normal"
+        );
+
+
+        await loadAgencies();
+        updatePublishTime();
+
+        await loadNewsManagement();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        showStatus(
+            "loginStatus",
+            "❌ " + error.message,
+            "error"
+        );
+
+    } finally {
+
+        button.disabled = false;
+
+        button.textContent =
+            "🔓 登录";
+    }
+}
+
+
+/* =========================================================
+   加载新闻管理列表
+========================================================= */
+
+async function loadNewsManagement() {
+
+    const list =
+        document.getElementById(
+            "newsManageList"
+        );
+
+    list.textContent =
+        "⏳ 正在加载新闻……";
+
+
+    try {
+
+        const response =
+            await fetch(
+                API_BASE + "/news"
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (!response.ok ||
+            !result.success) {
+
+            throw new Error(
+                result.error ||
+                "新闻加载失败"
+            );
+        }
+
+
+        allNews =
+            Array.isArray(result.news)
+                ? result.news
+                : [];
+
+
+        allNews.sort(
+            (a, b) =>
+                Number(b.timestamp || 0) -
+                Number(a.timestamp || 0)
+        );
+
+
+        renderNewsManagement(
+            allNews
+        );
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        list.textContent =
+            "❌ 无法加载新闻：" +
+            error.message;
+
+        document.getElementById(
+            "newsCount"
+        ).textContent =
+            "新闻加载失败";
+    }
+}
+
+
+/* =========================================================
+   渲染新闻列表
+========================================================= */
+
+function renderNewsManagement(
+    newsData
+) {
+
+    const list =
+        document.getElementById(
+            "newsManageList"
+        );
+
+
+    list.innerHTML = "";
+
+
+    document.getElementById(
+        "newsCount"
+    ).textContent =
+        `共 ${newsData.length} 条新闻`;
+
+
+    if (newsData.length === 0) {
+
+        const empty =
+            document.createElement("p");
+
+        empty.textContent =
+            "目前没有新闻。";
+
+        empty.className =
+            "small-note";
+
+        list.appendChild(empty);
+
+        return;
+    }
+
+
+    newsData.forEach(
+        news => {
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+            item.className =
+                "news-item";
+
+
+            /* 标题 */
+
+            const title =
+                document.createElement(
+                    "div"
+                );
+
+            title.className =
+                "news-item-title";
+
+            title.textContent =
+                news.title ||
+                "无标题";
+
+
+            /* 时间 / 作者 */
+
+            const meta =
+                document.createElement(
+                    "div"
+                );
+
+            meta.className =
+                "news-item-meta";
+
+            meta.textContent =
+                `${news.date || ""} · ${agencyName(news.agencyId)} · ${
+                    news.author || "AXNews"
+                }`;
+
+
+            /* 正文预览 */
+
+            const preview =
+                document.createElement(
+                    "div"
+                );
+
+            preview.className =
+                "news-item-preview";
+
+            preview.textContent =
+                news.content ||
+                "";
+
+
+            /* 操作区域 */
+
+            const actions =
+                document.createElement(
+                    "div"
+                );
+
+            actions.className =
+                "news-actions";
+
+
+            /* 编辑 */
+
+            const editButton =
+                document.createElement(
+                    "button"
+                );
+
+            editButton.className =
+                "button";
+
+            editButton.type =
+                "button";
+
+            editButton.textContent =
+                "✏️ 编辑";
+
+            editButton.onclick =
+                () => editNews(news.id);
+
+
+            /* 删除 */
+
+            const deleteButton =
+                document.createElement(
+                    "button"
+                );
+
+            deleteButton.className =
+                "button button-danger";
+
+            deleteButton.type =
+                "button";
+
+            deleteButton.textContent =
+                "🗑️ 删除";
+
+            deleteButton.onclick =
+                () => deleteNews(news.id);
+
+
+            actions.appendChild(
+                editButton
+            );
+
+            actions.appendChild(
+                deleteButton
+            );
+
+
+            item.appendChild(title);
+
+            item.appendChild(meta);
+
+            item.appendChild(preview);
+
+            item.appendChild(actions);
+
+            list.appendChild(item);
+
+        }
     );
+}
 
-    console.error(
-      "❌ 加载选举信息失败"
+
+/* =========================================================
+   搜索新闻
+========================================================= */
+
+function filterNewsManagement() {
+
+    const keyword =
+        document
+            .getElementById(
+                "manageSearch"
+            )
+            .value
+            .trim()
+            .toLowerCase();
+
+
+    if (!keyword) {
+
+        renderNewsManagement(
+            allNews
+        );
+
+        return;
+    }
+
+
+    const filtered =
+        allNews.filter(
+            news => {
+
+                const title =
+                    String(
+                        news.title || ""
+                    ).toLowerCase();
+
+                const content =
+                    String(
+                        news.content || ""
+                    ).toLowerCase();
+
+                const author =
+                    String(
+                        news.author || ""
+                    ).toLowerCase();
+
+
+                return (
+                    title.includes(keyword) ||
+                    content.includes(keyword) ||
+                    author.includes(keyword)
+                );
+
+            }
+        );
+
+
+    renderNewsManagement(
+        filtered
     );
-
-    console.error(
-      error
-    );
-
-    console.error(
-      "================================"
-    );
+}
 
 
-    // =====================================================
-    // 显示错误
-    // =====================================================
+/* =========================================================
+   发布新闻
+========================================================= */
 
-    section.style.display =
-      "block";
+function translationMessage(result, action) {
+    return result.news?.translationStatus === "complete"
+        ? `✅ 新闻${action}成功，已保存英语和日语译文。`
+        : `✅ 新闻${action}成功。部分译文暂未生成，请稍后编辑保存重试。`;
+}
+
+async function publishNews() {
+
+    if (!sessionToken) {
+
+        alert(
+            "登录状态已经失效，请重新登录。"
+        );
+
+        return;
+    }
 
 
     const title =
-      document.getElementById(
-        "election-title"
-      );
-
-    const description =
-      document.getElementById(
-        "election-description"
-      );
-
-    const badge =
-      document.getElementById(
-        "election-badge"
-      );
-
-    const countdown =
-      document.getElementById(
-        "election-countdown"
-      );
-
-    const date =
-      document.getElementById(
-        "election-date"
-      );
-
-    const button =
-      document.getElementById(
-        "election-button"
-      );
-
-    const voteButton =
-      document.getElementById(
-        "vote-button"
-      );
+        document
+            .getElementById("newsTitle")
+            .value
+            .trim();
 
 
-    if (title) {
-
-      title.textContent =
-        "🗳️ 选举信息";
-
-    }
-
-
-    if (badge) {
-
-      badge.textContent =
-        "⚠️ 数据加载失败";
-
-    }
+    const author =
+        document
+            .getElementById("newsAuthor")
+            .value
+            .trim() ||
+        "AXNews";
 
 
-    if (description) {
+    const content =
+        document
+            .getElementById("newsContent")
+            .value
+            .trim();
 
-      description.textContent =
-        error.message ||
-        "未知错误";
+    const agencyId = document.getElementById("newsAgency").value;
 
-    }
-
-
-    if (countdown) {
-
-      countdown.textContent =
-        "Election data unavailable";
-
-    }
+    const translations = {
+        en: {title: document.getElementById("newsTitleEn").value.trim(), content: document.getElementById("newsContentEn").value.trim()},
+        ja: {title: document.getElementById("newsTitleJa").value.trim(), content: document.getElementById("newsContentJa").value.trim()}
+    };
 
 
-    if (date) {
+    if (!title) {
 
-      date.textContent =
-        "";
-
-    }
-
-
-    if (button) {
-
-      button.href =
-        "#";
-
-      button.textContent =
-        "暂不可用";
-
-    }
-
-
-    if (voteButton) {
-
-      voteButton.href =
-        "#";
-
-      voteButton.classList.add(
-        "disabled"
-      );
-
-      voteButton.style.pointerEvents =
-        "none";
-
-      voteButton.style.opacity =
-        "0.5";
-
-      voteButton.setAttribute(
-        "aria-disabled",
-        "true"
-      );
-
-    }
-
-  }
-
-}
-
-
-// =========================================================
-// AXNews
-// =========================================================
-
-async function loadNews() {
-
-  const newsList =
-    document.getElementById(
-      "newsList"
-    );
-
-
-  if (!newsList) {
-    return;
-  }
-
-
-  try {
-
-    const response =
-      await fetch(
-        "./news.json",
-        {
-          cache: "no-store"
-        }
-      );
-
-
-    if (!response.ok) {
-
-      throw new Error(
-        "无法读取 news.json，HTTP状态码：" +
-        response.status
-      );
-
-    }
-
-
-    const newsData =
-      await response.json();
-
-
-    /*
-     * 按时间倒序排列
-     */
-
-    newsData.sort(
-      (a, b) => {
-
-        return (
-          Number(b.timestamp || 0) -
-          Number(a.timestamp || 0)
+        showStatus(
+            "publishStatus",
+            "❌ 新闻标题不能为空。",
+            "error"
         );
 
-      }
-    );
-
-
-    newsList.innerHTML = "";
-
-
-    /*
-     * 官网首页只显示最新5条
-     */
-
-    const latestNews =
-      newsData.slice(
-        0,
-        5
-      );
-
-
-    latestNews.forEach(
-      news => {
-
-        let html = `
-
-          <div class="news-item">
-
-            <h3>
-              ${escapeHTML(
-                news.title || ""
-              )}
-            </h3>
-
-            <small>
-              ${escapeHTML(
-                news.date || ""
-              )}
-
-              |
-
-              ${escapeHTML(
-                news.author || ""
-              )}
-            </small>
-
-        `;
-
-
-        /*
-         * 第一张图片
-         */
-
-        if (news.image1) {
-
-          html += `
-
-            <img
-              src="./${escapeHTML(
-                news.image1
-              )}"
-              alt=""
-              loading="lazy"
-            >
-
-          `;
-
-        }
-
-
-        /*
-         * 第二张图片
-         */
-
-        if (news.image2) {
-
-          html += `
-
-            <img
-              src="./${escapeHTML(
-                news.image2
-              )}"
-              alt=""
-              loading="lazy"
-            >
-
-          `;
-
-        }
-
-
-        /*
-         * 第三张图片
-         */
-
-        if (news.image3) {
-
-          html += `
-
-            <img
-              src="./${escapeHTML(
-                news.image3
-              )}"
-              alt=""
-              loading="lazy"
-            >
-
-          `;
-
-        }
-
-
-        /*
-         * 新闻正文
-         */
-
-        html += `
-
-            <p
-              style="white-space:pre-line;"
-            >
-              ${escapeHTML(
-                news.content || ""
-              )}
-            </p>
-
-          </div>
-
-        `;
-
-
-        newsList.innerHTML +=
-          html;
-
-      }
-    );
-
-
-    /*
-     * 没有新闻
-     */
-
-    if (
-      latestNews.length === 0
-    ) {
-
-      newsList.innerHTML = `
-
-        <div class="news-item">
-
-          <h3>
-            📰 暂无新闻
-          </h3>
-
-          <p>
-            目前还没有发布任何新闻。
-          </p>
-
-        </div>
-
-      `;
-
+        return;
     }
 
-  }
 
+    if (!content) {
 
-  catch (err) {
+        showStatus(
+            "publishStatus",
+            "❌ 新闻正文不能为空。",
+            "error"
+        );
 
-    console.error(
-      "AXNews加载失败：",
-      err
-    );
+        return;
+    }
 
-
-    newsList.innerHTML = `
-
-      <div class="news-item">
-
-        <h3>
-          ❌ 新闻加载失败
-        </h3>
-
-        <p>
-          AXNews 暂时无法读取新闻数据。
-        </p>
-
-      </div>
-
-    `;
-
-  }
-
-}
-
-
-// =========================================================
-// HTML 转义
-// =========================================================
-
-function escapeHTML(text) {
-
-  return String(text ?? "")
-
-    .replaceAll(
-      "&",
-      "&amp;"
-    )
-
-    .replaceAll(
-      "<",
-      "&lt;"
-    )
-
-    .replaceAll(
-      ">",
-      "&gt;"
-    )
-
-    .replaceAll(
-      '"',
-      "&quot;"
-    )
-
-    .replaceAll(
-      "'",
-      "&#039;"
-    );
-
-}
-
-
-// =========================================================
-// 初始化
-// =========================================================
-
-document.addEventListener(
-  "DOMContentLoaded",
-  () => {
-
-    /*
-     * 语言按钮
-     */
-
-    if (langBtn) {
-
-      langBtn.addEventListener(
-        "click",
-        toggleLang
-      );
-
+    if (!translations.en.title || !translations.en.content || !translations.ja.title || !translations.ja.content) {
+        showStatus("publishStatus", "请先生成并检查英语、日语译文；译文生成失败时也可以手动填写。", "error");
+        return;
     }
 
 
     /*
-     * 初始语言
+     * 如果正在编辑
      */
 
-    applyLanguage();
+    if (editingNewsId) {
+
+        await updateNews(
+            editingNewsId,
+            title,
+            author,
+            content,
+            agencyId,
+            translations
+        );
+
+        return;
+    }
 
 
-    /*
-     * 国庆倒计时
-     */
+    const button =
+        document.getElementById(
+            "publishButton"
+        );
 
-    updateCountdown();
+
+    button.disabled = true;
+
+    button.textContent =
+            "⏳ 正在发布……";
 
 
-    setInterval(
-      updateCountdown,
-      1000
+    showStatus(
+        "publishStatus",
+        "⏳ 正在准备发布新闻……",
+        "normal"
     );
 
 
+    try {
+
+        /*
+         * 先上传图片
+         */
+
+        showStatus(
+            "imageUploadStatus",
+            "⏳ 正在检查并上传图片……",
+            "normal"
+        );
+
+
+        const imagePaths =
+            await uploadSelectedImages();
+
+
+        /*
+         * 图片上传完成
+         */
+
+        showStatus(
+            "imageUploadStatus",
+            "✅ 图片处理完成。",
+            "success"
+        );
+
+
+        showStatus(
+            "publishStatus",
+        "⏳ 正在保存已确认的英日译文并发布，请勿重复提交……",
+            "normal"
+        );
+
+
+        const response =
+            await fetch(
+                API_BASE + "/publish",
+                {
+                    method: "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json",
+
+                        "Authorization":
+                            "Bearer " +
+                            sessionToken
+
+                    },
+
+                    body: JSON.stringify({
+
+                        title:
+                            title,
+
+                        author:
+                            author,
+
+                        content:
+                            content,
+
+                        translations:
+                            translations,
+
+                        translationsReviewed:
+                            true,
+
+                        agencyId:
+                            agencyId,
+
+                        image1:
+                            imagePaths.image1,
+
+                        image2:
+                            imagePaths.image2,
+
+                        image3:
+                            imagePaths.image3
+
+                    })
+
+                }
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (!response.ok ||
+            !result.success) {
+
+            throw new Error(
+                result.error ||
+                "新闻发布失败"
+            );
+        }
+
+
+        showStatus(
+            "publishStatus",
+            translationMessage(result, "发布"),
+            "success"
+        );
+
+
+        clearForm();
+
+        await loadNewsManagement();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        showStatus(
+            "publishStatus",
+            "❌ " + error.message,
+            "error"
+        );
+
+    } finally {
+
+        button.disabled = false;
+
+        button.textContent =
+            "🚀 发布新闻";
+    }
+}
+
+
+/* =========================================================
+   编辑新闻
+========================================================= */
+
+function editNews(id) {
+
+    const news =
+        allNews.find(
+            item => item.id === id
+        );
+
+
+    if (!news) {
+
+        alert(
+            "找不到这条新闻。可能新闻列表已经更新，请刷新后重试。"
+        );
+
+        return;
+    }
+
+
+    editingNewsId =
+        id;
+
+
     /*
-     * 加载 AXNews
+     * 保存原来的图片路径
      */
 
-    loadNews();
+    editingImagePaths = {
+
+        image1:
+            news.image1 || "",
+
+        image2:
+            news.image2 || "",
+
+        image3:
+            news.image3 || ""
+
+    };
+
+
+    document.getElementById(
+        "newsTitle"
+    ).value =
+        news.title || "";
+
+    document.getElementById("newsAgency").value = news.agencyId || "";
+
+
+    document.getElementById(
+        "newsAuthor"
+    ).value =
+        news.author || "AXNews";
+
+
+    document.getElementById(
+        "newsContent"
+    ).value =
+        news.content || "";
+
+    const savedTranslations = news.translations || {};
+    document.getElementById("newsTitleEn").value = savedTranslations.en?.title || "";
+    document.getElementById("newsContentEn").value = savedTranslations.en?.content || "";
+    document.getElementById("newsTitleJa").value = savedTranslations.ja?.title || "";
+    document.getElementById("newsContentJa").value = savedTranslations.ja?.content || "";
+    translationSourceSnapshot = currentTranslationSource();
 
 
     /*
-     * 加载选举状态
+     * 清空新的文件选择
      */
 
-    loadElectionStatus();
+    [1, 2, 3].forEach(
+        number => {
 
-  }
-);
+            const input =
+                document.getElementById(
+                    "image" + number
+                );
+
+            const previewBox =
+                document.getElementById(
+                    "imagePreview" + number
+                );
+
+            if (input) {
+
+                input.value =
+                    "";
+
+            }
+
+            if (previewBox) {
+
+                previewBox.style.display =
+                    "none";
+
+            }
+
+            showCurrentImage(
+                number,
+                editingImagePaths[
+                    "image" + number
+                ]
+            );
+
+        }
+    );
+
+
+    document.getElementById(
+        "editorTitle"
+    ).textContent =
+        "✏️ 编辑新闻";
+
+
+    document.getElementById(
+        "editingBanner"
+    ).style.display =
+        "block";
+
+
+    document.getElementById(
+        "publishButton"
+    ).textContent =
+        "💾 保存修改";
+
+
+    document.getElementById(
+        "cancelEditButton"
+    ).classList.remove(
+        "hidden"
+    );
+
+
+    updatePublishTime();
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+/* =========================================================
+   保存修改
+========================================================= */
+
+async function updateNews(
+    id,
+    title,
+    author,
+    content,
+    agencyId,
+    translations
+) {
+
+    const button =
+        document.getElementById(
+            "publishButton"
+        );
+
+
+    button.disabled = true;
+
+    button.textContent =
+        "⏳ 保存中……";
+
+
+    showStatus(
+        "publishStatus",
+        "⏳ 正在处理图片……",
+        "normal"
+    );
+
+
+    try {
+
+        /*
+         * 如果用户选择了新图片，
+         * uploadSelectedImages()
+         * 会自动上传并替换对应路径。
+         *
+         * 如果没有选择新图片，
+         * 原来的路径会被保留。
+         */
+
+        const imagePaths =
+            await uploadSelectedImages();
+
+
+        showStatus(
+            "publishStatus",
+        "⏳ 正在保存已确认的英日译文，请勿重复提交……",
+            "normal"
+        );
+
+
+        const response =
+            await fetch(
+                API_BASE + "/update",
+                {
+                    method: "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json",
+
+                        "Authorization":
+                            "Bearer " +
+                            sessionToken
+
+                    },
+
+                    body: JSON.stringify({
+
+                        id:
+                            id,
+
+                        title:
+                            title,
+
+                        author:
+                            author,
+
+                        content:
+                            content,
+
+                        translations:
+                            translations,
+
+                        translationsReviewed:
+                            true,
+
+                        agencyId:
+                            agencyId,
+
+                        image1:
+                            imagePaths.image1,
+
+                        image2:
+                            imagePaths.image2,
+
+                        image3:
+                            imagePaths.image3
+
+                    })
+
+                }
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (!response.ok ||
+            !result.success) {
+
+            throw new Error(
+                result.error ||
+                "修改失败"
+            );
+        }
+
+
+        showStatus(
+            "publishStatus",
+            translationMessage(result, "修改"),
+            "success"
+        );
+
+
+        cancelEdit();
+
+        await loadNewsManagement();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        showStatus(
+            "publishStatus",
+            "❌ " + error.message,
+            "error"
+        );
+
+    } finally {
+
+        button.disabled = false;
+
+        if (editingNewsId) {
+
+            button.textContent =
+                "💾 保存修改";
+
+        } else {
+
+            button.textContent =
+                "🚀 发布新闻";
+        }
+    }
+}
+
+
+/* =========================================================
+   删除新闻
+========================================================= */
+
+async function deleteNews(id) {
+
+    if (!sessionToken) {
+
+        alert(
+            "登录状态已经失效，请重新登录。"
+        );
+
+        return;
+    }
+
+
+    const news =
+        allNews.find(
+            item => item.id === id
+        );
+
+
+    const title =
+        news
+            ? news.title
+            : "这条新闻";
+
+
+    const confirmed =
+        confirm(
+            `确定要删除这条新闻吗？\n\n「${title}」\n\n删除后 news.json 也会同步更新，此操作无法通过后台撤销。`
+        );
+
+
+    if (!confirmed) return;
+
+
+    showStatus(
+        "newsManageStatus",
+        "⏳ 正在删除新闻……",
+        "normal"
+    );
+
+
+    try {
+
+        const response =
+            await fetch(
+                API_BASE + "/delete",
+                {
+                    method: "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json",
+
+                        "Authorization":
+                            "Bearer " +
+                            sessionToken
+                    },
+
+                    body: JSON.stringify({
+                        id: id
+                    })
+                }
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (!response.ok ||
+            !result.success) {
+
+            throw new Error(
+                result.error ||
+                "删除失败"
+            );
+        }
+
+
+        showStatus(
+            "newsManageStatus",
+            "✅ 新闻删除成功。",
+            "success"
+        );
+
+
+        if (editingNewsId === id) {
+
+            cancelEdit();
+
+        }
+
+
+        await loadNewsManagement();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        showStatus(
+            "newsManageStatus",
+            "❌ " + error.message,
+            "error"
+        );
+    }
+}
+
+
+/* =========================================================
+   清空表单
+========================================================= */
+
+function clearForm() {
+
+    document.getElementById(
+        "newsTitle"
+    ).value = "";
+
+    document.getElementById("newsAgency").value = "";
+
+
+    document.getElementById(
+        "newsAuthor"
+    ).value =
+        "AXNews";
+
+
+    document.getElementById(
+        "newsContent"
+    ).value = "";
+
+    clearTranslationFields();
+    translationSourceSnapshot = "";
+
+
+    /*
+     * 清除图片
+     */
+
+    clearImageInputs();
+
+
+    updatePublishTime();
+}
+
+
+/* =========================================================
+   取消编辑
+========================================================= */
+
+function cancelEdit() {
+
+    editingNewsId =
+        null;
+
+
+    editingImagePaths = {
+
+        image1: "",
+        image2: "",
+        image3: ""
+
+    };
+
+
+    document.getElementById(
+        "editorTitle"
+    ).textContent =
+        "✏️ 发布新新闻";
+
+
+    document.getElementById(
+        "editingBanner"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "publishButton"
+    ).textContent =
+        "🚀 发布新闻";
+
+
+    document.getElementById(
+        "cancelEditButton"
+    ).classList.add(
+        "hidden"
+    );
+
+
+    clearForm();
+
+
+    const status =
+        document.getElementById(
+            "publishStatus"
+        );
+
+    status.style.display =
+        "none";
+}
+
+
+/* =========================================================
+   退出登录
+========================================================= */
+
+function logout() {
+
+    sessionToken = "";
+
+    editingNewsId = null;
+
+    allNews = [];
+
+
+    editingImagePaths = {
+
+        image1: "",
+        image2: "",
+        image3: ""
+
+    };
+
+
+    document.getElementById(
+        "adminPanel"
+    ).classList.add(
+        "hidden"
+    );
+
+
+    document.getElementById(
+        "loginSection"
+    ).classList.remove(
+        "hidden"
+    );
+
+
+    document.getElementById(
+        "adminPassword"
+    ).value = "";
+
+
+    document.getElementById(
+        "newsManageList"
+    ).textContent =
+        "正在加载新闻……";
+
+
+    document.getElementById(
+        "newsCount"
+    ).textContent =
+        "尚未登录";
+
+
+    clearForm();
+
+
+    showStatus(
+        "loginStatus",
+        "🚪 已退出。",
+        "success"
+    );
+}
 
 </script>
 
 
-<script src="axai-config.js"></script>
-<script src="axai-widget.js?v=20261010-mobile" defer></script>
+<aside class="axie-fiction-notice footer-note" aria-label="世界观创作说明" style="font-size:12px;opacity:0.5;margin-top:20px;text-align:center;padding:0 20px 30px;line-height:1.7;overflow-wrap:anywhere">阿谢国为架空世界观创作项目 · Republic of Axie is a fictional nation project</aside>
 </body>
 </html>
+
