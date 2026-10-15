@@ -144,15 +144,88 @@ input[type="file"] {
 }
 
 .translation-editor {
-    margin: 20px 0;
-    padding: 16px;
-    border: 1px solid #d7e0ed;
-    border-radius: 12px;
-    background: #f7faff;
+    margin: 22px 0;
+    padding: 20px;
+    border: 1px solid rgba(105, 168, 255, 0.28);
+    border-radius: 14px;
+    background: rgba(5, 18, 34, 0.58);
 }
 
-.translation-editor textarea {
-    min-height: 150px;
+.translation-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 14px;
+}
+
+.translation-heading h3 {
+    margin: 0 0 4px;
+    font-size: 18px;
+}
+
+.translation-heading p {
+    margin: 0;
+    color: #aebfd6;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.translation-heading .button {
+    flex: 0 0 auto;
+    margin-top: 0;
+}
+
+.translation-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.translation-language {
+    min-width: 0;
+    padding: 15px;
+    border: 1px solid rgba(150, 190, 230, 0.16);
+    border-radius: 11px;
+    background: rgba(255, 255, 255, 0.035);
+}
+
+.translation-language h4 {
+    margin: 0 0 10px;
+    color: #dceaff;
+    font-size: 15px;
+}
+
+.translation-language label {
+    margin-top: 12px;
+}
+
+.translation-language input,
+.translation-language textarea {
+    background: rgba(3, 13, 26, 0.88);
+}
+
+.translation-language textarea {
+    min-height: 190px;
+}
+
+@media (max-width: 700px) {
+    .translation-editor {
+        padding: 15px;
+    }
+
+    .translation-heading {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .translation-heading .button {
+        width: 100%;
+    }
+
+    .translation-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .button-danger {
@@ -481,16 +554,29 @@ footer {
     ></textarea>
 
     <div class="translation-editor">
-        <p class="hint">先生成英语和日语译文，可在下方修改后再发布。英语国名固定为 republic of axie，日语为阿謝国。</p>
-        <button class="button button-secondary" id="translateButton" type="button" onclick="generateNewsTranslations()">🌐 生成英语和日语译文</button>
-        <label for="newsTitleEn">English 标题</label>
-        <input id="newsTitleEn" type="text" maxlength="240" placeholder="English headline">
-        <label for="newsContentEn">English 正文</label>
-        <textarea id="newsContentEn" placeholder="English article"></textarea>
-        <label for="newsTitleJa">日本語タイトル</label>
-        <input id="newsTitleJa" type="text" maxlength="240" placeholder="ニュースの見出し">
-        <label for="newsContentJa">日本語本文</label>
-        <textarea id="newsContentJa" placeholder="ニュース本文"></textarea>
+        <div class="translation-heading">
+            <div>
+                <h3>🌐 翻译草稿</h3>
+                <p>生成后先检查并修改，再发布。国名固定为 English: republic of axie · 日本語: 阿謝国。</p>
+            </div>
+            <button class="button button-secondary" id="translateButton" type="button" onclick="generateNewsTranslations()">🌐 生成英语和日语译文</button>
+        </div>
+        <div class="translation-grid">
+            <section class="translation-language" aria-labelledby="englishDraftHeading">
+                <h4 id="englishDraftHeading">English draft</h4>
+                <label for="newsTitleEn">标题</label>
+                <input id="newsTitleEn" type="text" maxlength="240" placeholder="English headline">
+                <label for="newsContentEn">正文</label>
+                <textarea id="newsContentEn" placeholder="English article"></textarea>
+            </section>
+            <section class="translation-language" aria-labelledby="japaneseDraftHeading">
+                <h4 id="japaneseDraftHeading">日本語の下書き</h4>
+                <label for="newsTitleJa">タイトル</label>
+                <input id="newsTitleJa" type="text" maxlength="240" placeholder="ニュースの見出し">
+                <label for="newsContentJa">本文</label>
+                <textarea id="newsContentJa" placeholder="ニュース本文"></textarea>
+            </section>
+        </div>
         <div class="small-note">原文标题或正文修改后，译文会清空，请重新生成或手动填写。</div>
     </div>
 
