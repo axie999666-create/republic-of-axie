@@ -223,6 +223,16 @@ a:focus-visible, button:focus-visible, #searchBox:focus-visible { outline: 3px s
     .card, .button { transition: none; }
     .card:hover, .button:hover { transform: none; }
 }
+
+.language-switch{display:flex;justify-content:center;flex-wrap:wrap;gap:9px;margin-top:18px}
+.language-switch button{min-height:42px;padding:8px 17px;border:1px solid rgba(164,198,234,.38);border-radius:22px;background:rgba(255,255,255,.07);color:#dceaff;font:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:background .18s,border-color .18s,transform .18s}
+.language-switch button:hover{background:rgba(72,139,210,.28);transform:translateY(-1px)}
+.language-switch button[aria-pressed="true"]{background:#3478db;border-color:#82b4f0;color:#fff;box-shadow:0 3px 12px rgba(20,84,160,.28)}
+.language-switch button:focus-visible{outline:3px solid #82d2ff;outline-offset:3px}
+.translation-note{color:#c2d9f4;font-size:13px;line-height:1.55;margin:14px 0 -8px;padding:9px 12px;border-left:3px solid #79aee8;background:rgba(61,116,174,.13);border-radius:0 8px 8px 0}
+.translation-tag{display:inline-flex;align-items:center;margin:9px 0 0 8px;padding:3px 9px;border:1px solid rgba(145,195,246,.24);border-radius:14px;color:#c9e2ff;background:rgba(64,130,194,.16);font-size:12px}
+.language-switch button,.agency-filters a{touch-action:manipulation}
+@media(max-width:600px){.language-switch{gap:8px}.language-switch button{flex:1 1 84px;padding:8px 12px}.translation-tag{margin-left:0;margin-top:8px}}
 </style>
 
 </head>
@@ -233,7 +243,12 @@ a:focus-visible, button:focus-visible, #searchBox:focus-visible { outline: 3px s
 
     <h1>📰 AXNews 新闻中心</h1>
 
-    <p>Republic of Axie Official News</p>
+    <p id="newsSubtitle">阿谢国官方新闻</p>
+    <nav class="language-switch" aria-label="Language">
+        <button type="button" data-lang="zh" aria-pressed="true">中文</button>
+        <button type="button" data-lang="en" aria-pressed="false">English</button>
+        <button type="button" data-lang="ja" aria-pressed="false">日本語</button>
+    </nav>
 
 </header>
 
@@ -294,335 +309,220 @@ a:focus-visible, button:focus-visible, #searchBox:focus-visible { outline: 3px s
 
 <script src="api-client.js?v=20261005"></script>
 <script>
-
+const TEXT = {
+  zh: {
+    heading: "📰 AXNews 新闻中心", subtitle: "阿谢国官方新闻", search: "🔍 搜索新闻标题或正文…",
+    all: "全部公告", other: "其他机构", ordinary: "普通新闻", unknown: "未知机构",
+    count: n => `共 ${n} 条新闻`, found: n => `找到 ${n} 条相关新闻`,
+    empty: "🔍 没有找到相关新闻", tryAgain: "请尝试其他关键词。", home: "← 返回首页",
+    untitled: "无标题", loading: "正在加载新闻……", error: "新闻加载失败",
+    errorBody: "AXNews 暂时无法读取新闻数据。", missing: "译文尚未生成，显示中文原文。",
+    machine: "AI 自动翻译", fictional: "阿谢国为架空世界观创作项目"
+  },
+  en: {
+    heading: "📰 AXNews News Center", subtitle: "republic of axie Official News", search: "🔍 Search news titles or articles…",
+    all: "All announcements", other: "Other agencies", ordinary: "General news", unknown: "Unknown agency",
+    count: n => `${n} news articles`, found: n => `${n} matching articles`,
+    empty: "🔍 No matching news", tryAgain: "Try another keyword.", home: "← Home",
+    untitled: "Untitled", loading: "Loading news…", error: "Unable to load news",
+    errorBody: "AXNews cannot load news data at the moment.", missing: "Translation unavailable. Chinese original shown.",
+    machine: "AI translation", fictional: "republic of axie is a fictional nation project"
+  },
+  ja: {
+    heading: "📰 AXNews ニュースセンター", subtitle: "阿謝国公式ニュース", search: "🔍 ニュースの見出し・本文を検索…",
+    all: "すべてのお知らせ", other: "その他の機関", ordinary: "一般ニュース", unknown: "不明な機関",
+    count: n => `ニュース ${n} 件`, found: n => `検索結果 ${n} 件`,
+    empty: "🔍 関連ニュースが見つかりません", tryAgain: "別のキーワードをお試しください。", home: "← ホームに戻る",
+    untitled: "無題", loading: "ニュースを読み込み中…", error: "ニュースを読み込めません",
+    errorBody: "現在、AXNews のニュースデータを読み込めません。", missing: "翻訳はまだありません。中国語の原文を表示しています。",
+    machine: "AI 自動翻訳", fictional: "阿謝国は架空の国家創作プロジェクトです"
+  }
+};
+const AGENCY_TEXT = {
+  president: {en: "Presidential Affairs Department", ja: "大統領業務部"},
+  "vice-president": {en: "Vice President’s Office", ja: "副大統領室"},
+  government: {en: "Government of the republic of axie", ja: "阿謝国政府"},
+  congress: {en: "Congress of the republic of axie", ja: "阿謝国国会議事堂"},
+  "constitutional-court": {en: "Constitutional Court of the republic of axie", ja: "阿謝国立憲院"}
+};
+let language = new URLSearchParams(location.search).get("lang") || "zh";
+try { language = new URLSearchParams(location.search).get("lang") || localStorage.getItem("axnews-language") || "zh"; } catch {}
+if (!TEXT[language]) language = "zh";
 let allNews = [];
-const fallbackAgencies = window.AXNEWS_FALLBACK_AGENCIES;
+let loaded = false;
+let loadError = null;
+const fallbackAgencies = Array.isArray(window.AXNEWS_FALLBACK_AGENCIES) ? window.AXNEWS_FALLBACK_AGENCIES : [];
 let agencies = fallbackAgencies.slice();
-const API_BASE = window.AXNEWS_API_BASE;
+const API_BASE = window.AXNEWS_API_BASE || "https://axnews-admin-api.axie999666.workers.dev";
 const selectedAgencyId = new URLSearchParams(location.search).get("agency") || "";
 
-async function loadAgencies(){
-    try{
-        const response = await axieApiFetch(API_BASE + "/agencies");
-        if(!response.ok) throw new Error("分类列表加载失败");
-        const result = await response.json();
-        agencies = Array.isArray(result.agencies) ? result.agencies : [];
-    }catch(error){
-        console.warn("AXNews 机构分类暂不可用", error);
-        agencies = fallbackAgencies.slice();
+function countryName(value) {
+  if (language === "zh") return String(value || "");
+  return String(value || "").replace(/阿[谢謝]国|republic of axie/gi, language === "en" ? "republic of axie" : "阿謝国");
+}
+function articleText(news) {
+  const translated = language === "zh" ? null : news.translations?.[language];
+  const ready = translated && typeof translated.title === "string" && translated.title.trim() && typeof translated.content === "string" && translated.content.trim();
+  return ready
+    ? {title: countryName(translated.title), content: countryName(translated.content), translated: true}
+    : {title: news.title || TEXT[language].untitled, content: news.content || "", translated: false};
+}
+function agencyName(id) {
+  const agency = agencies.find(item => item.id === id);
+  if (!agency) return id ? TEXT[language].other : TEXT[language].ordinary;
+  return language === "zh" ? agency.name : (AGENCY_TEXT[id]?.[language] || countryName(agency.name));
+}
+function setLanguage(next, updateUrl = true) {
+  if (!TEXT[next]) return;
+  language = next;
+  try { localStorage.setItem("axnews-language", language); } catch {}
+  if (updateUrl) {
+    const url = new URL(location.href);
+    url.searchParams.set("lang", language);
+    history.replaceState(null, "", url);
+  }
+  applyLanguage();
+}
+function applyLanguage() {
+  const t = TEXT[language];
+  document.documentElement.lang = language;
+  document.title = `${t.heading.replace("📰 ", "")} | ${language === "ja" ? "阿謝国" : "republic of axie"}`;
+  document.querySelector("header h1").textContent = t.heading;
+  document.getElementById("newsSubtitle").textContent = t.subtitle;
+  const search = document.getElementById("searchBox");
+  search.placeholder = t.search;
+  search.setAttribute("aria-label", t.search);
+  document.getElementById("agencyFilters").setAttribute("aria-label", t.all);
+  document.querySelector(".actions a").textContent = t.home;
+  const note = document.querySelector(".footer-note");
+  if (note) { note.textContent = t.fictional; note.setAttribute("aria-label", t.fictional); }
+  document.querySelectorAll("[data-lang]").forEach(button => {
+    const active = button.dataset.lang === language;
+    button.setAttribute("aria-pressed", String(active));
+  });
+  if (loadError) renderError(loadError);
+  else if (loaded) renderNews();
+  else {
+    document.getElementById("newsInfo").textContent = t.loading;
+    const message = document.querySelector("#newsList .message");
+    if (message) message.textContent = `📰 ${t.loading}`;
+  }
+}
+async function loadAgencies() {
+  try {
+    const response = await axieApiFetch(API_BASE + "/agencies");
+    if (!response.ok) throw new Error("分类列表加载失败");
+    const result = await response.json();
+    agencies = Array.isArray(result.agencies) ? result.agencies : fallbackAgencies.slice();
+  } catch (error) {
+    console.warn("AXNews 机构分类暂不可用", error);
+    agencies = fallbackAgencies.slice();
+  }
+}
+function renderAgencyFilters() {
+  const nav = document.getElementById("agencyFilters");
+  nav.replaceChildren();
+  const links = [{id: "", name: TEXT[language].all, href: "AXNews.html"}, ...agencies.map(item => ({
+    id: item.id, name: agencyName(item.id), href: "AXNews.html?agency=" + encodeURIComponent(item.id)
+  }))];
+  links.forEach(item => {
+    const link = document.createElement("a");
+    const url = new URL(item.href, location.href);
+    url.searchParams.set("lang", language);
+    link.href = url.href;
+    link.textContent = item.name;
+    if (item.id === selectedAgencyId) link.classList.add("active");
+    nav.appendChild(link);
+  });
+}
+async function loadNews() {
+  try {
+    const response = await fetch("./news.json?ts=" + Date.now());
+    if (!response.ok) throw new Error("无法读取 news.json，HTTP 状态码：" + response.status);
+    const data = await response.json();
+    if (!Array.isArray(data)) throw new Error("news.json 格式错误：不是新闻数组");
+    allNews = data;
+    loaded = true;
+    await loadAgencies();
+    renderNews();
+  } catch (error) {
+    console.error(error);
+    loadError = error;
+    renderError(error);
+  }
+}
+function renderError(error) {
+  const t = TEXT[language];
+  document.getElementById("newsInfo").textContent = t.error;
+  document.getElementById("newsList").innerHTML = `<div class="message error"><h2>${t.error}</h2><p>${t.errorBody}</p><pre>${escapeHTML(error.stack || error.message)}</pre></div>`;
+}
+function renderNews() {
+  const newsList = document.getElementById("newsList");
+  const newsInfo = document.getElementById("newsInfo");
+  const keyword = document.getElementById("searchBox").value.trim().toLocaleLowerCase(language);
+  renderAgencyFilters();
+  const sortedNews = [...allNews].sort((a, b) => Number(b.timestamp || 0) - Number(a.timestamp || 0));
+  const selectedNews = selectedAgencyId ? sortedNews.filter(news => news.agencyId === selectedAgencyId) : sortedNews;
+  const filteredNews = selectedNews.filter(news => {
+    if (!keyword) return true;
+    const shown = articleText(news);
+    const terms = [shown.title, shown.content, news.title, news.content].map(value => String(value || "").toLocaleLowerCase(language));
+    return terms.some(value => value.includes(keyword));
+  });
+  const selectedAgency = agencies.find(item => item.id === selectedAgencyId);
+  const scopeLabel = selectedAgency ? agencyName(selectedAgencyId) + " · " : (selectedAgencyId ? TEXT[language].unknown + " · " : "");
+  newsInfo.textContent = scopeLabel + (keyword ? TEXT[language].found(filteredNews.length) : TEXT[language].count(filteredNews.length));
+  if (!filteredNews.length) {
+    newsList.innerHTML = `<div class="message"><h2>${TEXT[language].empty}</h2><p>${TEXT[language].tryAgain}</p></div>`;
+    return;
+  }
+  newsList.replaceChildren();
+  filteredNews.forEach(news => {
+    const shown = articleText(news);
+    const card = document.createElement("article");
+    card.className = "card";
+    const title = document.createElement("h2");
+    title.textContent = shown.title;
+    card.appendChild(title);
+    const meta = document.createElement("small");
+    meta.textContent = `${news.date || ""} | ${news.author || "AXNews"}`;
+    card.appendChild(meta);
+    const agencyTag = document.createElement("span");
+    agencyTag.className = "agency-tag";
+    agencyTag.textContent = agencyName(news.agencyId);
+    card.appendChild(agencyTag);
+    if (shown.translated) {
+      const translationTag = document.createElement("span");
+      translationTag.className = "translation-tag";
+      translationTag.textContent = TEXT[language].machine;
+      card.appendChild(translationTag);
+    } else if (language !== "zh") {
+      const note = document.createElement("p");
+      note.className = "translation-note";
+      note.textContent = TEXT[language].missing;
+      card.appendChild(note);
     }
-}
-
-function agencyName(id){
-    const agency = agencies.find(item => item.id === id);
-    return agency ? agency.name : (id ? "其他机构" : "普通新闻");
-}
-
-function renderAgencyFilters(){
-    const nav = document.getElementById("agencyFilters");
-    if(!nav) return;
-    nav.innerHTML = "";
-    const links = [{id:"", name:"全部公告", href:"AXNews.html"}, ...agencies.map(item => ({
-        id:item.id, name:item.name, href:"AXNews.html?agency=" + encodeURIComponent(item.id)
-    }))];
-    links.forEach(item => {
-        const link = document.createElement("a");
-        link.href = item.href;
-        link.textContent = item.name;
-        if(item.id === selectedAgencyId) link.classList.add("active");
-        nav.appendChild(link);
+    ["image1", "image2", "image3"].forEach(key => {
+      if (!news[key]) return;
+      const img = document.createElement("img");
+      img.src = "./" + news[key];
+      img.alt = shown.title || TEXT[language].untitled;
+      img.loading = "lazy";
+      img.onerror = () => { img.style.display = "none"; };
+      card.appendChild(img);
     });
+    const content = document.createElement("p");
+    content.textContent = shown.content;
+    card.appendChild(content);
+    newsList.appendChild(card);
+  });
 }
-
-
-/* =========================
-   加载新闻
-========================= */
-
-async function loadNews(){
-
-    const newsList = document.getElementById("newsList");
-    const newsInfo = document.getElementById("newsInfo");
-
-    try{
-
-        const response = await fetch(
-            "./news.json?ts=" + Date.now()
-        );
-
-        if(!response.ok){
-
-            throw new Error(
-                "无法读取 news.json，HTTP状态码：" +
-                response.status
-            );
-
-        }
-
-        const data = await response.json();
-
-        if(!Array.isArray(data)){
-
-            throw new Error(
-                "news.json 格式错误：不是新闻数组"
-            );
-
-        }
-
-        allNews = data;
-        renderNews();
-        loadAgencies().then(renderNews);
-
-    }
-    catch(err){
-
-        console.error(err);
-
-        newsInfo.textContent =
-            "新闻加载失败";
-
-        newsList.innerHTML = `
-
-            <div class="message error">
-
-                <h2>❌ 新闻加载失败</h2>
-
-                <p>
-                    AXNews 暂时无法读取新闻数据。
-                </p>
-
-                <pre>${escapeHTML(
-                    err.stack || err.message
-                )}</pre>
-
-            </div>
-
-        `;
-
-    }
-
+function escapeHTML(text) {
+  return String(text).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;");
 }
-
-
-/* =========================
-   显示新闻
-========================= */
-
-function renderNews(){
-
-    const newsList =
-        document.getElementById("newsList");
-
-    const newsInfo =
-        document.getElementById("newsInfo");
-
-    const keyword =
-        document
-            .getElementById("searchBox")
-            .value
-            .trim()
-            .toLowerCase();
-
-
-    renderAgencyFilters();
-
-    /* 复制数组后排序并先按机构筛选 */
-
-    const sortedNews = [...allNews].sort(
-        (a,b) =>
-            Number(b.timestamp || 0) -
-            Number(a.timestamp || 0)
-    );
-
-    const selectedNews = selectedAgencyId
-        ? sortedNews.filter(news => news.agencyId === selectedAgencyId)
-        : sortedNews;
-
-    /* 搜索 */
-
-    const filteredNews = selectedNews.filter(news => {
-
-        const title =
-            String(news.title || "");
-
-        const content =
-            String(news.content || "");
-
-        if(!keyword){
-            return true;
-        }
-
-        return (
-            title.toLowerCase().includes(keyword) ||
-            content.toLowerCase().includes(keyword)
-        );
-
-    });
-
-
-    /* 新闻数量 */
-
-    const selectedAgency = agencies.find(item => item.id === selectedAgencyId);
-    const scopeLabel = selectedAgency ? selectedAgency.name + " · " : (selectedAgencyId ? "未知机构 · " : "");
-    newsInfo.textContent = scopeLabel + (keyword
-        ? "找到 " + filteredNews.length + " 条相关新闻"
-        : "共 " + filteredNews.length + " 条新闻");
-
-
-    /* 没有结果 */
-
-    if(filteredNews.length === 0){
-
-        newsList.innerHTML = `
-
-            <div class="message">
-
-                <h2>🔍 没有找到相关新闻</h2>
-
-                <p>
-                    请尝试其他关键词。
-                </p>
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    /* 清空 */
-
-    newsList.innerHTML = "";
-
-
-    /* 创建新闻 */
-
-    filteredNews.forEach(news => {
-
-        const card =
-            document.createElement("article");
-
-        card.className = "card";
-
-
-        /* 标题 */
-
-        const title =
-            document.createElement("h2");
-
-        title.textContent =
-            String(news.title || "无标题");
-
-        card.appendChild(title);
-
-
-        /* 日期 / 作者 */
-
-        const meta =
-            document.createElement("small");
-
-        meta.textContent =
-            `${news.date || ""} | ${news.author || ""}`;
-
-        card.appendChild(meta);
-
-        const agencyTag = document.createElement("span");
-        agencyTag.className = "agency-tag";
-        agencyTag.textContent = agencyName(news.agencyId);
-        card.appendChild(agencyTag);
-
-
-        /* 图片 */
-
-        ["image1","image2","image3"].forEach(
-            key => {
-
-                if(!news[key]){
-                    return;
-                }
-
-                const img =
-                    document.createElement("img");
-
-                img.src =
-                    "./" + news[key];
-
-                img.alt =
-                    news.title || "AXNews 新闻图片";
-
-                img.loading = "lazy";
-
-                img.onerror = () => {
-                    img.style.display = "none";
-                };
-
-                card.appendChild(img);
-
-            }
-        );
-
-
-        /* 正文 */
-
-        const content =
-            document.createElement("p");
-
-        content.textContent =
-            String(news.content || "");
-
-        card.appendChild(content);
-
-
-        newsList.appendChild(card);
-
-    });
-
-}
-
-
-/* =========================
-   防止错误信息直接插入 HTML
-========================= */
-
-function escapeHTML(text){
-
-    return String(text)
-
-        .replaceAll("&","&amp;")
-
-        .replaceAll("<","&lt;")
-
-        .replaceAll(">","&gt;")
-
-        .replaceAll('"',"&quot;")
-
-        .replaceAll("'","&#039;");
-
-}
-
-
-/* =========================
-   搜索
-========================= */
-
-document
-    .getElementById("searchBox")
-    .addEventListener(
-        "input",
-        renderNews
-    );
-
-
-/* =========================
-   页面加载
-========================= */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    loadNews
-);
+document.getElementById("searchBox").addEventListener("input", renderNews);
+document.querySelectorAll("[data-lang]").forEach(button => button.addEventListener("click", () => setLanguage(button.dataset.lang)));
+document.addEventListener("DOMContentLoaded", () => { applyLanguage(); loadNews(); });
 
 </script>
 
