@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <url>
-    <loc>https://republic-of-axie.org/</loc>
-  </url>
-
-  <url>
-    <loc>https://republic-of-axie.org/constitution.html</loc>
-  </url>
-
-  <url>
-    <loc>https://republic-of-axie.org/AXNews.html</loc>
-  </url>
-
+  <url><loc>https://republic-of-axie.org/</loc></url>
+  <url><loc>https://republic-of-axie.org/constitution.html</loc></url>
+  <url><loc>https://republic-of-axie.org/AXNews.html</loc></url>
+  <url><loc>https://republic-of-axie.org/election-history.html</loc></url>
+  <url><loc>https://republic-of-axie.org/election-result.html</loc></url>
+  <url><loc>https://republic-of-axie.org/president-election.html</loc></url>
+  <url><loc>https://republic-of-axie.org/vice-president-election.html</loc></url>
+  <url><loc>https://republic-of-axie.org/candidate.html</loc></url>
+  <url><loc>https://republic-of-axie.org/leader.html</loc></url>
+  <url><loc>https://republic-of-axie.org/party.html</loc></url>
 </urlset>
