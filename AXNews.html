@@ -231,8 +231,9 @@ a:focus-visible, button:focus-visible, #searchBox:focus-visible { outline: 3px s
 .language-switch button:focus-visible{outline:3px solid #82d2ff;outline-offset:3px}
 .translation-note{color:#c2d9f4;font-size:13px;line-height:1.55;margin:14px 0 -8px;padding:9px 12px;border-left:3px solid #79aee8;background:rgba(61,116,174,.13);border-radius:0 8px 8px 0}
 .translation-tag{display:inline-flex;align-items:center;margin:9px 0 0 8px;padding:3px 9px;border:1px solid rgba(145,195,246,.24);border-radius:14px;color:#c9e2ff;background:rgba(64,130,194,.16);font-size:12px}
+.modified-tag{display:inline-flex;align-items:center;margin:9px 0 0 8px;padding:3px 9px;border:1px solid rgba(255,196,102,.28);border-radius:14px;color:#ffd28c;background:rgba(224,153,52,.12);font-size:12px}
 .language-switch button,.agency-filters a{touch-action:manipulation}
-@media(max-width:600px){.language-switch{gap:8px}.language-switch button{flex:1 1 84px;padding:8px 12px}.translation-tag{margin-left:0;margin-top:8px}}
+@media(max-width:600px){.language-switch{gap:8px}.language-switch button{flex:1 1 84px;padding:8px 12px}.translation-tag,.modified-tag{margin-left:0;margin-top:8px}}
 </style>
 
 </head>
@@ -317,7 +318,7 @@ const TEXT = {
     empty: "🔍 没有找到相关新闻", tryAgain: "请尝试其他关键词。", home: "← 返回首页",
     untitled: "无标题", loading: "正在加载新闻……", error: "新闻加载失败",
     errorBody: "AXNews 暂时无法读取新闻数据。", missing: "译文尚未生成，显示中文原文。",
-    machine: "AI 自动翻译", fictional: "阿谢国为架空世界观创作项目"
+    machine: "AI 自动翻译", modified: "有修改", fictional: "阿谢国为架空世界观创作项目"
   },
   en: {
     heading: "📰 AXNews News Center", subtitle: "republic of axie Official News", search: "🔍 Search news titles or articles…",
@@ -326,7 +327,7 @@ const TEXT = {
     empty: "🔍 No matching news", tryAgain: "Try another keyword.", home: "← Home",
     untitled: "Untitled", loading: "Loading news…", error: "Unable to load news",
     errorBody: "AXNews cannot load news data at the moment.", missing: "Translation unavailable. Chinese original shown.",
-    machine: "AI translation", fictional: "republic of axie is a fictional nation project"
+    machine: "AI translation", modified: "Edited", fictional: "republic of axie is a fictional nation project"
   },
   ja: {
     heading: "📰 AXNews ニュースセンター", subtitle: "阿謝国公式ニュース", search: "🔍 ニュースの見出し・本文を検索…",
@@ -335,7 +336,7 @@ const TEXT = {
     empty: "🔍 関連ニュースが見つかりません", tryAgain: "別のキーワードをお試しください。", home: "← ホームに戻る",
     untitled: "無題", loading: "ニュースを読み込み中…", error: "ニュースを読み込めません",
     errorBody: "現在、AXNews のニュースデータを読み込めません。", missing: "翻訳はまだありません。中国語の原文を表示しています。",
-    machine: "AI 自動翻訳", fictional: "阿謝国は架空の国家創作プロジェクトです"
+    machine: "AI 自動翻訳", modified: "更新済み", fictional: "阿謝国は架空の国家創作プロジェクトです"
   }
 };
 const AGENCY_TEXT = {
@@ -488,6 +489,12 @@ function renderNews() {
     const meta = document.createElement("small");
     meta.textContent = `${news.date || ""} | ${news.author || "AXNews"}`;
     card.appendChild(meta);
+    if (news.updatedAt) {
+      const modifiedTag = document.createElement("span");
+      modifiedTag.className = "modified-tag";
+      modifiedTag.textContent = TEXT[language].modified;
+      card.appendChild(modifiedTag);
+    }
     const agencyTag = document.createElement("span");
     agencyTag.className = "agency-tag";
     agencyTag.textContent = agencyName(news.agencyId);
