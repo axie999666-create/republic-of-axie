@@ -265,6 +265,18 @@ input[type="file"] {
     margin-top: 7px;
 }
 
+.news-modified-tag {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 8px;
+    padding: 2px 8px;
+    border: 1px solid rgba(255, 196, 102, 0.28);
+    border-radius: 12px;
+    color: #ffd28c;
+    background: rgba(224, 153, 52, 0.12);
+    font-size: 12px;
+}
+
 .news-item-preview {
     color: #d5dfec;
     margin-top: 12px;
@@ -479,7 +491,7 @@ footer {
 
     <div id="editingBanner" class="editing-banner">
         ✏️ 当前正在编辑已有新闻。
-        保存后会直接修改原新闻。
+        保存后会直接修改原新闻；发布日期和排序时间保持不变，并显示“有修改”标记。<span id="editingTranslationNote" aria-live="polite"></span>
     </div>
 
     <h2 id="editorTitle">
@@ -577,7 +589,7 @@ footer {
                 <textarea id="newsContentJa" placeholder="ニュース本文"></textarea>
             </section>
         </div>
-        <div class="small-note">原文标题或正文修改后，译文会清空，请重新生成或手动填写。</div>
+        <div class="small-note">原文标题或正文修改后，译文会清空，请重新生成或手动填写。发布或保存后，已确认译文会作为相近新闻的翻译参考，帮助统一术语和表达。</div>
     </div>
 
 
@@ -1024,7 +1036,7 @@ async function generateNewsTranslations() {
         const response = await fetch(API_BASE + "/translate", {
             method: "POST",
             headers: {"Content-Type": "application/json", "Authorization": "Bearer " + sessionToken},
-            body: JSON.stringify({title, content})
+            body: JSON.stringify({title, content, agencyId: document.getElementById("newsAgency").value})
         });
         const result = await response.json();
         if (!response.ok || !result.success) throw new Error(result.error || "译文生成失败");
@@ -1899,6 +1911,13 @@ function renderNewsManagement(
                     news.author || "AXNews"
                 }`;
 
+            if (news.updatedAt) {
+                const modifiedTag = document.createElement("span");
+                modifiedTag.className = "news-modified-tag";
+                modifiedTag.textContent = "有修改";
+                meta.appendChild(modifiedTag);
+            }
+
 
             /* 正文预览 */
 
@@ -2236,6 +2255,9 @@ async function publishNews() {
                         translations:
                             translations,
 
+                        translationsReviewed:
+                            true,
+
                         agencyId:
                             agencyId,
 
@@ -2369,6 +2391,14 @@ function editNews(id) {
     document.getElementById("newsTitleJa").value = savedTranslations.ja?.title || "";
     document.getElementById("newsContentJa").value = savedTranslations.ja?.content || "";
     translationSourceSnapshot = currentTranslationSource();
+    document.getElementById("editingTranslationNote").textContent =
+        news.translationReviewed === true
+            ? "英日译文已人工确认；保存后会继续作为后续翻译参考。"
+            : savedTranslations.en?.title && savedTranslations.en?.content && savedTranslations.ja?.title && savedTranslations.ja?.content
+                ? "请检查现有英日译文；保存即确认并纳入后续翻译参考。"
+                : "这条新闻还没有英日译文；请生成并检查后再保存。";
+    document.getElementById("newsDate").value = news.date || "";
+    document.getElementById("newsTimestamp").value = news.timestamp || "";
 
 
     /*
@@ -2436,9 +2466,6 @@ function editNews(id) {
     ).classList.remove(
         "hidden"
     );
-
-
-    updatePublishTime();
 
 
     window.scrollTo({
@@ -2535,6 +2562,9 @@ async function updateNews(
 
                         translations:
                             translations,
+
+                        translationsReviewed:
+                            true,
 
                         agencyId:
                             agencyId,
@@ -2788,6 +2818,8 @@ function cancelEdit() {
         "editingBanner"
     ).style.display =
         "none";
+
+    document.getElementById("editingTranslationNote").textContent = "";
 
 
     document.getElementById(
