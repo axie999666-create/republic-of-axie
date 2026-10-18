@@ -16,7 +16,7 @@
     {
       "binding": "DB",
       "database_name": "axie-citizens",
-      "database_id": "REPLACE_WITH_D1_DATABASE_ID",
+      "database_id": "e38a3c06-71bd-41f5-a61d-fe7ef299d550",
       "migrations_dir": "migrations"
     }
   ]
