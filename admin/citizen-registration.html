@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#071426">
+  <title>阿谢国国民登记 | Republic of Axie</title>
+  <style>
+    :root { color-scheme: dark; --bg:#071426; --panel:rgba(14,35,62,.95); --line:rgba(150,190,230,.17); --text:#eef5ff; --muted:#9fb2ca; --blue:#75b5ff; --green:#67d6ae; --red:#ff9292; }
+    * { box-sizing:border-box; }
+    body { min-height:100vh; margin:0; color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; background:radial-gradient(ellipse at 50% -20%,#17365b 0,transparent 55%),linear-gradient(145deg,#061120,#0b1f3a 55%,#102b4c); }
+    button,input,select,textarea { font:inherit; }
+    a { color:var(--blue); text-decoration:none; }
+    .shell { width:min(780px,calc(100% - 28px)); margin:0 auto; padding:25px 0 54px; }
+    .topbar { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:20px; }
+    .brand { display:flex; align-items:center; gap:12px; }
+    .brand-mark { display:grid; place-items:center; width:42px; height:42px; border:1px solid rgba(117,181,255,.35); border-radius:14px; background:rgba(73,139,211,.16); font-size:20px; }
+    h1 { margin:0; font-size:clamp(19px,4vw,25px); }
+    .brand p { margin:4px 0 0; color:var(--muted); font-size:11px; letter-spacing:.08em; }
+    .panel { padding:clamp(20px,5vw,34px); border:1px solid var(--line); border-radius:18px; background:var(--panel); box-shadow:0 18px 55px rgba(0,0,0,.22); }
+    .intro { margin:0 0 22px; color:var(--muted); line-height:1.7; font-size:14px; }
+    .section-title { margin:23px 0 10px; padding-top:19px; border-top:1px solid var(--line); font-size:14px; }
+    label { display:block; margin:15px 0 7px; color:#d8e7f8; font-size:13px; font-weight:650; }
+    input,select,textarea { width:100%; border:1px solid rgba(170,200,230,.24); border-radius:10px; padding:11px 13px; color:var(--text); background:rgba(5,18,34,.72); outline:none; }
+    input:focus,select:focus,textarea:focus { border-color:var(--blue); box-shadow:0 0 0 3px rgba(117,181,255,.13); }
+    input::placeholder,textarea::placeholder { color:#7186a0; }
+    textarea { min-height:88px; resize:vertical; line-height:1.6; }
+    .era-fields { display:grid; grid-template-columns:1.2fr .7fr .7fr .7fr; gap:8px; }
+    .address-fields { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; }
+    .address-extra { grid-column:1/-1; }
+    .era-preview { min-height:20px; margin-top:7px; color:#9bcaff; font-size:12px; }
+    .address-preview { min-height:20px; margin-top:7px; color:#9bcaff; font-size:12px; line-height:1.6; overflow-wrap:anywhere; }
+    .hint { margin:6px 0 0; color:#849ab3; font-size:11px; line-height:1.55; }
+    .privacy { margin-top:20px; padding:14px; border:1px solid rgba(242,194,107,.2); border-radius:12px; background:rgba(242,194,107,.055); color:#dacb9f; font-size:12px; line-height:1.75; }
+    .consent { display:flex; align-items:flex-start; gap:10px; margin:17px 0 4px; color:#d1deed; font-size:12px; line-height:1.65; }
+    .consent input { flex:0 0 auto; width:17px; height:17px; margin:1px 0 0; accent-color:#75b5ff; }
+    .button { display:inline-flex; align-items:center; justify-content:center; border:1px solid transparent; border-radius:10px; padding:11px 15px; color:#dcecff; background:rgba(102,157,219,.16); cursor:pointer; text-decoration:none; }
+    .button.primary { width:100%; margin-top:15px; color:#06172a; background:linear-gradient(135deg,#3d83ca,#5b9fe2); font-weight:750; }
+    .button:disabled { opacity:.6; cursor:wait; }
+    .message { min-height:22px; margin-top:12px; color:var(--muted); font-size:13px; line-height:1.6; }
+    .message.error { color:var(--red); }
+    .message.success { color:var(--green); }
+    .honeypot { position:absolute!important; left:-10000px!important; width:1px!important; height:1px!important; overflow:hidden!important; }
+    @media(max-width:520px) { .topbar { align-items:flex-start; flex-direction:column; } .era-fields,.address-fields { grid-template-columns:1fr 1fr; } }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand"><div class="brand-mark" aria-hidden="true">✦</div><div><h1>阿谢国国民登记</h1><p>REPUBLIC OF AXIE · CITIZEN REGISTRATION</p></div></div>
+      <a href="/admin/citizens.html">管理入口 →</a>
+    </header>
+
+    <section class="panel">
+      <p class="intro">填写阿谢国国民登记资料。申请提交后会进入待审核状态；管理员批准后，系统才会发放国民编号并制作身份纪念卡。</p>
+      <p id="currentEra" class="hint" aria-live="polite"></p>
+      <form id="registrationForm">
+        <label for="fullName">姓名 <span aria-hidden="true">*</span></label>
+        <input id="fullName" name="full_name" maxlength="100" required autocomplete="name" placeholder="输入国民姓名">
+
+        <div class="section-title">出生日期（阿谢纪年）</div>
+        <div class="era-fields">
+          <select id="birthEra" aria-label="出生纪年时代"><option value="axie">阿谢纪年</option><option value="before">阿谢纪年前</option></select>
+          <input id="birthYear" type="number" min="1" max="9999" required placeholder="年份" aria-label="纪年年份">
+          <select id="birthMonth" required aria-label="出生月份"></select>
+          <select id="birthDay" required aria-label="出生日期"></select>
+        </div>
+        <div class="era-preview" id="birthDatePreview" aria-live="polite"></div>
+
+        <label for="addressCity">在阿谢国的住址 <span aria-hidden="true">*</span></label>
+        <div class="address-fields">
+          <select id="addressCity" required aria-label="城市"><option value="">选择城市</option><option>新阿谢市</option><option>阿浩市</option><option>明辉市</option><option>阿陈市</option><option>立京市</option><option>新桃市</option></select>
+          <input id="addressDistrict" maxlength="50" required autocomplete="address-level2" aria-label="区划名称" placeholder="区划名称，如青云">
+          <select id="addressDistrictType" required aria-label="区划类型"><option value="">区/镇/郡/村</option><option>区</option><option>镇</option><option>郡</option><option>村</option></select>
+          <input id="addressStreet" maxlength="50" required autocomplete="address-level3" aria-label="街道或乡名称" placeholder="街道/乡名称，如安居">
+          <select id="addressStreetType" required aria-label="街道类型"><option value="">街道/乡</option><option>街道</option><option>乡</option></select>
+          <input id="addressRoad" maxlength="50" required autocomplete="off" aria-label="道路名称" placeholder="道路名称，如长虹">
+          <select id="addressRoadType" required aria-label="道路类型"><option value="">路/大道</option><option>路</option><option>大道</option></select>
+          <select id="addressSide" required aria-label="道路方位"><option value="">东/西/南/北侧</option><option>东</option><option>西</option><option>南</option><option>北</option></select>
+          <input id="addressNumber" maxlength="24" required autocomplete="off" aria-label="门牌号" placeholder="门牌号，如 12-3">
+          <input class="address-extra" id="addressApartment" maxlength="80" autocomplete="off" aria-label="公寓、楼栋或室号（选填）" placeholder="公寓 / 楼栋 / 室号（选填），如星海公寓3栋1202室">
+        </div>
+        <div class="address-preview" id="addressPreview" aria-live="polite"></div>
+        <p class="hint">住址会按城市、区划、街道/乡、道路方位和门牌号自动组合；住在公寓时可补充楼栋与室号。请填写架空设定中的住址，不要填写现实住址。</p>
+
+        <label class="honeypot" aria-hidden="true" for="website">网站</label>
+        <input class="honeypot" id="website" name="website" tabindex="-1" autocomplete="off">
+
+        <div class="privacy">
+          姓名、出生日期和阿谢国住址会加密保存在国民登记数据库中，仅授权管理员可查看，用于审核和管理阿谢国国民身份。此表属于架空世界观项目；请勿填写身份证号、现实住址或与登记无关的敏感信息。申请通过后，姓名、出生日期和阿谢国住址会显示在管理员生成的身份纪念卡上。
+        </div>
+        <label class="consent"><input id="privacyAcknowledged" type="checkbox" required><span>我已阅读上面的资料使用说明，同意提交这些资料用于阿谢国国民登记及审核。</span></label>
+        <button id="submitButton" class="button primary" type="submit">提交登记申请</button>
+      </form>
+      <div id="formMessage" class="message" role="status" aria-live="polite"></div>
+    </section>
+  </main>
+  <script src="/citizens/era-calendar.js"></script>
+  <script>
+    (() => {
+      const API_BASE = window.AXIE_CITIZENS_API_BASE || "https://axie-citizens-admin-api.axie999666.workers.dev";
+      const byId = (id) => document.getElementById(id);
+      const ERA = window.AxieEraCalendar;
+      const eraDate = () => ERA.read(byId("birthEra"), byId("birthYear"), byId("birthMonth"), byId("birthDay"));
+
+      function updateBirthDatePreview() {
+        const date = eraDate();
+        byId("birthDatePreview").textContent = ERA.isValid(date)
+          ? ERA.format(date)
+          : "请填写有效的阿谢纪年出生日期。";
+      }
+
+      function readAddressParts() {
+        return {
+          city: byId("addressCity").value,
+          district: byId("addressDistrict").value,
+          district_type: byId("addressDistrictType").value,
+          street: byId("addressStreet").value,
+          street_type: byId("addressStreetType").value,
+          road: byId("addressRoad").value,
+          road_type: byId("addressRoadType").value,
+          side: byId("addressSide").value,
+          number: byId("addressNumber").value,
+          apartment: byId("addressApartment").value,
+        };
+      }
+
+      function formatAddress(parts) {
+        if (!parts.city || !parts.district || !parts.district_type || !parts.street || !parts.street_type || !parts.road || !parts.road_type || !parts.side || !parts.number) return "";
+        return `${parts.city}${parts.district}${parts.district_type}${parts.street}${parts.street_type}${parts.road}${parts.road_type}${parts.side}侧${parts.number}号${parts.apartment ? `·${parts.apartment}` : ""}`;
+      }
+
+      function updateAddressPreview() {
+        byId("addressPreview").textContent = formatAddress(readAddressParts()) || "住址预览：填写完各项后会在这里组合显示。";
+      }
+
+      ERA.populate(byId("birthMonth"), byId("birthDay"));
+      ERA.write(null, byId("birthEra"), byId("birthYear"), byId("birthMonth"), byId("birthDay"));
+      ["birthEra", "birthYear", "birthMonth", "birthDay"].forEach((id) => {
+        byId(id).addEventListener("change", updateBirthDatePreview);
+        byId(id).addEventListener("input", updateBirthDatePreview);
+      });
+      updateBirthDatePreview();
+      ["addressCity", "addressDistrict", "addressDistrictType", "addressStreet", "addressStreetType", "addressRoad", "addressRoadType", "addressSide", "addressNumber", "addressApartment"].forEach((id) => {
+        byId(id).addEventListener("change", updateAddressPreview);
+        byId(id).addEventListener("input", updateAddressPreview);
+      });
+      updateAddressPreview();
+
+      const currentGregorianYear = new Date().getFullYear();
+      const currentAxieYear = currentGregorianYear - ERA.BASE_GREGORIAN_YEAR + 1;
+      byId("currentEra").textContent = `当前纪年：阿谢${currentAxieYear === 1 ? "元年" : `${currentAxieYear}年`}（2024 年为阿谢元年）`;
+
+      byId("registrationForm").addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const button = byId("submitButton");
+        const date = eraDate();
+        if (!ERA.isValid(date)) {
+          byId("formMessage").textContent = "请检查出生日期和纪年前后年份。";
+          byId("formMessage").className = "message error";
+          return;
+        }
+        button.disabled = true;
+        button.textContent = "正在提交…";
+        byId("formMessage").textContent = "";
+        try {
+          const response = await fetch(`${API_BASE}/api/registrations`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "Accept": "application/json" },
+            cache: "no-store",
+            body: JSON.stringify({
+              full_name: byId("fullName").value,
+              birth_date: date,
+              address: readAddressParts(),
+              privacy_acknowledged: byId("privacyAcknowledged").checked,
+              website: byId("website").value,
+            }),
+          });
+          const result = await response.json().catch(() => ({}));
+          if (!response.ok) throw new Error(result.error || `提交失败（${response.status}）`);
+          byId("registrationForm").hidden = true;
+          byId("formMessage").textContent = result.message || "申请已提交，等待管理员审核。";
+          byId("formMessage").className = "message success";
+        } catch (error) {
+          byId("formMessage").textContent = error.message === "Failed to fetch"
+            ? "连接中断，提交结果尚未确认。请先联系阿谢国管理方核实，避免重复登记。"
+            : error.message;
+          byId("formMessage").className = "message error";
+          button.disabled = false;
+          button.textContent = "提交登记申请";
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
