@@ -119,6 +119,10 @@
     .address-extra { grid-column: 1 / -1; }
     .era-preview { min-height: 19px; margin-top: 6px; color: #9bcaff; font-size: 12px; }
     .address-preview { min-height: 19px; margin-top: 7px; color: #9bcaff; font-size: 12px; line-height: 1.6; overflow-wrap: anywhere; }
+    .photo-preview { display: block; width: 82px; height: 104px; margin-top: 8px; border: 1px solid rgba(150,190,230,.25); border-radius: 10px; background: rgba(5,18,34,.65); object-fit: cover; }
+    .photo-status { margin-top: 7px; color: var(--muted); font-size: 12px; }
+    .photo-remove { display: flex; align-items: center; gap: 8px; margin-top: 9px; color: #ffb6b6; font-size: 12px; }
+    .photo-remove input { width: 16px; height: 16px; margin: 0; accent-color: #ff9292; }
     .table-address { max-width: 250px; color: #becde0; overflow-wrap: anywhere; }
     .registration-link { margin-top: 8px; }
     .dialog-actions { display: flex; justify-content: end; gap: 8px; margin-top: 18px; }
@@ -138,7 +142,10 @@
     .card-flag { position: relative; display: block; flex: 0 0 auto; width: 55px; height: 35.5px; overflow: hidden; border: 1px solid rgba(240,248,255,.7); border-radius: 5px; background: #fff; box-shadow: 0 3px 12px rgba(0,0,0,.2); }
     .card-flag img { position: absolute; display: block; width: 118.63%; height: auto; max-width: none; left: -9.36%; top: -42.67%; }
     .card-overline span:last-child { color: #829cb7; font-size: .8em; letter-spacing: .09em; text-align: right; }
-    .card-main { display: grid; grid-template-columns: 76px 1fr; align-items: center; gap: clamp(16px, 3.5vw, 30px); margin-top: 18px; }
+    .card-main { display: grid; grid-template-columns: 92px 1fr; align-items: center; gap: clamp(14px, 3vw, 26px); margin-top: 14px; }
+    .card-photo-frame { display: grid; place-items: center; width: 88px; height: 110px; overflow: hidden; border: 1px solid rgba(159,206,249,.5); border-radius: 10px; color: #c7e4ff; background: radial-gradient(circle, rgba(115,177,234,.22), rgba(115,177,234,.025)); font-size: 31px; }
+    .card-photo-frame img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .card-photo-frame img[hidden] { display: none; }
     .card-seal { display: grid; place-items: center; width: 70px; height: 70px; border: 1px solid rgba(159,206,249,.5); border-radius: 50%; color: #c7e4ff; background: radial-gradient(circle, rgba(115,177,234,.22), rgba(115,177,234,.025)); font-size: 29px; }
     .card-name-label { color: #90abc6; font-size: 10px; letter-spacing: .15em; }
     .card-full-name { overflow: hidden; margin-top: 5px; color: #f3f8ff; font-size: clamp(20px, 4vw, 31px); font-weight: 750; text-overflow: ellipsis; white-space: nowrap; }
@@ -164,8 +171,8 @@
       #cardDialog[open] { position: fixed !important; inset: 0 !important; width: 100% !important; height: 100% !important; max-width: none !important; max-height: none !important; margin: 0 !important; padding: 0 !important; overflow: visible !important; border: 0 !important; border-radius: 0 !important; background: transparent !important; box-shadow: none !important; }
       #cardDialog .dialog-head, #cardDialog .card-actions, #cardDialog .card-disclaimer { display: none !important; }
       #identityCard { width: 85.6mm !important; height: 54mm !important; min-height: 0 !important; margin: 11mm auto !important; padding: 5mm !important; border-radius: 3mm !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-      #identityCard .card-main { grid-template-columns: 18mm 1fr; gap: 4mm; margin-top: 2mm; }
-      #identityCard .card-seal { width: 17mm; height: 17mm; font-size: 7mm; }
+      #identityCard .card-main { grid-template-columns: 20mm 1fr; gap: 3mm; margin-top: 2mm; }
+      #identityCard .card-photo-frame { width: 19mm; height: 23mm; border-radius: 2mm; font-size: 7mm; }
       #identityCard .card-details { gap: 2mm; margin-top: 2mm; }
       #identityCard .card-address { margin-top: 1.5mm; }
       #identityCard .card-footer { margin-top: 2mm; padding-top: 2mm; }
@@ -188,6 +195,10 @@
       .era-fields, .address-fields { grid-template-columns: 1fr 1fr; }
       .form-grid .wide { grid-column: auto; }
       .top-actions .button { flex: 1; }
+      .card-main { grid-template-columns: 70px 1fr; gap: 12px; margin-top: 8px; }
+      .card-photo-frame { width: 66px; height: 84px; }
+      .card-details { gap: 6px; margin-top: 10px; }
+      .card-footer { margin-top: 9px; padding-top: 7px; }
     }
   </style>
 </head>
@@ -346,6 +357,13 @@
           <label for="notes">备注</label>
           <textarea id="notes" maxlength="500" placeholder="只记录管理所需内容"></textarea>
         </div>
+        <div class="wide">
+          <label for="citizenPhotoFile">身份纪念卡照片（选填）</label>
+          <input id="citizenPhotoFile" type="file" accept="image/*">
+          <img id="citizenPhotoPreview" class="photo-preview" alt="身份纪念卡照片预览" hidden>
+          <div id="citizenPhotoStatus" class="photo-status" aria-live="polite">照片会加密保存，并显示在国民身份纪念卡上。</div>
+          <label class="photo-remove" id="removePhotoLabel" hidden><input id="removePhoto" type="checkbox">移除已保存的照片</label>
+        </div>
       </div>
       <div id="formMessage" class="message" role="status" aria-live="polite"></div>
       <div class="dialog-actions">
@@ -364,7 +382,7 @@
       <article id="identityCard" class="identity-card" aria-label="国民纪念卡预览">
         <div class="card-overline"><div class="card-brand"><span class="card-flag"><img src="/ROA_flag.png" alt="阿谢国国旗"></span><span>REPUBLIC OF AXIE</span></div><span>FICTIONAL WORLD-BUILDING PROJECT</span></div>
         <div class="card-main">
-          <div class="card-seal" aria-hidden="true">✦</div>
+          <div class="card-photo-frame" aria-label="国民照片"><img id="cardPhoto" alt="国民身份纪念卡照片" hidden><span id="cardPhotoFallback" aria-hidden="true">✦</span></div>
           <div>
             <div class="card-name-label">国民姓名 · CITIZEN</div>
             <div id="cardFullName" class="card-full-name">—</div>
@@ -388,14 +406,20 @@
     </div>
   </dialog>
 
-  <script src="/citizens/era-calendar.js"></script>
+    <script src="/citizens/era-calendar.js"></script>
+  <script src="/citizens/photo-tools.js"></script>
   <script>
     (() => {
       const API_BASE = window.AXIE_CITIZENS_API_BASE || "https://axie-citizens-admin-api.axie999666.workers.dev";
       const TOKEN_KEY = "axieCitizensAdminToken";
       const STATUS_LABELS = { active: "在籍", pending: "待审核", suspended: "暂停", resigned: "已退籍", rejected: "未通过" };
       const EraCalendar = window.AxieEraCalendar;
+      const PhotoTools = window.AxieCitizenPhoto;
       const state = { token: sessionStorage.getItem(TOKEN_KEY) || "", citizens: [], page: 1, pageSize: 20, total: 0, query: "", status: "all" };
+      let selectedPhotoDataUrl = "";
+      let photoLoadSequence = 0;
+      let photoSelectionSequence = 0;
+      let activeCardCitizenId = "";
       const byId = (id) => document.getElementById(id);
 
       function updateBirthDatePreview() {
@@ -564,6 +588,19 @@
       function openDialog(citizen = null) {
         byId("citizenForm").reset();
         byId("formMessage").textContent = "";
+        selectedPhotoDataUrl = "";
+        const photoRequest = ++photoLoadSequence;
+        photoSelectionSequence += 1;
+        byId("saveCitizen").disabled = false;
+        const photoPreview = byId("citizenPhotoPreview");
+        photoPreview.hidden = true;
+        photoPreview.removeAttribute("src");
+        byId("citizenPhotoStatus").className = "photo-status";
+        byId("citizenPhotoStatus").textContent = citizen?.has_photo
+          ? "正在读取已保存的照片…"
+          : "照片会加密保存，并显示在国民身份纪念卡上。";
+        byId("removePhotoLabel").hidden = !citizen?.has_photo;
+        byId("removePhoto").checked = false;
         byId("citizenId").value = citizen?.id || "";
         byId("dialogTitle").textContent = citizen ? "编辑国民档案" : "新增国民";
         byId("saveCitizen").textContent = citizen ? "保存修改" : "保存档案";
@@ -582,6 +619,21 @@
         byId("notes").value = citizen?.notes || "";
         byId("citizenDialog").showModal();
         byId("fullName").focus();
+        if (citizen?.has_photo) {
+          api(`/api/citizens/${citizen.id}/photo`)
+            .then((data) => {
+              if (photoRequest !== photoLoadSequence) return;
+              photoPreview.src = data.photo_data_url;
+              photoPreview.hidden = false;
+              byId("citizenPhotoStatus").textContent = "当前照片已保存；选择新照片即可替换。";
+            })
+            .catch((error) => {
+              if (photoRequest === photoLoadSequence) {
+                byId("citizenPhotoStatus").textContent = error.message;
+                byId("citizenPhotoStatus").className = "photo-status message error";
+              }
+            });
+        }
       }
 
       function openIdentityCard(citizen) {
@@ -595,7 +647,65 @@
           ? new Date(`${citizen.join_date}T00:00:00Z`)
           : citizen.created_at ? new Date(citizen.created_at) : new Date();
         byId("cardIssueDate").textContent = new Intl.DateTimeFormat("zh-CN", { dateStyle: "medium", timeZone: "UTC" }).format(issuedAt);
+        activeCardCitizenId = citizen.id;
+        const photo = byId("cardPhoto");
+        photo.hidden = true;
+        photo.removeAttribute("src");
+        byId("cardPhotoFallback").hidden = false;
+        const cardButtons = [byId("printCard"), byId("downloadCard")];
+        cardButtons.forEach((button) => { button.disabled = Boolean(citizen.has_photo); });
         byId("cardDialog").showModal();
+        if (citizen.has_photo) {
+          api(`/api/citizens/${citizen.id}/photo`)
+            .then((data) => {
+              if (activeCardCitizenId !== citizen.id) return;
+              photo.src = data.photo_data_url;
+              photo.hidden = false;
+              byId("cardPhotoFallback").hidden = true;
+            })
+            .catch((error) => setMessage("workspaceMessage", error.message, "error"))
+            .finally(() => {
+              if (activeCardCitizenId === citizen.id) cardButtons.forEach((button) => { button.disabled = false; });
+            });
+        }
+      }
+
+      async function handleCitizenPhotoSelection(event) {
+        const selection = ++photoSelectionSequence;
+        photoLoadSequence += 1;
+        const file = event.currentTarget.files?.[0];
+        const preview = byId("citizenPhotoPreview");
+        selectedPhotoDataUrl = "";
+        byId("removePhoto").checked = false;
+        if (!file) {
+          byId("saveCitizen").disabled = false;
+          preview.hidden = true;
+          preview.removeAttribute("src");
+          byId("citizenPhotoStatus").className = "photo-status";
+          byId("citizenPhotoStatus").textContent = "照片会加密保存，并显示在国民身份纪念卡上。";
+          return;
+        }
+        const saveButton = byId("saveCitizen");
+        saveButton.disabled = true;
+        byId("citizenPhotoStatus").className = "photo-status";
+        byId("citizenPhotoStatus").textContent = "正在缩小和压缩照片…";
+        try {
+          const preparedPhoto = await PhotoTools.toJpegDataUrl(file);
+          if (selection !== photoSelectionSequence) return;
+          selectedPhotoDataUrl = preparedPhoto;
+          preview.src = selectedPhotoDataUrl;
+          preview.hidden = false;
+          byId("citizenPhotoStatus").textContent = "照片已准备好，将加密保存并显示在身份纪念卡上。";
+        } catch (error) {
+          if (selection !== photoSelectionSequence) return;
+          event.currentTarget.value = "";
+          preview.hidden = true;
+          preview.removeAttribute("src");
+          byId("citizenPhotoStatus").textContent = error.message;
+          byId("citizenPhotoStatus").className = "photo-status message error";
+        } finally {
+          if (selection === photoSelectionSequence) saveButton.disabled = false;
+        }
       }
 
       function xmlEscape(value) {
@@ -669,15 +779,21 @@
         const addressLine1 = xmlEscape(addressChars.slice(0, 36).join(""));
         const addressLine2 = xmlEscape(addressChars.slice(36, 72).join("") + (addressChars.length > 72 ? "…" : ""));
         const flagDataUrl = await getCroppedFlagDataUrl();
+        const cardPhotoUrl = byId("cardPhoto").src.startsWith("data:image/jpeg;base64,")
+          ? byId("cardPhoto").src
+          : "";
+        const portraitSvg = cardPhotoUrl
+          ? `<image href="${cardPhotoUrl}" x="56" y="194" width="132" height="160" preserveAspectRatio="xMidYMid slice" clip-path="url(#photoClip)"/>`
+          : `<circle cx="122" cy="274" r="58" fill="url(#seal)" stroke="#9fcef9" stroke-opacity=".55" stroke-width="2"/><text x="122" y="295" text-anchor="middle" fill="#c7e4ff" font-family="serif" font-size="54">✦</text>`;
         const svg = `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1024" height="648" viewBox="0 0 1024 648" role="img" aria-labelledby="title desc">
 <title id="title">阿谢国国民纪念卡 · ${values.cardFullName}</title>
 <desc id="desc">架空世界观创作项目，非现实身份证件。</desc>
-<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#102b4c"/><stop offset=".58" stop-color="#0a1a30"/><stop offset="1" stop-color="#16436d"/></linearGradient><radialGradient id="seal"><stop stop-color="#73b1ea" stop-opacity=".28"/><stop offset="1" stop-color="#73b1ea" stop-opacity=".02"/></radialGradient><clipPath id="flagClip"><rect x="56" y="42" width="88" height="56" rx="6"/></clipPath></defs>
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#102b4c"/><stop offset=".58" stop-color="#0a1a30"/><stop offset="1" stop-color="#16436d"/></linearGradient><radialGradient id="seal"><stop stop-color="#73b1ea" stop-opacity=".28"/><stop offset="1" stop-color="#73b1ea" stop-opacity=".02"/></radialGradient><clipPath id="flagClip"><rect x="56" y="42" width="88" height="56" rx="6"/></clipPath><clipPath id="photoClip"><rect x="56" y="194" width="132" height="160" rx="14"/></clipPath></defs>
 <rect x="1" y="1" width="1022" height="646" rx="40" fill="url(#bg)" stroke="#b6d8f6" stroke-opacity=".48" stroke-width="2"/><rect x="16" y="16" width="992" height="616" rx="30" fill="none" stroke="#d8ecff" stroke-opacity=".08" stroke-width="3"/>
 <circle cx="897" cy="101" r="214" fill="none" stroke="#80bef7" stroke-opacity=".14" stroke-width="2"/><circle cx="897" cy="101" r="250" fill="none" stroke="#80bef7" stroke-opacity=".07" stroke-width="2"/>
 <image href="${flagDataUrl}" x="56" y="42" width="88" height="56" preserveAspectRatio="xMidYMid slice" clip-path="url(#flagClip)"/><rect x="56" y="42" width="88" height="56" rx="6" fill="none" stroke="#f0f8ff" stroke-opacity=".78" stroke-width="2"/><text x="166" y="78" fill="#afd2f4" font-family="Arial,sans-serif" font-size="22" letter-spacing="4">REPUBLIC OF AXIE</text><text x="968" y="77" text-anchor="end" fill="#829cb7" font-family="Arial,sans-serif" font-size="14" letter-spacing="2">FICTIONAL WORLD-BUILDING PROJECT</text>
-<circle cx="132" cy="294" r="62" fill="url(#seal)" stroke="#9fcef9" stroke-opacity=".55" stroke-width="2"/><text x="132" y="315" text-anchor="middle" fill="#c7e4ff" font-family="serif" font-size="58">✦</text>
+${portraitSvg}<rect x="56" y="194" width="132" height="160" rx="14" fill="none" stroke="#9fcef9" stroke-opacity=".65" stroke-width="2"/>
 <text x="238" y="248" fill="#90abc6" font-family="Arial,sans-serif" font-size="16" letter-spacing="3">国民姓名 · CITIZEN</text><text x="238" y="302" fill="#f3f8ff" font-family="sans-serif" font-size="42" font-weight="700">${values.cardFullName}</text><text x="238" y="340" fill="#adc5dd" font-family="sans-serif" font-size="20">${values.cardDisplayName}</text>
 <g font-family="sans-serif"><text x="56" y="427" fill="#819bb7" font-size="15" letter-spacing="2">国民编号 · ID</text><text x="56" y="462" fill="#9bcaff" font-family="monospace" font-size="20">${values.cardCitizenNo}</text><text x="410" y="427" fill="#819bb7" font-size="15" letter-spacing="2">出生日期 · BIRTH</text><text x="410" y="462" fill="#d7eaff" font-size="18">${values.cardBirthDate}</text><text x="768" y="427" fill="#819bb7" font-size="15" letter-spacing="2">国民状态 · STATUS</text><text x="768" y="462" fill="#d7eaff" font-size="20">${values.cardStatus}</text><text x="56" y="496" fill="#819bb7" font-size="15" letter-spacing="2">阿谢国住址 · ADDRESS</text><text x="270" y="496" fill="#d7eaff" font-size="16">${addressLine1}</text><text x="270" y="520" fill="#d7eaff" font-size="16">${addressLine2}</text></g>
 <path d="M56 540H968" stroke="#b1d5f7" stroke-opacity=".18"/><text x="56" y="574" fill="#d9c895" font-family="sans-serif" font-size="16">架空世界观创作项目 · 非现实身份证件</text><text x="968" y="574" text-anchor="end" fill="#8099b4" font-family="sans-serif" font-size="14">签发日期 ${values.cardIssueDate}</text>
@@ -719,6 +835,7 @@
 
       async function handleSave(event) {
         event.preventDefault();
+        if (byId("saveCitizen").disabled) return;
         const id = byId("citizenId").value;
         const payload = {
           full_name: byId("fullName").value,
@@ -729,6 +846,8 @@
           join_date: byId("joinDate").value,
           notes: byId("notes").value,
         };
+        if (selectedPhotoDataUrl) payload.photo_data_url = selectedPhotoDataUrl;
+        else if (byId("removePhoto").checked) payload.photo_data_url = "";
         const button = byId("saveCitizen");
         button.disabled = true;
         setMessage("formMessage", "正在保存…");
@@ -781,6 +900,39 @@
       updateBirthDatePreview();
       
       byId("citizenForm").addEventListener("submit", handleSave); byId("addButton").addEventListener("click", () => openDialog());
+      byId("citizenPhotoFile").addEventListener("change", handleCitizenPhotoSelection);
+      byId("removePhoto").addEventListener("change", () => {
+        if (!byId("removePhoto").checked) {
+          byId("citizenPhotoStatus").textContent = "已取消移除；已保存的照片会保留。";
+          const citizenId = byId("citizenId").value;
+          const citizen = state.citizens.find((record) => record.id === citizenId);
+          if (citizen?.has_photo) {
+            const request = ++photoLoadSequence;
+            api(`/api/citizens/${citizenId}/photo`)
+              .then((data) => {
+                if (request !== photoLoadSequence) return;
+                byId("citizenPhotoPreview").src = data.photo_data_url;
+                byId("citizenPhotoPreview").hidden = false;
+              })
+              .catch((error) => {
+                if (request === photoLoadSequence) {
+                  byId("citizenPhotoStatus").textContent = error.message;
+                  byId("citizenPhotoStatus").className = "photo-status message error";
+                }
+              });
+          }
+          return;
+        }
+        photoLoadSequence += 1;
+        photoSelectionSequence += 1;
+        byId("saveCitizen").disabled = false;
+        selectedPhotoDataUrl = "";
+        byId("citizenPhotoFile").value = "";
+        byId("citizenPhotoPreview").hidden = true;
+        byId("citizenPhotoPreview").removeAttribute("src");
+        byId("citizenPhotoStatus").className = "photo-status";
+        byId("citizenPhotoStatus").textContent = "保存时会移除已保存的照片。";
+      });
       byId("closeDialog").addEventListener("click", () => byId("citizenDialog").close());
       byId("cancelDialog").addEventListener("click", () => byId("citizenDialog").close());
       byId("logoutButton").addEventListener("click", () => signOut(true));

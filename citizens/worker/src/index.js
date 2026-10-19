@@ -8,6 +8,8 @@ const MAX_REGISTRATIONS_PER_WINDOW = 3;
 const VOTER_VERIFICATION_WINDOW_MS = 15 * 60 * 1000;
 const MAX_VOTER_VERIFICATION_ATTEMPTS = 12;
 const MAX_PROFILE_ROWS = 5000;
+const MAX_JSON_BODY_BYTES = 500_000;
+const MAX_CITIZEN_PHOTO_BYTES = 240_000;
 const VALID_STATUSES = new Set(["active", "pending", "suspended", "resigned", "rejected"]);
 const VALID_CITIES = new Set(["新阿谢市", "阿浩市", "明辉市", "阿陈市", "立京市", "新桃市"]);
 const VALID_DISTRICT_TYPES = new Set(["区", "镇", "郡", "村"]);
@@ -102,7 +104,11 @@ function randomId() {
 
 async function readJson(request) {
   try {
-    return await request.json();
+    const contentLength = Number(request.headers.get("Content-Length") || 0);
+    if (contentLength > MAX_JSON_BODY_BYTES) return null;
+    const text = await request.text();
+    if (encoder.encode(text).byteLength > MAX_JSON_BODY_BYTES) return null;
+    return JSON.parse(text);
   } catch {
     return null;
   }
@@ -208,6 +214,62 @@ async function decryptProfile(ciphertext, env, cachedKey = null) {
   return JSON.parse(new TextDecoder().decode(cleartext));
 }
 
+function validatePhotoDataUrl(value) {
+  if (value === undefined || value === null || value === "") return { value: "" };
+  if (typeof value !== "string" || value.length > Math.ceil(MAX_CITIZEN_PHOTO_BYTES * 4 / 3) + 64) {
+    return { error: "照片过大，请选择较小的图片。" };
+  }
+  const match = /^data:image\/jpeg;base64,([A-Za-z0-9+/]+={0,2})$/.exec(value);
+  if (!match) return { error: "照片格式无效，请重新选择图片。" };
+  let bytes;
+  try {
+    bytes = base64ToBytes(match[1]);
+  } catch {
+    return { error: "照片数据无效，请重新选择图片。" };
+  }
+  if (bytes.length < 4 || bytes.length > MAX_CITIZEN_PHOTO_BYTES) {
+    return { error: "照片压缩后仍然过大，请选择其他图片。" };
+  }
+  if (bytes[0] !== 0xff || bytes[1] !== 0xd8 || bytes[2] !== 0xff) {
+    return { error: "照片内容无效，请重新选择图片。" };
+  }
+  return { value };
+}
+
+async function encryptPhoto(dataUrl, env) {
+  const encoded = dataUrl.slice("data:image/jpeg;base64,".length);
+  const key = await getPiiKey(env);
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const encrypted = await crypto.subtle.encrypt(
+    { name: "AES-GCM", iv },
+    key,
+    base64ToBytes(encoded),
+  );
+  return `v1.${bytesToBase64(iv)}.${bytesToBase64(new Uint8Array(encrypted))}`;
+}
+
+async function decryptPhoto(ciphertext, env) {
+  if (!ciphertext || !ciphertext.startsWith("v1.")) throw new Error("Unsupported encrypted photo format");
+  const [, encodedIv, encodedCiphertext] = ciphertext.split(".");
+  const cleartext = await crypto.subtle.decrypt(
+    { name: "AES-GCM", iv: base64ToBytes(encodedIv) },
+    await getPiiKey(env),
+    base64ToBytes(encodedCiphertext),
+  );
+  return `data:image/jpeg;base64,${bytesToBase64(new Uint8Array(cleartext))}`;
+}
+
+async function preparePhotoUpsert(env, citizenId, dataUrl, updatedAt) {
+  const encryptedPhoto = await encryptPhoto(dataUrl, env);
+  return env.DB.prepare(
+    `INSERT INTO citizen_photos (citizen_id, photo_ciphertext, updated_at)
+     VALUES (?, ?, ?)
+     ON CONFLICT(citizen_id) DO UPDATE SET
+       photo_ciphertext = excluded.photo_ciphertext,
+       updated_at = excluded.updated_at`,
+  ).bind(citizenId, encryptedPhoto, updatedAt);
+}
+
 function validateBirthDate(value, env) {
   if (!value || typeof value !== "object" || Array.isArray(value)) {
     return { error: "请选择出生日期。" };
@@ -251,9 +313,11 @@ function validateCitizen(input, env) {
   const joinDate = cleanString(input.join_date, 10);
   const notes = cleanString(input.notes, 500);
   const status = cleanString(input.status || "active", 20);
+  const photo = validatePhotoDataUrl(input.photo_data_url);
 
   if (!fullName) return { error: "请填写姓名。" };
   if (address.error) return address;
+  if (photo.error) return photo;
   if (input.full_name && input.full_name.length > 100) {
     return { error: "姓名不能超过 100 个字符。" };
   }
@@ -291,6 +355,7 @@ function validateCitizen(input, env) {
       status,
       join_date: joinDate,
       notes,
+      photo_data_url: photo.value,
     },
   };
 }
@@ -415,7 +480,8 @@ async function filteredProfiles(url, env) {
     .bind(...(filters.status ? [filters.status] : []))
     .first();
   const rows = await env.DB.prepare(
-    `SELECT id, citizen_no, profile_ciphertext, status, created_at, updated_at
+    `SELECT id, citizen_no, profile_ciphertext, status, created_at, updated_at,
+       EXISTS (SELECT 1 FROM citizen_photos AS photo WHERE photo.citizen_id = citizens.id) AS has_photo
      FROM citizens ${where}
      ORDER BY updated_at DESC, id ASC
      LIMIT ?`,
@@ -429,6 +495,7 @@ async function filteredProfiles(url, env) {
     status: row.status,
     created_at: row.created_at,
     updated_at: row.updated_at,
+    has_photo: Number(row.has_photo) === 1,
     ...await decryptProfile(row.profile_ciphertext, env, piiKey),
   })));
   const needle = filters.search.toLocaleLowerCase("zh-CN");
@@ -620,11 +687,13 @@ async function registerCitizen(request, env, cors) {
   if (validated.error) return jsonWithCors({ error: validated.error }, 400, cors);
   const now = Date.now();
   const id = randomId();
-  const { status, ...profile } = validated.value;
+  const { status, photo_data_url: photoDataUrl, ...profile } = validated.value;
   const ciphertext = await encryptProfile(profile, env);
-  await env.DB.prepare(
+  const statements = [env.DB.prepare(
     "INSERT INTO citizens (id, citizen_no, profile_ciphertext, status, created_at, updated_at) VALUES (?, NULL, ?, 'pending', ?, ?)",
-  ).bind(id, ciphertext, now, now).run();
+  ).bind(id, ciphertext, now, now)];
+  if (photoDataUrl) statements.push(await preparePhotoUpsert(env, id, photoDataUrl, now));
+  await env.DB.batch(statements);
   await recordAudit(env, { tokenHash: rate.fingerprint }, "public_registration", id);
   return jsonWithCors({
     ok: true,
@@ -640,29 +709,29 @@ async function createCitizen(request, env, session, cors) {
   const id = randomId();
   const status = validated.value.status;
   const citizenNo = status === "active" ? makeCitizenNo(now) : null;
-  const { status: ignoredStatus, ...profile } = validated.value;
+  const { status: ignoredStatus, photo_data_url: photoDataUrl, ...profile } = validated.value;
   const ciphertext = await encryptProfile(profile, env);
   try {
-    await env.DB.prepare(
+    const statements = [env.DB.prepare(
       `INSERT INTO citizens (id, citizen_no, profile_ciphertext, status, created_at, updated_at)
        VALUES (?, ?, ?, ?, ?, ?)`,
-    )
-      .bind(
+    ).bind(
         id,
         citizenNo,
         ciphertext,
         status,
         now,
         now,
-      )
-      .run();
+      )];
+    if (photoDataUrl) statements.push(await preparePhotoUpsert(env, id, photoDataUrl, now));
+    await env.DB.batch(statements);
   } catch (error) {
     console.error("Citizen create failed", error);
     return jsonWithCors({ error: "保存国民档案失败，请稍后重试。" }, 500, cors);
   }
   await recordAudit(env, session, "create_citizen", id);
   const row = await env.DB.prepare("SELECT * FROM citizens WHERE id = ?").bind(id).first();
-  const citizen = { ...row, ...await decryptProfile(row.profile_ciphertext, env) };
+  const citizen = { ...row, ...await decryptProfile(row.profile_ciphertext, env), has_photo: Boolean(photoDataUrl) };
   return jsonWithCors({ citizen }, 201, cors);
 }
 
@@ -678,30 +747,48 @@ async function updateCitizen(request, env, session, cors, citizenId) {
   const status = validated.value.status;
   const citizenNo = existing.citizen_no || (status === "active" ? makeCitizenNo(updatedAt) : null);
   const approvedProfile = { ...validated.value };
+  const photoWasSubmitted = Object.hasOwn(body, "photo_data_url");
+  const photoDataUrl = approvedProfile.photo_data_url;
   if (existing.status === "pending" && status === "active" && !approvedProfile.join_date) {
     approvedProfile.join_date = new Date(updatedAt).toISOString().slice(0, 10);
   }
-  const { status: ignoredStatus, ...profile } = approvedProfile;
+  const { status: ignoredStatus, photo_data_url: ignoredPhoto, ...profile } = approvedProfile;
   const ciphertext = await encryptProfile(profile, env);
-  await env.DB.prepare(
+  const statements = [env.DB.prepare(
     `UPDATE citizens
      SET citizen_no = ?, profile_ciphertext = ?, status = ?, updated_at = ?
      WHERE id = ?`,
-  )
-    .bind(
+  ).bind(
       citizenNo,
       ciphertext,
       status,
       updatedAt,
       citizenId,
-    )
-    .run();
+    )];
+  if (photoWasSubmitted) {
+    if (photoDataUrl) {
+      statements.push(await preparePhotoUpsert(env, citizenId, photoDataUrl, updatedAt));
+    } else {
+      statements.push(env.DB.prepare("DELETE FROM citizen_photos WHERE citizen_id = ?").bind(citizenId));
+    }
+  }
+  await env.DB.batch(statements);
   await recordAudit(env, session, existing.status === status ? "update_citizen" : "change_status", citizenId);
   const row = await env.DB.prepare("SELECT * FROM citizens WHERE id = ?")
     .bind(citizenId)
     .first();
   const citizen = { ...row, ...await decryptProfile(row.profile_ciphertext, env) };
   return jsonWithCors({ citizen }, 200, cors);
+}
+
+async function getCitizenPhoto(citizenId, env, cors) {
+  const row = await env.DB.prepare(
+    "SELECT photo_ciphertext FROM citizen_photos WHERE citizen_id = ?",
+  )
+    .bind(citizenId)
+    .first();
+  if (!row) return jsonWithCors({ error: "该档案没有上传照片。" }, 404, cors);
+  return jsonWithCors({ photo_data_url: await decryptPhoto(row.photo_ciphertext, env) }, 200, cors);
 }
 
 async function handleRequest(request, env) {
@@ -754,6 +841,10 @@ async function handleRequest(request, env) {
   }
   if (path === "/api/citizens" && request.method === "POST") {
     return createCitizen(request, env, session, cors);
+  }
+  const photoMatch = /^\/api\/citizens\/([0-9a-f-]{36})\/photo$/i.exec(path);
+  if (photoMatch && request.method === "GET") {
+    return getCitizenPhoto(photoMatch[1], env, cors);
   }
   const citizenMatch = /^\/api\/citizens\/([0-9a-f-]{36})$/i.exec(path);
   if (citizenMatch && request.method === "PUT") {

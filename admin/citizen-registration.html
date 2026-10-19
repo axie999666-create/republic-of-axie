@@ -31,6 +31,8 @@
     .address-extra { grid-column:1/-1; }
     .era-preview { min-height:20px; margin-top:7px; color:#9bcaff; font-size:12px; }
     .address-preview { min-height:20px; margin-top:7px; color:#9bcaff; font-size:12px; line-height:1.6; overflow-wrap:anywhere; }
+    .photo-preview { display:block; width:96px; height:120px; margin-top:9px; border:1px solid rgba(150,190,230,.25); border-radius:10px; background:rgba(5,18,34,.65); object-fit:cover; }
+    .photo-status { margin-top:7px; color:var(--muted); font-size:12px; }
     .hint { margin:6px 0 0; color:#849ab3; font-size:11px; line-height:1.55; }
     .privacy { margin-top:20px; padding:14px; border:1px solid rgba(242,194,107,.2); border-radius:12px; background:rgba(242,194,107,.055); color:#dacb9f; font-size:12px; line-height:1.75; }
     .consent { display:flex; align-items:flex-start; gap:10px; margin:17px 0 4px; color:#d1deed; font-size:12px; line-height:1.65; }
@@ -84,24 +86,33 @@
         <div class="address-preview" id="addressPreview" aria-live="polite"></div>
         <p class="hint">住址会按城市、区划、街道/乡、道路方位和门牌号自动组合；住在公寓时可补充楼栋与室号。请填写架空设定中的住址，不要填写现实住址。</p>
 
+        <label for="photoFile">身份纪念卡照片（选填）</label>
+        <input id="photoFile" type="file" accept="image/*">
+        <img id="photoPreview" class="photo-preview" alt="身份纪念卡照片预览" hidden>
+        <div id="photoStatus" class="photo-status" aria-live="polite">可上传一张照片；提交前会自动缩小和压缩。</div>
+
         <label class="honeypot" aria-hidden="true" for="website">网站</label>
         <input class="honeypot" id="website" name="website" tabindex="-1" autocomplete="off">
 
         <div class="privacy">
-          姓名、出生日期和阿谢国住址会加密保存在国民登记数据库中，仅授权管理员可查看，用于审核和管理阿谢国国民身份。此表属于架空世界观项目；请勿填写身份证号、现实住址或与登记无关的敏感信息。申请通过后，姓名、出生日期和阿谢国住址会显示在管理员生成的身份纪念卡上。
+          姓名、出生日期、阿谢国住址和照片会加密保存在国民登记数据库中，仅授权管理员可查看，用于审核和制作身份纪念卡。此表属于架空世界观项目；请勿填写身份证号、现实住址或上传现实证件照片。申请通过后，照片会显示在国民身份纪念卡上。
         </div>
-        <label class="consent"><input id="privacyAcknowledged" type="checkbox" required><span>我已阅读上面的资料使用说明，同意提交这些资料用于阿谢国国民登记及审核。</span></label>
+        <label class="consent"><input id="privacyAcknowledged" type="checkbox" required><span>我已阅读上面的资料使用说明，同意提交这些资料用于阿谢国国民登记、审核及身份纪念卡制作。</span></label>
         <button id="submitButton" class="button primary" type="submit">提交登记申请</button>
       </form>
       <div id="formMessage" class="message" role="status" aria-live="polite"></div>
     </section>
   </main>
   <script src="/citizens/era-calendar.js"></script>
+  <script src="/citizens/photo-tools.js"></script>
   <script>
     (() => {
       const API_BASE = window.AXIE_CITIZENS_API_BASE || "https://axie-citizens-admin-api.axie999666.workers.dev";
       const byId = (id) => document.getElementById(id);
       const ERA = window.AxieEraCalendar;
+      const PhotoTools = window.AxieCitizenPhoto;
+      let photoDataUrl = "";
+      let photoSelectionSequence = 0;
       const eraDate = () => ERA.read(byId("birthEra"), byId("birthYear"), byId("birthMonth"), byId("birthDay"));
 
       function updateBirthDatePreview() {
@@ -148,6 +159,43 @@
       });
       updateAddressPreview();
 
+      byId("photoFile").addEventListener("change", async (event) => {
+        const selection = ++photoSelectionSequence;
+        const file = event.currentTarget.files?.[0];
+        const preview = byId("photoPreview");
+        const submitButton = byId("submitButton");
+        if (!file) {
+          submitButton.disabled = false;
+          photoDataUrl = "";
+          preview.hidden = true;
+          preview.removeAttribute("src");
+          byId("photoStatus").className = "photo-status";
+          byId("photoStatus").textContent = "可上传一张照片；提交前会自动缩小和压缩。";
+          return;
+        }
+        submitButton.disabled = true;
+        byId("photoStatus").className = "photo-status";
+        byId("photoStatus").textContent = "正在缩小和压缩照片…";
+        try {
+          const preparedPhoto = await PhotoTools.toJpegDataUrl(file);
+          if (selection !== photoSelectionSequence) return;
+          photoDataUrl = preparedPhoto;
+          preview.src = photoDataUrl;
+          preview.hidden = false;
+          byId("photoStatus").textContent = "照片已准备好，将加密保存并显示在身份纪念卡上。";
+        } catch (error) {
+          if (selection !== photoSelectionSequence) return;
+          photoDataUrl = "";
+          event.currentTarget.value = "";
+          preview.hidden = true;
+          preview.removeAttribute("src");
+          byId("photoStatus").textContent = error.message;
+          byId("photoStatus").className = "photo-status message error";
+        } finally {
+          if (selection === photoSelectionSequence) submitButton.disabled = false;
+        }
+      });
+
       const updateCurrentEra = () => {
       const currentAxieYear = currentGregorianYear - ERA.BASE_GREGORIAN_YEAR + 1;
       byId("currentEra").textContent = `当前纪年：阿谢${currentAxieYear === 1 ? "元年" : `${currentAxieYear}年`}（2024 年为阿谢元年）`; }; updateCurrentEra(); window.setInterval(updateCurrentEra, 60_000);
@@ -173,6 +221,7 @@
               full_name: byId("fullName").value,
               birth_date: date,
               address: readAddressParts(),
+              photo_data_url: photoDataUrl,
               privacy_acknowledged: byId("privacyAcknowledged").checked,
               website: byId("website").value,
             }),
