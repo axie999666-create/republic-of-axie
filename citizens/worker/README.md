@@ -23,7 +23,7 @@
 - Worker 已部署到 https://axie-citizens-admin-api.axie999666.workers.dev，/api/health 返回正常。
 - ADMIN_PASSWORD 和 PII_ENCRYPTION_KEY 已由管理员通过 Wrangler 上传；不会在仓库或文档中保存密钥值。
 - 国民登记与管理页面已合并到 main 并由 GitHub Pages 发布。
-- 迁移 `0003_citizen_photos.sql` 为国民照片创建独立加密存储表；部署照片功能前须应用未执行的 D1 迁移。
+- 迁移 `0003_citizen_photos.sql` 已应用到生产 D1；照片上传和身份卡展示已部署。
 - 总统与副总统投票身份核验已部署；0002 迁移已应用，国民管理 Worker 与 AXNews 投票 Worker 已配置相同的 VOTER_VERIFY_SECRET。
 
 ## 部署后检查
