@@ -71,15 +71,15 @@
         <label for="addressCity">在阿谢国的住址 <span aria-hidden="true">*</span></label>
         <div class="address-fields">
           <select id="addressCity" required aria-label="城市"><option value="">选择城市</option><option>新阿谢市</option><option>阿浩市</option><option>明辉市</option><option>阿陈市</option><option>立京市</option><option>新桃市</option></select>
-          <input id="addressDistrict" maxlength="50" required autocomplete="address-level2" aria-label="区划名称" placeholder="区划名称，如青云">
+          <input id="addressDistrict" maxlength="50" required autocomplete="address-level2" aria-label="区划名称" placeholder="区划名称">
           <select id="addressDistrictType" required aria-label="区划类型"><option value="">区/镇/郡/村</option><option>区</option><option>镇</option><option>郡</option><option>村</option></select>
-          <input id="addressStreet" maxlength="50" required autocomplete="address-level3" aria-label="街道或乡名称" placeholder="街道/乡名称，如安居">
+          <input id="addressStreet" maxlength="50" required autocomplete="address-level3" aria-label="街道或乡名称" placeholder="街道/乡名称">
           <select id="addressStreetType" required aria-label="街道类型"><option value="">街道/乡</option><option>街道</option><option>乡</option></select>
-          <input id="addressRoad" maxlength="50" required autocomplete="off" aria-label="道路名称" placeholder="道路名称，如长虹">
+          <input id="addressRoad" maxlength="50" required autocomplete="off" aria-label="道路名称" placeholder="道路名称">
           <select id="addressRoadType" required aria-label="道路类型"><option value="">路/大道</option><option>路</option><option>大道</option></select>
           <select id="addressSide" required aria-label="道路方位"><option value="">东/西/南/北侧</option><option>东</option><option>西</option><option>南</option><option>北</option></select>
-          <input id="addressNumber" maxlength="24" required autocomplete="off" aria-label="门牌号" placeholder="门牌号，如 12-3">
-          <input class="address-extra" id="addressApartment" maxlength="80" autocomplete="off" aria-label="公寓、楼栋或室号（选填）" placeholder="公寓 / 楼栋 / 室号（选填），如星海公寓3栋1202室">
+          <input id="addressNumber" maxlength="24" required autocomplete="off" aria-label="门牌号" placeholder="门牌号">
+          <input class="address-extra" id="addressApartment" maxlength="80" autocomplete="off" aria-label="公寓、楼栋或室号（选填）" placeholder="公寓 / 楼栋 / 室号（选填）">
         </div>
         <div class="address-preview" id="addressPreview" aria-live="polite"></div>
         <p class="hint">住址会按城市、区划、街道/乡、道路方位和门牌号自动组合；住在公寓时可补充楼栋与室号。请填写架空设定中的住址，不要填写现实住址。</p>
@@ -148,9 +148,9 @@
       });
       updateAddressPreview();
 
-      const currentGregorianYear = new Date().getFullYear();
+      const updateCurrentEra = () => {
       const currentAxieYear = currentGregorianYear - ERA.BASE_GREGORIAN_YEAR + 1;
-      byId("currentEra").textContent = `当前纪年：阿谢${currentAxieYear === 1 ? "元年" : `${currentAxieYear}年`}（2024 年为阿谢元年）`;
+      byId("currentEra").textContent = `当前纪年：阿谢${currentAxieYear === 1 ? "元年" : `${currentAxieYear}年`}（2024 年为阿谢元年）`; }; updateCurrentEra(); window.setInterval(updateCurrentEra, 60_000);
 
       byId("registrationForm").addEventListener("submit", async (event) => {
         event.preventDefault();
