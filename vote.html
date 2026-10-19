@@ -700,6 +700,62 @@
     }
 
 
+    .voter-identity-fields {
+
+      display: grid;
+
+      gap: 12px;
+
+      margin-top: 18px;
+
+    }
+
+
+    .voter-identity-hint {
+
+      margin: 14px 0 0;
+
+      color: #66748a;
+
+      font-size: 12px;
+
+      line-height: 1.6;
+
+    }
+
+
+    .voter-identity-fields label {
+
+      display: block;
+
+      margin-bottom: 6px;
+
+      color: #102a4c;
+
+      font-size: 13px;
+
+      font-weight: 650;
+
+    }
+
+
+    .voter-identity-fields input {
+
+      width: 100%;
+
+      border: 1px solid #cbd5e1;
+
+      border-radius: 8px;
+
+      padding: 10px 12px;
+
+      color: #102a4c;
+
+      background: #fff;
+
+    }
+
+
     .confirm-buttons {
 
       display: flex;
@@ -1053,120 +1109,27 @@
     window.AXNEWS_API_BASE;
 
 
-  /*
-   * 浏览器匿名投票识别码。
-
-   * 该 ID 只用于服务器端的重复投票检测。
-   *
-   * Worker 实际保存的是经过 HMAC 处理后的 voterKey，
-   * 不会直接把这里的 voterId 写入 votes.json。
-   */
-
-  const VOTER_ID_STORAGE_KEY =
+  const LEGACY_VOTER_ID_STORAGE_KEY =
     "axie-election-voter-id";
 
 
-  /* =========================================================
-     获取浏览器 voterId
-  ========================================================= */
-
-  function createFallbackVoterId() {
-
-    return (
-      "VOTER-" +
-      Date.now() +
-      "-" +
-      Math.random()
-        .toString(36)
-        .slice(2, 14) +
-      "-" +
-      Math.random()
-        .toString(36)
-        .slice(2, 14)
-    );
-
-  }
-
-
-  function getVoterId() {
-
-    let voterId = null;
-
-
-    /*
-     * 尝试从 localStorage 读取。
-     */
+  function getLegacyVoterId() {
 
     try {
 
-      voterId =
-        localStorage.getItem(
-          VOTER_ID_STORAGE_KEY
-        );
+      let value = localStorage.getItem(LEGACY_VOTER_ID_STORAGE_KEY);
+      if (!value) {
+        value = window.crypto?.randomUUID?.()
+          || `VOTER-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+        localStorage.setItem(LEGACY_VOTER_ID_STORAGE_KEY, value);
+      }
+      return value;
+
+    } catch {
+
+      return "";
 
     }
-
-    catch (error) {
-
-      console.warn(
-        "无法读取 localStorage，将使用临时 voterId。",
-        error
-      );
-
-    }
-
-
-    /*
-     * 没有 voterId 时生成新的。
-     */
-
-    if (!voterId) {
-
-      if (
-        window.crypto &&
-        typeof window.crypto.randomUUID ===
-          "function"
-      ) {
-
-        voterId =
-          window.crypto.randomUUID();
-
-      }
-
-      else {
-
-        voterId =
-          createFallbackVoterId();
-
-      }
-
-
-      /*
-       * 尝试保存。
-       */
-
-      try {
-
-        localStorage.setItem(
-          VOTER_ID_STORAGE_KEY,
-          voterId
-        );
-
-      }
-
-      catch (error) {
-
-        console.warn(
-          "无法保存 voterId。",
-          error
-        );
-
-      }
-
-    }
-
-
-    return voterId;
 
   }
 
@@ -2389,6 +2352,18 @@
       );
 
 
+    const voterFullName =
+      document.getElementById(
+        "voterFullName"
+      );
+
+
+    const voterCitizenNo =
+      document.getElementById(
+        "voterCitizenNo"
+      );
+
+
     const submitButton =
       document.getElementById(
         "submitButton"
@@ -2405,6 +2380,8 @@
       !confirmation ||
       !confirmationName ||
       !confirmationParty ||
+      !voterFullName ||
+      !voterCitizenNo ||
       !submitButton ||
       !cancelButton
     ) {
@@ -2493,6 +2470,27 @@
         }
 
 
+        const fullName =
+          voterFullName.value.trim();
+
+
+        const citizenNo =
+          voterCitizenNo.value.trim();
+
+
+        const legacyVoterId =
+          getLegacyVoterId();
+
+
+        if (!fullName || !citizenNo) {
+
+          showVoteError("请输入姓名和国民 ID。");
+
+          return;
+
+        }
+
+
         confirmationName.textContent =
           `候选人 ${
             candidate.candidateNo
@@ -2575,6 +2573,9 @@
         confirmation.classList.remove(
           "show"
         );
+
+        voterFullName.value = "";
+        voterCitizenNo.value = "";
 
       }
     );
@@ -2723,14 +2724,6 @@
         try {
 
           /*
-           * 获取当前浏览器的匿名 voterId。
-           */
-
-          const voterId =
-            getVoterId();
-
-
-          /*
            * ===================================================
            * 向 Cloudflare Worker 提交真实选票。
            * ===================================================
@@ -2760,8 +2753,11 @@
                     candidateId:
                       candidate.candidateId,
 
-                    voterId:
-                      voterId
+                    fullName,
+
+                    citizenNo,
+
+                    legacyVoterId
 
                   })
 
@@ -2837,6 +2833,9 @@
           confirmation.classList.remove(
             "show"
           );
+
+          voterFullName.value = "";
+          voterCitizenNo.value = "";
 
 
           const successResult =
@@ -3514,6 +3513,25 @@
             id="confirmationParty"
             class="confirmation-party"
           ></div>
+
+
+          <div class="voter-identity-fields">
+
+            <div>
+              <label for="voterFullName">国民姓名</label>
+              <input id="voterFullName" maxlength="100" autocomplete="name" required>
+            </div>
+
+            <div>
+              <label for="voterCitizenNo">国民 ID</label>
+              <input id="voterCitizenNo" maxlength="40" autocomplete="off" required>
+            </div>
+
+          </div>
+
+          <p class="voter-identity-hint">
+            请填写与已生效国民档案一致的姓名和 ID。核验通过后才会提交选票；选票记录不保存姓名和原始 ID。
+          </p>
 
 
           <div
