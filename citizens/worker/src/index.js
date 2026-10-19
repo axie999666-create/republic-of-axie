@@ -5,6 +5,8 @@ const LOGIN_LOCK_MS = 15 * 60 * 1000;
 const MAX_LOGIN_FAILURES = 5;
 const REGISTRATION_WINDOW_MS = 60 * 60 * 1000;
 const MAX_REGISTRATIONS_PER_WINDOW = 3;
+const VOTER_VERIFICATION_WINDOW_MS = 15 * 60 * 1000;
+const MAX_VOTER_VERIFICATION_ATTEMPTS = 12;
 const MAX_PROFILE_ROWS = 5000;
 const VALID_STATUSES = new Set(["active", "pending", "suspended", "resigned", "rejected"]);
 const VALID_CITIES = new Set(["新阿谢市", "阿浩市", "明辉市", "阿陈市", "立京市", "新桃市"]);
@@ -535,6 +537,70 @@ async function checkRegistrationRate(request, env) {
   return { fingerprint };
 }
 
+async function verifyVoterIdentity(request, env, cors) {
+  if (!env.VOTER_VERIFY_SECRET || !env.PII_ENCRYPTION_KEY) {
+    return jsonWithCors({ error: "投票身份核验服务尚未配置。" }, 503, cors);
+  }
+
+  const authorization = request.headers.get("Authorization") || "";
+  if (!constantTimeEqual(authorization, `Bearer ${env.VOTER_VERIFY_SECRET}`)) {
+    return jsonWithCors({ error: "投票身份核验凭证无效。" }, 401, cors);
+  }
+
+  const body = await readJson(request);
+  const suppliedName = cleanString(body?.full_name, 100)
+    .normalize("NFKC")
+    .replace(/\s+/g, " ");
+  const citizenNo = cleanString(body?.citizen_no, 40).toUpperCase();
+  if (!suppliedName || !citizenNo) {
+    return jsonWithCors({ error: "请输入姓名和国民 ID。" }, 400, cors);
+  }
+
+  const clientIp = cleanString(
+    request.headers.get("X-Client-IP") || request.headers.get("CF-Connecting-IP"),
+    128,
+  ) || "unknown";
+  const ipHash = await hmacHex(env.PII_ENCRYPTION_KEY, `voter-verification:${clientIp}`);
+  const now = Date.now();
+  await env.DB.prepare("DELETE FROM voter_verification_limits WHERE window_started_at < ?")
+    .bind(now - 24 * VOTER_VERIFICATION_WINDOW_MS)
+    .run();
+
+  const previous = await env.DB.prepare(
+    "SELECT attempt_count, window_started_at FROM voter_verification_limits WHERE ip_hash = ?",
+  ).bind(ipHash).first();
+  const sameWindow = previous && now - previous.window_started_at < VOTER_VERIFICATION_WINDOW_MS;
+  const attemptCount = sameWindow ? previous.attempt_count + 1 : 1;
+  const windowStartedAt = sameWindow ? previous.window_started_at : now;
+  await env.DB.prepare(
+    `INSERT INTO voter_verification_limits (ip_hash, attempt_count, window_started_at)
+     VALUES (?, ?, ?)
+     ON CONFLICT(ip_hash) DO UPDATE SET
+       attempt_count = excluded.attempt_count,
+       window_started_at = excluded.window_started_at`,
+  ).bind(ipHash, attemptCount, windowStartedAt).run();
+  if (attemptCount > MAX_VOTER_VERIFICATION_ATTEMPTS) {
+    return jsonWithCors({ error: "尝试次数过多，请稍后再试。" }, 429, cors);
+  }
+
+  const record = await env.DB.prepare(
+    "SELECT profile_ciphertext FROM citizens WHERE citizen_no = ? AND status = 'active' LIMIT 1",
+  ).bind(citizenNo).first();
+  if (!record) {
+    return jsonWithCors({ error: "姓名或国民 ID 不匹配，或国民资格未生效。" }, 401, cors);
+  }
+
+  const profile = await decryptProfile(record.profile_ciphertext, env);
+  const storedName = cleanString(profile.full_name, 100)
+    .normalize("NFKC")
+    .replace(/\s+/g, " ");
+  if (storedName !== suppliedName) {
+    return jsonWithCors({ error: "姓名或国民 ID 不匹配，或国民资格未生效。" }, 401, cors);
+  }
+
+  return jsonWithCors({ eligible: true }, 200, cors);
+}
+
 async function registerCitizen(request, env, cors) {
   if (!env.DB) return jsonWithCors({ error: "登记服务暂不可用。" }, 503, cors);
   const rate = await checkRegistrationRate(request, env);
@@ -660,6 +726,9 @@ async function handleRequest(request, env) {
 
   const url = new URL(request.url);
   const path = url.pathname.replace(/\/$/, "") || "/";
+  if (path === "/api/internal/verify-voter" && request.method === "POST") {
+    return verifyVoterIdentity(request, env, cors);
+  }
   if (path === "/api/auth/logout" && request.method === "POST") {
     const session = await getSession(request, env);
     if (session) {
