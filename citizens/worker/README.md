@@ -13,6 +13,7 @@
 - 导出当前筛选结果 CSV，并在 D1 审计表记录创建、登记、编辑、状态变更和导出操作。
 - 每份已批准档案可生成阿谢国国民纪念卡，卡片包括出生日期和阿谢国住址；可打印或下载 SVG。
 - 姓名、称呼、出生日期、结构化地址和备注以 AES-GCM 密文写入 D1；API 仅允许配置的前端来源，不公开名册或个人记录查询接口。
+- 总统与副总统投票将校验在籍国民的姓名和国民 ID；投票文件只保存由共享密钥生成的不可逆标识，不保存姓名或原始 ID。
 
 自助登记页面为 https://republic-of-axie.org/admin/citizen-registration.html。本系统用于架空世界观资料；请填写设定中的姓名、住址，不要填写现实住址、证件号、金融资料或其他不必要的真实个人信息。身份卡和管理员导出的 CSV 会包含出生日期与住址，需作为内部资料妥善保管。
 
@@ -21,8 +22,35 @@
 - Cloudflare D1 数据库 axie-citizens 已创建在 APAC，初始化迁移已应用；数据库 ID 已写入 wrangler.jsonc。
 - Worker 已部署到 https://axie-citizens-admin-api.axie999666.workers.dev，/api/health 返回正常。
 - ADMIN_PASSWORD 和 PII_ENCRYPTION_KEY 已由管理员通过 Wrangler 上传；不会在仓库或文档中保存密钥值。
-- 国民管理页面仍在 codex/citizen-management 功能分支；合并到 main 并由 Pages 发布前，正式站的登记页面不会出现。
+- 国民登记与管理页面已合并到 main 并由 GitHub Pages 发布。
+- 总统与副总统投票身份核验仍待发布；需要先应用 0002 迁移，并在国民管理 Worker 与 AXNews 投票 Worker 配置相同的 VOTER_VERIFY_SECRET。
 
 ## 部署后检查
 
 执行 curl https://axie-citizens-admin-api.axie999666.workers.dev/api/health 检查 Worker。然后访问自助登记页，或在 https://republic-of-axie.org/admin/citizens.html 登录。Worker 使用的 ALLOWED_ORIGINS 已允许正式站和 Wrangler 本地预览地址。
+
+## 投票身份核验部署
+
+投票验证接口只接受 AXNews 投票 Worker 的共享密钥。管理员须生成一个独立随机密钥并保存在密码管理器中，然后在两个 Worker 的 Wrangler secret 提示中输入完全相同的值；不要把密钥写入代码或聊天。
+
+先对国民管理 D1 应用迁移，再在 citizens/worker 目录和 workers/axnews-admin-api 目录分别执行：
+
+```sh
+pnpm dlx wrangler secret put VOTER_VERIFY_SECRET
+```
+
+确认两个 Worker 都设置好该密钥后，先部署国民管理 Worker，再部署 workers/axnews-admin-api 中的投票 Worker。迁移命令为：
+
+```sh
+pnpm dlx wrangler d1 migrations apply axie-citizens --remote
+```
+
+部署时分别在各自目录执行：
+
+```sh
+pnpm dlx wrangler deploy
+```
+
+投票 Worker 原先接受浏览器生成的匿名 voterId；新版本会在服务端校验姓名、国民 ID 和在籍状态，并以不可逆 HMAC 标识做重复投票检查。身份核验 Worker 或共享密钥未就绪时，投票 API 会拒绝提交。
+
+已有投票记录使用的是浏览器匿名 ID，无法反查到国民档案。新版本会尽量通过同一浏览器保存的旧 ID 拦截重复提交，但换设备或清除浏览器数据的旧投票者仍可能再次投票。正式启用前，需要决定如何处理当前已经进行中的副总统选举及其既有选票；代码不会自动删除或重置选票。
