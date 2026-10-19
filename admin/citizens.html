@@ -219,7 +219,7 @@
       <div id="loginMessage" class="message" role="status" aria-live="polite"></div>
       <p class="privacy-note">出生日期和阿谢国住址加密保存在独立数据库中，仅授权管理员可查看。自助登记请使用阿谢国设定资料，不要填写现实住址或证件信息。</p>
       <a class="button full registration-link" href="/admin/citizen-registration.html">国民自助登记 →</a>
-      <button class="button full" id="previewCardButton" type="button">预览国民纪念卡样式</button>
+      <button class="button full" id="placeholder="公寓 / 楼栋 / 室号（选填）"
     </section>
 
     <section id="workspace" aria-labelledby="pageTitle">
@@ -316,15 +316,15 @@
           <label for="addressCity">阿谢国住址</label>
           <div class="address-fields">
             <select id="addressCity" required aria-label="城市"><option value="">选择城市</option><option>新阿谢市</option><option>阿浩市</option><option>明辉市</option><option>阿陈市</option><option>立京市</option><option>新桃市</option></select>
-            <input id="addressDistrict" maxlength="50" required autocomplete="off" aria-label="区划名称" placeholder="区划名称，如青云">
+            <input id="addressDistrict" maxlength="50" required autocomplete="off" aria-label="区划名称" placeholder="区划名称">
             <select id="addressDistrictType" required aria-label="区划类型"><option value="">区/镇/郡/村</option><option>区</option><option>镇</option><option>郡</option><option>村</option></select>
-            <input id="addressStreet" maxlength="50" required autocomplete="off" aria-label="街道或乡名称" placeholder="街道/乡名称，如安居">
+            <input id="addressStreet" maxlength="50" required autocomplete="off" aria-label="街道或乡名称" placeholder="街道/乡名称">
             <select id="addressStreetType" required aria-label="街道类型"><option value="">街道/乡</option><option>街道</option><option>乡</option></select>
-            <input id="addressRoad" maxlength="50" required autocomplete="off" aria-label="道路名称" placeholder="道路名称，如长虹">
+            <input id="addressRoad" maxlength="50" required autocomplete="off" aria-label="道路名称" placeholder="道路名称">
             <select id="addressRoadType" required aria-label="道路类型"><option value="">路/大道</option><option>路</option><option>大道</option></select>
             <select id="addressSide" required aria-label="道路方位"><option value="">东/西/南/北侧</option><option>东</option><option>西</option><option>南</option><option>北</option></select>
-            <input id="addressNumber" maxlength="24" required autocomplete="off" aria-label="门牌号" placeholder="门牌号，如 12-3">
-            <input class="address-extra" id="addressApartment" maxlength="80" autocomplete="off" aria-label="公寓、楼栋或室号（选填）" placeholder="公寓 / 楼栋 / 室号（选填），如星海公寓3栋1202室">
+            <input id="addressNumber" maxlength="24" required autocomplete="off" aria-label="门牌号" placeholder="门牌号">
+            <input class="address-extra" id="addressApartment" maxlength="80" autocomplete="off" aria-label="公寓、楼栋或室号（选填）" placeholder="公寓 / 楼栋 / 室号（选填）">
           </div>
           <div class="address-preview" id="addressPreview" aria-live="polite"></div>
         </div>
@@ -779,17 +779,8 @@
         byId(id).addEventListener("input", updateBirthDatePreview);
       });
       updateBirthDatePreview();
-      byId("previewCardButton").addEventListener("click", () => openIdentityCard({
-        full_name: "示例国民",
-        display_name: "星海",
-        citizen_no: "AX-2026-DEMO0001",
-        birth_date: { era: "before", year: 1, month: 8, day: 12 },
-        address: "新阿谢市青云区安居街道长虹大道东侧12-3号·星海公寓3栋1202室",
-        status: "active",
-        created_at: Date.UTC(2026, 9, 18),
-      }));
-      byId("citizenForm").addEventListener("submit", handleSave);
-      byId("addButton").addEventListener("click", () => openDialog());
+      
+      byId("citizenForm").addEventListener("submit", handleSave); byId("addButton").addEventListener("click", () => openDialog());
       byId("closeDialog").addEventListener("click", () => byId("citizenDialog").close());
       byId("cancelDialog").addEventListener("click", () => byId("citizenDialog").close());
       byId("logoutButton").addEventListener("click", () => signOut(true));
