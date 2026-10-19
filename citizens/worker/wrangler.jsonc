@@ -1,0 +1,23 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "axie-citizens-admin-api",
+  "main": "src/index.js",
+  "compatibility_date": "2026-10-18",
+  "workers_dev": true,
+  "observability": {
+    "enabled": true
+  },
+  "vars": {
+    "ALLOWED_ORIGINS": "https://republic-of-axie.org,http://localhost:8788,http://127.0.0.1:8788",
+    "SESSION_TTL_SECONDS": "28800",
+    "AXIE_ERA_BASE_GREGORIAN_YEAR": "2024"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "axie-citizens",
+      "database_id": "e38a3c06-71bd-41f5-a61d-fe7ef299d550",
+      "migrations_dir": "migrations"
+    }
+  ]
+}

@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#071426">
+  <title>阿谢国国民管理 | Republic of Axie</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #071426;
+      --panel: rgba(14, 35, 62, .94);
+      --panel-2: rgba(5, 18, 34, .72);
+      --line: rgba(150, 190, 230, .16);
+      --text: #eef5ff;
+      --muted: #9fb2ca;
+      --blue: #75b5ff;
+      --green: #67d6ae;
+      --amber: #f2c26b;
+      --red: #ff9292;
+    }
+    * { box-sizing: border-box; }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+      background: radial-gradient(ellipse at 50% -20%, #17365b 0, transparent 55%),
+        linear-gradient(145deg, #061120, #0b1f3a 55%, #102b4c);
+    }
+    button, input, select, textarea { font: inherit; }
+    button { color: inherit; }
+    a { color: var(--blue); }
+    .shell { width: min(1280px, calc(100% - 36px)); margin: 0 auto; padding: 28px 0 54px; }
+    .topbar { display: flex; justify-content: space-between; align-items: center; gap: 18px; margin-bottom: 28px; }
+    .brand { display: flex; align-items: center; gap: 13px; }
+    .brand-mark { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid rgba(117,181,255,.35); border-radius: 14px; background: rgba(73,139,211,.16); font-size: 21px; }
+    .brand h1 { margin: 0; font-size: clamp(19px, 3vw, 25px); letter-spacing: .02em; }
+    .brand p { margin: 4px 0 0; color: var(--muted); font-size: 12px; letter-spacing: .08em; }
+    .top-actions { display: flex; flex-wrap: wrap; gap: 9px; }
+    .panel { border: 1px solid var(--line); border-radius: 18px; background: var(--panel); box-shadow: 0 18px 55px rgba(0,0,0,.22); }
+    .login-card { width: min(480px, 100%); margin: 9vh auto; padding: 30px; }
+    .login-card h2 { margin: 0 0 8px; font-size: 21px; }
+    .intro, .subtle { color: var(--muted); line-height: 1.7; }
+    .intro { margin: 0 0 22px; font-size: 14px; }
+    label { display: block; margin: 15px 0 7px; color: #d8e7f8; font-size: 13px; font-weight: 650; }
+    input, select, textarea {
+      width: 100%; border: 1px solid rgba(170,200,230,.24); border-radius: 10px;
+      padding: 11px 13px; color: var(--text); background: var(--panel-2); outline: none;
+    }
+    input:focus, select:focus, textarea:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(117,181,255,.13); }
+    input::placeholder, textarea::placeholder { color: #7186a0; }
+    textarea { min-height: 110px; resize: vertical; line-height: 1.6; }
+    .button {
+      display: inline-flex; justify-content: center; align-items: center; gap: 7px;
+      border: 1px solid transparent; border-radius: 10px; padding: 10px 14px;
+      background: rgba(102,157,219,.16); color: #dcecff; cursor: pointer; text-decoration: none;
+      transition: background .16s ease, border-color .16s ease, transform .16s ease;
+    }
+    .button:hover { background: rgba(117,181,255,.25); border-color: rgba(117,181,255,.35); transform: translateY(-1px); }
+    .button:disabled { opacity: .58; cursor: wait; transform: none; }
+    .button.primary { background: linear-gradient(135deg, #3d83ca, #5b9fe2); color: #06172a; font-weight: 750; }
+    .button.primary:hover { background: linear-gradient(135deg, #5a9be0, #80bcf8); }
+    .button.danger { color: #ffc0c0; background: rgba(209,79,79,.1); border-color: rgba(255,146,146,.18); }
+    .button.small { padding: 7px 10px; font-size: 12px; }
+    .button.full { width: 100%; margin-top: 18px; }
+    .message { min-height: 22px; margin-top: 12px; font-size: 13px; color: var(--muted); }
+    .message.error { color: var(--red); }
+    .message.success { color: var(--green); }
+    .privacy-note { margin: 18px 0 0; padding: 12px 13px; border: 1px solid rgba(242,194,107,.18); border-radius: 11px; background: rgba(242,194,107,.06); color: #d4bf91; font-size: 12px; line-height: 1.65; }
+    #workspace { display: none; }
+    .hero { display: flex; justify-content: space-between; align-items: end; gap: 18px; margin: 0 0 19px; }
+    .hero h2 { margin: 0; font-size: 23px; }
+    .hero p { margin: 7px 0 0; color: var(--muted); font-size: 13px; }
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 13px; margin-bottom: 17px; }
+    .stat { min-height: 100px; padding: 17px 18px; }
+    .stat .label { color: var(--muted); font-size: 12px; }
+    .stat .value { margin-top: 8px; font-size: 27px; font-weight: 750; letter-spacing: .02em; }
+    .stat .value.blue { color: var(--blue); }
+    .stat .value.amber { color: var(--amber); }
+    .stat .value.green { color: var(--green); }
+    .toolbar { display: flex; align-items: end; justify-content: space-between; gap: 14px; padding: 16px; margin-bottom: 13px; }
+    .filters { display: grid; grid-template-columns: minmax(220px, 1fr) 170px; gap: 10px; flex: 1; max-width: 620px; }
+    .filters label { margin: 0 0 6px; color: var(--muted); font-size: 11px; }
+    .filters input, .filters select { padding: 9px 11px; }
+    .toolbar-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; min-width: 760px; }
+    th, td { padding: 13px 15px; border-bottom: 1px solid rgba(150,190,230,.1); text-align: left; vertical-align: middle; }
+    th { color: #9db2ca; font-size: 11px; font-weight: 650; letter-spacing: .08em; text-transform: uppercase; }
+    td { color: #dbe8f7; font-size: 13px; }
+    tbody tr:hover { background: rgba(95,151,211,.07); }
+    .citizen-no { color: #8fc3ff; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; white-space: nowrap; }
+    .name-cell strong { display: block; color: #f3f7fc; font-size: 14px; }
+    .name-cell small { display: block; margin-top: 4px; color: #8298b2; }
+    .status-pill { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line); border-radius: 999px; padding: 5px 9px; color: #bed0e5; font-size: 11px; white-space: nowrap; }
+    .status-pill::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+    .status-active { color: var(--green); background: rgba(103,214,174,.06); }
+    .status-pending { color: var(--amber); background: rgba(242,194,107,.06); }
+    .status-suspended { color: #a8b5c6; }
+    .status-resigned { color: #a2aabe; }
+    .status-rejected { color: var(--red); background: rgba(255,146,146,.06); }
+    .row-actions { display: flex; gap: 6px; }
+    .empty { padding: 46px 18px; text-align: center; color: var(--muted); }
+    .table-footer { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 13px 15px; color: var(--muted); font-size: 12px; }
+    .pagination { display: flex; gap: 7px; }
+    .pagination button { min-width: 74px; margin: 0; }
+    .footnote { margin: 16px 2px 0; color: #7f94ad; font-size: 11px; line-height: 1.6; }
+    dialog { width: min(560px, calc(100% - 24px)); max-height: min(88vh, 850px); padding: 0; color: var(--text); border: 1px solid rgba(150,190,230,.23); border-radius: 17px; background: #0d223d; box-shadow: 0 25px 90px rgba(0,0,0,.55); }
+    dialog::backdrop { background: rgba(1,8,17,.76); backdrop-filter: blur(4px); }
+    .dialog-head { display: flex; justify-content: space-between; align-items: center; padding: 19px 22px; border-bottom: 1px solid var(--line); }
+    .dialog-head h3 { margin: 0; font-size: 17px; }
+    .dialog-body { padding: 4px 22px 21px; overflow-y: auto; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 14px; }
+    .form-grid .wide { grid-column: 1 / -1; }
+    .era-fields { display: grid; grid-template-columns: 1.2fr .7fr .7fr .7fr; gap: 8px; }
+    .address-fields { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+    .address-extra { grid-column: 1 / -1; }
+    .era-preview { min-height: 19px; margin-top: 6px; color: #9bcaff; font-size: 12px; }
+    .address-preview { min-height: 19px; margin-top: 7px; color: #9bcaff; font-size: 12px; line-height: 1.6; overflow-wrap: anywhere; }
+    .table-address { max-width: 250px; color: #becde0; overflow-wrap: anywhere; }
+    .registration-link { margin-top: 8px; }
+    .dialog-actions { display: flex; justify-content: end; gap: 8px; margin-top: 18px; }
+    .readonly-number { color: #90a6c0; font-family: ui-monospace, monospace; font-size: 12px; }
+    .identity-card {
+      position: relative; isolation: isolate; overflow: hidden; width: 100%; aspect-ratio: 1.586;
+      min-height: 260px; padding: clamp(19px, 4.3vw, 39px); border: 1px solid rgba(194,225,255,.5);
+      border-radius: 18px; background: linear-gradient(125deg, #102b4c, #0a1a30 56%, #16436d);
+      box-shadow: inset 0 0 0 5px rgba(221,240,255,.035), 0 18px 40px rgba(0,0,0,.26);
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .identity-card::before, .identity-card::after { content: ""; position: absolute; z-index: -1; border: 1px solid rgba(128,190,247,.14); border-radius: 50%; }
+    .identity-card::before { width: 70%; aspect-ratio: 1; right: -19%; top: -50%; box-shadow: 0 0 0 18px rgba(128,190,247,.025), 0 0 0 38px rgba(128,190,247,.02); }
+    .identity-card::after { width: 45%; aspect-ratio: 1; left: -22%; bottom: -60%; box-shadow: 0 0 0 15px rgba(128,190,247,.025); }
+    .card-overline { display: flex; justify-content: space-between; align-items: center; gap: 12px; color: #afd2f4; font-size: clamp(9px, 1.5vw, 13px); letter-spacing: .14em; }
+    .card-brand { display: inline-flex; align-items: center; gap: 12px; min-width: 0; }
+    .card-flag { position: relative; display: block; flex: 0 0 auto; width: 55px; height: 35.5px; overflow: hidden; border: 1px solid rgba(240,248,255,.7); border-radius: 5px; background: #fff; box-shadow: 0 3px 12px rgba(0,0,0,.2); }
+    .card-flag img { position: absolute; display: block; width: 118.63%; height: auto; max-width: none; left: -9.36%; top: -42.67%; }
+    .card-overline span:last-child { color: #829cb7; font-size: .8em; letter-spacing: .09em; text-align: right; }
+    .card-main { display: grid; grid-template-columns: 76px 1fr; align-items: center; gap: clamp(16px, 3.5vw, 30px); margin-top: 18px; }
+    .card-seal { display: grid; place-items: center; width: 70px; height: 70px; border: 1px solid rgba(159,206,249,.5); border-radius: 50%; color: #c7e4ff; background: radial-gradient(circle, rgba(115,177,234,.22), rgba(115,177,234,.025)); font-size: 29px; }
+    .card-name-label { color: #90abc6; font-size: 10px; letter-spacing: .15em; }
+    .card-full-name { overflow: hidden; margin-top: 5px; color: #f3f8ff; font-size: clamp(20px, 4vw, 31px); font-weight: 750; text-overflow: ellipsis; white-space: nowrap; }
+    .card-display-name { margin-top: 3px; color: #adc5dd; font-size: clamp(11px, 2vw, 14px); }
+    .card-details { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 12px; margin-top: 18px; }
+    .card-detail-label { color: #819bb7; font-size: 9px; letter-spacing: .11em; }
+    .card-detail-value { overflow: hidden; margin-top: 4px; color: #d7eaff; font-size: clamp(10px, 1.8vw, 13px); text-overflow: ellipsis; white-space: nowrap; }
+    .card-address { margin-top: 9px; }
+    .card-address .card-detail-value { white-space: normal; overflow-wrap: anywhere; }
+    .card-number-value { color: #9bcaff; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .04em; }
+    .card-stamp { position: absolute; right: 22px; top: 42%; border: 1px solid rgba(242,194,107,.36); border-radius: 8px; padding: 6px 9px; color: #e5c47f; background: rgba(4,15,28,.28); font-size: 11px; transform: rotate(8deg); }
+    .card-footer { display: flex; justify-content: space-between; align-items: end; gap: 12px; margin-top: 17px; padding-top: 11px; border-top: 1px solid rgba(177,213,247,.17); color: #d9c895; font-size: clamp(9px, 1.55vw, 11px); letter-spacing: .035em; }
+    .card-footer span:last-child { color: #8099b4; font-size: .9em; text-align: right; }
+    .card-actions { display: flex; justify-content: end; gap: 8px; margin-top: 15px; }
+    .card-disclaimer { margin: 12px 0 0; color: #aebed0; font-size: 12px; line-height: 1.6; }
+    [hidden] { display: none !important; }
+    @media print {
+      @page { size: 105mm 76mm; margin: 0; }
+      body { background: #fff !important; }
+      body * { visibility: hidden !important; }
+      #cardDialog[open], #cardDialog[open] * { visibility: visible !important; }
+      #cardDialog:not([open]) { display: none !important; }
+      #cardDialog[open] { position: fixed !important; inset: 0 !important; width: 100% !important; height: 100% !important; max-width: none !important; max-height: none !important; margin: 0 !important; padding: 0 !important; overflow: visible !important; border: 0 !important; border-radius: 0 !important; background: transparent !important; box-shadow: none !important; }
+      #cardDialog .dialog-head, #cardDialog .card-actions, #cardDialog .card-disclaimer { display: none !important; }
+      #identityCard { width: 85.6mm !important; height: 54mm !important; min-height: 0 !important; margin: 11mm auto !important; padding: 5mm !important; border-radius: 3mm !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      #identityCard .card-main { grid-template-columns: 18mm 1fr; gap: 4mm; margin-top: 2mm; }
+      #identityCard .card-seal { width: 17mm; height: 17mm; font-size: 7mm; }
+      #identityCard .card-details { gap: 2mm; margin-top: 2mm; }
+      #identityCard .card-address { margin-top: 1.5mm; }
+      #identityCard .card-footer { margin-top: 2mm; padding-top: 2mm; }
+    }
+    @media (max-width: 760px) {
+      .shell { width: min(100% - 24px, 1280px); padding-top: 19px; }
+      .topbar, .hero { align-items: flex-start; flex-direction: column; }
+      .top-actions { width: 100%; }
+      .stats { grid-template-columns: repeat(2, 1fr); gap: 9px; }
+      .stat { min-height: 86px; padding: 14px; }
+      .stat .value { font-size: 23px; }
+      .toolbar { align-items: stretch; flex-direction: column; }
+      .filters { grid-template-columns: 1fr; max-width: none; }
+      .toolbar-actions .button { flex: 1; }
+      .table-footer { align-items: flex-start; flex-direction: column; }
+      .login-card { margin-top: 5vh; padding: 23px; }
+    }
+    @media (max-width: 480px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .era-fields, .address-fields { grid-template-columns: 1fr 1fr; }
+      .form-grid .wide { grid-column: auto; }
+      .top-actions .button { flex: 1; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">✦</div>
+        <div>
+          <h1>阿谢国国民管理</h1>
+          <p>REPUBLIC OF AXIE · CITIZEN REGISTRY</p>
+        </div>
+      </div>
+      <nav class="top-actions" aria-label="后台导航">
+        <a class="button" href="/">← 返回官网</a>
+        <a class="button" href="/admin/index.html">AXNews 管理</a>
+        <button class="button danger" id="logoutButton" type="button" hidden>退出登录</button>
+      </nav>
+    </header>
+
+    <section id="loginView" class="panel login-card" aria-labelledby="loginTitle">
+      <h2 id="loginTitle">管理员登录</h2>
+      <p class="intro">登录后管理国民档案和入籍申请。此后台使用与 AXNews 管理后台相同的管理员密码。</p>
+      <form id="loginForm">
+        <label for="password">管理员密码</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" required maxlength="256" placeholder="输入管理员密码">
+        <button id="loginSubmit" class="button primary full" type="submit">登录</button>
+      </form>
+      <div id="loginMessage" class="message" role="status" aria-live="polite"></div>
+      <p class="privacy-note">出生日期和阿谢国住址加密保存在独立数据库中，仅授权管理员可查看。自助登记请使用阿谢国设定资料，不要填写现实住址或证件信息。</p>
+      <a class="button full registration-link" href="/admin/citizen-registration.html">国民自助登记 →</a>
+      <button class="button full" id="previewCardButton" type="button">预览国民纪念卡样式</button>
+    </section>
+
+    <section id="workspace" aria-labelledby="pageTitle">
+      <div class="hero">
+        <div>
+          <h2 id="pageTitle">国民档案</h2>
+          <p>新增、查找并维护阿谢国国民名册。</p>
+        </div>
+        <button class="button primary" id="addButton" type="button">＋ 新增国民</button>
+      </div>
+
+      <div class="stats" aria-label="国民统计">
+        <article class="panel stat"><div class="label">档案总数</div><div class="value" id="statTotal">—</div></article>
+        <article class="panel stat"><div class="label">在籍国民</div><div class="value green" id="statActive">—</div></article>
+        <article class="panel stat"><div class="label">待审核</div><div class="value amber" id="statPending">—</div></article>
+        <article class="panel stat"><div class="label">暂停 / 已退籍 / 未通过</div><div class="value blue" id="statOther">—</div></article>
+      </div>
+
+      <section class="panel toolbar" aria-label="国民档案筛选">
+        <div class="filters">
+          <div>
+            <label for="searchInput">搜索姓名、编号、纪年生日或住址</label>
+            <input id="searchInput" type="search" placeholder="输入关键词后按回车" autocomplete="off">
+          </div>
+          <div>
+            <label for="statusFilter">国民状态</label>
+            <select id="statusFilter">
+              <option value="all">全部状态</option>
+              <option value="active">在籍</option>
+              <option value="pending">待审核</option>
+              <option value="suspended">暂停</option>
+              <option value="resigned">已退籍</option>
+              <option value="rejected">未通过</option>
+            </select>
+          </div>
+        </div>
+        <div class="toolbar-actions">
+          <button class="button" id="searchButton" type="button">搜索</button>
+          <button class="button" id="exportButton" type="button">导出 CSV</button>
+          <button class="button" id="refreshButton" type="button">刷新</button>
+        </div>
+      </section>
+
+      <section class="panel" aria-label="国民档案列表">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>国民编号</th><th>姓名 / 纪年生日</th><th>阿谢国住址</th><th>状态</th><th>加入日期</th><th>最近更新</th><th>操作</th></tr>
+            </thead>
+            <tbody id="citizenRows"><tr><td colspan="7" class="empty">正在读取国民名册…</td></tr></tbody>
+          </table>
+        </div>
+        <div class="table-footer">
+          <div id="resultCount">—</div>
+          <div class="pagination">
+            <button class="button small" id="previousPage" type="button">上一页</button>
+            <button class="button small" id="nextPage" type="button">下一页</button>
+          </div>
+        </div>
+      </section>
+      <p class="footnote">仅授权管理员可访问。国民资料保存在独立 Cloudflare D1 数据库；此系统不会公开显示名册。</p>
+      <div id="workspaceMessage" class="message" role="status" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <dialog id="citizenDialog" aria-labelledby="dialogTitle">
+    <div class="dialog-head">
+      <h3 id="dialogTitle">新增国民</h3>
+      <button class="button small" id="closeDialog" type="button" aria-label="关闭">关闭</button>
+    </div>
+    <form id="citizenForm" class="dialog-body">
+      <input id="citizenId" type="hidden">
+      <div id="citizenNumberRow" class="readonly-number" hidden></div>
+      <div class="form-grid">
+        <div class="wide">
+          <label for="fullName">姓名 <span aria-hidden="true">*</span></label>
+          <input id="fullName" maxlength="100" required autocomplete="off" placeholder="填写国民姓名">
+        </div>
+        <div>
+          <label for="displayName">常用称呼</label>
+          <input id="displayName" maxlength="80" autocomplete="off" placeholder="可选">
+        </div>
+        <div class="wide">
+          <label>出生日期（阿谢纪年）</label>
+          <div class="era-fields">
+            <select id="birthEra" aria-label="出生纪年时代"><option value="axie">阿谢纪年</option><option value="before">阿谢纪年前</option></select>
+            <input id="birthYear" type="number" min="1" max="9999" required placeholder="年份" aria-label="纪年年份">
+            <select id="birthMonth" aria-label="出生月份"></select>
+            <select id="birthDay" aria-label="出生日期"></select>
+          </div>
+          <div class="era-preview" id="birthDatePreview" aria-live="polite"></div>
+        </div>
+        <div class="wide">
+          <label for="addressCity">阿谢国住址</label>
+          <div class="address-fields">
+            <select id="addressCity" required aria-label="城市"><option value="">选择城市</option><option>新阿谢市</option><option>阿浩市</option><option>明辉市</option><option>阿陈市</option><option>立京市</option><option>新桃市</option></select>
+            <input id="addressDistrict" maxlength="50" required autocomplete="off" aria-label="区划名称" placeholder="区划名称，如青云">
+            <select id="addressDistrictType" required aria-label="区划类型"><option value="">区/镇/郡/村</option><option>区</option><option>镇</option><option>郡</option><option>村</option></select>
+            <input id="addressStreet" maxlength="50" required autocomplete="off" aria-label="街道或乡名称" placeholder="街道/乡名称，如安居">
+            <select id="addressStreetType" required aria-label="街道类型"><option value="">街道/乡</option><option>街道</option><option>乡</option></select>
+            <input id="addressRoad" maxlength="50" required autocomplete="off" aria-label="道路名称" placeholder="道路名称，如长虹">
+            <select id="addressRoadType" required aria-label="道路类型"><option value="">路/大道</option><option>路</option><option>大道</option></select>
+            <select id="addressSide" required aria-label="道路方位"><option value="">东/西/南/北侧</option><option>东</option><option>西</option><option>南</option><option>北</option></select>
+            <input id="addressNumber" maxlength="24" required autocomplete="off" aria-label="门牌号" placeholder="门牌号，如 12-3">
+            <input class="address-extra" id="addressApartment" maxlength="80" autocomplete="off" aria-label="公寓、楼栋或室号（选填）" placeholder="公寓 / 楼栋 / 室号（选填），如星海公寓3栋1202室">
+          </div>
+          <div class="address-preview" id="addressPreview" aria-live="polite"></div>
+        </div>
+        <div>
+          <label for="citizenStatus">国民状态</label>
+          <select id="citizenStatus">
+            <option value="active">在籍</option>
+            <option value="pending">待审核</option>
+            <option value="suspended">暂停</option>
+            <option value="resigned">已退籍</option>
+            <option value="rejected">未通过</option>
+          </select>
+        </div>
+        <div>
+          <label for="joinDate">加入日期</label>
+          <input id="joinDate" type="date">
+        </div>
+        <div class="wide">
+          <label for="notes">备注</label>
+          <textarea id="notes" maxlength="500" placeholder="只记录管理所需内容"></textarea>
+        </div>
+      </div>
+      <div id="formMessage" class="message" role="status" aria-live="polite"></div>
+      <div class="dialog-actions">
+        <button class="button" id="cancelDialog" type="button">取消</button>
+        <button class="button primary" id="saveCitizen" type="submit">保存档案</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="cardDialog" aria-labelledby="cardDialogTitle">
+    <div class="dialog-head">
+      <h3 id="cardDialogTitle">阿谢国国民纪念卡</h3>
+      <button class="button small" id="closeCardDialog" type="button" aria-label="关闭身份卡预览">关闭</button>
+    </div>
+    <div class="dialog-body">
+      <article id="identityCard" class="identity-card" aria-label="国民纪念卡预览">
+        <div class="card-overline"><div class="card-brand"><span class="card-flag"><img src="/ROA_flag.png" alt="阿谢国国旗"></span><span>REPUBLIC OF AXIE</span></div><span>FICTIONAL WORLD-BUILDING PROJECT</span></div>
+        <div class="card-main">
+          <div class="card-seal" aria-hidden="true">✦</div>
+          <div>
+            <div class="card-name-label">国民姓名 · CITIZEN</div>
+            <div id="cardFullName" class="card-full-name">—</div>
+            <div id="cardDisplayName" class="card-display-name"></div>
+          </div>
+        </div>
+        <div class="card-stamp">世界观纪念卡</div>
+        <div class="card-details">
+          <div><div class="card-detail-label">国民编号 · ID</div><div id="cardCitizenNo" class="card-detail-value card-number-value">—</div></div>
+          <div><div class="card-detail-label">出生日期 · BIRTH</div><div id="cardBirthDate" class="card-detail-value">—</div></div>
+          <div><div class="card-detail-label">国民状态 · STATUS</div><div id="cardStatus" class="card-detail-value">—</div></div>
+        </div>
+        <div class="card-address"><div class="card-detail-label">阿谢国住址 · ADDRESS</div><div id="cardAddress" class="card-detail-value">—</div></div>
+        <div class="card-footer"><span>架空世界观创作项目 · 非现实身份证件</span><span>签发日期 <b id="cardIssueDate">—</b></span></div>
+      </article>
+      <div class="card-actions">
+        <button class="button" id="printCard" type="button">打印 / 保存为 PDF</button>
+        <button class="button primary" id="downloadCard" type="button">下载 SVG</button>
+      </div>
+      <p class="card-disclaimer">此卡仅用于阿谢国架空世界观展示，不具有现实身份、国籍、通行或政府证明效力。</p>
+    </div>
+  </dialog>
+
+  <script src="/citizens/era-calendar.js"></script>
+  <script>
+    (() => {
+      const API_BASE = window.AXIE_CITIZENS_API_BASE || "https://axie-citizens-admin-api.axie999666.workers.dev";
+      const TOKEN_KEY = "axieCitizensAdminToken";
+      const STATUS_LABELS = { active: "在籍", pending: "待审核", suspended: "暂停", resigned: "已退籍", rejected: "未通过" };
+      const EraCalendar = window.AxieEraCalendar;
+      const state = { token: sessionStorage.getItem(TOKEN_KEY) || "", citizens: [], page: 1, pageSize: 20, total: 0, query: "", status: "all" };
+      const byId = (id) => document.getElementById(id);
+
+      function updateBirthDatePreview() {
+        const date = EraCalendar.read(byId("birthEra"), byId("birthYear"), byId("birthMonth"), byId("birthDay"));
+        byId("birthDatePreview").textContent = EraCalendar.isValid(date)
+          ? EraCalendar.format(date)
+          : "请填写有效的阿谢纪年出生日期。";
+      }
+
+      function readAddressParts() {
+        return {
+          city: byId("addressCity").value,
+          district: byId("addressDistrict").value,
+          district_type: byId("addressDistrictType").value,
+          street: byId("addressStreet").value,
+          street_type: byId("addressStreetType").value,
+          road: byId("addressRoad").value,
+          road_type: byId("addressRoadType").value,
+          side: byId("addressSide").value,
+          number: byId("addressNumber").value,
+          apartment: byId("addressApartment").value,
+        };
+      }
+
+      function formatAddress(parts) {
+        if (!parts || !parts.city || !parts.district || !parts.district_type || !parts.street || !parts.street_type || !parts.road || !parts.road_type || !parts.side || !parts.number) return "";
+        return `${parts.city}${parts.district}${parts.district_type}${parts.street}${parts.street_type}${parts.road}${parts.road_type}${parts.side}侧${parts.number}号${parts.apartment ? `·${parts.apartment}` : ""}`;
+      }
+
+      function updateAddressPreview() {
+        byId("addressPreview").textContent = formatAddress(readAddressParts()) || "住址预览：请选择城市并填写完整区划、街道、道路和门牌号。";
+      }
+
+      function writeAddressParts(parts) {
+        byId("addressCity").value = parts?.city || "";
+        byId("addressDistrict").value = parts?.district || "";
+        byId("addressDistrictType").value = parts?.district_type || "";
+        byId("addressStreet").value = parts?.street || "";
+        byId("addressStreetType").value = parts?.street_type || "";
+        byId("addressRoad").value = parts?.road || "";
+        byId("addressRoadType").value = parts?.road_type || "";
+        byId("addressSide").value = parts?.side || "";
+        byId("addressNumber").value = parts?.number || "";
+        byId("addressApartment").value = parts?.apartment || "";
+        updateAddressPreview();
+      }
+
+      function setMessage(id, text, kind = "") {
+        const element = byId(id);
+        element.textContent = text || "";
+        element.className = `message ${kind}`.trim();
+      }
+
+      function escapeHtml(value) {
+        return String(value ?? "").replace(/[&<>"']/g, (character) => ({
+          "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
+        })[character]);
+      }
+
+      async function api(path, options = {}) {
+        const headers = new Headers(options.headers || {});
+        headers.set("Accept", "application/json");
+        if (state.token) headers.set("Authorization", `Bearer ${state.token}`);
+        if (options.body && !headers.has("Content-Type")) headers.set("Content-Type", "application/json");
+        let response;
+        try {
+          response = await fetch(`${API_BASE}${path}`, { ...options, headers, cache: "no-store" });
+        } catch {
+          throw new Error("无法连接国民管理服务。请检查网络或稍后再试。");
+        }
+        if (response.status === 401 && path !== "/api/auth/login") {
+          signOut(false);
+          throw new Error("登录已过期，请重新登录。");
+        }
+        if (path.endsWith(".csv")) {
+          if (!response.ok) {
+            const data = await response.json().catch(() => ({}));
+            throw new Error(data.error || `请求失败（${response.status}）`);
+          }
+          return response;
+        }
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(data.error || `请求失败（${response.status}）`);
+        return data;
+      }
+
+      function showWorkspace() {
+        byId("loginView").hidden = true;
+        byId("workspace").style.display = "block";
+        byId("logoutButton").hidden = false;
+      }
+
+      function showLogin() {
+        byId("loginView").hidden = false;
+        byId("workspace").style.display = "none";
+        byId("logoutButton").hidden = true;
+      }
+
+      async function signOut(callApi = true) {
+        const token = state.token;
+        state.token = "";
+        sessionStorage.removeItem(TOKEN_KEY);
+        showLogin();
+        if (callApi && token) {
+          try { await fetch(`${API_BASE}/api/auth/logout`, { method: "POST", headers: { Authorization: `Bearer ${token}` } }); } catch { /* Local sign-out still completes. */ }
+        }
+      }
+
+      async function loadStats() {
+        const data = await api("/api/stats");
+        byId("statTotal").textContent = data.total.toLocaleString("zh-CN");
+        byId("statActive").textContent = data.counts.active.toLocaleString("zh-CN");
+        byId("statPending").textContent = data.counts.pending.toLocaleString("zh-CN");
+        byId("statOther").textContent = (data.counts.suspended + data.counts.resigned + data.counts.rejected).toLocaleString("zh-CN");
+      }
+
+      function formatDateTime(timestamp) {
+        if (!timestamp) return "—";
+        return new Intl.DateTimeFormat("zh-CN", { dateStyle: "medium", timeStyle: "short" }).format(new Date(timestamp));
+      }
+
+      function renderRows() {
+        const tbody = byId("citizenRows");
+        if (!state.citizens.length) {
+          tbody.innerHTML = `<tr><td colspan="7" class="empty">${state.query || state.status !== "all" ? "没有找到符合条件的国民档案。" : "名册还是空的，新增第一位国民吧。"}</td></tr>`;
+        } else {
+          tbody.innerHTML = state.citizens.map((citizen) => `
+            <tr>
+              <td class="citizen-no">${escapeHtml(citizen.citizen_no || STATUS_LABELS[citizen.status] || "未发号")}</td>
+              <td class="name-cell"><strong>${escapeHtml(citizen.full_name)}</strong><small>${escapeHtml(EraCalendar.format(citizen.birth_date))}${citizen.display_name ? ` · ${escapeHtml(citizen.display_name)}` : ""}</small></td>
+              <td class="table-address">${escapeHtml(citizen.address || "—")}</td>
+              <td><span class="status-pill status-${escapeHtml(citizen.status)}">${STATUS_LABELS[citizen.status] || "未知"}</span></td>
+              <td>${escapeHtml(citizen.join_date || "—")}</td>
+              <td>${escapeHtml(formatDateTime(citizen.updated_at))}</td>
+              <td><div class="row-actions"><button class="button small" type="button" data-card="${escapeHtml(citizen.id)}" ${citizen.citizen_no && citizen.status === "active" ? "" : "disabled"}>身份卡</button><button class="button small" type="button" data-edit="${escapeHtml(citizen.id)}">编辑 / 审核</button></div></td>
+            </tr>`).join("");
+        }
+        const first = state.total ? (state.page - 1) * state.pageSize + 1 : 0;
+        const last = Math.min(state.page * state.pageSize, state.total);
+        byId("resultCount").textContent = `显示 ${first}–${last} 条，共 ${state.total} 条`;
+        byId("previousPage").disabled = state.page <= 1;
+        byId("nextPage").disabled = last >= state.total;
+      }
+
+      async function loadCitizens() {
+        byId("citizenRows").innerHTML = `<tr><td colspan="7" class="empty">正在读取国民名册…</td></tr>`;
+        const params = new URLSearchParams({ page: String(state.page), page_size: String(state.pageSize) });
+        if (state.query) params.set("q", state.query);
+        if (state.status !== "all") params.set("status", state.status);
+        const data = await api(`/api/citizens?${params}`);
+        state.citizens = data.citizens;
+        state.total = data.total;
+        renderRows();
+      }
+
+      async function refreshAll() {
+        setMessage("workspaceMessage", "正在同步…");
+        try {
+          await Promise.all([loadStats(), loadCitizens()]);
+          setMessage("workspaceMessage", "档案已同步。", "success");
+        } catch (error) {
+          setMessage("workspaceMessage", error.message, "error");
+        }
+      }
+
+      function openDialog(citizen = null) {
+        byId("citizenForm").reset();
+        byId("formMessage").textContent = "";
+        byId("citizenId").value = citizen?.id || "";
+        byId("dialogTitle").textContent = citizen ? "编辑国民档案" : "新增国民";
+        byId("saveCitizen").textContent = citizen ? "保存修改" : "保存档案";
+        byId("citizenNumberRow").hidden = !citizen;
+        byId("citizenNumberRow").textContent = citizen
+          ? citizen.citizen_no ? `国民编号：${citizen.citizen_no}` : citizen.status === "rejected" ? "申请未通过，尚未发放国民编号" : "审核通过并设为在籍后将自动发放国民编号"
+          : "新建为在籍状态时自动发放国民编号；公众登记申请须审核通过后才发号。";
+        byId("citizenNumberRow").hidden = false;
+        byId("fullName").value = citizen?.full_name || "";
+        byId("displayName").value = citizen?.display_name || "";
+        EraCalendar.write(citizen?.birth_date, byId("birthEra"), byId("birthYear"), byId("birthMonth"), byId("birthDay"));
+        updateBirthDatePreview();
+        writeAddressParts(citizen?.address_parts);
+        byId("citizenStatus").value = citizen?.status || "active";
+        byId("joinDate").value = citizen?.join_date || "";
+        byId("notes").value = citizen?.notes || "";
+        byId("citizenDialog").showModal();
+        byId("fullName").focus();
+      }
+
+      function openIdentityCard(citizen) {
+        byId("cardFullName").textContent = citizen.full_name || "—";
+        byId("cardDisplayName").textContent = citizen.display_name ? `「${citizen.display_name}」` : "";
+        byId("cardCitizenNo").textContent = citizen.citizen_no || "—";
+        byId("cardBirthDate").textContent = EraCalendar.format(citizen.birth_date);
+        byId("cardAddress").textContent = citizen.address || "未填写";
+        byId("cardStatus").textContent = STATUS_LABELS[citizen.status] || "—";
+        const issuedAt = citizen.join_date
+          ? new Date(`${citizen.join_date}T00:00:00Z`)
+          : citizen.created_at ? new Date(citizen.created_at) : new Date();
+        byId("cardIssueDate").textContent = new Intl.DateTimeFormat("zh-CN", { dateStyle: "medium", timeZone: "UTC" }).format(issuedAt);
+        byId("cardDialog").showModal();
+      }
+
+      function xmlEscape(value) {
+        return String(value ?? "").replace(/[&<>"']/g, (character) => ({
+          "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&apos;",
+        })[character]);
+      }
+
+      async function getCroppedFlagDataUrl() {
+        try {
+          const response = await fetch("/ROA_flag.png", { cache: "force-cache" });
+          if (!response.ok) throw new Error("无法读取国旗素材");
+          const image = new Image();
+          const objectUrl = URL.createObjectURL(await response.blob());
+          try {
+            await image.decode();
+            const sourceCanvas = document.createElement("canvas");
+            sourceCanvas.width = image.naturalWidth;
+            sourceCanvas.height = image.naturalHeight;
+            const sourceContext = sourceCanvas.getContext("2d", { willReadFrequently: true });
+            sourceContext.drawImage(image, 0, 0);
+            const pixels = sourceContext.getImageData(0, 0, sourceCanvas.width, sourceCanvas.height).data;
+            let left = sourceCanvas.width;
+            let top = sourceCanvas.height;
+            let right = -1;
+            let bottom = -1;
+            for (let y = 0; y < sourceCanvas.height; y += 1) {
+              for (let x = 0; x < sourceCanvas.width; x += 1) {
+                const offset = (y * sourceCanvas.width + x) * 4;
+                const alpha = pixels[offset + 3];
+                const isFlagPixel = alpha > 0 && (
+                  pixels[offset] < 245 || pixels[offset + 1] < 245 || pixels[offset + 2] < 245
+                );
+                if (isFlagPixel) {
+                  if (x < left) left = x;
+                  if (x > right) right = x;
+                  if (y < top) top = y;
+                  if (y > bottom) bottom = y;
+                }
+              }
+            }
+            if (right < left || bottom < top) throw new Error("未找到国旗边界");
+            const canvas = document.createElement("canvas");
+            canvas.width = 320;
+            canvas.height = Math.round(canvas.width * (bottom - top + 1) / (right - left + 1));
+            const context = canvas.getContext("2d");
+            context.drawImage(
+              image,
+              left,
+              top,
+              right - left + 1,
+              bottom - top + 1,
+              0,
+              0,
+              canvas.width,
+              canvas.height,
+            );
+            return canvas.toDataURL("image/png");
+          } finally {
+            URL.revokeObjectURL(objectUrl);
+          }
+        } catch {
+          return "https://republic-of-axie.org/ROA_flag.png";
+        }
+      }
+
+      async function downloadIdentityCard() {
+        const values = Object.fromEntries(["cardFullName", "cardDisplayName", "cardCitizenNo", "cardBirthDate", "cardAddress", "cardStatus", "cardIssueDate"]
+          .map((id) => [id, xmlEscape(byId(id).textContent)]));
+        const addressChars = Array.from(byId("cardAddress").textContent || "");
+        const addressLine1 = xmlEscape(addressChars.slice(0, 36).join(""));
+        const addressLine2 = xmlEscape(addressChars.slice(36, 72).join("") + (addressChars.length > 72 ? "…" : ""));
+        const flagDataUrl = await getCroppedFlagDataUrl();
+        const svg = `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="648" viewBox="0 0 1024 648" role="img" aria-labelledby="title desc">
+<title id="title">阿谢国国民纪念卡 · ${values.cardFullName}</title>
+<desc id="desc">架空世界观创作项目，非现实身份证件。</desc>
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#102b4c"/><stop offset=".58" stop-color="#0a1a30"/><stop offset="1" stop-color="#16436d"/></linearGradient><radialGradient id="seal"><stop stop-color="#73b1ea" stop-opacity=".28"/><stop offset="1" stop-color="#73b1ea" stop-opacity=".02"/></radialGradient><clipPath id="flagClip"><rect x="56" y="42" width="88" height="56" rx="6"/></clipPath></defs>
+<rect x="1" y="1" width="1022" height="646" rx="40" fill="url(#bg)" stroke="#b6d8f6" stroke-opacity=".48" stroke-width="2"/><rect x="16" y="16" width="992" height="616" rx="30" fill="none" stroke="#d8ecff" stroke-opacity=".08" stroke-width="3"/>
+<circle cx="897" cy="101" r="214" fill="none" stroke="#80bef7" stroke-opacity=".14" stroke-width="2"/><circle cx="897" cy="101" r="250" fill="none" stroke="#80bef7" stroke-opacity=".07" stroke-width="2"/>
+<image href="${flagDataUrl}" x="56" y="42" width="88" height="56" preserveAspectRatio="xMidYMid slice" clip-path="url(#flagClip)"/><rect x="56" y="42" width="88" height="56" rx="6" fill="none" stroke="#f0f8ff" stroke-opacity=".78" stroke-width="2"/><text x="166" y="78" fill="#afd2f4" font-family="Arial,sans-serif" font-size="22" letter-spacing="4">REPUBLIC OF AXIE</text><text x="968" y="77" text-anchor="end" fill="#829cb7" font-family="Arial,sans-serif" font-size="14" letter-spacing="2">FICTIONAL WORLD-BUILDING PROJECT</text>
+<circle cx="132" cy="294" r="62" fill="url(#seal)" stroke="#9fcef9" stroke-opacity=".55" stroke-width="2"/><text x="132" y="315" text-anchor="middle" fill="#c7e4ff" font-family="serif" font-size="58">✦</text>
+<text x="238" y="248" fill="#90abc6" font-family="Arial,sans-serif" font-size="16" letter-spacing="3">国民姓名 · CITIZEN</text><text x="238" y="302" fill="#f3f8ff" font-family="sans-serif" font-size="42" font-weight="700">${values.cardFullName}</text><text x="238" y="340" fill="#adc5dd" font-family="sans-serif" font-size="20">${values.cardDisplayName}</text>
+<g font-family="sans-serif"><text x="56" y="427" fill="#819bb7" font-size="15" letter-spacing="2">国民编号 · ID</text><text x="56" y="462" fill="#9bcaff" font-family="monospace" font-size="20">${values.cardCitizenNo}</text><text x="410" y="427" fill="#819bb7" font-size="15" letter-spacing="2">出生日期 · BIRTH</text><text x="410" y="462" fill="#d7eaff" font-size="18">${values.cardBirthDate}</text><text x="768" y="427" fill="#819bb7" font-size="15" letter-spacing="2">国民状态 · STATUS</text><text x="768" y="462" fill="#d7eaff" font-size="20">${values.cardStatus}</text><text x="56" y="496" fill="#819bb7" font-size="15" letter-spacing="2">阿谢国住址 · ADDRESS</text><text x="270" y="496" fill="#d7eaff" font-size="16">${addressLine1}</text><text x="270" y="520" fill="#d7eaff" font-size="16">${addressLine2}</text></g>
+<path d="M56 540H968" stroke="#b1d5f7" stroke-opacity=".18"/><text x="56" y="574" fill="#d9c895" font-family="sans-serif" font-size="16">架空世界观创作项目 · 非现实身份证件</text><text x="968" y="574" text-anchor="end" fill="#8099b4" font-family="sans-serif" font-size="14">签发日期 ${values.cardIssueDate}</text>
+<text x="512" y="608" text-anchor="middle" fill="#829cb7" font-family="Arial,sans-serif" font-size="13" letter-spacing="3">WORLD-BUILDING MEMBER CARD · NOT A REAL ID</text>
+</svg>`;
+        const blob = new Blob([svg], { type: "image/svg+xml;charset=utf-8" });
+        const downloadUrl = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = downloadUrl;
+        link.download = `阿谢国国民纪念卡-${byId("cardCitizenNo").textContent}.svg`;
+        link.click();
+        URL.revokeObjectURL(downloadUrl);
+      }
+
+      async function handleLogin(event) {
+        event.preventDefault();
+        const button = byId("loginSubmit");
+        button.disabled = true;
+        button.textContent = "正在验证…";
+        setMessage("loginMessage", "");
+        try {
+          const data = await api("/api/auth/login", {
+            method: "POST",
+            body: JSON.stringify({ password: byId("password").value }),
+          });
+          state.token = data.token;
+          sessionStorage.setItem(TOKEN_KEY, data.token);
+          byId("password").value = "";
+          showWorkspace();
+          state.page = 1;
+          await refreshAll();
+        } catch (error) {
+          setMessage("loginMessage", error.message, "error");
+        } finally {
+          button.disabled = false;
+        button.textContent = "登录";
+        }
+      }
+
+      async function handleSave(event) {
+        event.preventDefault();
+        const id = byId("citizenId").value;
+        const payload = {
+          full_name: byId("fullName").value,
+          display_name: byId("displayName").value,
+          birth_date: EraCalendar.read(byId("birthEra"), byId("birthYear"), byId("birthMonth"), byId("birthDay")),
+          address: readAddressParts(),
+          status: byId("citizenStatus").value,
+          join_date: byId("joinDate").value,
+          notes: byId("notes").value,
+        };
+        const button = byId("saveCitizen");
+        button.disabled = true;
+        setMessage("formMessage", "正在保存…");
+        try {
+          await api(id ? `/api/citizens/${id}` : "/api/citizens", {
+            method: id ? "PUT" : "POST",
+            body: JSON.stringify(payload),
+          });
+          byId("citizenDialog").close();
+          setMessage("workspaceMessage", id ? "档案已更新。" : "国民档案已新增。", "success");
+          await refreshAll();
+        } catch (error) {
+          setMessage("formMessage", error.message, "error");
+        } finally {
+          button.disabled = false;
+        }
+      }
+
+      async function exportCsv() {
+        const params = new URLSearchParams();
+        if (state.query) params.set("q", state.query);
+        if (state.status !== "all") params.set("status", state.status);
+        try {
+          const response = await api(`/api/citizens/export.csv?${params}`, { method: "GET" });
+          const blob = await response.blob();
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement("a");
+          link.href = url;
+          link.download = "阿谢国国民名册.csv";
+          link.click();
+          URL.revokeObjectURL(url);
+          setMessage("workspaceMessage", "CSV 已导出。请妥善保管导出文件。", "success");
+        } catch (error) {
+          setMessage("workspaceMessage", error.message, "error");
+        }
+      }
+
+      byId("loginForm").addEventListener("submit", handleLogin);
+      ["addressCity", "addressDistrict", "addressDistrictType", "addressStreet", "addressStreetType", "addressRoad", "addressRoadType", "addressSide", "addressNumber", "addressApartment"].forEach((id) => {
+        byId(id).addEventListener("change", updateAddressPreview);
+        byId(id).addEventListener("input", updateAddressPreview);
+      });
+      updateAddressPreview();
+      EraCalendar.populate(byId("birthMonth"), byId("birthDay"));
+      EraCalendar.write(null, byId("birthEra"), byId("birthYear"), byId("birthMonth"), byId("birthDay"));
+      ["birthEra", "birthYear", "birthMonth", "birthDay"].forEach((id) => {
+        byId(id).addEventListener("change", updateBirthDatePreview);
+        byId(id).addEventListener("input", updateBirthDatePreview);
+      });
+      updateBirthDatePreview();
+      byId("previewCardButton").addEventListener("click", () => openIdentityCard({
+        full_name: "示例国民",
+        display_name: "星海",
+        citizen_no: "AX-2026-DEMO0001",
+        birth_date: { era: "before", year: 1, month: 8, day: 12 },
+        address: "新阿谢市青云区安居街道长虹大道东侧12-3号·星海公寓3栋1202室",
+        status: "active",
+        created_at: Date.UTC(2026, 9, 18),
+      }));
+      byId("citizenForm").addEventListener("submit", handleSave);
+      byId("addButton").addEventListener("click", () => openDialog());
+      byId("closeDialog").addEventListener("click", () => byId("citizenDialog").close());
+      byId("cancelDialog").addEventListener("click", () => byId("citizenDialog").close());
+      byId("logoutButton").addEventListener("click", () => signOut(true));
+      byId("searchButton").addEventListener("click", () => {
+        state.query = byId("searchInput").value.trim();
+        state.page = 1;
+        loadCitizens().catch((error) => setMessage("workspaceMessage", error.message, "error"));
+      });
+      byId("searchInput").addEventListener("keydown", (event) => {
+        if (event.key === "Enter") byId("searchButton").click();
+      });
+      byId("statusFilter").addEventListener("change", () => {
+        state.status = byId("statusFilter").value;
+        state.page = 1;
+        loadCitizens().catch((error) => setMessage("workspaceMessage", error.message, "error"));
+      });
+      byId("previousPage").addEventListener("click", () => {
+        if (state.page > 1) { state.page -= 1; loadCitizens().catch((error) => setMessage("workspaceMessage", error.message, "error")); }
+      });
+      byId("nextPage").addEventListener("click", () => {
+        if (state.page * state.pageSize < state.total) { state.page += 1; loadCitizens().catch((error) => setMessage("workspaceMessage", error.message, "error")); }
+      });
+      byId("refreshButton").addEventListener("click", refreshAll);
+      byId("exportButton").addEventListener("click", exportCsv);
+      byId("citizenRows").addEventListener("click", (event) => {
+        const cardButton = event.target.closest("[data-card]");
+        if (cardButton) {
+          const citizen = state.citizens.find((record) => record.id === cardButton.dataset.card);
+          if (citizen) openIdentityCard(citizen);
+          return;
+        }
+        const button = event.target.closest("[data-edit]");
+        if (!button) return;
+        const citizen = state.citizens.find((record) => record.id === button.dataset.edit);
+        if (citizen) openDialog(citizen);
+      });
+      byId("citizenDialog").addEventListener("click", (event) => {
+        if (event.target === byId("citizenDialog")) byId("citizenDialog").close();
+      });
+      byId("closeCardDialog").addEventListener("click", () => byId("cardDialog").close());
+      byId("printCard").addEventListener("click", () => window.print());
+      byId("downloadCard").addEventListener("click", downloadIdentityCard);
+      byId("cardDialog").addEventListener("click", (event) => {
+        if (event.target === byId("cardDialog")) byId("cardDialog").close();
+      });
+
+      if (state.token) {
+        api("/api/auth/me")
+          .then(() => { showWorkspace(); return refreshAll(); })
+          .catch(() => { signOut(false); });
+      }
+    })();
+  </script>
+</body>
+</html>
