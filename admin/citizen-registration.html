@@ -56,7 +56,7 @@
     </header>
 
     <section class="panel">
-      <p class="intro">填写阿谢国国民登记资料。申请提交后会进入待审核状态；管理员批准后，系统才会发放国民编号并制作身份纪念卡。</p>
+      <p class="intro">填写阿谢国国民登记资料。申请提交后会进入待审核状态；管理员批准后，系统才会发放国民编号并制作阿谢国国民身份卡。</p>
       <p id="currentEra" class="hint" aria-live="polite"></p>
       <form id="registrationForm">
         <label for="fullName">姓名 <span aria-hidden="true">*</span></label>
@@ -87,18 +87,18 @@
         <div class="address-preview" id="addressPreview" aria-live="polite"></div>
         <p class="hint">住址会按城市、区划、街道/乡、道路方位和门牌号自动组合；住在公寓时可补充楼栋与室号。请填写架空设定中的住址，不要填写现实住址。</p>
 
-        <label for="photoFile">身份纪念卡照片（选填）</label>
+        <label for="photoFile">身份卡照片（选填）</label>
         <input id="photoFile" type="file" accept="image/*">
-        <img id="photoPreview" class="photo-preview" alt="身份纪念卡照片预览" hidden>
+        <img id="photoPreview" class="photo-preview" alt="身份卡照片预览" hidden>
         <div id="photoStatus" class="photo-status" aria-live="polite">可上传一张照片；提交前会自动缩小和压缩。</div>
 
         <label class="honeypot" aria-hidden="true" for="website">网站</label>
         <input class="honeypot" id="website" name="website" tabindex="-1" autocomplete="off">
 
         <div class="privacy">
-          姓名、出生日期、阿谢国住址和照片会加密保存在国民登记数据库中，仅授权管理员可查看，用于审核和制作身份纪念卡。此表属于架空世界观项目；请勿填写身份证号、现实住址或上传现实证件照片。申请通过后，照片会显示在国民身份纪念卡上。
+          姓名、出生日期、阿谢国住址和照片会加密保存在国民登记数据库中，仅授权管理员可查看，用于审核和制作阿谢国国民身份卡。此表属于架空世界观项目；请勿填写身份证号、现实住址或上传现实证件照片。申请通过后，照片会显示在国民身份卡上。
         </div>
-        <label class="consent"><input id="privacyAcknowledged" type="checkbox" required><span>我已阅读上面的资料使用说明，同意提交这些资料用于阿谢国国民登记、审核及身份纪念卡制作。</span></label>
+        <label class="consent"><input id="privacyAcknowledged" type="checkbox" required><span>我已阅读上面的资料使用说明，同意提交这些资料用于阿谢国国民登记、审核及阿谢国国民身份卡制作。</span></label>
         <button id="submitButton" class="button primary" type="submit">提交登记申请</button>
       </form>
       <div id="formMessage" class="message" role="status" aria-live="polite"></div>
@@ -183,7 +183,7 @@
           photoDataUrl = preparedPhoto;
           preview.src = photoDataUrl;
           preview.hidden = false;
-          byId("photoStatus").textContent = "照片已准备好，将加密保存并显示在身份纪念卡上。";
+          byId("photoStatus").textContent = "照片已准备好，将加密保存并显示在阿谢国国民身份卡上。";
         } catch (error) {
           if (selection !== photoSelectionSequence) return;
           photoDataUrl = "";
