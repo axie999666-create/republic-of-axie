@@ -358,10 +358,10 @@
           <textarea id="notes" maxlength="500" placeholder="只记录管理所需内容"></textarea>
         </div>
         <div class="wide">
-          <label for="citizenPhotoFile">身份纪念卡照片（选填）</label>
+          <label for="citizenPhotoFile">身份卡照片（选填）</label>
           <input id="citizenPhotoFile" type="file" accept="image/*">
-          <img id="citizenPhotoPreview" class="photo-preview" alt="身份纪念卡照片预览" hidden>
-          <div id="citizenPhotoStatus" class="photo-status" aria-live="polite">照片会加密保存，并显示在国民身份纪念卡上。</div>
+          <img id="citizenPhotoPreview" class="photo-preview" alt="身份卡照片预览" hidden>
+          <div id="citizenPhotoStatus" class="photo-status" aria-live="polite">照片会加密保存，并显示在阿谢国国民身份卡上。</div>
           <label class="photo-remove" id="removePhotoLabel" hidden><input id="removePhoto" type="checkbox">移除已保存的照片</label>
         </div>
       </div>
@@ -375,34 +375,34 @@
 
   <dialog id="cardDialog" aria-labelledby="cardDialogTitle">
     <div class="dialog-head">
-      <h3 id="cardDialogTitle">阿谢国国民纪念卡</h3>
+      <h3 id="cardDialogTitle">阿谢国国民身份卡</h3>
       <button class="button small" id="closeCardDialog" type="button" aria-label="关闭身份卡预览">关闭</button>
     </div>
     <div class="dialog-body">
-      <article id="identityCard" class="identity-card" aria-label="国民纪念卡预览">
+      <article id="identityCard" class="identity-card" aria-label="阿谢国国民身份卡预览">
         <div class="card-overline"><div class="card-brand"><span class="card-flag"><img src="/ROA_flag.png" alt="阿谢国国旗"></span><span>REPUBLIC OF AXIE</span></div><span>FICTIONAL WORLD-BUILDING PROJECT</span></div>
         <div class="card-main">
-          <div class="card-photo-frame" aria-label="国民照片"><img id="cardPhoto" alt="国民身份纪念卡照片" hidden><span id="cardPhotoFallback" aria-hidden="true">✦</span></div>
+          <div class="card-photo-frame" aria-label="国民照片"><img id="cardPhoto" alt="阿谢国国民身份卡照片" hidden><span id="cardPhotoFallback" aria-hidden="true">✦</span></div>
           <div>
             <div class="card-name-label">国民姓名 · CITIZEN</div>
             <div id="cardFullName" class="card-full-name">—</div>
             <div id="cardDisplayName" class="card-display-name"></div>
           </div>
         </div>
-        <div class="card-stamp">世界观纪念卡</div>
+        <div class="card-stamp">阿谢国国民身份卡</div>
         <div class="card-details">
           <div><div class="card-detail-label">国民编号 · ID</div><div id="cardCitizenNo" class="card-detail-value card-number-value">—</div></div>
           <div><div class="card-detail-label">出生日期 · BIRTH</div><div id="cardBirthDate" class="card-detail-value">—</div></div>
           <div><div class="card-detail-label">国民状态 · STATUS</div><div id="cardStatus" class="card-detail-value">—</div></div>
         </div>
         <div class="card-address"><div class="card-detail-label">阿谢国住址 · ADDRESS</div><div id="cardAddress" class="card-detail-value">—</div></div>
-        <div class="card-footer"><span>架空世界观创作项目 · 非现实身份证件</span><span>签发日期 <b id="cardIssueDate">—</b></span></div>
+        <div class="card-footer"><span>阿谢国为架空世界观创作项目 · Republic of Axie is a fictional nation project</span><span>签发日期 <b id="cardIssueDate">—</b></span></div>
       </article>
       <div class="card-actions">
         <button class="button" id="printCard" type="button">打印 / 保存为 PDF</button>
         <button class="button primary" id="downloadCard" type="button">下载 SVG</button>
       </div>
-      <p class="card-disclaimer">此卡仅用于阿谢国架空世界观展示，不具有现实身份、国籍、通行或政府证明效力。</p>
+      <p class="card-disclaimer">阿谢国为架空世界观创作项目 · Republic of Axie is a fictional nation project</p>
     </div>
   </dialog>
 
@@ -598,7 +598,7 @@
         byId("citizenPhotoStatus").className = "photo-status";
         byId("citizenPhotoStatus").textContent = citizen?.has_photo
           ? "正在读取已保存的照片…"
-          : "照片会加密保存，并显示在国民身份纪念卡上。";
+          : "照片会加密保存，并显示在阿谢国国民身份卡上。";
         byId("removePhotoLabel").hidden = !citizen?.has_photo;
         byId("removePhoto").checked = false;
         byId("citizenId").value = citizen?.id || "";
@@ -682,7 +682,7 @@
           preview.hidden = true;
           preview.removeAttribute("src");
           byId("citizenPhotoStatus").className = "photo-status";
-          byId("citizenPhotoStatus").textContent = "照片会加密保存，并显示在国民身份纪念卡上。";
+          byId("citizenPhotoStatus").textContent = "照片会加密保存，并显示在阿谢国国民身份卡上。";
           return;
         }
         const saveButton = byId("saveCitizen");
@@ -695,7 +695,7 @@
           selectedPhotoDataUrl = preparedPhoto;
           preview.src = selectedPhotoDataUrl;
           preview.hidden = false;
-          byId("citizenPhotoStatus").textContent = "照片已准备好，将加密保存并显示在身份纪念卡上。";
+          byId("citizenPhotoStatus").textContent = "照片已准备好，将加密保存并显示在阿谢国国民身份卡上。";
         } catch (error) {
           if (selection !== photoSelectionSequence) return;
           event.currentTarget.value = "";
@@ -787,8 +787,8 @@
           : `<circle cx="122" cy="274" r="58" fill="url(#seal)" stroke="#9fcef9" stroke-opacity=".55" stroke-width="2"/><text x="122" y="295" text-anchor="middle" fill="#c7e4ff" font-family="serif" font-size="54">✦</text>`;
         const svg = `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1024" height="648" viewBox="0 0 1024 648" role="img" aria-labelledby="title desc">
-<title id="title">阿谢国国民纪念卡 · ${values.cardFullName}</title>
-<desc id="desc">架空世界观创作项目，非现实身份证件。</desc>
+<title id="title">阿谢国国民身份卡 · ${values.cardFullName}</title>
+<desc id="desc">阿谢国为架空世界观创作项目 · Republic of Axie is a fictional nation project</desc>
 <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#102b4c"/><stop offset=".58" stop-color="#0a1a30"/><stop offset="1" stop-color="#16436d"/></linearGradient><radialGradient id="seal"><stop stop-color="#73b1ea" stop-opacity=".28"/><stop offset="1" stop-color="#73b1ea" stop-opacity=".02"/></radialGradient><clipPath id="flagClip"><rect x="56" y="42" width="88" height="56" rx="6"/></clipPath><clipPath id="photoClip"><rect x="56" y="194" width="132" height="160" rx="14"/></clipPath></defs>
 <rect x="1" y="1" width="1022" height="646" rx="40" fill="url(#bg)" stroke="#b6d8f6" stroke-opacity=".48" stroke-width="2"/><rect x="16" y="16" width="992" height="616" rx="30" fill="none" stroke="#d8ecff" stroke-opacity=".08" stroke-width="3"/>
 <circle cx="897" cy="101" r="214" fill="none" stroke="#80bef7" stroke-opacity=".14" stroke-width="2"/><circle cx="897" cy="101" r="250" fill="none" stroke="#80bef7" stroke-opacity=".07" stroke-width="2"/>
@@ -796,14 +796,14 @@
 ${portraitSvg}<rect x="56" y="194" width="132" height="160" rx="14" fill="none" stroke="#9fcef9" stroke-opacity=".65" stroke-width="2"/>
 <text x="238" y="248" fill="#90abc6" font-family="Arial,sans-serif" font-size="16" letter-spacing="3">国民姓名 · CITIZEN</text><text x="238" y="302" fill="#f3f8ff" font-family="sans-serif" font-size="42" font-weight="700">${values.cardFullName}</text><text x="238" y="340" fill="#adc5dd" font-family="sans-serif" font-size="20">${values.cardDisplayName}</text>
 <g font-family="sans-serif"><text x="56" y="427" fill="#819bb7" font-size="15" letter-spacing="2">国民编号 · ID</text><text x="56" y="462" fill="#9bcaff" font-family="monospace" font-size="20">${values.cardCitizenNo}</text><text x="410" y="427" fill="#819bb7" font-size="15" letter-spacing="2">出生日期 · BIRTH</text><text x="410" y="462" fill="#d7eaff" font-size="18">${values.cardBirthDate}</text><text x="768" y="427" fill="#819bb7" font-size="15" letter-spacing="2">国民状态 · STATUS</text><text x="768" y="462" fill="#d7eaff" font-size="20">${values.cardStatus}</text><text x="56" y="496" fill="#819bb7" font-size="15" letter-spacing="2">阿谢国住址 · ADDRESS</text><text x="270" y="496" fill="#d7eaff" font-size="16">${addressLine1}</text><text x="270" y="520" fill="#d7eaff" font-size="16">${addressLine2}</text></g>
-<path d="M56 540H968" stroke="#b1d5f7" stroke-opacity=".18"/><text x="56" y="574" fill="#d9c895" font-family="sans-serif" font-size="16">架空世界观创作项目 · 非现实身份证件</text><text x="968" y="574" text-anchor="end" fill="#8099b4" font-family="sans-serif" font-size="14">签发日期 ${values.cardIssueDate}</text>
-<text x="512" y="608" text-anchor="middle" fill="#829cb7" font-family="Arial,sans-serif" font-size="13" letter-spacing="3">WORLD-BUILDING MEMBER CARD · NOT A REAL ID</text>
+<path d="M56 540H968" stroke="#b1d5f7" stroke-opacity=".18"/><text x="56" y="574" fill="#d9c895" font-family="sans-serif" font-size="13">阿谢国为架空世界观创作项目 · Republic of Axie is a fictional nation project</text><text x="968" y="574" text-anchor="end" fill="#8099b4" font-family="sans-serif" font-size="14">签发日期 ${values.cardIssueDate}</text>
+<text x="512" y="608" text-anchor="middle" fill="#829cb7" font-family="Arial,sans-serif" font-size="13" letter-spacing="3">REPUBLIC OF AXIE · CITIZEN IDENTITY CARD</text>
 </svg>`;
         const blob = new Blob([svg], { type: "image/svg+xml;charset=utf-8" });
         const downloadUrl = URL.createObjectURL(blob);
         const link = document.createElement("a");
         link.href = downloadUrl;
-        link.download = `阿谢国国民纪念卡-${byId("cardCitizenNo").textContent}.svg`;
+        link.download = `阿谢国国民身份卡-${byId("cardCitizenNo").textContent}.svg`;
         link.click();
         URL.revokeObjectURL(downloadUrl);
       }
