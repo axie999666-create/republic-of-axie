@@ -170,9 +170,7 @@
     .passport-spread img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
     .passport-spread::after { content: ""; position: absolute; z-index: 1; inset: 0 49.7%; border-left: 1px solid rgba(31,43,60,.36); border-right: 1px solid rgba(255,255,255,.52); background: linear-gradient(90deg, rgba(15,28,45,.12), rgba(255,255,255,.16), rgba(15,28,45,.12)); pointer-events: none; }
     .passport-stage.is-open .passport-spread { opacity: 1; visibility: visible; }
-    .passport-spread-title, .passport-spread-notice { position: absolute; z-index: 2; left: clamp(12px, 3vw, 28px); max-width: calc(100% - 32px); margin: 0; color: #10233d; border: 1px solid rgba(255,255,255,.65); border-radius: 8px; padding: 8px 12px; background: rgba(250,247,237,.86); box-shadow: 0 4px 14px rgba(10,20,34,.16); }
-    .passport-spread-title { top: clamp(12px, 3vw, 24px); font-size: clamp(13px, 2.1vw, 19px); letter-spacing: .04em; }
-    .passport-spread-notice { bottom: clamp(12px, 3vw, 24px); color: #24354a; font-size: clamp(9px, 1.3vw, 12px); line-height: 1.5; }
+    .passport-spread-title { position: absolute; z-index: 2; top: clamp(12px, 3vw, 24px); left: clamp(12px, 3vw, 28px); max-width: calc(100% - 32px); margin: 0; color: #10233d; border: 1px solid rgba(255,255,255,.65); border-radius: 8px; padding: 7px 10px; background: rgba(250,247,237,.86); box-shadow: 0 4px 14px rgba(10,20,34,.16); font-size: clamp(12px, 2vw, 17px); letter-spacing: .04em; }
     .passport-cover { position: absolute; z-index: 3; inset: 0; display: block; width: 100%; height: 100%; overflow: hidden; padding: 0; border: 1px solid rgba(182,216,246,.62); border-radius: 13px; background: #0758a8; box-shadow: 0 20px 48px rgba(0,0,0,.42); transform-origin: left center; transform-style: preserve-3d; backface-visibility: hidden; cursor: pointer; transition: width .78s cubic-bezier(.2,.75,.25,1), transform .86s cubic-bezier(.22,.72,.2,1), box-shadow .3s ease; }
     .passport-cover:hover { box-shadow: 0 23px 52px rgba(0,0,0,.48); }
     .passport-cover img { display: block; width: 100%; height: 100%; object-fit: cover; }
@@ -437,7 +435,6 @@
         <div id="passportSpread" class="passport-spread" aria-hidden="true">
           <img src="/citizens/images/founding-place.jpg" alt="阿谢国建国地点">
           <h4 class="passport-spread-title">阿谢国建国地点 · FOUNDING PLACE</h4>
-          <p class="passport-spread-notice">阿谢国为架空世界观创作项目 · Republic of Axie is a fictional nation project</p>
         </div>
         <button id="passportCover" class="passport-cover" type="button" aria-label="翻开阿谢国护照">
           <img src="/citizens/images/passport-cover.jpg" alt="阿谢国护照蓝色封面">
