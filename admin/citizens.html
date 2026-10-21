@@ -166,18 +166,26 @@
     .passport-intro { margin: 0 0 17px; color: var(--muted); font-size: 13px; line-height: 1.65; text-align: center; }
     .passport-stage { position: relative; width: min(360px, 100%); aspect-ratio: 824 / 1180; margin: 0 auto; perspective: 1800px; transition: width .78s cubic-bezier(.2,.75,.25,1), aspect-ratio .78s ease; }
     .passport-stage.is-open { width: min(900px, 100%); aspect-ratio: 1.58; }
-    .passport-spread { position: absolute; inset: 0; display: grid; place-items: center; overflow: hidden; border: 1px solid rgba(234,224,190,.62); border-radius: 13px; background: #eee6d1; box-shadow: 0 18px 42px rgba(0,0,0,.35); opacity: 0; visibility: hidden; transition: opacity .35s ease .2s; }
-    .passport-spread img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-    .passport-spread::after { content: ""; position: absolute; z-index: 1; inset: 0 49.7%; border-left: 1px solid rgba(31,43,60,.36); border-right: 1px solid rgba(255,255,255,.52); background: linear-gradient(90deg, rgba(15,28,45,.12), rgba(255,255,255,.16), rgba(15,28,45,.12)); pointer-events: none; }
+    .passport-spread { position: absolute; inset: 0; display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 2px; overflow: hidden; border: 1px solid rgba(234,224,190,.72); border-radius: 13px; padding: clamp(7px, 1.5vw, 13px); background: #d9cfbb; box-shadow: 0 18px 42px rgba(0,0,0,.35); opacity: 0; visibility: hidden; transition: opacity .35s ease .2s; }
+    .passport-page { position: relative; z-index: 0; display: flex; min-width: 0; min-height: 0; flex-direction: column; overflow: hidden; padding: clamp(10px, 2.6vw, 26px); color: #24334a; background-color: #f4efdf; background-image: repeating-linear-gradient(0deg, rgba(120,99,60,.025) 0, rgba(120,99,60,.025) 1px, transparent 1px, transparent 4px), linear-gradient(145deg, #fbf8ed, #eee5d1); box-shadow: inset 0 0 14px rgba(85,67,36,.08); }
+    .passport-page:first-child { border-radius: 8px 2px 2px 8px; }
+    .passport-page:last-child { border-radius: 2px 8px 8px 2px; }
+    .passport-spread::after { content: ""; position: absolute; z-index: 3; inset: 0 49.7%; border-left: 1px solid rgba(31,43,60,.24); border-right: 1px solid rgba(255,255,255,.72); background: linear-gradient(90deg, rgba(15,28,45,.1), rgba(255,255,255,.12), rgba(15,28,45,.1)); pointer-events: none; }
     .passport-stage.is-open .passport-spread { opacity: 1; visibility: visible; }
-    .passport-spread-title { position: absolute; z-index: 2; top: clamp(12px, 3vw, 24px); left: clamp(12px, 3vw, 28px); max-width: calc(100% - 32px); margin: 0; color: #10233d; border: 1px solid rgba(255,255,255,.65); border-radius: 8px; padding: 7px 10px; background: rgba(250,247,237,.86); box-shadow: 0 4px 14px rgba(10,20,34,.16); font-size: clamp(12px, 2vw, 17px); letter-spacing: .04em; }
+    .passport-page-kicker { color: #68748a; font-family: Georgia,serif; font-size: clamp(8px, 1.15vw, 11px); letter-spacing: .1em; }
+    .passport-page-title { margin: clamp(8px, 1.7vw, 16px) 0 0; color: #17345a; font-family: Georgia,"Songti SC",serif; font-size: clamp(13px, 2vw, 21px); line-height: 1.35; }
+    .passport-message { margin: clamp(9px, 2vw, 18px) 0 0; color: #263247; font-family: "Songti SC","Noto Serif CJK SC",serif; font-size: clamp(10px, 1.55vw, 16px); line-height: 1.9; text-align: justify; }
+    .passport-government { display: flex; align-items: center; gap: 8px; margin-top: auto; padding-top: 9px; border-top: 1px solid rgba(42,57,78,.22); color: #55647a; font-size: clamp(9px, 1.2vw, 12px); }
+    .passport-government-mark { display: grid; place-items: center; width: 23px; height: 23px; border: 1px solid #a7854a; color: #92713c; font-size: 13px; }
+    .passport-page-number { margin-top: auto; padding-top: 8px; color: #68748a; font-family: Georgia,serif; font-size: 9px; letter-spacing: .12em; text-align: right; }
+    .passport-location-photo { display: block; width: 100%; aspect-ratio: 1.58; margin-top: clamp(7px, 1.5vw, 13px); border: 4px solid #fffdf7; object-fit: cover; box-shadow: 0 3px 10px rgba(42,35,20,.22); }
+    .passport-project-mark { margin: auto 0 0; padding-top: 6px; color: #68748a; font-size: clamp(7px, .95vw, 10px); line-height: 1.35; text-align: center; }
     .passport-cover { position: absolute; z-index: 3; inset: 0; display: block; width: 100%; height: 100%; overflow: hidden; padding: 0; border: 1px solid rgba(182,216,246,.62); border-radius: 13px; background: #0758a8; box-shadow: 0 20px 48px rgba(0,0,0,.42); transform-origin: left center; transform-style: preserve-3d; backface-visibility: hidden; cursor: pointer; transition: width .78s cubic-bezier(.2,.75,.25,1), transform .86s cubic-bezier(.22,.72,.2,1), box-shadow .3s ease; }
     .passport-cover:hover { box-shadow: 0 23px 52px rgba(0,0,0,.48); }
     .passport-cover img { display: block; width: 100%; height: 100%; object-fit: cover; }
     .passport-cover span { position: absolute; right: 12px; bottom: 12px; border: 1px solid rgba(255,255,255,.5); border-radius: 999px; padding: 6px 10px; color: #fff; background: rgba(4,24,50,.66); font-size: 11px; }
     .passport-stage.is-open .passport-cover { width: 50%; transform: rotateY(-180deg); box-shadow: 0 0 0 rgba(0,0,0,0); }
     .passport-controls { display: flex; justify-content: center; gap: 9px; margin-top: 17px; }
-    .passport-credit { margin: 14px 0 0; color: #96abc2; font-size: 11px; line-height: 1.6; text-align: center; }
     @media (prefers-reduced-motion: reduce) { .passport-stage, .passport-spread, .passport-cover { transition-duration: .01ms; } }
     [hidden] { display: none !important; }
     @media print {
@@ -426,25 +434,34 @@
 
   <dialog id="passportDialog" class="passport-dialog" aria-labelledby="passportDialogTitle">
     <div class="dialog-head">
-      <h3 id="passportDialogTitle">阿谢国国民护照</h3>
-      <button class="button small" id="closePassportDialog" type="button" aria-label="关闭护照预览">关闭</button>
+      <h3 id="passportDialogTitle">阿謝國國民護照</h3>
+      <button class="button small" id="closePassportDialog" type="button" aria-label="關閉護照預覽">關閉</button>
     </div>
     <div class="dialog-body">
-      <p class="passport-intro">点击护照封面即可翻开，内页展示阿谢国建国地点。</p>
+      <p class="passport-intro">點擊護照封面翻開護照，內頁展示阿謝國建國地點。</p>
       <div id="passportStage" class="passport-stage">
         <div id="passportSpread" class="passport-spread" aria-hidden="true">
-          <img src="/citizens/images/founding-place.jpg" alt="阿谢国建国地点">
-          <h4 class="passport-spread-title">阿谢国建国地点 · FOUNDING PLACE</h4>
+          <section class="passport-page passport-message-page" lang="zh-Hant">
+            <div class="passport-page-kicker">阿謝國護照</div>
+            <h4 class="passport-page-title">通行協助請求</h4>
+            <p class="passport-message">阿謝國政府請求有關方面允許本護照持有人安全、順利地通行，並在必要時給予協助與保護。</p>
+            <div class="passport-government"><span class="passport-government-mark" aria-hidden="true">✦</span><span>阿謝國政府</span></div>
+          </section>
+          <section class="passport-page passport-location-page" lang="zh-Hant">
+            <div class="passport-page-kicker">阿謝國護照 · 第一頁</div>
+            <h4 class="passport-page-title">阿謝國建國地點</h4>
+            <img class="passport-location-photo" src="/citizens/images/founding-place.jpg" alt="阿謝國建國地點">
+            <p class="passport-project-mark">阿謝國為架空世界觀創作項目</p>
+          </section>
         </div>
-        <button id="passportCover" class="passport-cover" type="button" aria-label="翻开阿谢国护照">
-          <img src="/citizens/images/passport-cover.jpg" alt="阿谢国护照蓝色封面">
-          <span>点击翻开</span>
+        <button id="passportCover" class="passport-cover" type="button" aria-label="翻開阿謝國護照">
+          <img src="/citizens/images/passport-cover.jpg" alt="阿謝國護照藍色封面">
+          <span>點擊翻開</span>
         </button>
       </div>
       <div class="passport-controls">
-        <button id="flipPassport" class="button primary" type="button" aria-expanded="false">翻开护照</button>
+        <button id="flipPassport" class="button primary" type="button" aria-expanded="false">翻開護照</button>
       </div>
-      <p class="passport-credit">阿谢国为架空世界观创作项目 · Republic of Axie is a fictional nation project</p>
     </div>
   </dialog>
 
@@ -720,8 +737,8 @@
         stage.classList.toggle("is-open", isOpen);
         spread.setAttribute("aria-hidden", String(!isOpen));
         flipButton.setAttribute("aria-expanded", String(isOpen));
-        flipButton.textContent = isOpen ? "合上护照" : "翻开护照";
-        cover.setAttribute("aria-label", isOpen ? "护照已翻开" : "翻开阿谢国护照");
+        flipButton.textContent = isOpen ? "合上護照" : "翻開護照";
+        cover.setAttribute("aria-label", isOpen ? "護照已翻開" : "翻開阿謝國護照");
         cover.tabIndex = isOpen ? -1 : 0;
         cover.setAttribute("aria-hidden", String(isOpen));
       }
