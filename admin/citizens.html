@@ -509,6 +509,7 @@
               <div class="passport-id-field passport-id-field-wide"><span class="passport-id-label">姓名</span><strong id="passportHolderName" class="passport-id-value">—</strong></div>
               <div class="passport-id-field"><span class="passport-id-label">出生日期（公曆）</span><strong id="passportHolderBirthDate" class="passport-id-value">—</strong></div>
               <div class="passport-id-field"><span class="passport-id-label">國籍碼</span><strong id="passportNationalityCode" class="passport-id-value">ROA</strong></div>
+              <div class="passport-id-field passport-id-field-wide"><span class="passport-id-label">國民 ID</span><strong id="passportHolderCitizenId" class="passport-id-value passport-id-number">—</strong></div>
               <div class="passport-id-field passport-id-field-wide"><span class="passport-id-label">護照號碼</span><strong id="passportNumber" class="passport-id-value passport-id-number">—</strong></div>
             </div>
             <p class="passport-project-mark">阿謝國為架空世界觀創作項目</p>
@@ -866,6 +867,7 @@
         byId("passportHolderName").textContent = citizen.full_name || "—";
         byId("passportHolderBirthDate").textContent = formatGregorianPassportBirthDate(citizen.birth_date);
         byId("passportNationalityCode").textContent = "ROA";
+        byId("passportHolderCitizenId").textContent = citizen.citizen_no || "—";
         byId("passportNumber").textContent = citizen.citizen_no ? `ROA-${citizen.citizen_no}` : "—";
         const passportPhoto = byId("passportHolderPhoto");
         const photoFallback = byId("passportPhotoFallback");
