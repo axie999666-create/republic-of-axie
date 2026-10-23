@@ -41,7 +41,7 @@
   function isExcluded(element) {
     if (!element || element.nodeType !== Node.ELEMENT_NODE) return false;
     return Boolean(element.closest(
-      'script,style,noscript,textarea,input,select,[contenteditable="true"],[data-no-traditional],[data-traditional-exclude],#passportDialog',
+      'script,style,noscript,textarea,input,[contenteditable="true"],[data-no-traditional],[data-traditional-exclude],#passportDialog',
     ));
   }
 
