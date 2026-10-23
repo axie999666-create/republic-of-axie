@@ -78,7 +78,7 @@
       return;
     }
     if (node.nodeType !== Node.ELEMENT_NODE || isExcluded(node)) return;
-    renderAttributes(node);
+    if (node.tagName === "OPTION" && !node.hasAttribute("value")) node.setAttribute("value", node.value); renderAttributes(node);
     for (const child of node.childNodes) renderSubtree(child);
   }
 
