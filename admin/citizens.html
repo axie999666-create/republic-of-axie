@@ -172,12 +172,14 @@
     .passport-page:last-child { border-radius: 2px 8px 8px 2px; }
     .passport-spread::after { content: ""; position: absolute; z-index: 3; inset: 0 49.7%; border-left: 1px solid rgba(31,43,60,.24); border-right: 1px solid rgba(255,255,255,.72); background: linear-gradient(90deg, rgba(15,28,45,.1), rgba(255,255,255,.12), rgba(15,28,45,.1)); pointer-events: none; }
     .passport-stage.is-open #passportLocationSpread { opacity: 1; visibility: visible; transform: rotateY(0); }
-    .passport-stage.is-open #passportRequestSpread { opacity: 0; visibility: hidden; transform: rotateY(90deg); }
-    .passport-stage.is-open #passportVisaSpread { opacity: 0; visibility: hidden; transform: rotateY(90deg); }
-    .passport-stage.is-open.is-request #passportLocationSpread { opacity: 0; visibility: hidden; transform: rotateY(-90deg); }
+    .passport-stage.is-open #passportRequestSpread, .passport-stage.is-open #passportIdentitySpread, .passport-stage.is-open #passportVisaSpread { opacity: 0; visibility: hidden; transform: rotateY(90deg); }
+    .passport-stage.is-open.is-request #passportLocationSpread, .passport-stage.is-open.is-identity #passportLocationSpread, .passport-stage.is-open.is-visa #passportLocationSpread { opacity: 0; visibility: hidden; transform: rotateY(-90deg); }
     .passport-stage.is-open.is-request #passportRequestSpread { opacity: 1; visibility: visible; transform: rotateY(0); }
-    .passport-stage.is-open.is-request #passportVisaSpread { opacity: 0; visibility: hidden; transform: rotateY(90deg); }
-    .passport-stage.is-open.is-visa #passportLocationSpread, .passport-stage.is-open.is-visa #passportRequestSpread { opacity: 0; visibility: hidden; transform: rotateY(-90deg); }
+    .passport-stage.is-open.is-request #passportIdentitySpread, .passport-stage.is-open.is-request #passportVisaSpread { opacity: 0; visibility: hidden; transform: rotateY(90deg); }
+    .passport-stage.is-open.is-identity #passportRequestSpread { opacity: 0; visibility: hidden; transform: rotateY(-90deg); }
+    .passport-stage.is-open.is-identity #passportIdentitySpread { opacity: 1; visibility: visible; transform: rotateY(0); }
+    .passport-stage.is-open.is-identity #passportVisaSpread { opacity: 0; visibility: hidden; transform: rotateY(90deg); }
+    .passport-stage.is-open.is-visa #passportRequestSpread, .passport-stage.is-open.is-visa #passportIdentitySpread { opacity: 0; visibility: hidden; transform: rotateY(-90deg); }
     .passport-stage.is-open.is-visa #passportVisaSpread { opacity: 1; visibility: visible; transform: rotateY(0); }
     .passport-page-kicker { color: #68748a; font-family: Georgia,serif; font-size: clamp(7px, .95vw, 9px); letter-spacing: .1em; }
     .passport-page-title { margin: clamp(8px, 1.7vw, 16px) 0 0; color: #17345a; font-family: Georgia,"Songti SC",serif; font-size: clamp(11px, 1.5vw, 16px); line-height: 1.35; }
@@ -190,18 +192,22 @@
     .passport-emblem { display: block; width: min(56%, 150px); aspect-ratio: 1; margin: auto auto 4px; object-fit: contain; mix-blend-mode: multiply; }
     .passport-country-name { margin: 0; color: #17345a; font-family: Georgia,"Songti SC",serif; font-size: clamp(14px, 2.3vw, 25px); font-weight: 500; letter-spacing: .14em; text-align: center; }
     .passport-republic-name { margin: 4px 0 auto; color: #42526a; font-family: Georgia,serif; font-size: clamp(11px, 1.75vw, 18px); letter-spacing: .035em; text-align: center; }
-    .passport-id-top { display: grid; grid-template-columns: minmax(0,1fr) 38%; align-items: start; gap: 7px; margin-top: 6px; }
-    .passport-id-photo-frame { position: relative; overflow: hidden; width: 100%; aspect-ratio: .76; border: 1px solid rgba(77,93,116,.34); background: rgba(255,255,255,.52); }
+    .passport-landscape-spread { grid-template-columns: minmax(0,1fr); }
+    .passport-landscape-spread::after { display: none; }
+    .passport-identity-page { display: grid; grid-template-columns: minmax(110px, 23%) minmax(0,1fr); grid-template-rows: auto minmax(0,1fr) auto; gap: 8px clamp(14px, 3vw, 30px); padding: clamp(14px, 3vw, 30px); }
+    .passport-id-top { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: start; gap: 10px; margin: 0; }
+    .passport-id-photo-frame { position: relative; grid-column: 1; grid-row: 2; overflow: hidden; width: 100%; height: 100%; min-height: 0; border: 1px solid rgba(77,93,116,.34); background: rgba(255,255,255,.52); }
     .passport-id-photo-frame img { display: block; width: 100%; height: 100%; object-fit: cover; }
     .passport-id-photo-frame img[hidden] { display: none; }
-    .passport-id-photo-fallback { display: grid; place-items: center; width: 100%; height: 100%; color: #7d8795; font-size: 15px; }
+    .passport-id-photo-fallback { display: grid; place-items: center; width: 100%; height: 100%; color: #7d8795; font-size: 22px; }
     .passport-id-heading { min-width: 0; }
     .passport-id-heading .passport-page-title { margin-top: 2px; }
-    .passport-id-fields { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 5px 7px; margin-top: 7px; }
+    .passport-id-fields { grid-column: 2; grid-row: 2; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); align-content: center; gap: clamp(9px, 2vw, 18px) clamp(14px, 3vw, 30px); margin: 0; }
     .passport-id-field-wide { grid-column: 1 / -1; }
-    .passport-id-label { display: block; color: #68748a; font-size: clamp(7px, .9vw, 9px); line-height: 1.25; }
-    .passport-id-value { display: block; margin-top: 2px; color: #263247; font-size: clamp(8px, 1vw, 10px); font-weight: 650; line-height: 1.3; overflow-wrap: anywhere; }
-    .passport-id-number { font-family: ui-monospace,monospace; font-size: clamp(7px, .88vw, 9px); letter-spacing: .01em; }
+    .passport-id-label { display: block; color: #68748a; font-size: clamp(8px, 1vw, 11px); line-height: 1.25; }
+    .passport-id-value { display: block; margin-top: 3px; color: #263247; font-size: clamp(11px, 1.5vw, 16px); font-weight: 650; line-height: 1.35; overflow-wrap: anywhere; }
+    .passport-id-number { font-family: ui-monospace,monospace; font-size: clamp(10px, 1.25vw, 14px); letter-spacing: .01em; }
+    .passport-identity-page .passport-project-mark { grid-column: 1 / -1; grid-row: 3; margin: 0; padding: 0; }
     .passport-visa-page { isolation: isolate; }
     .passport-visa-art { position: absolute; z-index: -1; inset: 0; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 3px; overflow: hidden; opacity: .12; filter: grayscale(.65) sepia(.16) saturate(.72); mix-blend-mode: multiply; pointer-events: none; }
     .passport-visa-art img { display: block; width: 100%; height: 100%; object-fit: cover; }
@@ -469,7 +475,7 @@
       <button class="button small" id="closePassportDialog" type="button" aria-label="關閉護照預覽">關閉</button>
     </div>
     <div class="dialog-body">
-      <p class="passport-intro">翻開可查看建國地點與國徽；後頁載有持有人資料與通行協助請求，簽證頁附有淡化的阿謝國場景圖。</p>
+      <p class="passport-intro">翻開可查看建國地點與國徽；再翻頁可查看通行協助請求、橫向身份資料頁與簽證頁。</p>
       <div id="passportStage" class="passport-stage">
         <div id="passportLocationSpread" class="passport-spread" aria-hidden="true">
           <section class="passport-page passport-location-page" lang="zh-Hant">
@@ -486,61 +492,37 @@
             <p class="passport-project-mark">阿謝國為架空世界觀創作項目</p>
           </section>
         </div>
-        <div id="passportRequestSpread" class="passport-spread" aria-hidden="true">
+        <div id="passportRequestSpread" class="passport-spread passport-landscape-spread" aria-hidden="true">
           <section class="passport-page passport-message-page" lang="zh-Hant">
             <div class="passport-page-kicker">阿謝國護照 · 第三頁</div>
             <h4 class="passport-page-title">通行協助請求</h4>
             <p class="passport-message">阿謝國政府請求有關方面允許本護照持有人安全、順利地通行，並在必要時給予協助與保護。</p>
             <div class="passport-government"><span class="passport-government-mark" aria-hidden="true">✦</span><span>阿謝國政府</span></div>
           </section>
+        </div>
+        <div id="passportIdentitySpread" class="passport-spread passport-landscape-spread" aria-hidden="true">
           <section class="passport-page passport-identity-page" lang="zh-Hant">
-            <div class="passport-page-kicker">阿謝國護照 · 第四頁</div>
             <div class="passport-id-top">
               <div class="passport-id-heading">
-                <div class="passport-page-kicker">持有人資料</div>
+                <div class="passport-page-kicker">阿謝國護照 · 第四頁 · 持有人資料</div>
                 <h4 class="passport-page-title">身份頁</h4>
               </div>
-              <div class="passport-id-photo-frame">
-                <img id="passportHolderPhoto" alt="護照持有人照片" hidden>
-                <span id="passportPhotoFallback" class="passport-id-photo-fallback" aria-hidden="true">✦</span>
-              </div>
+            </div>
+            <div class="passport-id-photo-frame">
+              <img id="passportHolderPhoto" alt="護照持有人照片" hidden>
+              <span id="passportPhotoFallback" class="passport-id-photo-fallback" aria-hidden="true">✦</span>
             </div>
             <div class="passport-id-fields">
               <div class="passport-id-field passport-id-field-wide"><span class="passport-id-label">姓名</span><strong id="passportHolderName" class="passport-id-value">—</strong></div>
               <div class="passport-id-field"><span class="passport-id-label">出生日期（公曆）</span><strong id="passportHolderBirthDate" class="passport-id-value">—</strong></div>
               <div class="passport-id-field"><span class="passport-id-label">國籍碼</span><strong id="passportNationalityCode" class="passport-id-value">ROA</strong></div>
-              <div class="passport-id-field passport-id-field-wide"><span class="passport-id-label">國民 ID</span><strong id="passportHolderCitizenId" class="passport-id-value passport-id-number">—</strong></div>
-              <div class="passport-id-field passport-id-field-wide"><span class="passport-id-label">護照號碼</span><strong id="passportNumber" class="passport-id-value passport-id-number">—</strong></div>
+              <div class="passport-id-field"><span class="passport-id-label">國民 ID</span><strong id="passportHolderCitizenId" class="passport-id-value passport-id-number">—</strong></div>
+              <div class="passport-id-field"><span class="passport-id-label">護照號碼</span><strong id="passportNumber" class="passport-id-value passport-id-number">—</strong></div>
             </div>
             <p class="passport-project-mark">阿謝國為架空世界觀創作項目</p>
           </section>
         </div>
         <div id="passportVisaSpread" class="passport-spread" aria-hidden="true">
-          <section class="passport-page passport-visa-page" lang="zh-Hant">
-            <div class="passport-visa-art" aria-hidden="true">
-              <img src="/citizens/images/visa-roa-04.jpg" alt="">
-              <img src="/citizens/images/visa-roa-06.jpg" alt="">
-            </div>
-            <div class="passport-visa-content">
-              <div class="passport-page-kicker">阿謝國護照 · 第五頁</div>
-              <h4 class="passport-page-title passport-visa-title">簽證頁</h4>
-              <div class="passport-visa-stamps" aria-hidden="true"><div class="passport-visa-stamp-slot"></div><div class="passport-visa-stamp-slot"></div></div>
-              <p class="passport-visa-note">阿謝國為架空世界觀創作項目</p>
-            </div>
-          </section>
-          <section class="passport-page passport-visa-page" lang="zh-Hant">
-            <div class="passport-visa-art" aria-hidden="true">
-              <img src="/citizens/images/visa-roa-15.jpg" alt="">
-              <img src="/citizens/images/visa-roa-13.jpg" alt="">
-            </div>
-            <div class="passport-visa-content">
-              <div class="passport-page-kicker">阿謝國護照 · 第六頁</div>
-              <h4 class="passport-page-title passport-visa-title">簽證頁</h4>
-              <div class="passport-visa-stamps" aria-hidden="true"><div class="passport-visa-stamp-slot"></div><div class="passport-visa-stamp-slot"></div></div>
-              <p class="passport-visa-note">阿謝國為架空世界觀創作項目</p>
-            </div>
-          </section>
-        </div>
         <button id="passportCover" class="passport-cover" type="button" aria-label="翻開阿謝國護照">
           <img src="/citizens/images/passport-cover.jpg" alt="阿謝國護照藍色封面">
           <span>點擊翻開</span>
@@ -821,23 +803,26 @@
       }
 
       function setPassportPage(page) {
-        currentPassportPage = Math.max(0, Math.min(3, Number(page) || 0));
+        currentPassportPage = Math.max(0, Math.min(4, Number(page) || 0));
         const isOpen = currentPassportPage > 0;
         const stage = byId("passportStage");
         const locationSpread = byId("passportLocationSpread");
         const requestSpread = byId("passportRequestSpread");
+        const identitySpread = byId("passportIdentitySpread");
         const visaSpread = byId("passportVisaSpread");
         const cover = byId("passportCover");
         const flipButton = byId("flipPassport");
         stage.classList.toggle("is-open", isOpen);
         stage.classList.toggle("is-request", currentPassportPage === 2);
-        stage.classList.toggle("is-visa", currentPassportPage === 3);
+        stage.classList.toggle("is-identity", currentPassportPage === 3);
+        stage.classList.toggle("is-visa", currentPassportPage === 4);
         locationSpread.setAttribute("aria-hidden", String(currentPassportPage !== 1));
         requestSpread.setAttribute("aria-hidden", String(currentPassportPage !== 2));
-        visaSpread.setAttribute("aria-hidden", String(currentPassportPage !== 3));
+        identitySpread.setAttribute("aria-hidden", String(currentPassportPage !== 3));
+        visaSpread.setAttribute("aria-hidden", String(currentPassportPage !== 4));
         byId("closePassportBook").hidden = !isOpen;
         byId("previousPassportPage").hidden = currentPassportPage <= 1;
-        flipButton.hidden = currentPassportPage >= 3;
+        flipButton.hidden = currentPassportPage >= 4;
         flipButton.setAttribute("aria-expanded", String(isOpen));
         flipButton.textContent = isOpen ? "下一頁" : "翻開護照";
         cover.setAttribute("aria-label", isOpen ? "護照已翻開" : "翻開阿謝國護照");
