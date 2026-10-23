@@ -17,7 +17,7 @@
   const style = document.createElement("style");
   style.textContent = `
     .roa-script-toggle {
-      position: fixed; z-index: 10000; right: 16px; bottom: 16px;
+      position: fixed; z-index: 10000; left: 16px; bottom: 16px;
       display: inline-flex; align-items: center; gap: 7px;
       min-height: 42px; padding: 9px 14px; border: 1px solid rgba(130,180,225,.45);
       border-radius: 999px; color: #eef5ff;
