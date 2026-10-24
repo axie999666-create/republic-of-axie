@@ -307,6 +307,148 @@ h2 {
 
 
 /* =========================================================
+   国歌播放器与同步歌词
+========================================================= */
+
+.anthem-player {
+
+  margin: 34px auto 0;
+
+  max-width: 760px;
+
+  padding: 22px;
+
+  text-align: left;
+
+  background: rgba(0,0,0,0.28);
+
+  border: 1px solid rgba(126,203,255,0.2);
+
+  border-radius: 14px;
+
+}
+
+
+.anthem-player h3 {
+
+  margin: 0 0 8px;
+
+  color: #9bd9ff;
+
+}
+
+
+.anthem-description {
+
+  margin: 0 0 16px;
+
+  opacity: 0.78;
+
+  font-size: 0.95rem;
+
+}
+
+
+.anthem-audio {
+
+  display: block;
+
+  width: 100%;
+
+  margin: 14px 0 20px;
+
+  color-scheme: dark;
+
+}
+
+
+.anthem-current-label {
+
+  margin: 0 0 5px;
+
+  color: #9bd9ff;
+
+  font-size: 0.82rem;
+
+  letter-spacing: 0.08em;
+
+  opacity: 0.85;
+
+}
+
+
+.anthem-current-line {
+
+  min-height: 1.8em;
+
+  margin: 0 0 14px;
+
+  color: #fff;
+
+  font-size: clamp(1.15rem, 2.7vw, 1.55rem);
+
+  font-weight: 700;
+
+}
+
+
+.anthem-lyrics {
+
+  display: grid;
+
+  gap: 4px;
+
+  padding-top: 12px;
+
+  border-top: 1px solid rgba(255,255,255,0.12);
+
+}
+
+
+.anthem-lyric-line {
+
+  margin: 0;
+
+  padding: 5px 10px;
+
+  border-left: 3px solid transparent;
+
+  border-radius: 4px;
+
+  line-height: 1.7;
+
+  opacity: 0.64;
+
+  transition: opacity 0.16s ease, background-color 0.16s ease;
+
+}
+
+
+.anthem-lyric-line.is-active {
+
+  border-left-color: #7ecbff;
+
+  background: rgba(126,203,255,0.12);
+
+  opacity: 1;
+
+}
+
+
+.anthem-download {
+
+  display: inline-block;
+
+  margin-top: 14px;
+
+  color: #a9dcff;
+
+  font-size: 0.9rem;
+
+}
+
+
+/* =========================================================
    国庆倒计时
 ========================================================= */
 
@@ -1272,6 +1414,97 @@ nav a:hover, nav .button:hover { background: #163b5c; text-decoration: none; }
     width="300"
     onerror="this.onerror=null;this.src='https://via.placeholder.com/300x180?text=Flag+Missing';"
   >
+
+
+  <div class="anthem-player">
+
+    <h3
+      data-zh="国歌 · 纯音乐版"
+      data-en="National Anthem · Instrumental"
+      data-jp="国歌・インストゥルメンタル"
+    >
+      国歌 · 纯音乐版
+    </h3>
+
+    <p
+      class="anthem-description"
+      data-zh="播放时，歌词会随音乐逐行高亮。"
+      data-en="Lyrics highlight line by line during playback."
+      data-jp="再生中、歌詞が音楽に合わせて行ごとにハイライトされます。"
+    >
+      播放时，歌词会随音乐逐行高亮。
+    </p>
+
+    <audio
+      id="anthem-audio"
+      class="anthem-audio"
+      controls
+      preload="metadata"
+      aria-label="阿谢国国歌纯音乐"
+    >
+      <source src="./assets/anthem-instrumental.m4a" type="audio/mp4">
+      <span
+        data-zh="你的浏览器不支持音频播放。"
+        data-en="Your browser does not support audio playback."
+        data-jp="お使いのブラウザーは音声再生に対応していません。"
+      >
+        你的浏览器不支持音频播放。
+      </span>
+    </audio>
+
+    <p
+      class="anthem-current-label"
+      data-zh="当前歌词"
+      data-en="Current lyric"
+      data-jp="現在の歌詞"
+    >
+      当前歌词
+    </p>
+
+    <p
+      id="anthem-current-line"
+      class="anthem-current-line"
+      aria-live="polite"
+      data-zh="按下播放，跟随音乐阅读歌词"
+      data-en="Press play to follow the lyrics"
+      data-jp="再生して歌詞をご覧ください"
+    >
+      按下播放，跟随音乐阅读歌词
+    </p>
+
+    <div class="anthem-lyrics" id="anthem-lyrics">
+      <p class="anthem-lyric-line" data-anthem-line="0">清晨阳光洒满山河，</p>
+      <p class="anthem-lyric-line" data-anthem-line="1">温柔地吻着我们的梦。</p>
+      <p class="anthem-lyric-line" data-anthem-line="2">在这片宁静的土地上，</p>
+      <p class="anthem-lyric-line" data-anthem-line="3">心与心紧紧相拥。</p>
+      <p class="anthem-lyric-line" data-anthem-line="4">啊——阿谢，我们的家，</p>
+      <p class="anthem-lyric-line" data-anthem-line="5">爱与自由在风中传达。</p>
+      <p class="anthem-lyric-line" data-anthem-line="6">不再有恐惧，不再有恨，</p>
+      <p class="anthem-lyric-line" data-anthem-line="7">只愿和平，绽放如花。</p>
+      <p class="anthem-lyric-line" data-anthem-line="8">我们用言语传递真心，</p>
+      <p class="anthem-lyric-line" data-anthem-line="9">用微笑修补世界的伤。</p>
+      <p class="anthem-lyric-line" data-anthem-line="10">每一个声音都被聆听，</p>
+      <p class="anthem-lyric-line" data-anthem-line="11">每一个希望都被珍藏。</p>
+      <p class="anthem-lyric-line" data-anthem-line="12">啊——阿谢，我们的家，</p>
+      <p class="anthem-lyric-line" data-anthem-line="13">爱与自由在风中传达。</p>
+      <p class="anthem-lyric-line" data-anthem-line="14">不再有恐惧，不再有恨，</p>
+      <p class="anthem-lyric-line" data-anthem-line="15">只愿和平，绽放如花。</p>
+      <p class="anthem-lyric-line" data-anthem-line="16">在晨光中我们相依，</p>
+      <p class="anthem-lyric-line" data-anthem-line="17">阿谢永远铭刻心底。</p>
+    </div>
+
+    <a
+      class="anthem-download"
+      href="./assets/anthem-instrumental.m4a"
+      download="Republic-of-Axie-National-Anthem-Instrumental.m4a"
+      data-zh="下载纯音乐"
+      data-en="Download instrumental"
+      data-jp="インストゥルメンタルをダウンロード"
+    >
+      下载纯音乐
+    </a>
+
+  </div>
 
 </section>
 
@@ -3424,6 +3657,9 @@ document.addEventListener(
 );
 
 </script>
+
+
+<script src="./assets/anthem-player.js" defer></script>
 
 
 <script src="axai-config.js"></script>
