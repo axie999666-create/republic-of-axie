@@ -953,9 +953,13 @@ header p { animation: hero-subtitle-in .9s .16s cubic-bezier(.2,.75,.25,1) both;
 .ceremony-close { position: absolute; z-index: 2; top: 18px; right: 18px; width: 42px; height: 42px; border: 1px solid rgba(200,225,255,.35); border-radius: 50%; color: #eff6ff; background: rgba(7,15,32,.72); font-size: 22px; cursor: pointer; }
 .ceremony-close:hover { border-color: var(--ax-mint); background: rgba(79,195,255,.16); }
 .ceremony-complete { position: absolute; z-index: 1; left: 50%; bottom: 28px; transform: translateX(-50%); padding: 9px 18px; border: 1px solid rgba(255,227,154,.55); border-radius: 999px; color: #ffe39a; background: rgba(7,15,32,.78); font-weight: 700; white-space: nowrap; }
+.flag-ceremony-button[hidden] { display: none !important; }
 .flag-ceremony-button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; margin: 0 0 8px; padding: 11px 20px; border: 1px solid rgba(124,245,210,.45); border-radius: 12px; color: #eafff8; background: linear-gradient(110deg, #12395a, #145347); box-shadow: 0 0 24px rgba(79,195,255,.1); font: inherit; font-weight: 700; cursor: pointer; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
 .flag-ceremony-button:hover { transform: translateY(-2px); border-color: var(--ax-mint); box-shadow: 0 8px 30px rgba(79,195,255,.2); }
-.flag-ceremony-button:focus-visible, .ceremony-close:focus-visible { outline: 3px solid #82d2ff; outline-offset: 3px; }
+.anthem-play-button { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; margin: 0 10px 8px 0; padding: 9px 16px; border: 1px solid rgba(79,195,255,.42); border-radius: 10px; color: #e6f5ff; background: rgba(79,195,255,.1); font: inherit; font-weight: 650; cursor: pointer; }
+.anthem-play-button:hover { border-color: var(--ax-blue); background: rgba(79,195,255,.18); }
+.anthem-playback-status { margin: 0 0 8px; color: #ffc1c1; font-size: 13px; }
+.flag-ceremony-button:focus-visible, .ceremony-close:focus-visible, .anthem-play-button:focus-visible { outline: 3px solid #82d2ff; outline-offset: 3px; }
 body.ceremony-open { overflow: hidden; }
 @media(max-width:600px) { #flagRaisingCeremony { padding: 8px; } .ceremony-stage { height: calc(100svh - 16px); min-height: 340px; border-radius: 16px; } .ceremony-caption { left: 52px; right: 52px; top: 24px; } .ceremony-close { top: 12px; right: 12px; } }
 #nationalDayBanner[hidden] { display: none !important; }
@@ -1688,8 +1692,21 @@ html.motion-ready #main-content .container > .card.is-visible .symbol-figure:nth
     </p>
 
     <button
+      id="anthemPlayButton"
+      class="anthem-play-button"
+      type="button"
+      data-zh="▶ 播放国歌"
+      data-en="▶ Play national anthem"
+      data-jp="▶ 国歌を再生"
+    >
+      ▶ 播放国歌
+    </button>
+    <p id="anthemPlaybackStatus" class="anthem-playback-status" aria-live="polite"></p>
+
+    <button
       id="startFlagCeremony"
       class="flag-ceremony-button"
+      hidden
       type="button"
       data-zh="▶ 开始升旗仪式"
       data-en="▶ Start the flag-raising ceremony"
