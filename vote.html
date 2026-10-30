@@ -704,10 +704,24 @@
 
       display: grid;
 
-      gap: 12px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
 
-      margin-top: 18px;
+      gap: 16px;
 
+      margin-top: 16px;
+
+    }
+
+    .voter-identity-card .card-title { margin-bottom: 6px; }
+
+    .voter-identity-description {
+      margin: 0;
+      color: #66748a;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .voter-identity-fields { grid-template-columns: 1fr; }
     }
 
 
@@ -2574,9 +2588,6 @@
           "show"
         );
 
-        voterFullName.value = "";
-        voterCitizenNo.value = "";
-
       }
     );
 
@@ -3452,6 +3463,23 @@
       )}
 
 
+      <section class="card voter-identity-card" aria-labelledby="voterIdentityTitle">
+        <h2 class="card-title" id="voterIdentityTitle">投票人身份核验</h2>
+        <p class="voter-identity-description">请填写与已生效国民档案一致的姓名和国民 ID。</p>
+        <div class="voter-identity-fields">
+          <div>
+            <label for="voterFullName">国民姓名</label>
+            <input id="voterFullName" name="fullName" type="text" maxlength="100" autocomplete="name" placeholder="请输入国民姓名" required>
+          </div>
+          <div>
+            <label for="voterCitizenNo">国民 ID</label>
+            <input id="voterCitizenNo" name="citizenNo" type="text" maxlength="40" autocomplete="off" placeholder="请输入国民 ID" required>
+          </div>
+        </div>
+        <p class="voter-identity-hint">核验通过后才会提交选票；选票记录不保存姓名和原始 ID。</p>
+      </section>
+
+
       <div
         class="card"
       >
@@ -3513,25 +3541,6 @@
             id="confirmationParty"
             class="confirmation-party"
           ></div>
-
-
-          <div class="voter-identity-fields">
-
-            <div>
-              <label for="voterFullName">国民姓名</label>
-              <input id="voterFullName" maxlength="100" autocomplete="name" required>
-            </div>
-
-            <div>
-              <label for="voterCitizenNo">国民 ID</label>
-              <input id="voterCitizenNo" maxlength="40" autocomplete="off" required>
-            </div>
-
-          </div>
-
-          <p class="voter-identity-hint">
-            请填写与已生效国民档案一致的姓名和 ID。核验通过后才会提交选票；选票记录不保存姓名和原始 ID。
-          </p>
 
 
           <div
@@ -3837,7 +3846,7 @@
 <aside class="axie-fiction-notice footer-note" aria-label="世界观创作说明" style="font-size:12px;opacity:0.5;margin-top:20px;text-align:center;padding:0 20px 30px;line-height:1.7;overflow-wrap:anywhere">阿谢国为架空世界观创作项目 · Republic of Axie is a fictional nation project</aside>
 <script src="axai-config.js"></script>
 <script src="axai-widget.js?v=20261010-mobile" defer></script>
-  <script src="/common/traditional-chinese-loader.js"></script>
+  <script src="./common/traditional-chinese-loader.js"></script>
 </body>
 
 </html>

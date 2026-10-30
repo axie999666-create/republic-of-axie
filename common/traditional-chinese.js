@@ -113,7 +113,7 @@
     }
     renderSubtree(document.head);
     renderSubtree(document.body);
-    button.textContent = mode === "simplified" ? "繁體中文" : "简体中文";
+    button.textContent = mode === "simplified" ? "繁體中文" : "簡體中文";
     button.setAttribute("aria-pressed", String(mode === "traditional"));
     button.setAttribute("aria-label", mode === "simplified" ? "切换为繁体中文" : "切換為簡體中文");
     observer.observe(document.head, { childList: true, characterData: true, attributes: true, attributeFilter: languageAttributes, subtree: true });
