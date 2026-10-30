@@ -17,6 +17,8 @@
   launch.onclick=()=>toggle(panel.hidden);$('.close').onclick=()=>toggle(false);ui.addEventListener('keydown',e=>{if(e.key==='Escape')toggle(false)});
   function message(text,sources=[],user=false){const div=document.createElement('div');div.className='msg'+(user?' user':'');div.textContent=text;for(const s of sources){let label;if(!s.url){label=document.createElement('span');label.style.cssText='display:block;color:#9bddff;margin-top:8px';}else{try{const url=new URL(s.url);if(url.protocol!=='https:')continue;label=document.createElement('a');label.href=url.href;label.target='_blank';label.rel='noopener noreferrer';}catch{continue}}label.textContent='来源：'+s.title;div.append(label);if(s.fetchedAt){const time=new Date(s.fetchedAt);if(!Number.isNaN(time.valueOf())){const note=document.createElement('small');note.style.cssText='display:block;color:#a6d9ff';note.textContent='读取时间：'+time.toLocaleString('zh-CN',{timeZone:'Asia/Shanghai',hour12:false})+'（北京时间）';div.append(note)}}}const messages=$('.messages');messages.append(div);messages.scrollTop=messages.scrollHeight;}
   message('你好，我是 AXAI，阿谢国公共信息助手。我可以帮助你查询宪法、刑法、总统法、国家资料和官方网站入口，也能简短回答其他问题。阿谢国资料不足时会明确说明。也可以读取相关官网，或你贴来的 HTTPS 公开网页。请勿输入个人敏感信息。');
+  const conversation=[];
+  function remember(role,content){conversation.push({role,content:String(content).slice(0,1000)});while(conversation.length>8)conversation.shift();}
   const knowledge=fetch(new URL('axai-knowledge.json',base),{cache:'no-cache',signal:AbortSignal.timeout(10000)}).then(r=>{if(!r.ok)throw Error();return r.json()});knowledge.catch(()=>{});
 function retrieve(q, knowledge) {
   const lawNames = ['总统法', '刑法', '宪法'];
@@ -72,32 +74,38 @@ function retrieve(q, knowledge) {
   async function localAnswer(q,notice=''){
     const docs=await knowledge;
     if(!Array.isArray(docs))throw Error('资料格式无效');
+    const previousUser=conversation.slice(0,-1).filter(m=>m.role==='user').at(-1)?.content||'';
+    const retrievalQ=previousUser&&(q.length<36||/(它|这|那|此|刚才|上面|第几|还有呢|然后呢|为什么|怎么做|详细说|继续|呢[？?]?$)/.test(q))?previousUser+'；'+q:q;
     // A local lookup cannot read a supplied webpage or confirm live news/votes.
     const liveRequest=/https?:\/\/|最新|实时|即時|当前|目前|今天|现在|投票结果/.test(q);
-    const hits=liveRequest?[]:retrieve(q,docs);
+    const hits=liveRequest?[]:retrieve(retrievalQ,docs);
     const dates=[...new Set(hits.map(d=>d.verifiedAt).filter(Boolean))].sort();
     const dated=dates.length?'资料收录日期：'+dates.join('、')+'。':'资料未标注收录日期。';
     const answer=liveRequest
       ?'本地资料检索无法读取网页或确认最新新闻、投票状态，请直接查看对应官方网站。'
       :hits.length?'以下是已收录的官方资料摘录。'+dated+'\n\n'+hits.map(d=>d.text).join('\n\n')
       :'已收录的官方资料中没有找到相关信息，无法确认。请查看官方网站目录。';
-    message((notice?notice+'\n\n':'')+answer,hits.length?hits:[{title:'官方网站目录',url:'https://directory.republic-of-axie.org/'}]);
+    const displayed=(notice?notice+'\n\n':'')+answer;
+    message(displayed,hits.length?hits:[{title:'官方网站目录',url:'https://directory.republic-of-axie.org/'}]);
+    remember('assistant',displayed);
   }
   async function ask(q){
     q=q.trim();if(!q||busy)return;
     busy=true;form.querySelector('button').disabled=true;
     $('.status').textContent=localMode?'正在检索已收录资料…':'正在回答；连接不畅时可点击“本地资料检索”…';
-    message(q,[],true);input.value='';
+    const history=conversation.slice(-8);
+    message(q,[],true);remember('user',q);input.value='';
     try{
       if(localMode){await localAnswer(q);return;}
       const controller=new AbortController();activeController=controller;
       const timer=setTimeout(()=>controller.abort(),60000);
       try{
-        const r=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:q}),signal:controller.signal});
+        const r=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:q,history}),signal:controller.signal});
         const data=await r.json();
         if(!r.ok)throw Error(data.error||'在线服务暂时不可用');
         if(typeof data.answer!=='string')throw Error('在线服务返回了无效回答');
-        message(data.answer+(data.warnings?.length?'\n\n未能读取的网页：\n'+data.warnings.map(w=>w.url+'：'+w.message).join('\n'):''),data.sources||[]);
+        const displayed=data.answer+(data.warnings?.length?'\n\n未能读取的网页：\n'+data.warnings.map(w=>w.url+'：'+w.message).join('\n'):'' );
+        message(displayed,data.sources||[]);remember('assistant',displayed);
       }finally{clearTimeout(timer);activeController=null;}
     }catch(error){
       localMode=true;updateMode();
