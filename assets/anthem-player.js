@@ -4,8 +4,45 @@
   const lyricLines = Array.from(
     document.querySelectorAll("[data-anthem-line]")
   );
+  const playButton = document.getElementById("anthemPlayButton");
+  const playbackStatus = document.getElementById("anthemPlaybackStatus");
 
-  if (!audio || !currentLine || lyricLines.length === 0) return;
+  if (!audio) return;
+
+  const playLabels = {
+    zh: { play: "▶ 播放国歌", pause: "Ⅱ 暂停国歌", error: "国歌无法播放，请检查设备音量或稍后重试。" },
+    en: { play: "▶ Play national anthem", pause: "Ⅱ Pause national anthem", error: "The anthem could not play. Check device audio or try again." },
+    jp: { play: "▶ 国歌を再生", pause: "Ⅱ 国歌を一時停止", error: "国歌を再生できません。音量を確認してもう一度お試しください。" }
+  };
+  const getLanguage = () => {
+    const lang = document.documentElement.lang || "zh-CN";
+    return lang.startsWith("en") ? "en" : lang.startsWith("ja") ? "jp" : "zh";
+  };
+  const syncPlayButton = () => {
+    if (playButton) playButton.textContent = audio.paused ? playLabels[getLanguage()].play : playLabels[getLanguage()].pause;
+  };
+  if (playButton) {
+    playButton.addEventListener("click", async () => {
+      if (playbackStatus) playbackStatus.textContent = "";
+      if (audio.paused) {
+        if (audio.ended) audio.currentTime = 0;
+        try {
+          await audio.play();
+        } catch (error) {
+          if (playbackStatus) playbackStatus.textContent = playLabels[getLanguage()].error;
+          console.error("National anthem playback failed:", error);
+        }
+      } else {
+        audio.pause();
+      }
+      syncPlayButton();
+    });
+    ["play", "playing", "pause", "ended"].forEach(type => audio.addEventListener(type, syncPlayButton));
+    new MutationObserver(syncPlayButton).observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
+    syncPlayButton();
+  }
+
+  if (!currentLine || lyricLines.length === 0) return;
 
   // Line starts follow the 68 BPM score and the measured coda ritardando.
   // The two-bar intro is instrumental, so the first lyric begins at 7.06s.

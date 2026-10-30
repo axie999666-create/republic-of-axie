@@ -17,6 +17,17 @@
   let finished = false;
   let flagImage = null;
 
+  function updateNationalDayAvailability() {
+    const parts = new Intl.DateTimeFormat("en-US", {
+      timeZone: "Asia/Tokyo", month: "numeric", day: "numeric"
+    }).formatToParts(new Date());
+    const month = parts.find(part => part.type === "month")?.value;
+    const day = parts.find(part => part.type === "day")?.value;
+    startButton.hidden = !(month === "2" && day === "3");
+  }
+  updateNationalDayAvailability();
+  window.setInterval(updateNationalDayAvailability, 60 * 1000);
+
   const resize = () => {
     const rect = canvas.getBoundingClientRect();
     width = rect.width; height = rect.height; dpr = Math.min(window.devicePixelRatio || 1, 2);
