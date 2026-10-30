@@ -40,7 +40,7 @@
   property="og:description"
   content="阿谢国（Republic of Axie）——虚拟世界项目，国家宪法、国旗、城市、选举及AXNews新闻展示平台。"
 >
-<meta property="og:image" content="/flag.jpg">
+<meta property="og:image" content="/ROA_00.jpg">
 <meta property="og:type" content="website">
 
 <meta name="twitter:card" content="summary_large_image">
@@ -480,19 +480,41 @@ h2 {
 }
 
 
+.countdown-metrics {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 15px;
+}
+
 .timer {
 
   font-size: 32px;
 
   letter-spacing: 3px;
 
-  margin-top: 15px;
+  margin-top: 0;
 
   font-weight: bold;
 
   color: #ffffff;
 
 }
+
+.founding-day {
+  padding: 9px 16px;
+  border: 1px solid rgba(255,255,255,.3);
+  border-radius: 12px;
+  background: rgba(5,16,35,.22);
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+
+.founding-day strong { color: #ffd36a; }
 
 
 .axie-date {
@@ -776,6 +798,9 @@ footer {
 
   }
 
+  .countdown-metrics { gap: 10px; }
+  .founding-day { font-size: 16px; padding: 8px 12px; }
+
 
   .election-countdown {
 
@@ -844,6 +869,8 @@ nav a:hover, nav .button:hover { background: #163b5c; text-decoration: none; }
   .countdown { padding: 24px 16px; }
   .countdown h2 { font-size: 21px; }
   .timer { font-size: clamp(20px,5.6vw,24px); letter-spacing: 1px; }
+  .countdown-metrics { flex-direction: column; }
+  .founding-day { font-size: 15px; }
   .card > .button { display: block; text-align: center; margin: 12px 0 0; padding: 12px 16px; }
   .news-item { padding: 16px; margin-bottom: 16px; }
   .news-item h3 { font-size: 18px; line-height: 1.55; }
@@ -855,6 +882,221 @@ nav a:hover, nav .button:hover { background: #163b5c; text-decoration: none; }
   body { animation: none; }
   .button { transition: none; }
   .button:hover { transform: none; }
+}
+
+
+
+/* Republic of Axie visual language: based on the original dark technology UI. */
+:root {
+  color-scheme: dark;
+  --ax-bg: #080d1c;
+  --ax-card: rgba(17, 24, 54, .88);
+  --ax-blue: #4fc3ff;
+  --ax-mint: #7cf5d2;
+  --ax-text: #e6ecff;
+  --ax-muted: #a8b4d7;
+}
+html { scroll-behavior: smooth; scroll-padding-top: 108px; }
+body {
+  color: var(--ax-text);
+  background: linear-gradient(180deg, #050814 0%, #0b1020 48%, #0b1428 100%);
+}
+header {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  place-content: center;
+  align-content: center;
+  min-height: 100vh;
+  min-height: 100svh;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 40px 20px 90px;
+  background: linear-gradient(155deg, #080d1c 5%, #0b1830 52%, #080d1c 100%);
+  border-bottom: 1px solid rgba(79,195,255,.12);
+  text-align: center;
+}
+header h1 { animation: hero-title-in .9s cubic-bezier(.2,.75,.25,1) both; }
+header p { animation: hero-subtitle-in .9s .16s cubic-bezier(.2,.75,.25,1) both; }
+@keyframes hero-title-in { from { opacity: 0; transform: translateY(18px); filter: blur(8px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
+@keyframes hero-subtitle-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+.scroll-cue {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  color: var(--ax-muted);
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-decoration: none;
+  transform: translateX(-50%);
+  animation: cue-float 2s ease-in-out infinite;
+}
+.scroll-cue::after { content: ""; width: 1px; height: 28px; background: linear-gradient(var(--ax-blue), transparent); }
+@keyframes cue-float { 0%,100% { translate: 0 0; } 50% { translate: 0 6px; } }
+#flagRaisingCeremony[hidden] { display: none !important; }
+#flagRaisingCeremony {
+  position: fixed; inset: 0; z-index: 12000; display: grid; place-items: center;
+  padding: 16px; background: rgba(3,7,18,.92); backdrop-filter: blur(12px);
+}
+.ceremony-stage {
+  position: relative; width: min(1100px, 100%); height: min(760px, calc(100svh - 32px)); min-height: 380px;
+  overflow: hidden; border: 1px solid rgba(79,195,255,.34); border-radius: 22px;
+  background: #071126; box-shadow: 0 28px 100px rgba(0,0,0,.55), 0 0 50px rgba(79,195,255,.12);
+}
+#flagRaisingCanvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.ceremony-caption { position: absolute; z-index: 1; top: clamp(22px, 5vh, 48px); left: 60px; right: 60px; text-align: center; pointer-events: none; text-shadow: 0 2px 22px rgba(0,0,0,.8); }
+.ceremony-caption h2 { margin: 0 0 8px; color: #f1f6ff; font-size: clamp(22px, 4vw, 36px); letter-spacing: .08em; }
+.ceremony-caption p { margin: 0; color: #bfd6f4; font-size: clamp(13px, 2vw, 16px); }
+.ceremony-close { position: absolute; z-index: 2; top: 18px; right: 18px; width: 42px; height: 42px; border: 1px solid rgba(200,225,255,.35); border-radius: 50%; color: #eff6ff; background: rgba(7,15,32,.72); font-size: 22px; cursor: pointer; }
+.ceremony-close:hover { border-color: var(--ax-mint); background: rgba(79,195,255,.16); }
+.ceremony-complete { position: absolute; z-index: 1; left: 50%; bottom: 28px; transform: translateX(-50%); padding: 9px 18px; border: 1px solid rgba(255,227,154,.55); border-radius: 999px; color: #ffe39a; background: rgba(7,15,32,.78); font-weight: 700; white-space: nowrap; }
+.flag-ceremony-button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; margin: 0 0 8px; padding: 11px 20px; border: 1px solid rgba(124,245,210,.45); border-radius: 12px; color: #eafff8; background: linear-gradient(110deg, #12395a, #145347); box-shadow: 0 0 24px rgba(79,195,255,.1); font: inherit; font-weight: 700; cursor: pointer; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+.flag-ceremony-button:hover { transform: translateY(-2px); border-color: var(--ax-mint); box-shadow: 0 8px 30px rgba(79,195,255,.2); }
+.flag-ceremony-button:focus-visible, .ceremony-close:focus-visible { outline: 3px solid #82d2ff; outline-offset: 3px; }
+body.ceremony-open { overflow: hidden; }
+@media(max-width:600px) { #flagRaisingCeremony { padding: 8px; } .ceremony-stage { height: calc(100svh - 16px); min-height: 340px; border-radius: 16px; } .ceremony-caption { left: 52px; right: 52px; top: 24px; } .ceremony-close { top: 12px; right: 12px; } }
+#nationalDayBanner[hidden] { display: none !important; }
+.national-day-banner {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: clamp(12px, 3vw, 24px); width: fit-content;
+  max-width: min(92vw, 720px); margin: 30px auto 0;
+  padding: 17px clamp(18px, 4vw, 34px);
+  border: 1px solid rgba(255,211,106,.56); border-radius: 18px;
+  color: #fff8df;
+  background: linear-gradient(115deg, rgba(79,195,255,.14), rgba(255,211,106,.16), rgba(124,245,210,.12));
+  box-shadow: 0 0 38px rgba(255,211,106,.15), inset 0 1px rgba(255,255,255,.12);
+  animation: celebration-enter .9s cubic-bezier(.2,.75,.25,1) both, celebration-glow 2.8s 1s ease-in-out infinite alternate;
+}
+.national-day-banner > div { display: grid; gap: 3px; }
+.national-day-banner strong { font-size: clamp(19px, 3vw, 26px); letter-spacing: .06em; color: #ffe39a; }
+.national-day-banner span:not(.celebration-star) { color: #dceaff; font-size: clamp(12px, 1.7vw, 15px); }
+.celebration-star { color: #ffe39a; font-size: 24px; animation: star-twinkle 1.8s ease-in-out infinite alternate; }
+@keyframes celebration-enter { from { opacity: 0; transform: translateY(18px) scale(.96); filter: blur(5px); } to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); } }
+@keyframes celebration-glow { from { box-shadow: 0 0 24px rgba(255,211,106,.1), inset 0 1px rgba(255,255,255,.08); } to { box-shadow: 0 0 48px rgba(255,211,106,.25), inset 0 1px rgba(255,255,255,.16); } }
+@keyframes star-twinkle { from { opacity: .55; transform: scale(.85) rotate(-12deg); } to { opacity: 1; transform: scale(1.12) rotate(12deg); } }
+#nationalDayFireworks { position: fixed; inset: 0; z-index: 1090; width: 100%; height: 100%; pointer-events: none; }
+body.national-day-active .countdown { border-color: rgba(255,211,106,.55); box-shadow: 0 0 34px rgba(255,211,106,.16), 0 18px 54px rgba(0,0,0,.22); }
+@media (max-width: 600px) { .national-day-banner { margin-top: 22px; padding: 15px 18px; gap: 12px; } .celebration-star { font-size: 19px; } }
+@media (prefers-reduced-motion: reduce) { .national-day-banner, .celebration-star { animation: none !important; } }
+#scroll-progress {
+  position: fixed;
+  z-index: 1100;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 3px;
+  transform: scaleX(0);
+  transform-origin: left center;
+  background: linear-gradient(90deg, var(--ax-blue), var(--ax-mint));
+  box-shadow: 0 0 12px rgba(79,195,255,.65);
+  pointer-events: none;
+}
+header h1 {
+  color: #f0f5ff;
+  font-size: clamp(34px, 5vw, 56px);
+  letter-spacing: .08em;
+  text-shadow: 0 0 30px rgba(79,195,255,.3);
+}
+header p { color: var(--ax-muted); }
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 10px clamp(12px, 3vw, 32px);
+  border: 0;
+  border-bottom: 1px solid rgba(79,195,255,.2);
+  border-radius: 0;
+  background: rgba(7, 12, 29, .88);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 10px 35px rgba(0,0,0,.2);
+}
+.nav-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
+nav a, nav .button {
+  min-height: 40px;
+  padding: 8px 12px;
+  color: #dbe8ff;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  font-size: 14px;
+  transition: color .2s ease, background .2s ease, border-color .2s ease, transform .2s ease;
+}
+nav .nav-links a:first-child { color: var(--ax-blue); background: transparent; border-color: transparent; }
+nav a:hover, nav .button:hover { color: var(--ax-mint); background: rgba(79,195,255,.08); border-color: rgba(79,195,255,.2); transform: translateY(-1px); }
+.container { max-width: 1100px; margin: 34px auto; }
+.card {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(22px, 4vw, 36px);
+  margin-bottom: 26px;
+  border: 1px solid rgba(79,195,255,.16);
+  border-radius: 18px;
+  background: linear-gradient(145deg, rgba(17,24,54,.94), rgba(12,20,42,.88));
+  box-shadow: 0 18px 54px rgba(0,0,0,.22), inset 0 1px rgba(255,255,255,.025);
+  transition: border-color .25s ease, transform .25s ease, box-shadow .25s ease;
+}
+.card:hover { transform: translateY(-3px); border-color: rgba(79,195,255,.32); box-shadow: 0 22px 58px rgba(0,0,0,.3), 0 0 30px rgba(79,195,255,.06); }
+.card h2 { color: var(--ax-blue); border-left: 4px solid var(--ax-mint); padding-left: 13px; }
+.card p, .container { color: var(--ax-text); }
+.city, .news-item, .anthem-player { background: rgba(255,255,255,.035); border: 1px solid rgba(79,195,255,.13); border-radius: 12px; }
+.city { transition: background .2s ease, border-color .2s ease, transform .2s ease; }
+.city:hover { background: rgba(79,195,255,.08); border-color: rgba(79,195,255,.28); transform: translateX(3px); }
+.flag-box { text-align: left; }
+.flag-box > h2, .flag-box > p { text-align: center; }
+.symbol-pair { display: flex; justify-content: center; align-items: center; gap: clamp(28px, 7vw, 92px); margin: 30px auto 18px; }
+.symbol-figure { margin: 0; display: grid; justify-items: center; gap: 12px; }
+.symbol-figure img { object-fit: contain; filter: drop-shadow(0 16px 28px rgba(0,0,0,.35)) drop-shadow(0 0 20px rgba(79,195,255,.12)); transition: transform .35s ease, filter .35s ease; }
+.symbol-figure:hover img { transform: translateY(-5px) scale(1.025); filter: drop-shadow(0 20px 32px rgba(0,0,0,.4)) drop-shadow(0 0 28px rgba(79,195,255,.25)); }
+.flag-figure img { width: min(48vw, 430px); border-radius: 12px; }
+.emblem-figure img { width: clamp(120px, 17vw, 190px); }
+.symbol-figure figcaption { color: var(--ax-muted); letter-spacing: .04em; }
+.anthem-player { max-width: 760px; }
+.news-item { transition: transform .2s ease, border-color .2s ease; }
+.news-item:hover { transform: translateY(-2px); border-color: rgba(79,195,255,.28); }
+footer { background: rgba(5,8,20,.55); border-top: 1px solid rgba(79,195,255,.16); color: var(--ax-muted); }
+@media (max-width: 760px) {
+  html { scroll-padding-top: 78px; }
+  header { min-height: 100vh; min-height: 100svh; padding: 36px 16px 86px; }
+  nav { justify-content: space-between; }
+  nav.enhanced .menu-toggle { border-color: rgba(79,195,255,.24); background: rgba(79,195,255,.07); color: var(--ax-text); }
+  .nav-links { gap: 5px; }
+  .nav-links a { font-size: 13px; }
+  .symbol-pair { gap: 22px; }
+  .flag-figure img { width: min(58vw, 360px); }
+}
+html.motion-ready #main-content .container > .card {
+  opacity: 0;
+  transform: translateY(28px) scale(.988);
+  transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.25,1), border-color .25s ease, box-shadow .25s ease;
+}
+html.motion-ready #main-content .container > .card.is-visible { opacity: 1; transform: translateY(0) scale(1); }
+html.motion-ready #main-content .container > .card .city,
+html.motion-ready #main-content .container > .card .symbol-figure {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity .5s ease, transform .5s ease;
+}
+html.motion-ready #main-content .container > .card.is-visible .city,
+html.motion-ready #main-content .container > .card.is-visible .symbol-figure { opacity: 1; transform: translateY(0); }
+html.motion-ready #main-content .container > .card.is-visible .city:nth-child(2) { transition-delay: .08s; }
+html.motion-ready #main-content .container > .card.is-visible .city:nth-child(3) { transition-delay: .16s; }
+html.motion-ready #main-content .container > .card.is-visible .city:nth-child(4) { transition-delay: .24s; }
+html.motion-ready #main-content .container > .card.is-visible .city:nth-child(5) { transition-delay: .32s; }
+html.motion-ready #main-content .container > .card.is-visible .symbol-figure:nth-child(1) { transition-delay: .08s; }
+html.motion-ready #main-content .container > .card.is-visible .symbol-figure:nth-child(2) { transition-delay: .18s; }
+@media (prefers-reduced-motion: reduce) { html.motion-ready #main-content .container > .card, html.motion-ready #main-content .container > .card * { opacity: 1 !important; transform: none !important; transition: none !important; } }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
 }
 
 </style>
@@ -900,8 +1142,21 @@ nav a:hover, nav .button:hover { background: #163b5c; text-decoration: none; }
     Republic of Axie · 国家门户网站
   </p>
 
+  <div id="nationalDayBanner" class="national-day-banner" hidden aria-live="polite">
+    <span class="celebration-star" aria-hidden="true">✦</span>
+    <div>
+      <strong id="nationalDayHeadline"></strong>
+      <span id="nationalDaySubline"></span>
+    </div>
+    <span class="celebration-star" aria-hidden="true">✦</span>
+  </div>
+
+  <a class="scroll-cue" href="#main-content" aria-label="向下浏览页面">
+    <span data-zh="向下浏览" data-en="Scroll to explore" data-jp="スクロールしてご覧ください">向下浏览</span>
+  </a>
 </header>
 
+<div id="scroll-progress" aria-hidden="true"></div>
 
 <!-- =======================================================
      导航栏
@@ -1156,11 +1411,14 @@ nav a:hover, nav .button:hover { background: #163b5c; text-decoration: none; }
   </div>
 
 
-  <div
-    id="timer"
-    class="timer"
-  >
-    加载中...
+  <div class="countdown-metrics">
+    <div
+      id="timer"
+      class="timer"
+    >
+      加载中...
+    </div>
+    <div id="foundingDay" class="founding-day">建国天数加载中...</div>
   </div>
 
 </section>
@@ -1381,7 +1639,7 @@ nav a:hover, nav .button:hover { background: #163b5c; text-decoration: none; }
 
 
 <!-- =====================================================
-     国家象征 · 国旗
+     国家象征
 ===================================================== -->
 
 <section
@@ -1390,30 +1648,24 @@ nav a:hover, nav .button:hover { background: #163b5c; text-decoration: none; }
 >
 
   <h2
-    data-zh="国家象征 · 国旗"
-    data-en="National Symbol · Flag"
-    data-jp="国家の象徴・国旗"
+    data-zh="国家象征"
+    data-en="National Symbols"
+    data-jp="国家の象徴"
   >
-    国家象征 · 国旗
+    国家象征
   </h2>
 
+  <div class="symbol-pair" aria-label="国旗与国徽">
+    <figure class="symbol-figure flag-figure">
+      <img src="./ROA_00.jpg" alt="阿谢国国旗：彩虹、白地、蓝天与白色四角星" loading="lazy">
+      <figcaption data-zh="国旗・彩虹白地蓝天星旗" data-en="National Flag · Rainbow, White Field, Blue Sky and Star" data-jp="国旗・虹・白地・青空・星の旗">国旗・彩虹白地蓝天星旗</figcaption>
+    </figure>
+    <figure class="symbol-figure emblem-figure">
+      <img src="./axie-emblem.png" alt="阿谢国国徽：蓝色八边形中的白色四角星" loading="lazy">
+      <figcaption data-zh="国徽・蓝天星" data-en="Coat of Arms · Blue Sky Star" data-jp="国章・青空の星">国徽・蓝天星</figcaption>
+    </figure>
+  </div>
 
-  <p
-    data-zh="彩虹白地蓝天星旗 · 象征和平、包容多元、民主、科技与未来"
-    data-en="Rainbow White-Blue Sky Star Flag · Symbol of peace, diversity, democracy, technology, and the future"
-    data-jp="彩虹白地蓝天星旗 · 平和、多様性、民主、技術、そして未来の象徴"
-  >
-    彩虹白地蓝天星旗 · 象征和平、包容多元、民主、科技与未来
-  </p>
-
-
-  <img
-    src="./flag.jpg"
-    alt="阿谢国国旗"
-    loading="lazy"
-    width="300"
-    onerror="this.onerror=null;this.src='https://via.placeholder.com/300x180?text=Flag+Missing';"
-  >
 
 
   <div class="anthem-player">
@@ -1434,6 +1686,17 @@ nav a:hover, nav .button:hover { background: #163b5c; text-decoration: none; }
     >
       播放时，歌词会随音乐逐行高亮。
     </p>
+
+    <button
+      id="startFlagCeremony"
+      class="flag-ceremony-button"
+      type="button"
+      data-zh="▶ 开始升旗仪式"
+      data-en="▶ Start the flag-raising ceremony"
+      data-jp="▶ 旗揚げ式を始める"
+    >
+      ▶ 开始升旗仪式
+    </button>
 
     <audio
       id="anthem-audio"
@@ -1597,6 +1860,79 @@ const timerEl =
 
 const countdownTitle =
   document.getElementById("countdown-title");
+
+const foundingDayEl =
+  document.getElementById("foundingDay");
+
+const nationalDayBanner = document.getElementById("nationalDayBanner");
+const nationalDayHeadline = document.getElementById("nationalDayHeadline");
+const nationalDaySubline = document.getElementById("nationalDaySubline");
+let nationalDayCelebrationStarted = false;
+
+function showNationalDayCelebration(axieYear) {
+  if (nationalDayBanner) nationalDayBanner.hidden = false;
+  document.body.classList.add("national-day-active");
+  const messages = {
+    zh: { title: "阿谢国国庆快乐", sub: `阿谢国成立${axieYear - 1}周年 · 和平、包容、科技与未来` },
+    en: { title: "Happy National Day, Axie", sub: `${axieYear - 1} years of peace, inclusion, technology, and republic` },
+    jp: { title: "阿謝国 建国記念日おめでとう", sub: `建国${axieYear - 1}周年 · 平和・包摂・技術・共和` }
+  };
+  const message = messages[currentLang];
+  if (nationalDayHeadline) nationalDayHeadline.textContent = message.title;
+  if (nationalDaySubline) nationalDaySubline.textContent = message.sub;
+  if (nationalDayCelebrationStarted || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  nationalDayCelebrationStarted = true;
+  startNationalDayFireworks();
+}
+
+function startNationalDayFireworks() {
+  const canvas = document.createElement("canvas");
+  canvas.id = "nationalDayFireworks";
+  canvas.setAttribute("aria-hidden", "true");
+  document.body.appendChild(canvas);
+  const context = canvas.getContext("2d");
+  if (!context) { canvas.remove(); return; }
+  const palette = ["#4fc3ff", "#7cf5d2", "#ffe39a", "#ff82b2", "#a994ff", "#ffffff"];
+  const particles = [];
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  let width = 0, height = 0, launchTimer = 0, frame = 0;
+  const resize = () => {
+    width = window.innerWidth; height = window.innerHeight;
+    canvas.width = Math.round(width * dpr); canvas.height = Math.round(height * dpr);
+    context.setTransform(dpr, 0, 0, dpr, 0, 0);
+  };
+  const burst = () => {
+    const x = width * (.12 + Math.random() * .76);
+    const y = height * (.08 + Math.random() * .38);
+    const color = palette[Math.floor(Math.random() * palette.length)];
+    const count = 34 + Math.floor(Math.random() * 22);
+    for (let i = 0; i < count; i++) {
+      const angle = Math.PI * 2 * i / count + Math.random() * .08;
+      const speed = 1.1 + Math.random() * 3.2;
+      particles.push({ x, y, vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed, life: 52 + Math.random() * 30, color, size: 1.2 + Math.random() * 1.8 });
+    }
+  };
+  const render = () => {
+    context.clearRect(0, 0, width, height);
+    for (let i = particles.length - 1; i >= 0; i--) {
+      const p = particles[i];
+      p.x += p.vx; p.y += p.vy; p.vy += .025; p.vx *= .991; p.life--;
+      if (p.life <= 0) { particles.splice(i, 1); continue; }
+      context.globalAlpha = Math.min(1, p.life / 18);
+      context.fillStyle = p.color; context.shadowBlur = 10; context.shadowColor = p.color;
+      context.beginPath(); context.arc(p.x, p.y, p.size, 0, Math.PI * 2); context.fill();
+    }
+    context.globalAlpha = 1; context.shadowBlur = 0;
+    frame = requestAnimationFrame(render);
+  };
+  resize(); window.addEventListener("resize", resize, { passive: true });
+  burst(); burst(); render();
+  launchTimer = window.setInterval(burst, 1050);
+  window.setTimeout(() => {
+    window.clearInterval(launchTimer); window.removeEventListener("resize", resize);
+    window.setTimeout(() => { cancelAnimationFrame(frame); canvas.remove(); }, 1800);
+  }, 14000);
+}
 
 const langBtn =
   document.getElementById("langToggle");
@@ -1985,23 +2321,16 @@ function updateCountdown() {
     );
 
 
-  const foundingDayNumber =
-    Math.floor(
-      (Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) - Date.UTC(2024, 1, 3)) /
-      86400000
-    ) + 1;
-
-
   const dateText = {
 
     zh:
-      `今天是：阿谢${axieYear}年 ${now.getMonth() + 1}月 ${now.getDate()}日（UTC+9） · 阿谢国建国第${foundingDayNumber}天`,
+      `今天是：阿谢${axieYear}年 ${now.getMonth() + 1}月 ${now.getDate()}日（UTC+9）`,
 
     en:
-      `Today is Axie Year ${axieYear}, ${now.getMonth() + 1}/${now.getDate()} (UTC+9) · Day ${foundingDayNumber} since the founding`,
+      `Today is Axie Year ${axieYear}, ${now.getMonth() + 1}/${now.getDate()} (UTC+9)`,
 
     jp:
-      `本日は：阿謝${axieYear}年 ${now.getMonth() + 1}月 ${now.getDate()}日（UTC+9） · 阿謝国 建国${foundingDayNumber}日目`
+      `本日は：阿謝${axieYear}年 ${now.getMonth() + 1}月 ${now.getDate()}日（UTC+9）`
 
   };
 
@@ -2014,6 +2343,26 @@ function updateCountdown() {
   }
 
 
+  // 2024-02-03 is counted as the first day of the Republic.
+  const todayUtc = Date.UTC(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate()
+  );
+  const foundingUtc = Date.UTC(2024, 1, 3);
+  const foundingDayNumber = Math.floor(
+    (todayUtc - foundingUtc) / (24 * 60 * 60 * 1000)
+  ) + 1;
+  if (foundingDayEl) {
+    const foundingDayText = {
+      zh: `阿谢国建国第 ${foundingDayNumber} 天`,
+      en: `Day ${foundingDayNumber} of the Republic of Axie`,
+      jp: `阿謝国 建国${foundingDayNumber}日目`
+    };
+    foundingDayEl.textContent = foundingDayText[currentLang];
+  }
+
+
   /*
    * 如果今天就是国庆日
    */
@@ -2022,6 +2371,8 @@ function updateCountdown() {
     now.getMonth() === 1 &&
     now.getDate() === 3
   ) {
+
+    showNationalDayCelebration(axieYear);
 
     const anniversaryText = {
 
@@ -3666,11 +4017,50 @@ document.addEventListener(
 </script>
 
 
+<script>
+(() => {
+  const root = document.documentElement;
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const cards = [...document.querySelectorAll("#main-content .container > .card")];
+  const progress = document.getElementById("scroll-progress");
+  const updateProgress = () => {
+    const max = root.scrollHeight - window.innerHeight;
+    progress.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`;
+  };
+  window.addEventListener("scroll", updateProgress, { passive: true });
+  window.addEventListener("resize", updateProgress, { passive: true });
+  updateProgress();
+  if (reduced || !("IntersectionObserver" in window)) return;
+  root.classList.add("motion-ready");
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("is-visible");
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+  cards.forEach(card => observer.observe(card));
+})();
+</script>
+
+<div id="flagRaisingCeremony" hidden role="dialog" aria-modal="true" aria-labelledby="ceremonyTitle">
+  <div class="ceremony-stage">
+    <canvas id="flagRaisingCanvas" aria-hidden="true"></canvas>
+    <div class="ceremony-caption">
+      <h2 id="ceremonyTitle" data-zh="阿谢国国旗升旗仪式" data-en="Republic of Axie Flag-Raising Ceremony" data-jp="阿謝国 国旗掲揚式">阿谢国国旗升旗仪式</h2>
+      <p data-zh="国歌奏响，国旗随乐声升至旗杆顶端" data-en="As the anthem plays, the flag rises with the music to the top of the mast." data-jp="国歌とともに、国旗が旗竿の頂上まで昇ります">国歌奏响，国旗随乐声升至旗杆顶端</p>
+    </div>
+    <button id="closeFlagCeremony" class="ceremony-close" type="button" aria-label="关闭" data-zh="×" data-en="×" data-jp="×">×</button>
+    <div id="ceremonyComplete" class="ceremony-complete" hidden data-zh="升旗礼成" data-en="Ceremony complete" data-jp="掲揚式が完了しました">升旗礼成</div>
+  </div>
+</div>
+
 <script src="./assets/anthem-player.js" defer></script>
+<script src="./assets/flag-ceremony.js" defer></script>
 
 
 <script src="axai-config.js"></script>
 <script src="axai-widget.js?v=20261010-mobile" defer></script>
-  <script src="/common/traditional-chinese-loader.js"></script>
+  <script src="./common/traditional-chinese-loader.js"></script>
 </body>
 </html>
