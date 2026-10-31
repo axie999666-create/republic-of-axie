@@ -830,6 +830,7 @@ async function cleanupContactData(env) {
   await env.DB.batch([
     env.DB.prepare("DELETE FROM contact_messages WHERE conversation_id IN (SELECT id FROM contact_conversations WHERE updated_at < ?)").bind(cutoff),
     env.DB.prepare("DELETE FROM contact_conversations WHERE updated_at < ?").bind(cutoff),
+    env.DB.prepare("DELETE FROM contact_message_limits WHERE window_started_at < ?").bind(Date.now() - 24 * 60 * 60 * 1000),
   ]);
 }
 
@@ -1038,6 +1039,9 @@ async function handleRequest(request, env) {
 }
 
 export default {
+  async scheduled(controller, env) {
+    if (env.DB) await cleanupContactData(env);
+  },
   async fetch(request, env) {
     try {
       return await handleRequest(request, env);
