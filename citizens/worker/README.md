@@ -27,7 +27,7 @@
 - 国民登记与管理页面已合并到 main 并由 GitHub Pages 发布。
 - 迁移 `0003_citizen_photos.sql` 已应用到生产 D1；照片上传和身份卡展示已部署。
 - 总统与副总统投票身份核验已部署；0002 迁移已应用，国民管理 Worker 与 AXNews 投票 Worker 已配置相同的 VOTER_VERIFY_SECRET。
-- 网站访客在线留言尚未部署；迁移 `0004_contact_chat.sql` 增加了留言对话、加密消息和限流表。
+- 网站访客在线留言 Worker 已部署到 `https://axie-citizens-admin-api.axie999666.workers.dev`，迁移 `0004_contact_chat.sql` 已应用；GitHub Pages 前端随 PR #30 发布。
 
 ## 部署后检查
 
