@@ -155,21 +155,35 @@ const supportedLanguages=['zh-Hans','zh-Hant','en','ja'];
 const languageNames={'zh-Hans':'Simplified Chinese','zh-Hant':'Traditional Chinese',en:'English',ja:'Japanese'};
 function answerLanguageInstruction(question, fallback='zh-Hans') {
   const text=String(question||'');
-  if(/[\u3040-\u30ff]/.test(text))return 'The current question is in Japanese. Answer in Japanese.';
-  if(/[\uac00-\ud7af]/.test(text))return 'The current question is in Korean. Answer in Korean.';
-  if(/[\u0400-\u04ff]/.test(text))return 'The current question uses Cyrillic script. Identify its language and answer in that language.';
-  if(/[\u0600-\u06ff]/.test(text))return 'The current question uses Arabic script. Identify its language and answer in that language.';
-  if(/[\u0900-\u097f]/.test(text))return 'The current question uses Devanagari script. Identify its language and answer in that language.';
+  if(/[\u3040-\u30ff]/.test(text))return 'The current question is in Japanese. Write the answer entirely in Japanese, not Chinese.';
+  if(/[\uac00-\ud7af]/.test(text))return 'The current question is in Korean. Write the answer entirely in Korean, not Chinese.';
+  if(/[\u0400-\u04ff]/.test(text))return 'The current question uses Cyrillic script. Identify its language and write the answer entirely in that language, not Chinese.';
+  if(/[\u0600-\u06ff]/.test(text))return 'The current question uses Arabic script. Identify its language and write the answer entirely in that language, not Chinese.';
+  if(/[\u0900-\u097f]/.test(text))return 'The current question uses Devanagari script. Identify its language and write the answer entirely in that language, not Chinese.';
   const han=(text.match(/[\u3400-\u9fff]/g)||[]).length;
   const latin=(text.match(/[A-Za-z]/g)||[]).length;
   if(han>0&&han>=latin*0.7){
-    const traditional=(text.match(/[體國語問請謝臺灣發現為無與個點網頁讀轉車區漢後經當會應對於總統選舉領導問題簡體繁體號]/g)||[]).length;
-    const simplified=(text.match(/[体国语问请谢台湾发现为无与个点网页读转车区汉后经当会应对总统选举领导问题简体繁体号]/g)||[]).length;
+    const variantText=text.replace(/阿谢国|阿謝國/g,'');
+    const traditional=(variantText.match(/[體國語問請謝臺灣發現為無與個點網頁讀轉車區漢後經當會應對於總統選舉領導問題簡體繁體號麼嗎]/g)||[]).length;
+    const simplified=(variantText.match(/[体国语问请谢台湾发现为无与个点网页读转车区汉后经当会应对总统选举领导问题简体繁体号么吗]/g)||[]).length;
     const language=traditional>simplified?'zh-Hant':simplified>traditional?'zh-Hans':fallback.startsWith('zh-')?fallback:'zh-Hans';
-    return `The current question is in ${languageNames[language]||'Chinese'}. Answer in ${languageNames[language]||'Chinese'}.`;
+    const name=languageNames[language]||'Chinese';
+    return `The current question is in ${name}. Write the answer entirely in ${name}, not in the other Chinese script or another language.`;
   }
-  if(latin>0)return 'First identify the specific language used in the current question from its words and phrasing (for example English, Spanish, French, or German); answer in that same language, not simply in the default website language.';
-  if(/[^\x00-\x7f]/.test(text)&&/\p{L}/u.test(text))return 'Identify the language used in the current question from its words and writing system, then answer in that same language.';
+  if(latin>0){
+    const samples=[
+      ['English',/\b(?:what|which|who|where|when|why|how|is|are|the|of|and|with|please|hello|thanks|tell|explain)\b/gi],
+      ['Spanish',/\b(?:qué|que|cuál|cual|cómo|como|dónde|donde|por|para|hola|gracias|es|son|una|los|las)\b|[¿¡ñ]/gi],
+      ['French',/\b(?:bonjour|merci|est|sont|comment|pourquoi|quel|quelle|avec|dans|les|des|une|vous)\b|[àâçéèêëîïôûùüÿœ]/gi],
+      ['German',/\b(?:hallo|danke|ist|sind|was|wie|warum|welche|welcher|und|mit|für|der|die|das)\b|[äöüß]/gi],
+      ['Portuguese',/\b(?:olá|obrigado|obrigada|como|qual|onde|porque|para|com|que|uma|não|está)\b|[ãõç]/gi],
+      ['Italian',/\b(?:ciao|grazie|come|quale|dove|perché|perche|con|sono|una|che)\b|[àèéìòù]/gi]
+    ];
+    const ranked=samples.map(([name,pattern])=>({name,count:(text.match(pattern)||[]).length})).sort((a,b)=>b.count-a.count);
+    if(ranked[0].count>0)return `The current question is in ${ranked[0].name}. Write the answer entirely in ${ranked[0].name}, not Chinese.`;
+    return 'First identify the specific language used in the current question from its words and phrasing; then write the answer entirely in that same language, not simply in the default website language.';
+  }
+  if(/[^\x00-\x7f]/.test(text)&&/\p{L}/u.test(text))return 'Identify the language used in the current question from its words and writing system, then write the answer entirely in that same language.';
   return `The question language is unclear. Answer in the website interface language, ${languageNames[fallback]||'Simplified Chinese'}.`;
 }
 export default {
@@ -191,6 +205,7 @@ export default {
     let data;try{const reader=request.body?.getReader();if(!reader)throw Error();let size=0,chunks=[];while(true){const {done,value}=await reader.read();if(done)break;size+=value.length;if(size>4096){await reader.cancel();return reply({error:'输入过长'},413)}chunks.push(value)}const bytes=new Uint8Array(size);let offset=0;for(const c of chunks){bytes.set(c,offset);offset+=c.length}data=JSON.parse(new TextDecoder().decode(bytes))}catch{return reply({error:'Invalid JSON'},400)}
     if(typeof data.question!=='string'||!data.question.trim()||data.question.length>500)return reply({error:'问题应为 1–500 字'},400);
     const q=data.question.trim();
+    const history=Array.isArray(data.history)?data.history.slice(-8).filter(m=>m&&['user','assistant'].includes(m.role)&&typeof m.content==='string').map(m=>({role:m.role,content:m.content.trim().slice(0,700)})).filter(m=>m.content):[];
     const uiLanguage=supportedLanguages.includes(data.uiLanguage)?data.uiLanguage:'zh-Hans';
     const preferredResponseLanguage=supportedLanguages.includes(data.responseLanguage)?data.responseLanguage:null;
     const priorUserLanguageSample=history.filter(m=>m.role==='user').at(-1)?.content||'';
@@ -198,7 +213,6 @@ export default {
     const languageInstruction=preferredResponseLanguage
       ?`For this preset question, answer in ${languageNames[preferredResponseLanguage]}.`
       :answerLanguageInstruction(languageSample,uiLanguage);
-    const history=Array.isArray(data.history)?data.history.slice(-8).filter(m=>m&&['user','assistant'].includes(m.role)&&typeof m.content==='string').map(m=>({role:m.role,content:m.content.trim().slice(0,700)})).filter(m=>m.content):[];
     const urls=extractUrls(q);
     if(urls.length>2)return reply({error:'每次最多读取两个网址'},400);
     try{urls.forEach(publicUrl)}catch(e){return reply({error:e.message},400)}
