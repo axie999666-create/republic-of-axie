@@ -883,6 +883,33 @@ nav a:hover, nav .button:hover { background: #163b5c; text-decoration: none; }
   .button { transition: none; }
   .button:hover { transform: none; }
 }
+.contact-chat { margin-top: 24px; overflow: hidden; border: 1px solid rgba(79,195,255,.24); border-radius: 18px; background: linear-gradient(145deg, rgba(15,28,57,.96), rgba(9,19,40,.96)); box-shadow: 0 18px 48px rgba(0,0,0,.22); }
+.contact-chat-head { display: flex; align-items: center; gap: 13px; padding: 18px 20px; border-bottom: 1px solid rgba(150,190,230,.12); background: linear-gradient(100deg, rgba(79,195,255,.1), rgba(124,245,210,.045)); }
+.contact-chat-avatar { display: grid; width: 42px; height: 42px; flex: 0 0 42px; place-items: center; border: 1px solid rgba(124,245,210,.34); border-radius: 14px; color: var(--ax-mint); background: rgba(124,245,210,.1); font-size: 20px; }
+.contact-chat-head h3 { margin: 0; color: #f1f6ff; font-size: 17px; }
+.contact-chat-head p { margin: 4px 0 0; color: var(--ax-muted); font-size: 12px; }
+.contact-chat-online { margin-left: auto; color: #8fe2c7; font-size: 12px; white-space: nowrap; }
+.contact-chat-online::before { content: ""; display: inline-block; width: 7px; height: 7px; margin-right: 7px; border-radius: 50%; background: #68dfad; box-shadow: 0 0 12px rgba(104,223,173,.65); }
+.contact-chat-messages { display: flex; min-height: 190px; max-height: 350px; flex-direction: column; gap: 12px; overflow-y: auto; padding: 18px; scroll-behavior: smooth; }
+.contact-chat-empty { margin: auto; max-width: 380px; color: var(--ax-muted); text-align: center; line-height: 1.7; font-size: 13px; }
+.contact-chat-message { max-width: min(82%, 620px); align-self: flex-start; padding: 11px 14px; border: 1px solid rgba(150,190,230,.13); border-radius: 14px 14px 14px 4px; color: #e6ecff; background: rgba(255,255,255,.055); line-height: 1.6; overflow-wrap: anywhere; white-space: pre-wrap; animation: chat-message-in .22s ease both; }
+.contact-chat-message.visitor { align-self: flex-end; border-color: rgba(79,195,255,.24); border-radius: 14px 14px 4px 14px; background: linear-gradient(140deg, rgba(39,105,161,.42), rgba(35,83,113,.32)); }
+.contact-chat-message time { display: block; margin-top: 5px; color: #90a4bf; font-size: 10px; }
+.contact-chat-form { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 10px; padding: 14px 16px 16px; border-top: 1px solid rgba(150,190,230,.12); }
+.contact-chat-form input, .contact-chat-form textarea { min-width: 0; border: 1px solid rgba(150,190,230,.2); border-radius: 12px; padding: 12px 14px; color: #e6ecff; background: rgba(4,11,27,.72); font: inherit; outline: none; }
+.contact-chat-form input:focus, .contact-chat-form textarea:focus { border-color: rgba(79,195,255,.72); box-shadow: 0 0 0 3px rgba(79,195,255,.1); }
+.contact-chat-form input::placeholder, .contact-chat-form textarea::placeholder { color: #7e90ad; }
+.contact-chat-form textarea { min-height: 46px; max-height: 160px; resize: vertical; line-height: 1.45; }
+.contact-chat-form #contactChatName { grid-column: 1 / -1; }
+.contact-chat-form button { border: 1px solid rgba(124,245,210,.34); border-radius: 12px; padding: 0 19px; color: #eafff8; background: linear-gradient(120deg, #145579, #145448); font: inherit; font-weight: 700; cursor: pointer; transition: transform .16s ease, filter .16s ease; }
+.contact-chat-form button:hover { transform: translateY(-1px); filter: brightness(1.18); }
+.contact-chat-form button:disabled { opacity: .55; cursor: wait; }
+.contact-chat-note { margin: 0; padding: 0 18px 14px; color: #8294b1; font-size: 11px; line-height: 1.6; }
+.contact-chat-status { min-height: 18px; margin: 0; padding: 0 18px 9px; color: #a9bbd5; font-size: 12px; }
+.visually-hidden { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0,0,0,0) !important; white-space: nowrap !important; border: 0 !important; }
+@keyframes chat-message-in { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 560px) { .contact-chat-head { padding: 15px; } .contact-chat-messages { min-height: 160px; padding: 14px; } .contact-chat-form { grid-template-columns: 1fr; padding: 12px; } .contact-chat-form button { min-height: 44px; } .contact-chat-message { max-width: 90%; } }
+@media (prefers-reduced-motion: reduce) { .contact-chat-message { animation: none; } .contact-chat-messages { scroll-behavior: auto; } }
 
 
 
@@ -1816,6 +1843,29 @@ html.motion-ready #main-content .container > .card.is-visible .symbol-figure:nth
     如对阿谢国感兴趣或世界观交流请您联系我们：
   </p>
 
+  <div class="contact-chat" id="contactChat" aria-label="网站在线留言">
+    <div class="contact-chat-head">
+      <div class="contact-chat-avatar" aria-hidden="true">✦</div>
+      <div>
+        <h3 data-zh="在线留言" data-en="Message the team" data-jp="オンラインメッセージ">在线留言</h3>
+        <p data-zh="直接与阿谢国网站管理员沟通" data-en="Chat directly with a Republic of Axie site administrator" data-jp="阿謝国サイトの管理者に直接メッセージできます">直接与阿谢国网站管理员沟通</p>
+      </div>
+      <span class="contact-chat-online" data-zh="可留言" data-en="Available" data-jp="受付中">可留言</span>
+    </div>
+    <div class="contact-chat-messages" id="contactChatMessages" role="log" aria-live="polite" aria-relevant="additions text">
+      <p class="contact-chat-empty" id="contactChatEmpty" data-zh="有问题或想交流？在下方写下消息，管理员回复后会显示在这里。" data-en="Have a question or idea? Send a message below. The administrator's reply will appear here." data-jp="ご質問やご相談はこちらからお送りください。管理者の返信がここに表示されます。">有问题或想交流？在下方写下消息，管理员回复后会显示在这里。</p>
+    </div>
+    <p class="contact-chat-status" id="contactChatStatus" role="status"></p>
+    <form class="contact-chat-form" id="contactChatForm">
+      <label for="contactChatName" class="visually-hidden">称呼（可选）</label>
+      <input id="contactChatName" maxlength="60" autocomplete="nickname" data-placeholder-zh="称呼（可选）" data-placeholder-en="Name (optional)" data-placeholder-jp="お名前（任意）" placeholder="称呼（可选）">
+      <textarea id="contactChatInput" maxlength="2000" required autocomplete="off" rows="1" data-placeholder-zh="输入消息…" data-placeholder-en="Write a message…" data-placeholder-jp="メッセージを入力…" placeholder="输入消息…"></textarea>
+      <button id="contactChatSend" type="submit" data-zh="发送" data-en="Send" data-jp="送信">发送</button>
+      <input id="contactChatWebsite" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;opacity:0">
+    </form>
+    <p class="contact-chat-note" data-zh="请勿发送身份证件号、金融资料或其他敏感信息。消息加密保存，可在本浏览器中查看，最长保留 180 天。" data-en="Please do not send ID numbers, financial details, or other sensitive information. Messages are encrypted, available in this browser, and kept for up to 180 days." data-jp="身分証番号、金融情報などの機密情報は送信しないでください。メッセージは暗号化して保存され、このブラウザから確認できます。最長180日間保管されます。">请勿发送身份证件号、金融资料或其他敏感信息。消息加密保存，可在本浏览器中查看，最长保留 180 天。</p>
+  </div>
+
 
   <p>
 
@@ -1854,6 +1904,107 @@ html.motion-ready #main-content .container > .card.is-visible .symbol-figure:nth
 >
   © Republic of Axie · 阿谢国官方网站
 </footer>
+
+<script>
+(() => {
+  const API = "https://axie-citizens-admin-api.axie999666.workers.dev";
+  const STORAGE_KEY = "axieContactChatV1";
+  const byId = (id) => document.getElementById(id);
+  const labels = {
+    zh: { placeholder: "输入消息…", waiting: "等待管理员回复…", failed: "暂时无法连接留言服务，请稍后重试。", closed: "对话已结束，可发送新消息重新联系。", sendError: "消息发送失败，请稍后重试。" },
+    en: { placeholder: "Write a message…", waiting: "Waiting for an administrator…", failed: "The message service is temporarily unavailable. Please try again later.", closed: "This conversation is closed. Send a new message to contact us again.", sendError: "Message could not be sent. Please try again." },
+    jp: { placeholder: "メッセージを入力…", waiting: "管理者からの返信をお待ちください…", failed: "メッセージサービスに接続できません。しばらくしてからお試しください。", closed: "この会話は終了しました。新しいメッセージをお送りください。", sendError: "送信できませんでした。もう一度お試しください。" },
+  };
+  let chat = null;
+  let seen = new Set();
+  let busy = false;
+  const lang = () => window.currentLang || (document.documentElement.lang === "ja" ? "jp" : document.documentElement.lang === "en" ? "en" : "zh");
+  const tr = (key) => labels[lang()]?.[key] || labels.zh[key];
+  const getToken = () => {
+    const bytes = crypto.getRandomValues(new Uint8Array(32));
+    return btoa(String.fromCharCode(...bytes)).replaceAll("+", "-").replaceAll("/", "_").replaceAll("=", "");
+  };
+  async function api(path, options = {}) {
+    const headers = new Headers(options.headers || {});
+    headers.set("Accept", "application/json");
+    if (chat?.visitor_token) headers.set("Authorization", `Bearer ${chat.visitor_token}`);
+    if (options.body) headers.set("Content-Type", "application/json");
+    const response = await fetch(`${API}${path}`, { ...options, headers, cache: "no-store" });
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(data.error || tr("sendError"));
+    return data;
+  }
+  function renderMessage(message) {
+    if (!message.id && seen.has(`${message.sender}:${message.created_at}:${message.body}`)) return;
+    if (message.id && seen.has(message.id)) return;
+    if (message.id) seen.add(message.id); else seen.add(`${message.sender}:${message.created_at}:${message.body}`);
+    byId("contactChatEmpty").hidden = true;
+    const item = document.createElement("div");
+    item.className = `contact-chat-message ${message.sender === "visitor" ? "visitor" : "admin"}`;
+    item.textContent = message.body;
+    const time = document.createElement("time");
+    time.dateTime = new Date(message.created_at).toISOString();
+    time.textContent = new Intl.DateTimeFormat(lang() === "jp" ? "ja-JP" : lang() === "en" ? "en" : "zh-CN", {hour:"2-digit",minute:"2-digit"}).format(new Date(message.created_at));
+    item.append(time);
+    byId("contactChatMessages").append(item);
+    byId("contactChatMessages").scrollTop = byId("contactChatMessages").scrollHeight;
+  }
+  async function refresh() {
+    if (!chat?.id || document.hidden) return;
+    try {
+      const data = await api(`/api/contact/conversations/${encodeURIComponent(chat.id)}/messages`);
+      chat.status = data.conversation.status;
+      if (chat.status === "closed") { byId("contactChatStatus").textContent = tr("closed"); byId("contactChatName").disabled = false; }
+      for (const message of data.messages || []) renderMessage(message);
+      if (data.messages?.length) byId("contactChatStatus").textContent = data.conversation.status === "awaiting_admin" ? tr("waiting") : "";
+    } catch (error) {
+      if (error.message.includes("找不到") || error.message.includes("not found")) {
+        chat = null; localStorage.removeItem(STORAGE_KEY); seen.clear(); byId("contactChatName").disabled = false;
+      }
+    }
+  }
+  function updateLanguage() {
+    const placeholder = byId("contactChatInput");
+    if (placeholder) placeholder.placeholder = placeholder.getAttribute(`data-placeholder-${lang()}`) || labels.zh.placeholder;
+  }
+  window.updateContactChatLanguage = updateLanguage;
+  document.addEventListener("DOMContentLoaded", () => {
+    try { chat = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null"); } catch { chat = null; }
+    updateLanguage();
+    if (chat?.id && chat?.visitor_token) { byId("contactChatName").disabled = true; refresh(); }
+    byId("contactChatForm").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (busy) return;
+      const message = byId("contactChatInput").value.trim();
+      if (!message) return;
+      busy = true; byId("contactChatSend").disabled = true; byId("contactChatStatus").textContent = "";
+      try {
+        if (!chat?.id || chat?.status === "closed") {
+          if (chat?.status === "closed") { chat = null; seen.clear(); byId("contactChatMessages").replaceChildren(byId("contactChatEmpty")); byId("contactChatEmpty").hidden = false; }
+          chat = { visitor_token: getToken() };
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(chat));
+          const data = await api("/api/contact/conversations", { method: "POST", body: JSON.stringify({ visitor_token: chat.visitor_token, name: byId("contactChatName").value.trim(), message, website: byId("contactChatWebsite").value }) });
+          chat.id = data.conversation.id;
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(chat));
+          for (const item of data.messages || []) renderMessage(item);
+        } else {
+          const data = await api(`/api/contact/conversations/${encodeURIComponent(chat.id)}/messages`, { method: "POST", body: JSON.stringify({ message }) });
+          renderMessage(data.message);
+        }
+        byId("contactChatInput").value = "";
+        byId("contactChatName").disabled = true;
+        byId("contactChatStatus").textContent = tr("waiting");
+      } catch (error) {
+        byId("contactChatStatus").textContent = error.message || tr("failed");
+      } finally {
+        busy = false; byId("contactChatSend").disabled = false; byId("contactChatInput").focus();
+      }
+    });
+    window.setInterval(refresh, 8000);
+    document.addEventListener("visibilitychange", () => { if (!document.hidden) refresh(); });
+  });
+})();
+</script>
 
 
 
@@ -2211,6 +2362,8 @@ function applyLanguage() {
     jp: "ja"
 
   }[currentLang];
+
+  window.updateContactChatLanguage?.();
 
 
   /*

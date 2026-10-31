@@ -791,6 +791,163 @@ async function getCitizenPhoto(citizenId, env, cors) {
   return jsonWithCors({ photo_data_url: await decryptPhoto(row.photo_ciphertext, env) }, 200, cors);
 }
 
+const CONTACT_MESSAGE_LIMIT = 2000;
+
+async function encryptContactValue(value, env) {
+  return encryptProfile({ value }, env);
+}
+
+async function decryptContactValue(value, env) {
+  return (await decryptProfile(value, env)).value || "";
+}
+
+async function contactRateLimited(request, env, action, maximum) {
+  if (!env.PII_ENCRYPTION_KEY) return true;
+  const ip = cleanString(request.headers.get("CF-Connecting-IP") || "unknown", 128);
+  const fingerprint = await hmacHex(env.PII_ENCRYPTION_KEY, `contact:${action}:${ip}`);
+  const now = Date.now();
+  const windowMs = 60 * 60 * 1000;
+  await env.DB.prepare("DELETE FROM contact_message_limits WHERE window_started_at < ?")
+    .bind(now - 24 * windowMs).run();
+  const previous = await env.DB.prepare(
+    "SELECT event_count, window_started_at FROM contact_message_limits WHERE ip_hash = ?",
+  ).bind(fingerprint).first();
+  const sameWindow = previous && now - previous.window_started_at < windowMs;
+  const count = sameWindow ? previous.event_count + 1 : 1;
+  const startedAt = sameWindow ? previous.window_started_at : now;
+  await env.DB.prepare(
+    `INSERT INTO contact_message_limits (ip_hash, event_count, window_started_at)
+     VALUES (?, ?, ?)
+     ON CONFLICT(ip_hash) DO UPDATE SET
+       event_count = excluded.event_count,
+       window_started_at = excluded.window_started_at`,
+  ).bind(fingerprint, count, startedAt).run();
+  return count > maximum;
+}
+
+async function cleanupContactData(env) {
+  const cutoff = Date.now() - 180 * 24 * 60 * 60 * 1000;
+  await env.DB.batch([
+    env.DB.prepare("DELETE FROM contact_messages WHERE conversation_id IN (SELECT id FROM contact_conversations WHERE updated_at < ?)").bind(cutoff),
+    env.DB.prepare("DELETE FROM contact_conversations WHERE updated_at < ?").bind(cutoff),
+  ]);
+}
+
+function readVisitorToken(request) {
+  const match = /^Bearer\s+([A-Za-z0-9_-]{40,80})$/i.exec(request.headers.get("Authorization") || "");
+  return match?.[1] || "";
+}
+
+async function getOwnedConversation(request, env, conversationId) {
+  const token = readVisitorToken(request);
+  if (!token) return null;
+  const tokenHash = await sha256Hex(token);
+  return env.DB.prepare(
+    "SELECT id, status FROM contact_conversations WHERE id = ? AND visitor_token_hash = ?",
+  ).bind(conversationId, tokenHash).first();
+}
+
+async function contactMessages(conversationId, env) {
+  const rows = await env.DB.prepare(
+    "SELECT id, sender, body_ciphertext, created_at FROM contact_messages WHERE conversation_id = ? ORDER BY created_at, id",
+  ).bind(conversationId).all();
+  return Promise.all((rows.results || []).map(async (row) => ({
+    id: row.id,
+    sender: row.sender,
+    body: await decryptContactValue(row.body_ciphertext, env),
+    created_at: row.created_at,
+  })));
+}
+
+async function createContactConversation(request, env, cors) {
+  if (!env.DB || !env.PII_ENCRYPTION_KEY) return jsonWithCors({ error: "留言服务暂不可用。" }, 503, cors);
+  await cleanupContactData(env);
+  const body = await readJson(request);
+  if (body?.website) return jsonWithCors({ error: "留言提交失败。" }, 400, cors);
+  const token = typeof body?.visitor_token === "string" ? body.visitor_token : "";
+  const name = cleanString(body?.name, 60);
+  const message = cleanString(body?.message, CONTACT_MESSAGE_LIMIT);
+  if (!/^[A-Za-z0-9_-]{40,80}$/.test(token)) return jsonWithCors({ error: "聊天会话无效，请刷新页面后重试。" }, 400, cors);
+  if (!message) return jsonWithCors({ error: "请先写下你的消息。" }, 400, cors);
+  if (message.length > CONTACT_MESSAGE_LIMIT) return jsonWithCors({ error: "消息请控制在 2000 字以内。" }, 400, cors);
+  if (await contactRateLimited(request, env, "conversation", 8)) return jsonWithCors({ error: "提交次数较多，请稍后再试。" }, 429, cors);
+  const id = randomId();
+  const messageId = randomId();
+  const now = Date.now();
+  const nameCiphertext = name ? await encryptContactValue(name, env) : null;
+  const messageCiphertext = await encryptContactValue(message, env);
+  await env.DB.batch([
+    env.DB.prepare("INSERT INTO contact_conversations (id, visitor_token_hash, visitor_name_ciphertext, status, created_at, updated_at) VALUES (?, ?, ?, 'awaiting_admin', ?, ?)")
+      .bind(id, await sha256Hex(token), nameCiphertext, now, now),
+    env.DB.prepare("INSERT INTO contact_messages (id, conversation_id, sender, body_ciphertext, created_at) VALUES (?, ?, 'visitor', ?, ?)")
+      .bind(messageId, id, messageCiphertext, now),
+  ]);
+  return jsonWithCors({ conversation: { id, status: "awaiting_admin" }, messages: [{ id: messageId, sender: "visitor", body: message, created_at: now }] }, 201, cors);
+}
+
+async function postVisitorContactMessage(request, env, cors, conversationId) {
+  const conversation = await getOwnedConversation(request, env, conversationId);
+  if (!conversation) return jsonWithCors({ error: "找不到这段对话，请重新开始。" }, 404, cors);
+  if (conversation.status === "closed") return jsonWithCors({ error: "这段对话已结束，请重新开始联系。" }, 409, cors);
+  if (await contactRateLimited(request, env, "message", 30)) return jsonWithCors({ error: "发送过于频繁，请稍后再试。" }, 429, cors);
+  const body = await readJson(request);
+  const message = cleanString(body?.message, CONTACT_MESSAGE_LIMIT);
+  if (!message) return jsonWithCors({ error: "请先写下你的消息。" }, 400, cors);
+  if (message.length > CONTACT_MESSAGE_LIMIT) return jsonWithCors({ error: "消息请控制在 2000 字以内。" }, 400, cors);
+  const now = Date.now();
+  await env.DB.batch([
+    env.DB.prepare("INSERT INTO contact_messages (id, conversation_id, sender, body_ciphertext, created_at) VALUES (?, ?, 'visitor', ?, ?)")
+      .bind(randomId(), conversationId, await encryptContactValue(message, env), now),
+    env.DB.prepare("UPDATE contact_conversations SET status = 'awaiting_admin', updated_at = ? WHERE id = ?")
+      .bind(now, conversationId),
+  ]);
+  return jsonWithCors({ message: { sender: "visitor", body: message, created_at: now } }, 201, cors);
+}
+
+async function listContactConversations(env, cors) {
+  await cleanupContactData(env);
+  const rows = await env.DB.prepare(
+    `SELECT c.id, c.status, c.visitor_name_ciphertext, c.created_at, c.updated_at,
+      (SELECT body_ciphertext FROM contact_messages m WHERE m.conversation_id = c.id ORDER BY m.created_at DESC, m.id DESC LIMIT 1) AS latest_message
+     FROM contact_conversations c ORDER BY c.updated_at DESC LIMIT 200`,
+  ).all();
+  const conversations = await Promise.all((rows.results || []).map(async (row) => ({
+    id: row.id,
+    status: row.status,
+    visitor_name: row.visitor_name_ciphertext ? await decryptContactValue(row.visitor_name_ciphertext, env) : "访客",
+    latest_message: row.latest_message ? await decryptContactValue(row.latest_message, env) : "",
+    created_at: row.created_at,
+    updated_at: row.updated_at,
+  })));
+  return jsonWithCors({ conversations }, 200, cors);
+}
+
+async function replyToContactConversation(request, env, cors, conversationId, session) {
+  const existing = await env.DB.prepare("SELECT id, status FROM contact_conversations WHERE id = ?").bind(conversationId).first();
+  if (!existing) return jsonWithCors({ error: "找不到这段对话。" }, 404, cors);
+  const body = await readJson(request);
+  const message = cleanString(body?.message, CONTACT_MESSAGE_LIMIT);
+  if (!message) return jsonWithCors({ error: "请先写下回复内容。" }, 400, cors);
+  if (message.length > CONTACT_MESSAGE_LIMIT) return jsonWithCors({ error: "回复请控制在 2000 字以内。" }, 400, cors);
+  const now = Date.now();
+  await env.DB.batch([
+    env.DB.prepare("INSERT INTO contact_messages (id, conversation_id, sender, body_ciphertext, created_at) VALUES (?, ?, 'admin', ?, ?)")
+      .bind(randomId(), conversationId, await encryptContactValue(message, env), now),
+    env.DB.prepare("UPDATE contact_conversations SET status = 'awaiting_visitor', updated_at = ? WHERE id = ?")
+      .bind(now, conversationId),
+  ]);
+  await recordAudit(env, session, "contact_admin_reply", conversationId);
+  return jsonWithCors({ message: { sender: "admin", body: message, created_at: now } }, 201, cors);
+}
+
+async function closeContactConversation(env, cors, conversationId, session) {
+  const result = await env.DB.prepare("UPDATE contact_conversations SET status = 'closed', updated_at = ? WHERE id = ?")
+    .bind(Date.now(), conversationId).run();
+  if (!result.meta?.changes) return jsonWithCors({ error: "找不到这段对话。" }, 404, cors);
+  await recordAudit(env, session, "contact_close", conversationId);
+  return jsonWithCors({ ok: true }, 200, cors);
+}
+
 async function handleRequest(request, env) {
   const cors = getCorsHeaders(request, env);
   if (!cors.allowed) return jsonWithCors({ error: "此来源不允许访问该接口。" }, 403, cors);
@@ -809,6 +966,10 @@ async function handleRequest(request, env) {
   if (request.method === "POST" && new URL(request.url).pathname === "/api/registrations") {
     return registerCitizen(request, env, cors);
   }
+  const contactConversationMatch = /^\/api\/contact\/conversations\/([0-9a-f-]{36})(?:\/messages)?$/i.exec(new URL(request.url).pathname);
+  if (request.method === "POST" && new URL(request.url).pathname === "/api/contact/conversations") {
+    return createContactConversation(request, env, cors);
+  }
   if (!env.DB) return jsonWithCors({ error: "D1 数据库尚未绑定。" }, 503, cors);
 
   const url = new URL(request.url);
@@ -824,6 +985,14 @@ async function handleRequest(request, env) {
         .run();
     }
     return jsonWithCors({ ok: true }, 200, cors);
+  }
+  if (contactConversationMatch && request.method === "GET") {
+    const conversation = await getOwnedConversation(request, env, contactConversationMatch[1]);
+    if (!conversation) return jsonWithCors({ error: "找不到这段对话，请重新开始。" }, 404, cors);
+    return jsonWithCors({ conversation, messages: await contactMessages(contactConversationMatch[1], env) }, 200, cors);
+  }
+  if (contactConversationMatch && request.method === "POST") {
+    return postVisitorContactMessage(request, env, cors, contactConversationMatch[1]);
   }
   const session = await getSession(request, env);
   if (!session) return jsonWithCors({ error: "登录已失效，请重新登录。" }, 401, cors);
@@ -841,6 +1010,21 @@ async function handleRequest(request, env) {
   }
   if (path === "/api/citizens" && request.method === "POST") {
     return createCitizen(request, env, session, cors);
+  }
+  if (path === "/api/admin/contact/conversations" && request.method === "GET") {
+    return listContactConversations(env, cors);
+  }
+  const adminContactMatch = /^\/api\/admin\/contact\/conversations\/([0-9a-f-]{36})(?:\/(messages|close))?$/i.exec(path);
+  if (adminContactMatch && request.method === "GET" && (!adminContactMatch[2] || adminContactMatch[2] === "messages")) {
+    const exists = await env.DB.prepare("SELECT id FROM contact_conversations WHERE id = ?").bind(adminContactMatch[1]).first();
+    if (!exists) return jsonWithCors({ error: "找不到这段对话。" }, 404, cors);
+    return jsonWithCors({ messages: await contactMessages(adminContactMatch[1], env) }, 200, cors);
+  }
+  if (adminContactMatch && request.method === "POST" && (!adminContactMatch[2] || adminContactMatch[2] === "messages")) {
+    return replyToContactConversation(request, env, cors, adminContactMatch[1], session);
+  }
+  if (adminContactMatch && request.method === "POST" && adminContactMatch[2] === "close") {
+    return closeContactConversation(env, cors, adminContactMatch[1], session);
   }
   const photoMatch = /^\/api\/citizens\/([0-9a-f-]{36})\/photo$/i.exec(path);
   if (photoMatch && request.method === "GET") {
