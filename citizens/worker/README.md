@@ -15,6 +15,7 @@
 - 管理员可从在籍国民档案打开阿谢国国民护照，翻开封面查看阿谢国建国地点；护照图片仅用于架空世界观展示。
 - 姓名、称呼、出生日期、结构化地址和备注以 AES-GCM 密文写入 D1；照片单独加密存储，只在管理员查看身份卡或编辑档案时按需读取。API 仅允许配置的前端来源，不公开名册或个人记录查询接口。
 - 总统与副总统投票将校验在籍国民的姓名和国民 ID；投票文件只保存由共享密钥生成的不可逆标识，不保存姓名或原始 ID。
+- 官网联系我们区提供访客在线留言；访客凭浏览器保存的随机会话密钥查看自己的对话，管理员用现有登录凭证在 `/admin/contact-messages.html` 回复。消息正文和可选称呼使用现有 AES-GCM 密钥加密，访客来源地址只以 HMAC 指纹用于限流；对话最多保留 180 天。
 
 自助登记页面为 https://republic-of-axie.org/admin/citizen-registration.html。本系统用于架空世界观资料；请填写设定中的姓名、住址，不要填写现实住址、证件号、金融资料或其他不必要的真实个人信息。身份卡和管理员导出的 CSV 会包含出生日期与住址，需作为内部资料妥善保管。
 
@@ -26,10 +27,22 @@
 - 国民登记与管理页面已合并到 main 并由 GitHub Pages 发布。
 - 迁移 `0003_citizen_photos.sql` 已应用到生产 D1；照片上传和身份卡展示已部署。
 - 总统与副总统投票身份核验已部署；0002 迁移已应用，国民管理 Worker 与 AXNews 投票 Worker 已配置相同的 VOTER_VERIFY_SECRET。
+- 网站访客在线留言尚未部署；迁移 `0004_contact_chat.sql` 增加了留言对话、加密消息和限流表。
 
 ## 部署后检查
 
 执行 curl https://axie-citizens-admin-api.axie999666.workers.dev/api/health 检查 Worker。然后访问自助登记页，或在 https://republic-of-axie.org/admin/citizens.html 登录。Worker 使用的 ALLOWED_ORIGINS 已允许正式站和 Wrangler 本地预览地址。
+
+## 网站访客在线留言
+
+部署在线留言时，先应用 D1 迁移，再部署国民管理 Worker；随后通过 GitHub Pages 发布首页 `index.html` 与管理员收件箱 `admin/contact-messages.html`。管理员入口也显示在 AXNews 管理首页。
+
+```sh
+pnpm dlx wrangler d1 migrations apply axie-citizens --remote
+pnpm dlx wrangler deploy
+```
+
+访客可以选填称呼，不需要注册或留下邮箱；请勿在对话中收集现实证件号、金融信息等敏感资料。
 
 ## 投票身份核验部署
 
