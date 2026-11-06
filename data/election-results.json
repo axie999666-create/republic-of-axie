@@ -2,8 +2,8 @@
   "results": [
     {
       "electionId": "vice-president-axie3",
-      "status": "active",
-      "publishedAt": null,
+      "status": "published",
+      "publishedAt": "2026-11-06T13:05:31Z",
       "totalVotes": 6,
       "candidateResults": [
         {
