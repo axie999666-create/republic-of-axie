@@ -936,6 +936,8 @@
 
       pending: "尚未公布",
 
+      active: "尚未公布",
+
       counting: "正在计票",
 
       published: "已公布"
@@ -952,6 +954,8 @@
     return {
 
       pending: "status-pending",
+
+      active: "status-pending",
 
       counting: "status-counting",
 
@@ -1348,8 +1352,8 @@
 
 
     if (
-      result.status ===
-      "pending"
+      result.status === "pending" ||
+      result.status === "active"
     ) {
 
       container.innerHTML = `
@@ -1361,14 +1365,14 @@
           </div>
 
           <div class="result-notice-title">
-            尚未公布
+            结果尚未公布
           </div>
 
           <div class="result-notice-text">
 
-            本次选举结果尚未公布。<br>
+            当前结果记录尚未标记为正式公布。<br>
 
-            正式结果将在选举结束并完成计票后发布。
+            为避免将临时统计误认为最终结果，票数和当选人信息暂不显示。
 
           </div>
 
