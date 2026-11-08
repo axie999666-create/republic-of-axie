@@ -1,5 +1,18 @@
 [
   {
+    "title": "现任总统与建国者 · 阿谢",
+    "text": "据官网现任领导人资料及阿谢的候选人介绍，阿谢（Axie／阿謝）是阿谢国建国者，现任阿谢国总统，属于阿谢和平党。阿谢国于2024年2月3日成立。阿谢正在参选下一届总统选举；参选不等于已赢得下一届选举。",
+    "url": "https://republic-of-axie.org/candidate.html?id=AX-P-2027-001",
+    "keywords": ["现任总统", "总统是谁", "总统名字", "建国者", "创始人", "阿谢是谁", "阿謝", "president", "founder", "大統領", "創設者", "建国者"],
+    "status": "official",
+    "verifiedAt": "2026-11-08",
+    "translations": {
+      "zh-Hant": "據官網現任領導人資料及阿謝的候選人介紹，阿謝是阿謝國建國者、現任總統，屬於阿謝和平黨。阿謝國於2024年2月3日成立。阿謝正在參選下一屆總統選舉；參選不代表已當選。",
+      "en": "According to the official leadership record and his candidate profile, Axie founded the Republic of Axie and is its current president. He belongs to the Axie Peace Party. The republic was founded on February 3, 2024. His candidacy for the next presidential election does not mean he has won it.",
+      "ja": "公式サイトの現職指導者情報と候補者紹介によると、阿謝は阿謝国の建国者で、現職の大統領です。阿謝平和党に所属しています。阿謝国は2024年2月3日に成立しました。次期大統領選への立候補は、当選が決まったことを意味しません。"
+    }
+  },
+  {
     "title": "立宪院",
     "text": "根据宪法第三十六条之一，国会议事堂为双院制，上议院为立宪院，用于确认制定或修订法律；下议院为众议院。根据第五十条，法律案经立宪院依法审议及表决通过后，依宪法及法律公布。",
     "url": "https://republic-of-axie.org/constitution.html",

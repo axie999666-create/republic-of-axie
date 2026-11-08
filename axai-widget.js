@@ -197,13 +197,14 @@ function retrieve(q, knowledge) {
     const c=uiStrings[answerLocale]||uiStrings[uiLanguage];
     const retrievalQ=previousUser&&(q.length<36||/(它|这|那|此|刚才|上面|第几|还有呢|然后呢|为什么|怎么做|详细说|继续|呢[？?]?$)/.test(q))?previousUser+'；'+q:q;
     // A local lookup cannot read a supplied webpage or confirm live news/votes.
-    const liveRequest=/https?:\/\/|最新|实时|即時|当前|目前|今天|现在|投票结果|\b(latest|current|today|now|live)\b|最新|最新の|現在|今日/.test(q);
+    const leadershipQuery=/(?:现任|現在|现任的|现在的).{0,8}总统|現任.{0,8}總統|总统.{0,8}是谁|總統.{0,8}是誰|建国者|建國者|创始人|創始人|(?:current\s+president|founder)|(?:現在|現職).{0,8}大統領|大統領.{0,8}(?:誰|だれ)/i.test(q);
+    const liveRequest=/https?:\/\/|最新|实时|即時|当前|目前|今天|现在|投票结果|\b(latest|current|today|now|live)\b|最新の|現在|今日/.test(q) && !leadershipQuery;
     const hits=liveRequest?[]:retrieve(retrievalQ,docs);
     const dates=[...new Set(hits.map(d=>d.verifiedAt).filter(Boolean))].sort();
     const dated=dates.length?c.date+dates.join('、')+'。':c.noDate;
     const answer=liveRequest
       ?c.liveUnavailable
-      :hits.length?c.localNotice+dated+'\n\n'+hits.map(d=>d.text).join('\n\n')
+      :hits.length?c.localNotice+dated+'\n\n'+hits.map(d=>d.translations?.[answerLocale]||d.text).join('\n\n')
       :c.noResult;
     const displayed=(notice?notice+'\n\n':'')+answer;
     message(displayed,hits.length?hits:[{title:c.directory,url:'https://directory.republic-of-axie.org/'}]);

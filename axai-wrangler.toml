@@ -3,8 +3,8 @@ main = "axai-worker.mjs"
 compatibility_date = "2026-10-01"
 [vars]
 ALLOWED_ORIGIN = "https://republic-of-axie.org"
+AI_MODEL = "@cf/openai/gpt-oss-120b"
 # AI_API_URL = "https://your-provider.example/v1/chat/completions"
-# AI_MODEL = "your-model"
 [ai]
 binding = "AI"
 
