@@ -13,6 +13,19 @@
     }
   },
   {
+    "title": "首都 · 新阿谢市",
+    "text": "阿谢国的首都是新阿谢市（New Axie City），也是国家的政治中心。",
+    "url": "https://republic-of-axie.org/",
+    "keywords": ["首都", "首府", "新阿谢市", "capital", "New Axie City", "首都は"],
+    "status": "official",
+    "verifiedAt": "2026-11-08",
+    "translations": {
+      "zh-Hant": "阿謝國的首都是新阿謝市（New Axie City），也是國家的政治中心。",
+      "en": "The capital of the Republic of Axie is New Axie City, its political center.",
+      "ja": "阿謝国の首都は新阿謝市（New Axie City）で、政治の中心でもあります。"
+    }
+  },
+  {
     "title": "立宪院",
     "text": "根据宪法第三十六条之一，国会议事堂为双院制，上议院为立宪院，用于确认制定或修订法律；下议院为众议院。根据第五十条，法律案经立宪院依法审议及表决通过后，依宪法及法律公布。",
     "url": "https://republic-of-axie.org/constitution.html",

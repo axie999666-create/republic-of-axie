@@ -203,8 +203,9 @@ function retrieve(q, knowledge) {
     const retrievalQ=previousUser&&followUp?previousUser+'；'+q:q;
     // A local lookup cannot read a supplied webpage or confirm live news/votes.
     const leadershipQuery=isLeadershipQuestion(q);
+    const capitalQuery=/首都|首府|capital|新阿谢市|新阿謝市/i.test(q);
     const liveRequest=/https?:\/\/|最新|实时|即時|当前|目前|今天|现在|投票结果|\b(latest|current|today|now|live)\b|最新の|現在|今日/.test(q) && !leadershipQuery;
-    const hits=liveRequest?[]:leadershipQuery?docs.filter(d=>d.title==='现任总统与建国者 · 阿谢'):retrieve(retrievalQ,docs);
+    const hits=liveRequest?[]:leadershipQuery?docs.filter(d=>d.title==='现任总统与建国者 · 阿谢'):capitalQuery?docs.filter(d=>d.title==='首都 · 新阿谢市'):retrieve(retrievalQ,docs);
     const dates=[...new Set(hits.map(d=>d.verifiedAt).filter(Boolean))].sort();
     const dated=dates.length?c.date+dates.join('、')+'。':c.noDate;
     const answer=liveRequest
@@ -225,7 +226,7 @@ function retrieve(q, knowledge) {
     try{
       if(localMode||isLeadershipQuestion(q)){await localAnswer(q,'',preferredLanguage);return;}
       const controller=new AbortController();activeController=controller;
-      const timer=setTimeout(()=>controller.abort(),60000);
+      const timer=setTimeout(()=>controller.abort(),30000);
       try{
         const r=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:q,history,uiLanguage,responseLanguage:preferredLanguage}),signal:controller.signal});
         const data=await r.json();
