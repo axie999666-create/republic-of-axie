@@ -93,6 +93,10 @@
   const conversation=[];
   function remember(role,content){conversation.push({role,content:String(content).slice(0,1000)});while(conversation.length>8)conversation.shift();}
   const knowledge=fetch(new URL('axai-knowledge.json',base),{cache:'no-cache',signal:AbortSignal.timeout(10000)}).then(r=>{if(!r.ok)throw Error();return r.json()});knowledge.catch(()=>{});
+  function isLeadershipQuestion(q){
+    if(/副总统|副總統|副大統領|vice[ -]?president|总统法|總統法|大統領法/i.test(q))return false;
+    return /(?:现任|現在|现在的|現任).{0,8}(?:总统|總統|大統領)|(?:总统|總統|大統領).{0,8}(?:是谁|是誰|誰|だれ|名前)|(?:阿谢|阿謝).{0,8}(?:总统|總統|大統領)|建国者|建國者|创始人|創始人|創設者|founder|(?:who|current).{0,18}president|president.{0,18}(?:name|axie)/i.test(q);
+  }
 function retrieve(q, knowledge) {
   const lawNames = ['总统法', '刑法', '宪法'];
   const laws = lawNames.filter(law => q.includes(law));
@@ -197,9 +201,9 @@ function retrieve(q, knowledge) {
     const c=uiStrings[answerLocale]||uiStrings[uiLanguage];
     const retrievalQ=previousUser&&(q.length<36||/(它|这|那|此|刚才|上面|第几|还有呢|然后呢|为什么|怎么做|详细说|继续|呢[？?]?$)/.test(q))?previousUser+'；'+q:q;
     // A local lookup cannot read a supplied webpage or confirm live news/votes.
-    const leadershipQuery=/(?:现任|現在|现任的|现在的).{0,8}总统|現任.{0,8}總統|总统.{0,8}是谁|總統.{0,8}是誰|建国者|建國者|创始人|創始人|(?:current\s+president|founder)|(?:現在|現職).{0,8}大統領|大統領.{0,8}(?:誰|だれ)/i.test(q);
+    const leadershipQuery=isLeadershipQuestion(q);
     const liveRequest=/https?:\/\/|最新|实时|即時|当前|目前|今天|现在|投票结果|\b(latest|current|today|now|live)\b|最新の|現在|今日/.test(q) && !leadershipQuery;
-    const hits=liveRequest?[]:retrieve(retrievalQ,docs);
+    const hits=liveRequest?[]:leadershipQuery?docs.filter(d=>d.title==='现任总统与建国者 · 阿谢'):retrieve(retrievalQ,docs);
     const dates=[...new Set(hits.map(d=>d.verifiedAt).filter(Boolean))].sort();
     const dated=dates.length?c.date+dates.join('、')+'。':c.noDate;
     const answer=liveRequest
@@ -218,7 +222,7 @@ function retrieve(q, knowledge) {
     const history=conversation.slice(-8);
     message(q,[],true);remember('user',q);input.value='';
     try{
-      if(localMode){await localAnswer(q,'',preferredLanguage);return;}
+      if(localMode||isLeadershipQuestion(q)){await localAnswer(q,'',preferredLanguage);return;}
       const controller=new AbortController();activeController=controller;
       const timer=setTimeout(()=>controller.abort(),60000);
       try{
