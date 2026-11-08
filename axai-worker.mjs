@@ -242,13 +242,14 @@ export default {
     try{urls.forEach(publicUrl)}catch(e){return reply({error:e.message},400)}
     const topic=q.replace(/https?:\/\/\S+/g,'');
     const priorUserQuestion=history.filter(m=>m.role==='user').at(-1)?.content||'';
-    const isFollowUp=topic.length<36||/(它|这|那|此|刚才|上面|第几|还有呢|然后呢|为什么|怎么做|详细说|继续|呢[？?]?$)/.test(topic);
+    const isFollowUp=topic.length<36&&/^(?:它|他|她|其|这|那|此|刚才|上面|还有|然后|为什么|怎么做|详细|继续|请继续|请详细|what about|and|why|how about|he|she|it|それ|その|では|そして|もっと|続けて)/i.test(topic);
     const retrievalTopic=priorUserQuestion&&isFollowUp?priorUserQuestion+'；'+topic:topic;
     const knowledgeTopic=normalizeJapaneseKnowledgeQuery(retrievalTopic);
+    const currentKnowledgeTopic=normalizeJapaneseKnowledgeQuery(topic);
     const explicitlyAxie=/阿谢|阿謝|AXAI|\bAxie\b/i.test(knowledgeTopic);
     const otherContext=/中国|中华人民共和国|美国|日本|英国|法国|德国|加拿大|澳大利亚|印度|韩国|俄罗斯|现实世界|现实中|现实法律/.test(topic);
     const axieQuestion=explicitlyAxie || (!otherContext && /国会议事堂|立宪院|总统工作部|宪法|刑法|总统法|总统|副总统|投票|候选人|选举|国家基本资料|查询法律|政府机构|最新新闻|网站导航|共和国|国旗|国歌|首都|建国|国家资料|铁路|铁道|国家象征|岩南|重工|航空|国防军/.test(knowledgeTopic));
-    const leadershipQuestion=!/副总统|vice[ -]?president|总统法/i.test(knowledgeTopic)&&/(?:现任|现在).{0,8}总统|总统.{0,8}是谁|建国者|创始人|founder|(?:who|current).{0,18}president|president.{0,18}(?:name|axie)/i.test(knowledgeTopic);
+    const leadershipQuestion=!/副总统|vice[ -]?president|总统法/i.test(currentKnowledgeTopic)&&/(?:现任|现在).{0,8}总统|总统.{0,8}是谁|建国者|创始人|founder|(?:who|current).{0,18}president|president.{0,18}(?:name|axie)/i.test(currentKnowledgeTopic);
     const docs=axieQuestion?retrieve(knowledgeTopic,knowledge).filter(d=>leadershipQuestion||d.title!=='现任总统与建国者 · 阿谢'):[];
     if(axieQuestion&&leadershipQuestion&&!otherContext&&!urls.length){
       const record=knowledge.find(d=>d.title==='现任总统与建国者 · 阿谢');

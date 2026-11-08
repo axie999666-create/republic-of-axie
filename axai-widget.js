@@ -199,7 +199,8 @@ function retrieve(q, knowledge) {
     const languageSample=/[\p{L}\p{N}]/u.test(q)?q:previousUser||q;
     const answerLocale=preferredLanguage||questionLanguage(languageSample);
     const c=uiStrings[answerLocale]||uiStrings[uiLanguage];
-    const retrievalQ=previousUser&&(q.length<36||/(它|这|那|此|刚才|上面|第几|还有呢|然后呢|为什么|怎么做|详细说|继续|呢[？?]?$)/.test(q))?previousUser+'；'+q:q;
+    const followUp=q.length<36&&/^(?:它|他|她|其|这|那|此|刚才|上面|还有|然后|为什么|怎么做|详细|继续|请继续|请详细|what about|and|why|how about|he|she|it|それ|その|では|そして|もっと|続けて)/i.test(q);
+    const retrievalQ=previousUser&&followUp?previousUser+'；'+q:q;
     // A local lookup cannot read a supplied webpage or confirm live news/votes.
     const leadershipQuery=isLeadershipQuestion(q);
     const liveRequest=/https?:\/\/|最新|实时|即時|当前|目前|今天|现在|投票结果|\b(latest|current|today|now|live)\b|最新の|現在|今日/.test(q) && !leadershipQuery;
