@@ -18,6 +18,19 @@
       },
       "electionId": "president-axie1",
       "status": "current"
+    },
+    {
+      "leaderId": "AX-VP-2026-002",
+      "position": "vicePresident",
+      "names": {
+        "zh": "飞驰人生",
+        "en": "Luke",
+        "ja": "ノブカズ"
+      },
+      "partyId": "axie-bright-party",
+      "partyName": "阿谢光明党",
+      "electionId": "vice-president-axie3",
+      "status": "current"
     }
   ]
 }
