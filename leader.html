@@ -9,11 +9,11 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <title>领导人资料 | Republic of Axie</title>
+  <title>历任总统与副总统 | Republic of Axie</title>
 
   <meta
     name="description"
-    content="阿谢国领导人资料与历任领导人档案"
+    content="查看阿谢国已收录的历任总统、副总统与现任领导人资料"
   >
 
   <link rel="icon" href="/ROA_flag.png">
@@ -172,6 +172,39 @@
         repeat(2, minmax(0, 1fr));
 
       gap: 24px;
+    }
+
+    .leader-group {
+      margin-bottom: 36px;
+    }
+
+    .leader-group-heading {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .leader-group-heading h2 {
+      margin: 0;
+      color: #102a4c;
+      font-size: 23px;
+    }
+
+    .leader-group-heading span {
+      color: #6b7789;
+      font-size: 13px;
+    }
+
+    .leader-directory-empty {
+      grid-column: 1 / -1;
+      margin: 0;
+      padding: 22px;
+      border: 1px dashed #c9d7e8;
+      border-radius: 14px;
+      color: #6b7789;
+      background: #fff;
     }
 
 
@@ -822,7 +855,7 @@
       </h1>
 
       <p class="site-subtitle">
-        阿谢国领导人资料
+        阿谢国历任总统与副总统
       </p>
 
     </div>
@@ -1345,7 +1378,11 @@
     }
 
 
-    let cards = "";
+    const cards = {
+      president: "",
+      vicePresident: "",
+      other: ""
+    };
 
 
     for (
@@ -1402,7 +1439,7 @@
       }
 
 
-      cards += `
+      const card = `
 
         <article
           class="leader-directory-card"
@@ -1501,7 +1538,26 @@
 
       `;
 
+      const group =
+        Object.hasOwn(cards, leader.position)
+          ? leader.position
+          : "other";
+
+      cards[group] += card;
+
     }
+
+    const renderGroup = (id, title, content) => `
+      <section class="leader-group" aria-labelledby="${id}">
+        <div class="leader-group-heading">
+          <h2 id="${id}">${title}</h2>
+          <span>现任与已收录历任资料</span>
+        </div>
+        <div class="leader-grid">
+          ${content || '<p class="leader-directory-empty">暂无已核实的任职资料。</p>'}
+        </div>
+      </section>
+    `;
 
 
     return `
@@ -1509,21 +1565,19 @@
       <div class="page-title">
 
         <h1>
-          阿谢国领导人
+          历任总统与副总统
         </h1>
 
         <p>
-          阿谢国现任及历任国家领导人资料
+          按职务查看现任及已收录的历任领导人；未收录的任期不推定人选。
         </p>
 
       </div>
 
 
-      <div class="leader-grid">
-
-        ${cards}
-
-      </div>
+      ${renderGroup("presidents", "总统", cards.president)}
+      ${renderGroup("vicePresidents", "副总统", cards.vicePresident)}
+      ${cards.other ? renderGroup("otherLeaders", "其他职务", cards.other) : ""}
 
     `;
 
@@ -2149,16 +2203,9 @@
             class="election-info"
           >
 
-            任期：
-            ${formatAxieDate(
-              leader.term?.startDate,
-              false
-            )}
-            –
-            ${formatAxieDate(
-              leader.term?.endDate,
-              false
-            )}
+            ${leader.term?.startDate && leader.term?.endDate
+              ? `任期：${formatAxieDate(leader.term.startDate, false)} – ${formatAxieDate(leader.term.endDate, false)}`
+              : "任期日期尚未收录"}
 
           </div>
 
@@ -2330,11 +2377,13 @@
 
 
       const elections =
-        Array.isArray(
-          electionsData
-        )
+        Array.isArray(electionsData)
           ? electionsData
-          : electionsData.elections;
+          : Array.isArray(electionsData.elections)
+            ? electionsData.elections
+            : Object.values(electionsData).flatMap(group =>
+                Array.isArray(group?.elections) ? group.elections : []
+              );
 
 
       const parties =
@@ -2375,7 +2424,7 @@
       if (!leaderId) {
 
         document.title =
-          "阿谢国领导人 | Republic of Axie";
+          "历任总统与副总统 | Republic of Axie";
 
 
         document.getElementById(
