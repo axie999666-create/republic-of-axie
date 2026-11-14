@@ -252,6 +252,10 @@ footer {
 
     <div class="meta">
 
+      <div id="election-cycle">
+        选举周期：读取中……
+      </div>
+
       <div id="election-period">
         选举期间：读取中……
       </div>
@@ -544,6 +548,12 @@ async function loadData() {
     /*
       使用阿谢纪年显示选举期间
     */
+
+    document.getElementById(
+      "election-cycle"
+    ).textContent =
+      `选举周期：${elections.vicePresident.termYears === 1 ? "每年" : `每 ${elections.vicePresident.termYears} 年`}举行一次；每届 ${elections.vicePresident.electionStart.month} 月 ${elections.vicePresident.electionStart.day} 日至 ${elections.vicePresident.electionEnd.month} 月 ${elections.vicePresident.electionEnd.day} 日（UTC+9）`;
+
 
     document.getElementById(
       "election-period"

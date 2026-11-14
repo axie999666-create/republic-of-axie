@@ -197,6 +197,13 @@
       font-size: 13px;
     }
 
+    .leader-cycle {
+      margin: -4px 0 18px;
+      color: #526781;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
     .leader-directory-empty {
       grid-column: 1 / -1;
       margin: 0;
@@ -1346,7 +1353,8 @@
   ========================================================= */
 
   function renderLeaderDirectory(
-    leaders
+    leaders,
+    electionConfig
   ) {
 
     const sortedLeaders =
@@ -1547,12 +1555,22 @@
 
     }
 
-    const renderGroup = (id, title, content) => `
+    const cycleText = type => {
+      const years = Number(type?.termYears);
+      const start = type?.electionStart;
+      const end = type?.electionEnd;
+      if (!years || !start?.month || !start?.day || !end?.month || !end?.day) return "";
+      const frequency = years === 1 ? "每年" : `每 ${years} 年`;
+      return `${frequency}举行一次；投票期为 ${start.month} 月 ${start.day} 日至 ${end.month} 月 ${end.day} 日（UTC+9）。`;
+    };
+
+    const renderGroup = (id, title, content, cycle) => `
       <section class="leader-group" aria-labelledby="${id}">
         <div class="leader-group-heading">
           <h2 id="${id}">${title}</h2>
           <span>现任与已收录历任资料</span>
         </div>
+        ${cycle ? `<p class="leader-cycle">${escapeHTML(cycle)}</p>` : ""}
         <div class="leader-grid">
           ${content || '<p class="leader-directory-empty">暂无已核实的任职资料。</p>'}
         </div>
@@ -1575,8 +1593,8 @@
       </div>
 
 
-      ${renderGroup("presidents", "总统", cards.president)}
-      ${renderGroup("vicePresidents", "副总统", cards.vicePresident)}
+      ${renderGroup("presidents", "总统", cards.president, cycleText(electionConfig?.president))}
+      ${renderGroup("vicePresidents", "副总统", cards.vicePresident, cycleText(electionConfig?.vicePresident))}
       ${cards.other ? renderGroup("otherLeaders", "其他职务", cards.other) : ""}
 
     `;
@@ -2431,7 +2449,8 @@
           "content"
         ).innerHTML =
           renderLeaderDirectory(
-            leaders
+            leaders,
+            electionsData
           );
 
 

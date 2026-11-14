@@ -225,6 +225,13 @@
 
     }
 
+    .section-cycle {
+      margin: -6px 0 20px;
+      color: #526781;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
 
     .section-title-line {
 
@@ -1268,6 +1275,13 @@
     typeData
   ) {
 
+    const years = Number(typeData?.termYears);
+    const start = typeData?.electionStart;
+    const end = typeData?.electionEnd;
+    const cycle = years && start?.month && start?.day && end?.month && end?.day
+      ? `${years === 1 ? "每年" : `每 ${years} 年`}举行一次；投票期为 ${start.month} 月 ${start.day} 日至 ${end.month} 月 ${end.day} 日（UTC+9）。`
+      : "";
+
     if (
       !Array.isArray(
         elections
@@ -1298,6 +1312,7 @@
 
           </div>
 
+          ${cycle ? `<p class="section-cycle">${escapeHTML(cycle)}</p>` : ""}
 
           <div
             class="empty-card"
@@ -1408,6 +1423,8 @@
           ></div>
 
         </div>
+
+        ${cycle ? `<p class="section-cycle">${escapeHTML(cycle)}</p>` : ""}
 
 
         <div

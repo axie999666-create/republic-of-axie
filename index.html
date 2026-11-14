@@ -667,6 +667,10 @@ h2 {
 
 }
 
+.election-date + .election-date {
+  margin-top: 6px;
+}
+
 
 .election-button {
 
@@ -1511,6 +1515,12 @@ html.motion-ready #main-content .container > .card.is-visible .symbol-figure:nth
     class="election-countdown"
   >
   </div>
+
+
+  <div
+    id="election-cycle"
+    class="election-date"
+  ></div>
 
 
   <div
@@ -3273,6 +3283,20 @@ function updateElectionDateText() {
 
   dateElement.textContent =
     texts[currentLang];
+
+  const cycleElement = document.getElementById("election-cycle");
+  const typeData = electionData?.[currentElection.type];
+  const years = Number(typeData?.termYears);
+  const cycleStart = typeData?.electionStart;
+  const cycleEnd = typeData?.electionEnd;
+  if (cycleElement && years && cycleStart?.month && cycleStart?.day && cycleEnd?.month && cycleEnd?.day) {
+    const cycleTexts = {
+      zh: `选举周期：${years === 1 ? "每年" : `每 ${years} 年`}举行一次；每届 ${cycleStart.month} 月 ${cycleStart.day} 日至 ${cycleEnd.month} 月 ${cycleEnd.day} 日（UTC+9）`,
+      en: `Election cycle: ${years === 1 ? "every year" : `every ${years} years`}; ${cycleStart.month}/${cycleStart.day}–${cycleEnd.month}/${cycleEnd.day} each cycle (UTC+9)`,
+      jp: `選挙周期：${years === 1 ? "毎年" : `${years}年ごと`}; 毎回 ${cycleStart.month}月${cycleStart.day}日〜${cycleEnd.month}月${cycleEnd.day}日（UTC+9）`
+    };
+    cycleElement.textContent = cycleTexts[currentLang];
+  }
 
 }
 
